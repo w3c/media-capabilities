@@ -22,7 +22,7 @@ In addition to not addressing successful playback, current APIs give no indicati
 
 ## New fundamental layer to the platform
 
-In the spirit of an extensible Web, this API is not intendeddoes not intend to make a decision for the website. Instead, its intent is to offer the tools for the website to make the right decisions. Some consumers of this API will have complex use cases and will decide to make different trade offs than others.
+In the spirit of an extensible Web, this API does not intend to make a decision for the website. Instead, its intent is to offer the tools for the website to make the right decisions. Some consumers of this API will have complex use cases and will decide to make different trade offs than others.
 
 As a fundamental platform layer, the intent is for other APIs using capability detection to use this API. For example, the EME capability detection could ideally be defined on top of this one. To be clear, Media Capabilities API cannot and will not replace existing ‘canPlayType’ and ‘isTypeSupported’ because of the contract to be explicit and certain. Media Capabilities API will support new and more granular classifications of media and allow a unified capability detection method. In this respect, the goal is to also allow extensibility for future media format and technology improvements. 
 
@@ -163,7 +163,7 @@ This solution is very similar to the previous one but instead of exposing the pe
 
 ## HDR
 
-HDR support in browsers is nonexistent. The API is intendedintends to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible. 
+HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible. 
 
 ### Screen capabilities
 
