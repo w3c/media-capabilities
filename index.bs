@@ -7,14 +7,96 @@ Shortname: media-capabilities
 Level: 1
 Group: wicg
 Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://google.com/
-Abstract: This specification does neat stuff.
-!Participate: <a href="https://github.com/wicg/media-capabilities">Git Repository.</a>
-!Participate: <a href="https://github.com/wicg/media-capabilities/issues/new">File an issue.</a>
-!Version History: <a href="https://github.com/wicg/media-capabilities/commits">https://github.com/wicg/media-capabilities/commits</a>
+
+Abstract: This specification intends to provide APIs to allow websites to make
+Abstract: an optimal decision when picking media content for the user. The APIs
+Abstract: will expose information about the decoding capabilities for a given
+Abstract: format but also output capabilities to find the best match based on
+Abstract: the device's display.
+
+!Participate: <a href='https://github.com/wicg/media-capabilities'>Git Repository.</a>
+!Participate: <a href='https://github.com/wicg/media-capabilities/issues/new'>File an issue.</a>
+!Version History: <a href='https://github.com/wicg/media-capabilities/commits'>https://github.com/wicg/media-capabilities/commits</a>
 </pre>
 
-<h2 id="introduction">Introduction</h2>
+<pre class='anchors'>
+spec: media-source; urlPrefix: https://w3c.github.io/media-source/
+    type: method
+        for: MediaSource; text: isTypeSupported(); url: #dom-mediasource-istypesupported
 
-<em>This section is non-normative</em>
+spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
+    type: method
+        urlPrefx: embedded-content.html/
+            for: HTMLMediaElement; text: canPlayType(); url: #dom-navigator-canplaytype
+</pre>
 
-The specification work has not started yet.
+<pre class='biblio'>
+{
+    "media-playback-quality": {
+        "href": "https://wicg.github.io/media-playback-quality/",
+        "title": "Media Playback Quality Specification",
+        "status": "CG-DRAFT",
+        "publisher": "WICG"
+    }
+}
+</pre>
+
+<section>
+  <h2 id='introduction'>Introduction</h2>
+  <em>This section is non-normative</em>
+
+  <p>
+    This specification relies on exposing the following sets of properties:
+    <ul>
+      <li>
+        <p>
+          An API to query the user agent with regards to the decoding abilities
+          of the device based on information such as the codecs, profile,
+          resolution, bitrates, etc. The API exposes information such as whether
+          the playback should be smooth and power efficient.
+        </p>
+        <p>
+          The intent of purposes of this decoding capabilities API is to provide
+          a powerful replacement to API such as
+          {{MediaSource/isTypeSupported()}} or
+          {{HTMLMediaElement/canPlayType()}} which are vague and mostly help the
+          callers to know if something can not be decoded but not how well it
+          should perform.
+        </p>
+      </li>
+      <li>
+        <p>
+          Better information about the display properties such as supported
+          color gamut or dynamic range abilities in order to pick the right
+          content for the display and avoid providing HDR content to an SDR
+          display.
+        </p>
+      </li>
+      <li>
+        <p>
+          Real time feedback about the playback so an adaptative streaming can
+          alter the quality of the content based on actual user perceived
+          quality. Such information will allow websites to react to a pick of
+          CPU/GPU usage in real time. It is expected that this will be tacklked
+          as part of the [[media-playback-quality]] specification.
+        </p>
+      </li>
+    </ul>
+  </p>
+</section>
+
+<section>
+  <h2>Decoding Capabilities</h2>
+
+  <p>
+    TODO
+  </p>
+</section>
+
+<section>
+  <h2>Display Capabilities</h2>
+
+  <p>
+    TODO
+  </p>
+</section>
