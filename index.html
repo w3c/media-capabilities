@@ -1333,8 +1333,9 @@ Possible extra rowspan handling
      <dd><a class="u-url" href="https://wicg.github.io/media-capabilities/">https://wicg.github.io/media-capabilities/</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/wicg/media-capabilities/issues/">GitHub</a>
-     <dt class="editor">Editor:
+     <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard" data-editor-id="45389"><span class="p-name fn">Mounir Lamouri</span> (<a class="p-org org" href="https://google.com/">Google Inc.</a>)
+     <dd class="editor p-author h-card vcard"><span class="p-name fn"></span>
      <dt>Participate:
      <dd><span><a href="https://github.com/wicg/media-capabilities">Git Repository.</a></span>
      <dd><span><a href="https://github.com/wicg/media-capabilities/issues/new">File an issue.</a></span>
@@ -1349,7 +1350,12 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="abstract"><span class="content">Abstract</span></h2>
   <div class="p-summary" data-fill-with="abstract">
-   <p>This specification does neat stuff.</p>
+   <p>This specification intends to provide APIs to allow websites to make
+
+an optimal decision when picking media content for the user. The APIs
+will expose information about the decoding capabilities for a given
+format but also output capabilities to find the best match based on
+the device’s display.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
@@ -1367,18 +1373,59 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h2 class="no-num no-toc no-ref" id="contents">Table of Contents</h2>
    <ol class="toc" role="directory">
     <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
+    <li><a href="#decoding-capabilities"><span class="secno">2</span> <span class="content">Decoding Capabilities</span></a>
+    <li><a href="#display-capabilities"><span class="secno">3</span> <span class="content">Display Capabilities</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
+    <li>
+     <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
+     <ol class="toc">
+      <li><a href="#index-defined-elsewhere"><span class="secno"></span> <span class="content">Terms defined by reference</span></a>
+     </ol>
     <li>
      <a href="#references"><span class="secno"></span> <span class="content">References</span></a>
      <ol class="toc">
       <li><a href="#normative"><span class="secno"></span> <span class="content">Normative References</span></a>
+      <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
    </ol>
   </nav>
   <main>
-   <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
-   <p><em>This section is non-normative</em></p>
-   <p>The specification work has not started yet.</p>
+   <section>
+    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
+     <em>This section is non-normative</em> 
+    <p> This specification relies on exposing the following sets of properties: </p>
+    <ul>
+     <li>
+      <p> An API to query the user agent with regards to the decoding abilities
+          of the device based on information such as the codecs, profile,
+          resolution, bitrates, etc. The API exposes information such as whether
+          the playback should be smooth and power efficient. </p>
+      <p> The intent of purposes of this decoding capabilities API is to provide
+          a powerful replacement to API such as <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#dom-mediasource-istypesupported">isTypeSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/#dom-navigator-canplaytype">canPlayType()</a></code> which are vague and mostly help the
+          callers to know if something can not be decoded but not how well it
+          should perform. </p>
+     <li>
+      <p> Better information about the display properties such as supported
+          color gamut or dynamic range abilities in order to pick the right
+          content for the display and avoid providing HDR content to an SDR
+          display. </p>
+     <li>
+      <p> Real time feedback about the playback so an adaptative streaming can
+          alter the quality of the content based on actual user perceived
+          quality. Such information will allow websites to react to a pick of
+          CPU/GPU usage in real time. It is expected that this will be tacklked
+          as part of the <a data-link-type="biblio" href="#biblio-media-playback-quality">[media-playback-quality]</a> specification. </p>
+    </ul>
+    <p></p>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="2" id="decoding-capabilities"><span class="secno">2. </span><span class="content">Decoding Capabilities</span><a class="self-link" href="#decoding-capabilities"></a></h2>
+    <p> TODO </p>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="3" id="display-capabilities"><span class="secno">3. </span><span class="content">Display Capabilities</span><a class="self-link" href="#display-capabilities"></a></h2>
+    <p> TODO </p>
+   </section>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="conformance"><span class="content"> Conformance</span><a class="self-link" href="#conformance"></a></h2>
@@ -1526,9 +1573,32 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 
 })();
 </script>
+  <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
+  <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
+  <ul class="index">
+   <li>
+    <a data-link-type="biblio">[HTML]</a> defines the following terms:
+    <ul>
+     <li><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-canplaytype">canPlayType()</a>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[media-source]</a> defines the following terms:
+    <ul>
+     <li><a href="https://w3c.github.io/media-source/#dom-mediasource-istypesupported">isTypeSupported()</a>
+    </ul>
+  </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
+   <dt id="biblio-html">[HTML]
+   <dd>Ian Hickson. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+   <dt id="biblio-media-source">[MEDIA-SOURCE]
+   <dd>Matthew Wolenetz; et al. <a href="https://w3c.github.io/media-source/">Media Source Extensions™</a>. 4 October 2016. PR. URL: <a href="https://w3c.github.io/media-source/">https://w3c.github.io/media-source/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
+  </dl>
+  <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
+  <dl>
+   <dt id="biblio-media-playback-quality">[MEDIA-PLAYBACK-QUALITY]
+   <dd><a href="https://wicg.github.io/media-playback-quality/">Media Playback Quality Specification</a>. CG-DRAFT. URL: <a href="https://wicg.github.io/media-playback-quality/">https://wicg.github.io/media-playback-quality/</a>
   </dl>
