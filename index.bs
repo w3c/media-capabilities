@@ -21,6 +21,8 @@ Abstract: the device's display.
 
 <pre class='anchors'>
 spec: media-source; urlPrefix: https://w3c.github.io/media-source/
+    type: interface
+        for: MediaSource; text: MediaSource; url: #media-source
     type: method
         for: MediaSource; text: isTypeSupported(); url: #dom-mediasource-istypesupported
 
@@ -41,7 +43,7 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
 }
 </pre>
 
-<section>
+<section class='non-normative'>
   <h2 id='introduction'>Introduction</h2>
   <em>This section is non-normative</em>
 
@@ -86,15 +88,143 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
 </section>
 
 <section>
-  <h2>Decoding Capabilities</h2>
+  <h2 id='decoding-capabilities'>Decoding Capabilities</h2>
 
-  <p>
-    TODO
-  </p>
+  <section>
+    <h3 id='media-configurations'>Media Configurations</h3>
+
+    <section>
+      <h4 id='mediaconfiguration'>MediaConfiguration</h4>
+
+      <pre class='idl'>
+        dictionary MediaConfiguration {
+          required MediaConfigurationType type;
+
+          VideoConfiguration video;
+          AudioConfiguration audio;;
+        };
+      </pre>
+      <p>
+        The input to the decoding capabilities is represented by a
+        {{MediaConfiguration}} dictionary.
+      </p>
+      <p>
+        A <dfn>valid MediaConfiguration</dfn> MUST contain at least a
+        {{VideoConfiguration}} or an {{AudioConfiguration}}.
+      </p>
+    </section>
+
+    <section>
+      <h4 id='mediaconfigurationtype'>MediaConfigurationType</h4>
+
+      <pre class='idl'>
+        enum MediaConfigurationType {
+          "file",
+          "MediaSource",
+        };
+      </pre>
+
+      <p>
+        A {{MediaConfiguration}} has two types:
+        <ul>
+          <li>{{MediaConfigurationType/file}} is used to represent a
+          configuration that is meant to be used for a plain file playback.</li>
+          <li>{{MediaConfigurationType/MediaSource}} is used to represent a
+          configuration that is meant to be used for playback of a
+          {{MediaSource/MediaSource}} as defined in the [[media-source]]
+          specification. </li>
+        </ul>
+      </p>
+    </section>
+
+    <section>
+      <h4 id='videoconfiguration'>VideoConfiguration</h4>
+
+      <pre class='idl'>
+        dictionary VideoConfiguration {
+          required DOMString type;
+          required unsigned long width;
+          required unsigned long height;
+          required unsigned long bitrate;
+          required double framerate;
+        };
+      </pre>
+
+      <p>
+        The {{VideoConfiguration/type}} represents the MIME type of the video
+        track.
+      </p>
+
+      <p>
+        A <dfn>valid VideoConfiguration type</dfn> MUST include a media type,
+        subtype and full codecs description.
+      </p>
+
+      <p>
+        The {{VideoConfiguration/width}} and {{VideoConfiguration/height}}
+        represent respectively the width and height of the video track.
+      </p>
+
+      <p>
+        The {{VideoConfiguration/bitrate}} represents the number of average
+        bitrate of the video track. The bitrate is the number of bits used to
+        encode a second of the video track.
+      </p>
+
+      <p>
+        The {{VideoConfiguration/framerate}} represents the framerate of the
+        video track. The framerate is the number of frames used in one second
+        (frames per second).
+      </p>
+    </section>
+
+    <section>
+      <h4 id='audioconfiguration'>AudioConfiguration</h4>
+
+      <pre class='idl'>
+        dictionary AudioConfiguration {
+          required DOMString type;
+          DOMString channels;
+          unsigned long bitrate;
+          unsigned long samplerate;
+        };
+      </pre>
+
+      <p>
+        The {{AudioConfiguration/type}} represents the MIME type of the audio
+        track.
+      </p>
+
+      <p>
+        A <dfn>valid AudioConfiguration type</dfn> MUST include a media type,
+        subtype and full codecs description.
+      </p>
+
+      <p>
+        The {{AudioConfiguration/bitrate}} represents the number of average
+        bitrate of the audio track. The bitrate is the number of bits used to
+        encode a second of the audio track.
+      </p>
+
+      <p>
+        The {{AudioConfiguration/samplerate}} represents the samplerate of the
+        audio track in. The samplerate is the number of samples of audio
+        carried per second.
+      </p>
+
+      <p class='note'>
+        The {{AudioConfiguration/samplerate}} is expressed in <code>Hz</code>
+        (ie. number of samples of audio per second). Sometimes the samplerates
+        value are expressed in <code>kHz</code> which represents the number of
+        thousands of samples of audio per second.<br>
+        44100 <code>Hz</code> is equivalent to 44.1 <code>kHz</code>.
+      </p>
+    </section>
+  </section>
 </section>
 
 <section>
-  <h2>Display Capabilities</h2>
+  <h2 id='display-capabilities'>Display Capabilities</h2>
 
   <p>
     TODO
