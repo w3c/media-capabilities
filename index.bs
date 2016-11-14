@@ -221,6 +221,45 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       </p>
     </section>
   </section>
+
+  <section>
+    <h3 id='media-decoding-ability'>Media Decoding Ability</h3>
+
+    <pre class='idl'>
+      interface MediaDecodingAbility {
+        readonly attribute boolean supported;
+        readonly attribute boolean smooth;
+        readonly attribute boolean powerEfficient;
+      };
+    </pre>
+
+    <p>
+      The ability to decode a given {{MediaConfiguration}}
+      <var>configuration</var> is represented by a {{MediaDecodingAbility}}
+      object.
+    </p>
+
+    <p>
+      The <dfn for='MediaDecodingAbility' attribute>supported</dfn> attribute
+      MUST return <code>false</code> if the user agent is not able to decode the
+      media represented by <var>configuration</var>. Otherwise, it MUST return
+      <code>true</code>.
+    </p>
+
+    <p>
+      The <dfn for='MediaDecodingAbility' attribute>smooth</dfn> attribute MUST
+      return whether the user agent will be able to decode the media at a pace
+      that will allow a smooth playback. If {{MediaDecodingAbility/supported}}
+      returns <code>false</code>, the user agent MUST return <code>false</code>.
+    </p>
+
+    <p>
+      The <dfn for='MediaDecodingAbility' attribute>powerEfficient</dfn>
+      attribute MUST return whether the user agent will be able to decode the
+      media in a power efficient manner. If {{MediaDecodingAbility/supported}}
+      returns <code>false</code>, the user agent MUST return <code>false</code>.
+    </p>
+  </section>
 </section>
 
 <section>
