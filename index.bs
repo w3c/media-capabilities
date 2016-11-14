@@ -127,12 +127,13 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       <p>
         A {{MediaConfiguration}} has two types:
         <ul>
-          <li>{{MediaConfigurationType/file}} is used to represent a
-          configuration that is meant to be used for a plain file playback.</li>
-          <li>{{MediaConfigurationType/MediaSource}} is used to represent a
-          configuration that is meant to be used for playback of a
-          {{MediaSource/MediaSource}} as defined in the [[media-source]]
-          specification. </li>
+          <li><dfn for='MediaConfigurationType' enum-value>file</dfn> is used to
+          represent a configuration that is meant to be used for a plain file
+          playback.</li>
+          <li><dfn for='MediaConfigurationType' enum-value>MediaSource</dfn> is
+          used to represent a configuration that is meant to be used for
+          playback of a {{MediaSource/MediaSource}} as defined in the
+          [[media-source]] specification.</li>
         </ul>
       </p>
     </section>
@@ -151,8 +152,8 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       </pre>
 
       <p>
-        The {{VideoConfiguration/type}} represents the MIME type of the video
-        track.
+        The <dfn for='VideoConfiguration' dict-member>type</dfn> member
+        represents the MIME type of the video track.
       </p>
 
       <p>
@@ -161,20 +162,21 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       </p>
 
       <p>
-        The {{VideoConfiguration/width}} and {{VideoConfiguration/height}}
-        represent respectively the width and height of the video track.
+        The <dfn for='VideoConfiguration' dict-member>width</dfn> and
+        <dfn for='VideoConfiguration' dict-member>height</dfn> members represent
+        respectively the width and height of the video track.
       </p>
 
       <p>
-        The {{VideoConfiguration/bitrate}} represents the number of average
-        bitrate of the video track. The bitrate is the number of bits used to
-        encode a second of the video track.
+        The <dfn for='VideoConfiguration' dict-member>bitrate</dfn> member
+        represents the number of average bitrate of the video track. The bitrate
+        is the number of bits used to encode a second of the video track.
       </p>
 
       <p>
-        The {{VideoConfiguration/framerate}} represents the framerate of the
-        video track. The framerate is the number of frames used in one second
-        (frames per second).
+        The <dfn for='VideoConfiguration' dict-member>framerate</dfn> member
+        represents the framerate of the video track. The framerate is the number
+        of frames used in one second (frames per second).
       </p>
     </section>
 
@@ -191,8 +193,8 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       </pre>
 
       <p>
-        The {{AudioConfiguration/type}} represents the MIME type of the audio
-        track.
+        The <dfn for='AudioConfiguration' dict-member>type</dfn> member
+        represents the MIME type of the audio track.
       </p>
 
       <p>
@@ -201,15 +203,27 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       </p>
 
       <p>
-        The {{AudioConfiguration/bitrate}} represents the number of average
-        bitrate of the audio track. The bitrate is the number of bits used to
-        encode a second of the audio track.
+        The <dfn for='AudioConfiguration' dict-member>channels</dfn> member
+        represents the audio channels used by the audio track.
+      </p>
+
+      <p class='issue'>
+        The {{AudioConfiguration/channels}} needs to be defined as a
+        <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code>
+        (number of channels) or as an <code>enum</code> value. The current
+        definition is a placeholder.
       </p>
 
       <p>
-        The {{AudioConfiguration/samplerate}} represents the samplerate of the
-        audio track in. The samplerate is the number of samples of audio
-        carried per second.
+        The <dfn for='AudioConfiguration' dict-member>bitrate</dfn> member
+        represents the number of average bitrate of the audio track. The bitrate
+        is the number of bits used to encode a second of the audio track.
+      </p>
+
+      <p>
+        The <dfn for='AudioConfiguration' dict-member>samplerate</dfn>
+        represents the samplerate of the audio track in. The samplerate is the
+        number of samples of audio carried per second.
       </p>
 
       <p class='note'>
