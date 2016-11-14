@@ -1423,7 +1423,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2016-11-13">13 November 2016</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2016-11-14">14 November 2016</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1481,6 +1481,7 @@ the device’s display.</p>
         <li><a href="#videoconfiguration"><span class="secno">2.1.3</span> <span class="content">VideoConfiguration</span></a>
         <li><a href="#audioconfiguration"><span class="secno">2.1.4</span> <span class="content">AudioConfiguration</span></a>
        </ol>
+      <li><a href="#media-decoding-ability"><span class="secno">2.2</span> <span class="content">Media Decoding Ability</span></a>
      </ol>
     <li><a href="#display-capabilities"><span class="secno">3</span> <span class="content">Display Capabilities</span></a>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
@@ -1605,6 +1606,24 @@ the device’s display.</p>
         value are expressed in <code>kHz</code> which represents the number of
         thousands of samples of audio per second.<br> 44100 <code>Hz</code> is equivalent to 44.1 <code>kHz</code>. </p>
      </section>
+    </section>
+    <section>
+     <h3 class="heading settled" data-level="2.2" id="media-decoding-ability"><span class="secno">2.2. </span><span class="content">Media Decoding Ability</span><a class="self-link" href="#media-decoding-ability"></a></h3>
+<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="mediadecodingability">MediaDecodingAbility</dfn> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-1">supported</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth" id="ref-for-dom-mediadecodingability-smooth-1">smooth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient" id="ref-for-dom-mediadecodingability-powerefficient-1">powerEfficient</a>;
+};
+</pre>
+     <p> The ability to decode a given <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-3">MediaConfiguration</a></code> <var>configuration</var> is represented by a <code class="idl"><a data-link-type="idl" href="#mediadecodingability" id="ref-for-mediadecodingability-1">MediaDecodingAbility</a></code> object. </p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-supported">supported</dfn> attribute
+      MUST return <code>false</code> if the user agent is not able to decode the
+      media represented by <var>configuration</var>. Otherwise, it MUST return <code>true</code>. </p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-smooth">smooth</dfn> attribute MUST
+      return whether the user agent will be able to decode the media at a pace
+      that will allow a smooth playback. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-2">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>. </p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-powerefficient">powerEfficient</dfn> attribute MUST return whether the user agent will be able to decode the
+      media in a power efficient manner. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-3">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>. </p>
     </section>
    </section>
    <section>
@@ -1776,9 +1795,13 @@ the device’s display.</p>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.3</span>
    <li><a href="#dictdef-mediaconfiguration">MediaConfiguration</a><span>, in §2.1.1</span>
    <li><a href="#enumdef-mediaconfigurationtype">MediaConfigurationType</a><span>, in §2.1.2</span>
+   <li><a href="#mediadecodingability">MediaDecodingAbility</a><span>, in §2.2</span>
    <li><a href="#dom-mediaconfigurationtype-mediasource">MediaSource</a><span>, in §2.1.2</span>
    <li><a href="#dom-mediaconfigurationtype-mediasource">"MediaSource"</a><span>, in §2.1.2</span>
+   <li><a href="#dom-mediadecodingability-powerefficient">powerEfficient</a><span>, in §2.2</span>
    <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.4</span>
+   <li><a href="#dom-mediadecodingability-smooth">smooth</a><span>, in §2.2</span>
+   <li><a href="#dom-mediadecodingability-supported">supported</a><span>, in §2.2</span>
    <li>
     type
     <ul>
@@ -1850,12 +1873,19 @@ the device’s display.</p>
   <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
 };
 
+<span class="kt">interface</span> <a class="nv" href="#mediadecodingability">MediaDecodingAbility</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported">supported</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth">smooth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient">powerEfficient</a>;
+};
+
 </pre>
   <aside class="dfn-panel" data-for="dictdef-mediaconfiguration">
    <b><a href="#dictdef-mediaconfiguration">#dictdef-mediaconfiguration</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dictdef-mediaconfiguration-1">2.1.1. MediaConfiguration</a>
     <li><a href="#ref-for-dictdef-mediaconfiguration-2">2.1.2. MediaConfigurationType</a>
+    <li><a href="#ref-for-dictdef-mediaconfiguration-3">2.2. Media Decoding Ability</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-mediaconfigurationtype">
@@ -1934,6 +1964,30 @@ the device’s display.</p>
    <b><a href="#dom-audioconfiguration-samplerate">#dom-audioconfiguration-samplerate</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-audioconfiguration-samplerate-1">2.1.4. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-samplerate-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="mediadecodingability">
+   <b><a href="#mediadecodingability">#mediadecodingability</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-mediadecodingability-1">2.2. Media Decoding Ability</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-mediadecodingability-supported">
+   <b><a href="#dom-mediadecodingability-supported">#dom-mediadecodingability-supported</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mediadecodingability-supported-1">2.2. Media Decoding Ability</a> <a href="#ref-for-dom-mediadecodingability-supported-2">(2)</a> <a href="#ref-for-dom-mediadecodingability-supported-3">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-mediadecodingability-smooth">
+   <b><a href="#dom-mediadecodingability-smooth">#dom-mediadecodingability-smooth</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mediadecodingability-smooth-1">2.2. Media Decoding Ability</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-mediadecodingability-powerefficient">
+   <b><a href="#dom-mediadecodingability-powerefficient">#dom-mediadecodingability-powerefficient</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mediadecodingability-powerefficient-1">2.2. Media Decoding Ability</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
