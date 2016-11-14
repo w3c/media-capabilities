@@ -1430,6 +1430,7 @@ pre.idl.highlight { color: #708090; }
      <dd><a class="u-url" href="https://wicg.github.io/media-capabilities/">https://wicg.github.io/media-capabilities/</a>
      <dt>Issue Tracking:
      <dd><a href="https://github.com/wicg/media-capabilities/issues/">GitHub</a>
+     <dd><a href="#issues-index">Inline In Spec</a>
      <dt class="editor">Editors:
      <dd class="editor p-author h-card vcard" data-editor-id="45389"><span class="p-name fn">Mounir Lamouri</span> (<a class="p-org org" href="https://google.com/">Google Inc.</a>)
      <dd class="editor p-author h-card vcard"><span class="p-name fn"></span>
@@ -1498,6 +1499,7 @@ the device’s display.</p>
       <li><a href="#informative"><span class="secno"></span> <span class="content">Informative References</span></a>
      </ol>
     <li><a href="#idl-index"><span class="secno"></span> <span class="content">IDL Index</span></a>
+    <li><a href="#issues-index"><span class="secno"></span> <span class="content">Issues Index</span></a>
    </ol>
   </nav>
   <main>
@@ -1548,60 +1550,66 @@ the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.2" id="mediaconfigurationtype"><span class="secno">2.1.2. </span><span class="content">MediaConfigurationType</span><a class="self-link" href="#mediaconfigurationtype"></a></h4>
 <pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-mediaconfigurationtype">MediaConfigurationType</dfn> {
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="MediaConfigurationType" data-dfn-type="enum-value" data-export="" data-lt="&quot;file&quot;|file" id="dom-mediaconfigurationtype-file">"file"</dfn>,
-  <dfn class="s dfn-paneled idl-code" data-dfn-for="MediaConfigurationType" data-dfn-type="enum-value" data-export="" data-lt="&quot;MediaSource&quot;|MediaSource" id="dom-mediaconfigurationtype-mediasource">"MediaSource"</dfn>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-file" id="ref-for-dom-mediaconfigurationtype-file-1">"file"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-mediasource" id="ref-for-dom-mediaconfigurationtype-mediasource-1">"MediaSource"</a>,
 };
 </pre>
       <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-2">MediaConfiguration</a></code> has two types: </p>
       <ul>
-       <li><code class="idl"><a data-link-type="idl" href="#dom-mediaconfigurationtype-file" id="ref-for-dom-mediaconfigurationtype-file-1">file</a></code> is used to represent a
-          configuration that is meant to be used for a plain file playback.
-       <li><code class="idl"><a data-link-type="idl" href="#dom-mediaconfigurationtype-mediasource" id="ref-for-dom-mediaconfigurationtype-mediasource-1">MediaSource</a></code> is used to represent a
-          configuration that is meant to be used for playback of a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#media-source">MediaSource</a></code> as defined in the <a data-link-type="biblio" href="#biblio-media-source">[media-source]</a> specification. 
+       <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaConfigurationType" data-dfn-type="enum-value" data-export="" id="dom-mediaconfigurationtype-file">file</dfn> is used to
+          represent a configuration that is meant to be used for a plain file
+          playback.
+       <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaConfigurationType" data-dfn-type="enum-value" data-export="" id="dom-mediaconfigurationtype-mediasource">MediaSource</dfn> is
+          used to represent a configuration that is meant to be used for
+          playback of a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#media-source">MediaSource</a></code> as defined in the <a data-link-type="biblio" href="#biblio-media-source">[media-source]</a> specification.
       </ul>
       <p></p>
      </section>
      <section>
       <h4 class="heading settled" data-level="2.1.3" id="videoconfiguration"><span class="secno">2.1.3. </span><span class="content">VideoConfiguration</span><a class="self-link" href="#videoconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-videoconfiguration">VideoConfiguration</dfn> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" data-type="DOMString " id="dom-videoconfiguration-type">type</dfn>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" data-type="unsigned long " id="dom-videoconfiguration-width">width</dfn>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" data-type="unsigned long " id="dom-videoconfiguration-height">height</dfn>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" data-type="unsigned long " id="dom-videoconfiguration-bitrate">bitrate</dfn>;
-  <span class="kt">required</span> <span class="kt">double</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" data-type="double " id="dom-videoconfiguration-framerate">framerate</dfn>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-type" id="ref-for-dom-videoconfiguration-type-1">type</a>;
+  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a>;
+  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height-1">height</a>;
+  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate-1">bitrate</a>;
+  <span class="kt">required</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate-1">framerate</a>;
 };
 </pre>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-type" id="ref-for-dom-videoconfiguration-type-1">type</a></code> represents the MIME type of the video
-        track. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-type">type</dfn> member
+        represents the MIME type of the video track. </p>
       <p> A <dfn data-dfn-type="dfn" data-noexport="" id="valid-videoconfiguration-type">valid VideoConfiguration type<a class="self-link" href="#valid-videoconfiguration-type"></a></dfn> MUST include a media type,
         subtype and full codecs description. </p>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height-1">height</a></code> represent respectively the width and height of the video track. </p>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate-1">bitrate</a></code> represents the number of average
-        bitrate of the video track. The bitrate is the number of bits used to
-        encode a second of the video track. </p>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate-1">framerate</a></code> represents the framerate of the
-        video track. The framerate is the number of frames used in one second
-        (frames per second). </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-width">width</dfn> and <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-height">height</dfn> members represent
+        respectively the width and height of the video track. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-bitrate">bitrate</dfn> member
+        represents the number of average bitrate of the video track. The bitrate
+        is the number of bits used to encode a second of the video track. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-framerate">framerate</dfn> member
+        represents the framerate of the video track. The framerate is the number
+        of frames used in one second (frames per second). </p>
      </section>
      <section>
       <h4 class="heading settled" data-level="2.1.4" id="audioconfiguration"><span class="secno">2.1.4. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-audioconfiguration">AudioConfiguration</dfn> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" data-type="DOMString " id="dom-audioconfiguration-type">type</dfn>;
-  <span class="kt">DOMString</span> <dfn class="nv idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" data-type="DOMString " id="dom-audioconfiguration-channels">channels<a class="self-link" href="#dom-audioconfiguration-channels"></a></dfn>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" data-type="unsigned long " id="dom-audioconfiguration-bitrate">bitrate</dfn>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <dfn class="nv dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" data-type="unsigned long " id="dom-audioconfiguration-samplerate">samplerate</dfn>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-type" id="ref-for-dom-audioconfiguration-type-1">type</a>;
+  <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-1">channels</a>;
+  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate-1">bitrate</a>;
+  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-1">samplerate</a>;
 };
 </pre>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-type" id="ref-for-dom-audioconfiguration-type-1">type</a></code> represents the MIME type of the audio
-        track. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-type">type</dfn> member
+        represents the MIME type of the audio track. </p>
       <p> A <dfn data-dfn-type="dfn" data-noexport="" id="valid-audioconfiguration-type">valid AudioConfiguration type<a class="self-link" href="#valid-audioconfiguration-type"></a></dfn> MUST include a media type,
         subtype and full codecs description. </p>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate-1">bitrate</a></code> represents the number of average
-        bitrate of the audio track. The bitrate is the number of bits used to
-        encode a second of the audio track. </p>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-1">samplerate</a></code> represents the samplerate of the
-        audio track in. The samplerate is the number of samples of audio
-        carried per second. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-channels">channels</dfn> member
+        represents the audio channels used by the audio track. </p>
+      <p class="issue" id="issue-322a8f07"><a class="self-link" href="#issue-322a8f07"></a> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-2">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
+        definition is a placeholder. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-bitrate">bitrate</dfn> member
+        represents the number of average bitrate of the audio track. The bitrate
+        is the number of bits used to encode a second of the audio track. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-samplerate">samplerate</dfn> represents the samplerate of the audio track in. The samplerate is the
+        number of samples of audio carried per second. </p>
       <p class="note" role="note"> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-2">samplerate</a></code> is expressed in <code>Hz</code> (ie. number of samples of audio per second). Sometimes the samplerates
         value are expressed in <code>kHz</code> which represents the number of
         thousands of samples of audio per second.<br> 44100 <code>Hz</code> is equivalent to 44.1 <code>kHz</code>. </p>
@@ -1789,7 +1797,6 @@ the device’s display.</p>
      <li><a href="#dom-audioconfiguration-bitrate">dict-member for AudioConfiguration</a><span>, in §2.1.4</span>
     </ul>
    <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.4</span>
-   <li><a href="#dom-mediaconfigurationtype-file">"file"</a><span>, in §2.1.2</span>
    <li><a href="#dom-mediaconfigurationtype-file">file</a><span>, in §2.1.2</span>
    <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.3</span>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.3</span>
@@ -1797,7 +1804,6 @@ the device’s display.</p>
    <li><a href="#enumdef-mediaconfigurationtype">MediaConfigurationType</a><span>, in §2.1.2</span>
    <li><a href="#mediadecodingability">MediaDecodingAbility</a><span>, in §2.2</span>
    <li><a href="#dom-mediaconfigurationtype-mediasource">MediaSource</a><span>, in §2.1.2</span>
-   <li><a href="#dom-mediaconfigurationtype-mediasource">"MediaSource"</a><span>, in §2.1.2</span>
    <li><a href="#dom-mediadecodingability-powerefficient">powerEfficient</a><span>, in §2.2</span>
    <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.4</span>
    <li><a href="#dom-mediadecodingability-smooth">smooth</a><span>, in §2.2</span>
@@ -1854,23 +1860,23 @@ the device’s display.</p>
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-mediaconfigurationtype">MediaConfigurationType</a> {
-  <a class="s" href="#dom-mediaconfigurationtype-file">"file"</a>,
-  <a class="s" href="#dom-mediaconfigurationtype-mediasource">"MediaSource"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-file">"file"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-mediasource">"MediaSource"</a>,
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-videoconfiguration">VideoConfiguration</a> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv" data-type="DOMString " href="#dom-videoconfiguration-type">type</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv" data-type="unsigned long " href="#dom-videoconfiguration-width">width</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv" data-type="unsigned long " href="#dom-videoconfiguration-height">height</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv" data-type="unsigned long " href="#dom-videoconfiguration-bitrate">bitrate</a>;
-  <span class="kt">required</span> <span class="kt">double</span> <a class="nv" data-type="double " href="#dom-videoconfiguration-framerate">framerate</a>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-type">type</a>;
+  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width">width</a>;
+  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height">height</a>;
+  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate">bitrate</a>;
+  <span class="kt">required</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate">framerate</a>;
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-audioconfiguration">AudioConfiguration</a> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv" data-type="DOMString " href="#dom-audioconfiguration-type">type</a>;
-  <span class="kt">DOMString</span> <a class="nv" data-type="DOMString " href="#dom-audioconfiguration-channels">channels</a>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv" data-type="unsigned long " href="#dom-audioconfiguration-bitrate">bitrate</a>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-type">type</a>;
+  <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels">channels</a>;
+  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate">bitrate</a>;
+  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
 };
 
 <span class="kt">interface</span> <a class="nv" href="#mediadecodingability">MediaDecodingAbility</a> {
@@ -1880,6 +1886,11 @@ the device’s display.</p>
 };
 
 </pre>
+  <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
+  <div style="counter-reset:issue">
+   <div class="issue"> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
+        definition is a placeholder. <a href="#issue-322a8f07"> ↵ </a></div>
+  </div>
   <aside class="dfn-panel" data-for="dictdef-mediaconfiguration">
    <b><a href="#dictdef-mediaconfiguration">#dictdef-mediaconfiguration</a></b><b>Referenced in:</b>
    <ul>
@@ -1952,6 +1963,12 @@ the device’s display.</p>
    <b><a href="#dom-audioconfiguration-type">#dom-audioconfiguration-type</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-audioconfiguration-type-1">2.1.4. AudioConfiguration</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-audioconfiguration-channels">
+   <b><a href="#dom-audioconfiguration-channels">#dom-audioconfiguration-channels</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-audioconfiguration-channels-1">2.1.4. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-channels-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-bitrate">
