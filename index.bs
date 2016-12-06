@@ -30,8 +30,11 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
     type: method
         urlPrefx: embedded-content.html/
             for: HTMLMediaElement; text: canPlayType(); url: #dom-navigator-canplaytype
-</pre>
 
+spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
+    type: interface
+        text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
+</pre>
 <pre class='biblio'>
 {
     "media-playback-quality": {
@@ -272,6 +275,68 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
       attribute MUST return whether the user agent will be able to decode the
       media in a power efficient manner. If {{MediaDecodingAbility/supported}}
       returns <code>false</code>, the user agent MUST return <code>false</code>.
+    </p>
+  </section>
+
+  <section>
+    <h3 id='navigators-extensions'>Navigator and WorkerNavigator extension</h3>
+
+    <pre class='idl'>
+      [Exposed=(Window)]
+      partial interface Navigator {
+        readonly attribute MediaCapabilities mediaCapabilities;
+      };
+    </pre>
+    <pre class='idl'>
+      [Exposed=(Worker)]
+      partial interface WorkerNavigator {
+        readonly attribute MediaCapabilities mediaCapabilities;
+      };
+    </pre>
+  </section>
+
+  <section>
+    <h3 id='media-capabilities-interface'>Media Capabilities Interface</h3>
+
+    <pre class='idl'>
+      [Exposed=(Window, Worker)]
+      interface MediaCapabilities {
+        Promise&lt;MediaDecodingAbility&gt; query(MediaConfiguration configuration);
+      };
+    </pre>
+
+    <p>
+      The <dfn for='MediaCapabilities' method>query()</dfn> method MUST run the
+      following steps:
+      <ol>
+        <li>
+          If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
+          return a Promise rejected with a <code>TypeError</code>.
+        </li>
+        <li>
+          If <code>configuration.video</code> in non-null and
+          <code>configuration.video.type</code> is not a <a>valid
+          VideoConfiguration type</a>, return a Promise rejected with a
+          <code>TypeError</code>.
+        </li>
+        <li>
+          If <code>configuration.audio</code> in non-null and
+          <code>configuration.audio.type</code> is not a <a>valid
+          AudioConfiguration type</a>, return a Promise rejected with a
+          <code>TypeError</code>.
+        </li>
+        <li>
+          Let <var>p</var> be a new promise.
+        </li>
+        <li>
+          <a>In parallel</a>, create a {{MediaDecodingAbility}} instance
+          representing the user agent ability to decode the given
+          <var>configuration</var>.
+        </li>
+        <li>
+          Return <var>p</var>.
+        </li>
+      </ol>
     </p>
   </section>
 </section>
