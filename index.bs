@@ -34,6 +34,10 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
 spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
     type: interface
         text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
+
+spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
+    type: interface
+        text: Screen; url: screen
 </pre>
 <pre class='biblio'>
 {
@@ -344,7 +348,73 @@ spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
 <section>
   <h2 id='display-capabilities'>Display Capabilities</h2>
 
-  <p>
-    TODO
-  </p>
+  <section>
+    <h3 id='screen-luminance'>Screen Luminance</h3>
+
+    <pre class='idl'>
+      interface ScreenLuminance {
+        readonly attribute double min;
+        readonly attribute double max;
+      };
+    </pre>
+
+    <p>
+      The {{ScreenLuminance}} object represents the known luminance
+      characteristics of the screen.
+    </p>
+
+    <p>
+      The <dfn for='ScreenLuminance' attribute>min</dfn> attribute MUST return
+      the minimal screen luminance that can be emmited by the screen in candela
+      per square metre. The minimal screen luminance is the luminance used when
+      showing the darkest color the screen can display.
+    </p>
+
+    <p>
+      The <dfn for='ScreenLuminance' attribute>max</dfn> attribute MUST return
+      the maximal screen luminance that can be emmited by the screen in candela
+      per square metre. The maximal screen luminance is the luminance used when
+      showing the whitest color the screen can display.
+    </p>
+  </section>
+
+  <section>
+    <h3 id='screen-extension'>Screen extension</h3>
+
+    <p class='issue'>
+      Part of this section is 🐵 patching of the CSSOM View Module. <a
+      href='https://github.com/WICG/media-capabilities/issues/4'>Issue #4</a> is
+      tracking merging the changes.
+    </p>
+
+    <pre class='idl'>
+      partial interface Screen : EventTarget {
+        readonly attribute ScreenLuminance? luminance;
+        attribute EventHandler onchange;
+      };
+    </pre>
+
+    <p>
+      The <dfn for='Screen' attribute>luminance</dfn> attribute SHOULD return
+      a {{ScreenLuminance}} object that will expose the luminance
+      characteristics of the screen. If the user agent has no access to the
+      luminance characteristics of the screen, it MUST return <code>null</code>.
+      The user agent MAY also return <code>null</code> if it does not want to
+      expose the luminance information for privacy reasons.
+    </p>
+
+    <p>
+      The <dfn for='Screen' attribute>onchange</dfn> attribute is an <a>event
+      handler</a> whose corresponding <a>event handler event type</a> is
+      <code>change</code>.
+    </p>
+
+    <p>
+      Whenever the user agent is aware that the state of the {{Screen}}
+      object has changed, that is if one the value exposed on the {{Screen}}
+      object or in an object exposed on the {{Screen}} object, it MUST
+      queue a task to <a>fire an event</a> named <code>change</code> on
+      {{Screen}}.
+    </p>
+  </section>
 </section>
