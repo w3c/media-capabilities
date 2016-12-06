@@ -415,6 +415,17 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
   </section>
 
   <section>
+    <h3 id='screen-color-depth-section'>Screen Color Depth</h3>
+
+    <p>
+      The <dfn>screen color depth</dfn> of a given <var>screen</var> is the
+      the number of bits used to represent a color on the <var>screen</var>.
+      Most screens will return 24. Screen able to represent wider color range
+      will encode bits in more than 24 bits.
+    </p>
+  </section>
+
+  <section>
     <h3 id='screen-extension'>Screen extension</h3>
 
     <p class='issue'>
@@ -427,6 +438,11 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
       partial interface Screen : EventTarget {
         readonly attribute ScreenColorGamut? colorGamut;
         readonly attribute ScreenLuminance? luminance;
+
+        // Overriden from CSSOM View Module.
+        readonly attribute unsigned long colorDepth;
+        readonly attribute unsigned long pixelDepth;
+
         attribute EventHandler onchange;
       };
     </pre>
@@ -450,6 +466,18 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
       luminance characteristics of the screen, it MUST return <code>null</code>.
       The user agent MAY also return <code>null</code> if it does not want to
       expose the luminance information for privacy reasons.
+    </p>
+
+    <p>
+      The <dfn for='Screen' attribute>colorDepth</dfn> attribute SHOULD return
+      the <a>screen color depth</a> of the {{Screen}}. The user agent MAY return
+      <code>24</code> as a default value for privacy consideration.
+    </p>
+
+    <p>
+      The <dfn for='Screen' attribute>pixelDepth</dfn> attribute SHOULD return
+      the <a>screen color depth</a> of the {{Screen}}. The user agent MAY return
+      <code>24</code> as a default value for privacy consideration.
     </p>
 
     <p>
