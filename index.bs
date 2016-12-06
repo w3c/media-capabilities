@@ -379,6 +379,42 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
   </section>
 
   <section>
+    <h3 id='color-gamut'>Screen Color Gamut</h3>
+
+    <pre class='idl'>
+      enum ScreenColorGamut {
+        "srgb",
+        "p3",
+        "rec2020",
+      };
+    </pre>
+
+    <p>
+      The {{ScreenColorGamut}} represents the color gamut supported by a
+      {{Screen}}, that means the range of color that the screen can display.
+    </p>
+
+    <p>
+      The {{ScreenColorGamut}} values are:
+      <ul>
+        <li>
+          <dfn for='ScreenColorGamut' enum-value>srgb</dfn>, it represents the
+          [[sRGB]] color gamut.
+        </li>
+        <li>
+          <dfn for='ScreenColorGamut' enum-value>p3</dfn>, it represents the DCI
+          P3 Color Space color gamut. This color gamut includes the
+          {{ScreenColorGamut/srgb}} gamut.
+        </li>
+        <li>
+          <dfn for='ScreenColorGamut' enum-value>rec2020</dfn>, it represents
+          the ITU-R Recommendation BT.2020 color gamut. This color gamut
+          includes the {{ScreenColorGamut/p3}} gamut.
+        </li>
+    </p>
+  </section>
+
+  <section>
     <h3 id='screen-extension'>Screen extension</h3>
 
     <p class='issue'>
@@ -389,10 +425,23 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 
     <pre class='idl'>
       partial interface Screen : EventTarget {
+        readonly attribute ScreenColorGamut? colorGamut;
         readonly attribute ScreenLuminance? luminance;
         attribute EventHandler onchange;
       };
     </pre>
+
+    <p>
+      The <dfn for='Screen' attribute>colorGamut</dfn> attribute SHOULD return
+      the {{ScreenColorGamut}} supported by the screen. When the screen's
+      supported color gamut does not match one of the available values, the user
+      agent SHOULD return a value that is fully supported by the screen if it
+      can be determined. Furthermore, if the user agent does not know the color
+      gamut supported by the screen, if the supported color gamut is lower than
+      {{ScreenColorGamut/srgb}} or if the user agent does not want to expose
+      this information for privacy consideration, it SHOULD return
+      <code>null</code>.
+    </p>
 
     <p>
       The <dfn for='Screen' attribute>luminance</dfn> attribute SHOULD return
