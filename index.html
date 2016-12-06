@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 1d4d2b1d1fc168e39cb7f99218de7951c5736ec7" name="generator">
+  <meta content="Bikeshed version 0feafaae1a97b66d9da46b325858f9805ac01fb2" name="generator">
 <style>/* style-md-lists */
 
             /* This is a weird hack for me not yet following the commonmark spec
@@ -1490,7 +1490,8 @@ the device’s display.</p>
      <a href="#display-capabilities"><span class="secno">3</span> <span class="content">Display Capabilities</span></a>
      <ol class="toc">
       <li><a href="#screen-luminance"><span class="secno">3.1</span> <span class="content">Screen Luminance</span></a>
-      <li><a href="#screen-extension"><span class="secno">3.2</span> <span class="content">Screen extension</span></a>
+      <li><a href="#color-gamut"><span class="secno">3.2</span> <span class="content">Screen Color Gamut</span></a>
+      <li><a href="#screen-extension"><span class="secno">3.3</span> <span class="content">Screen extension</span></a>
      </ol>
     <li><a href="#conformance"><span class="secno"></span> <span class="content"> Conformance</span></a>
     <li>
@@ -1698,14 +1699,42 @@ the device’s display.</p>
       showing the whitest color the screen can display. </p>
     </section>
     <section>
-     <h3 class="heading settled" data-level="3.2" id="screen-extension"><span class="secno">3.2. </span><span class="content">Screen extension</span><a class="self-link" href="#screen-extension"></a></h3>
+     <h3 class="heading settled" data-level="3.2" id="color-gamut"><span class="secno">3.2. </span><span class="content">Screen Color Gamut</span><a class="self-link" href="#color-gamut"></a></h3>
+<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-screencolorgamut">ScreenColorGamut</dfn> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-srgb" id="ref-for-dom-screencolorgamut-srgb-1">"srgb"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-p3" id="ref-for-dom-screencolorgamut-p3-1">"p3"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-rec2020" id="ref-for-dom-screencolorgamut-rec2020-1">"rec2020"</a>,
+};
+</pre>
+     <p> The <code class="idl"><a data-link-type="idl" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-1">ScreenColorGamut</a></code> represents the color gamut supported by a <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a></code>, that means the range of color that the screen can display. </p>
+     <p> The <code class="idl"><a data-link-type="idl" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-2">ScreenColorGamut</a></code> values are: </p>
+     <ul>
+      <li> <dfn class="dfn-paneled idl-code" data-dfn-for="ScreenColorGamut" data-dfn-type="enum-value" data-export="" id="dom-screencolorgamut-srgb">srgb</dfn>, it represents the <a data-link-type="biblio" href="#biblio-srgb">[sRGB]</a> color gamut. 
+      <li> <dfn class="dfn-paneled idl-code" data-dfn-for="ScreenColorGamut" data-dfn-type="enum-value" data-export="" id="dom-screencolorgamut-p3">p3</dfn>, it represents the DCI
+          P3 Color Space color gamut. This color gamut includes the <code class="idl"><a data-link-type="idl" href="#dom-screencolorgamut-srgb" id="ref-for-dom-screencolorgamut-srgb-2">srgb</a></code> gamut. 
+      <li> <dfn class="dfn-paneled idl-code" data-dfn-for="ScreenColorGamut" data-dfn-type="enum-value" data-export="" id="dom-screencolorgamut-rec2020">rec2020</dfn>, it represents
+          the ITU-R Recommendation BT.2020 color gamut. This color gamut
+          includes the <code class="idl"><a data-link-type="idl" href="#dom-screencolorgamut-p3" id="ref-for-dom-screencolorgamut-p3-2">p3</a></code> gamut. 
+      <p></p>
+     </ul>
+    </section>
+    <section>
+     <h3 class="heading settled" data-level="3.3" id="screen-extension"><span class="secno">3.3. </span><span class="content">Screen extension</span><a class="self-link" href="#screen-extension"></a></h3>
      <p class="issue" id="issue-15e9d0d4"><a class="self-link" href="#issue-15e9d0d4"></a> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is
       tracking merging the changes. </p>
 <pre class="idl highlight def"><span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-3">ScreenColorGamut</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut?" href="#dom-screen-colorgamut" id="ref-for-dom-screen-colorgamut-1">colorGamut</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance" id="ref-for-screenluminance-2">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance" id="ref-for-dom-screen-luminance-1">luminance</a>;
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-screen-onchange" id="ref-for-dom-screen-onchange-1">onchange</a>;
 };
 </pre>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="Screen" data-dfn-type="attribute" data-export="" id="dom-screen-colorgamut">colorGamut</dfn> attribute SHOULD return
+      the <code class="idl"><a data-link-type="idl" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-4">ScreenColorGamut</a></code> supported by the screen. When the screen’s
+      supported color gamut does not match one of the available values, the user
+      agent SHOULD return a value that is fully supported by the screen if it
+      can be determined. Furthermore, if the user agent does not know the color
+      gamut supported by the screen, if the supported color gamut is lower than <code class="idl"><a data-link-type="idl" href="#dom-screencolorgamut-srgb" id="ref-for-dom-screencolorgamut-srgb-3">srgb</a></code> or if the user agent does not want to expose
+      this information for privacy consideration, it SHOULD return <code>null</code>. </p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="Screen" data-dfn-type="attribute" data-export="" id="dom-screen-luminance">luminance</dfn> attribute SHOULD return
       a <code class="idl"><a data-link-type="idl" href="#screenluminance" id="ref-for-screenluminance-3">ScreenLuminance</a></code> object that will expose the luminance
       characteristics of the screen. If the user agent has no access to the
@@ -1877,10 +1906,11 @@ the device’s display.</p>
      <li><a href="#dom-audioconfiguration-bitrate">dict-member for AudioConfiguration</a><span>, in §2.1.4</span>
     </ul>
    <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.4</span>
+   <li><a href="#dom-screen-colorgamut">colorGamut</a><span>, in §3.3</span>
    <li><a href="#dom-mediaconfigurationtype-file">file</a><span>, in §2.1.2</span>
    <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.3</span>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.3</span>
-   <li><a href="#dom-screen-luminance">luminance</a><span>, in §3.2</span>
+   <li><a href="#dom-screen-luminance">luminance</a><span>, in §3.3</span>
    <li><a href="#dom-screenluminance-max">max</a><span>, in §3.1</span>
    <li><a href="#mediacapabilities">MediaCapabilities</a><span>, in §2.4</span>
    <li>
@@ -1894,12 +1924,16 @@ the device’s display.</p>
    <li><a href="#mediadecodingability">MediaDecodingAbility</a><span>, in §2.2</span>
    <li><a href="#dom-mediaconfigurationtype-mediasource">MediaSource</a><span>, in §2.1.2</span>
    <li><a href="#dom-screenluminance-min">min</a><span>, in §3.1</span>
-   <li><a href="#dom-screen-onchange">onchange</a><span>, in §3.2</span>
+   <li><a href="#dom-screen-onchange">onchange</a><span>, in §3.3</span>
+   <li><a href="#dom-screencolorgamut-p3">p3</a><span>, in §3.2</span>
    <li><a href="#dom-mediadecodingability-powerefficient">powerEfficient</a><span>, in §2.2</span>
    <li><a href="#dom-mediacapabilities-query">query(configuration)</a><span>, in §2.4</span>
+   <li><a href="#dom-screencolorgamut-rec2020">rec2020</a><span>, in §3.2</span>
    <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.4</span>
+   <li><a href="#enumdef-screencolorgamut">ScreenColorGamut</a><span>, in §3.2</span>
    <li><a href="#screenluminance">ScreenLuminance</a><span>, in §3.1</span>
    <li><a href="#dom-mediadecodingability-smooth">smooth</a><span>, in §2.2</span>
+   <li><a href="#dom-screencolorgamut-srgb">srgb</a><span>, in §3.2</span>
    <li><a href="#dom-mediadecodingability-supported">supported</a><span>, in §2.2</span>
    <li>
     type
@@ -1971,6 +2005,8 @@ the device’s display.</p>
   <dl>
    <dt id="biblio-media-playback-quality">[MEDIA-PLAYBACK-QUALITY]
    <dd><a href="https://wicg.github.io/media-playback-quality/">Media Playback Quality Specification</a>. CG-DRAFT. URL: <a href="https://wicg.github.io/media-playback-quality/">https://wicg.github.io/media-playback-quality/</a>
+   <dt id="biblio-srgb">[sRGB]
+   <dd><a href="http://www.iec.ch/nr1899.htm"><cite>Multimedia systems and equipment - Colour measurement and management - Part 2-1: Colour management - Default RGB colour space - sRGB.</cite></a> IEC 61966-2-1 (1999-10). ISBN: 2-8318-4989-6 - ICS codes: 33.160.60, 37.080 - TC 100 - 51 pp. URL: <a href="http://www.iec.ch/nr1899.htm">http://www.iec.ch/nr1899.htm</a>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def"><span class="kt">dictionary</span> <a class="nv" href="#dictdef-mediaconfiguration">MediaConfiguration</a> {
@@ -2026,7 +2062,14 @@ the device’s display.</p>
   <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max">max</a>;
 };
 
+<span class="kt">enum</span> <a class="nv" href="#enumdef-screencolorgamut">ScreenColorGamut</a> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-srgb">"srgb"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-p3">"p3"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-rec2020">"rec2020"</a>,
+};
+
 <span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut">ScreenColorGamut</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut?" href="#dom-screen-colorgamut">colorGamut</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance">luminance</a>;
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-screen-onchange">onchange</a>;
 };
@@ -2191,7 +2234,7 @@ the device’s display.</p>
    <b><a href="#screenluminance">#screenluminance</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-screenluminance-1">3.1. Screen Luminance</a>
-    <li><a href="#ref-for-screenluminance-2">3.2. Screen extension</a> <a href="#ref-for-screenluminance-3">(2)</a>
+    <li><a href="#ref-for-screenluminance-2">3.3. Screen extension</a> <a href="#ref-for-screenluminance-3">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screenluminance-min">
@@ -2206,16 +2249,48 @@ the device’s display.</p>
     <li><a href="#ref-for-dom-screenluminance-max-1">3.1. Screen Luminance</a>
    </ul>
   </aside>
+  <aside class="dfn-panel" data-for="enumdef-screencolorgamut">
+   <b><a href="#enumdef-screencolorgamut">#enumdef-screencolorgamut</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-screencolorgamut-1">3.2. Screen Color Gamut</a> <a href="#ref-for-enumdef-screencolorgamut-2">(2)</a>
+    <li><a href="#ref-for-enumdef-screencolorgamut-3">3.3. Screen extension</a> <a href="#ref-for-enumdef-screencolorgamut-4">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-screencolorgamut-srgb">
+   <b><a href="#dom-screencolorgamut-srgb">#dom-screencolorgamut-srgb</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-screencolorgamut-srgb-1">3.2. Screen Color Gamut</a> <a href="#ref-for-dom-screencolorgamut-srgb-2">(2)</a>
+    <li><a href="#ref-for-dom-screencolorgamut-srgb-3">3.3. Screen extension</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-screencolorgamut-p3">
+   <b><a href="#dom-screencolorgamut-p3">#dom-screencolorgamut-p3</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-screencolorgamut-p3-1">3.2. Screen Color Gamut</a> <a href="#ref-for-dom-screencolorgamut-p3-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-screencolorgamut-rec2020">
+   <b><a href="#dom-screencolorgamut-rec2020">#dom-screencolorgamut-rec2020</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-screencolorgamut-rec2020-1">3.2. Screen Color Gamut</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-screen-colorgamut">
+   <b><a href="#dom-screen-colorgamut">#dom-screen-colorgamut</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-screen-colorgamut-1">3.3. Screen extension</a>
+   </ul>
+  </aside>
   <aside class="dfn-panel" data-for="dom-screen-luminance">
    <b><a href="#dom-screen-luminance">#dom-screen-luminance</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screen-luminance-1">3.2. Screen extension</a>
+    <li><a href="#ref-for-dom-screen-luminance-1">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screen-onchange">
    <b><a href="#dom-screen-onchange">#dom-screen-onchange</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screen-onchange-1">3.2. Screen extension</a>
+    <li><a href="#ref-for-dom-screen-onchange-1">3.3. Screen extension</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
