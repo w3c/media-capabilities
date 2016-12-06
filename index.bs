@@ -108,7 +108,7 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
           required MediaConfigurationType type;
 
           VideoConfiguration video;
-          AudioConfiguration audio;;
+          AudioConfiguration audio;
         };
       </pre>
       <p>
