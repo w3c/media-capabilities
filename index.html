@@ -1695,18 +1695,26 @@ the device’s display.</p>
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="screenluminance">ScreenLuminance</dfn> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-min" id="ref-for-dom-screenluminance-min-1">min</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max" id="ref-for-dom-screenluminance-max-1">max</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-maxaverage" id="ref-for-dom-screenluminance-maxaverage-1">maxAverage</a>;
 };
 </pre>
      <p> The <code class="idl"><a data-link-type="idl" href="#screenluminance" id="ref-for-screenluminance-1">ScreenLuminance</a></code> object represents the known luminance
       characteristics of the screen. </p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="ScreenLuminance" data-dfn-type="attribute" data-export="" id="dom-screenluminance-min">min</dfn> attribute MUST return
-      the minimal screen luminance that can be emmited by the screen in candela
-      per square metre. The minimal screen luminance is the luminance used when
-      showing the darkest color the screen can display. </p>
+      the minimal screen luminance that a pixel of the screen can emit in
+      candela per square metre. The minimal screen luminance is the luminance
+      used when showing the darkest color a pixel on the screen can display. </p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="ScreenLuminance" data-dfn-type="attribute" data-export="" id="dom-screenluminance-max">max</dfn> attribute MUST return
-      the maximal screen luminance that can be emmited by the screen in candela
-      per square metre. The maximal screen luminance is the luminance used when
-      showing the whitest color the screen can display. </p>
+      the maximal screen luminance that a pixel of the screen can emit in
+      candela per square metre. The maximal screen luminance is the luminance
+      used when showing the whitest color a pixel on the screen can display. </p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="ScreenLuminance" data-dfn-type="attribute" data-export="" id="dom-screenluminance-maxaverage">maxAverage</dfn> attribute MUST
+      return the maximal average screen luminance that the screen can emit in
+      candela per square metre. The maximal average screen luminance is the
+      maximal luminance value such as all the pixels of the screen emit the same
+      luminance. The value returned by <code class="idl"><a data-link-type="idl" href="#dom-screenluminance-maxaverage" id="ref-for-dom-screenluminance-maxaverage-2">maxAverage</a></code> is
+      expected to be different from <code class="idl"><a data-link-type="idl" href="#dom-screenluminance-max" id="ref-for-dom-screenluminance-max-2">max</a></code> as screens usually
+      can’t apply the maximal screen luminance to the entire panel. </p>
     </section>
     <section>
      <h3 class="heading settled" data-level="3.2" id="color-gamut"><span class="secno">3.2. </span><span class="content">Screen Color Gamut</span><a class="self-link" href="#color-gamut"></a></h3>
@@ -1943,6 +1951,7 @@ the device’s display.</p>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.3</span>
    <li><a href="#dom-screen-luminance">luminance</a><span>, in §3.4</span>
    <li><a href="#dom-screenluminance-max">max</a><span>, in §3.1</span>
+   <li><a href="#dom-screenluminance-maxaverage">maxAverage</a><span>, in §3.1</span>
    <li><a href="#mediacapabilities">MediaCapabilities</a><span>, in §2.4</span>
    <li>
     mediaCapabilities
@@ -2098,6 +2107,7 @@ the device’s display.</p>
 <span class="kt">interface</span> <a class="nv" href="#screenluminance">ScreenLuminance</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-min">min</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max">max</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-maxaverage">maxAverage</a>;
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-screencolorgamut">ScreenColorGamut</a> {
@@ -2282,7 +2292,13 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-screenluminance-max">
    <b><a href="#dom-screenluminance-max">#dom-screenluminance-max</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screenluminance-max-1">3.1. Screen Luminance</a>
+    <li><a href="#ref-for-dom-screenluminance-max-1">3.1. Screen Luminance</a> <a href="#ref-for-dom-screenluminance-max-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-screenluminance-maxaverage">
+   <b><a href="#dom-screenluminance-maxaverage">#dom-screenluminance-maxaverage</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-screenluminance-maxaverage-1">3.1. Screen Luminance</a> <a href="#ref-for-dom-screenluminance-maxaverage-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-screencolorgamut">
