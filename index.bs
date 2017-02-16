@@ -437,7 +437,7 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 
     <pre class='idl'>
       partial interface Screen {
-        readonly attribute ScreenColorGamut? colorGamut;
+        readonly attribute ScreenColorGamut colorGamut;
         readonly attribute ScreenLuminance? luminance;
 
         // Overriden from CSSOM View Module.
