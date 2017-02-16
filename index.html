@@ -1730,7 +1730,7 @@ the device’s display.</p>
      <h3 class="heading settled" data-level="3.4" id="screen-extension"><span class="secno">3.4. </span><span class="content">Screen extension</span><a class="self-link" href="#screen-extension"></a></h3>
      <p class="issue" id="issue-882a03eb"><a class="self-link" href="#issue-882a03eb"></a> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is tracking merging the changes. This partial interface requires the <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a></code> interface to become an <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></code>. </p>
 <pre class="idl highlight def"><span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-3">ScreenColorGamut</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut?" href="#dom-screen-colorgamut" id="ref-for-dom-screen-colorgamut-1">colorGamut</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-3">ScreenColorGamut</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut" href="#dom-screen-colorgamut" id="ref-for-dom-screen-colorgamut-1">colorGamut</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance" id="ref-for-screenluminance-2">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance" id="ref-for-dom-screen-luminance-1">luminance</a>;
 
   // Overriden from CSSOM View Module.
@@ -1741,12 +1741,11 @@ the device’s display.</p>
 };
 </pre>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="Screen" data-dfn-type="attribute" data-export="" id="dom-screen-colorgamut">colorGamut</dfn> attribute SHOULD return
-      the <code class="idl"><a data-link-type="idl" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-4">ScreenColorGamut</a></code> supported by the screen. When the screen’s
-      supported color gamut does not match one of the available values, the user
-      agent SHOULD return a value that is fully supported by the screen if it
-      can be determined. Furthermore, if the user agent does not know the color
-      gamut supported by the screen, if the supported color gamut is lower than <code class="idl"><a data-link-type="idl" href="#dom-screencolorgamut-srgb" id="ref-for-dom-screencolorgamut-srgb-3">srgb</a></code> or if the user agent does not want to expose
-      this information for privacy consideration, it SHOULD return <code>null</code>. </p>
+      the <code class="idl"><a data-link-type="idl" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-4">ScreenColorGamut</a></code> approximately supported by the screen. In other
+      words, the screen does not need to fully support the given color gamut but
+      needs to be close enough. If the user agent does not know the color gamut
+      supported by the screen, if the supported color gamut is lower than <code class="idl"><a data-link-type="idl" href="#dom-screencolorgamut-srgb" id="ref-for-dom-screencolorgamut-srgb-3">srgb</a></code>, or if the user agent does not want to expose
+      this information for privacy consideration, it SHOULD return <code class="idl"><a data-link-type="idl" href="#dom-screencolorgamut-srgb" id="ref-for-dom-screencolorgamut-srgb-4">srgb</a></code> as a default value. The value returned by <code class="idl"><a data-link-type="idl" href="#dom-screen-colorgamut" id="ref-for-dom-screen-colorgamut-2">colorGamut</a></code> MUST match the value returned by the <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/mediaqueries-4/#color-gamut">color-gamut</a></code> CSS media query. </p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="Screen" data-dfn-type="attribute" data-export="" id="dom-screen-luminance">luminance</dfn> attribute SHOULD return
       a <code class="idl"><a data-link-type="idl" href="#screenluminance" id="ref-for-screenluminance-3">ScreenLuminance</a></code> object that will expose the luminance
       characteristics of the screen. If the user agent has no access to the
@@ -2000,6 +1999,11 @@ the device’s display.</p>
      <li><a href="https://w3c.github.io/media-source/#dom-mediasource-istypesupported">isTypeSupported()</a>
     </ul>
    <li>
+    <a data-link-type="biblio">[mediaqueries-4]</a> defines the following terms:
+    <ul>
+     <li><a href="https://drafts.csswg.org/mediaqueries-4/#color-gamut">color-gamut</a>
+    </ul>
+   <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
      <li><a href="https://heycam.github.io/webidl/#Exposed">Exposed</a>
@@ -2015,6 +2019,8 @@ the device’s display.</p>
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-media-source">[MEDIA-SOURCE]
    <dd>Matthew Wolenetz; et al. <a href="https://w3c.github.io/media-source/">Media Source Extensions™</a>. URL: <a href="https://w3c.github.io/media-source/">https://w3c.github.io/media-source/</a>
+   <dt id="biblio-mediaqueries-4">[MEDIAQUERIES-4]
+   <dd>Florian Rivoal; Tab Atkins Jr.. <a href="https://drafts.csswg.org/mediaqueries-4/">Media Queries Level 4</a>. URL: <a href="https://drafts.csswg.org/mediaqueries-4/">https://drafts.csswg.org/mediaqueries-4/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
@@ -2090,7 +2096,7 @@ the device’s display.</p>
 };
 
 <span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut">ScreenColorGamut</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut?" href="#dom-screen-colorgamut">colorGamut</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut">ScreenColorGamut</a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut" href="#dom-screen-colorgamut">colorGamut</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance">luminance</a>;
 
   // Overriden from CSSOM View Module.
@@ -2279,7 +2285,7 @@ the device’s display.</p>
    <b><a href="#dom-screencolorgamut-srgb">#dom-screencolorgamut-srgb</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-screencolorgamut-srgb-1">3.2. Screen Color Gamut</a> <a href="#ref-for-dom-screencolorgamut-srgb-2">(2)</a>
-    <li><a href="#ref-for-dom-screencolorgamut-srgb-3">3.4. Screen extension</a>
+    <li><a href="#ref-for-dom-screencolorgamut-srgb-3">3.4. Screen extension</a> <a href="#ref-for-dom-screencolorgamut-srgb-4">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screencolorgamut-p3">
@@ -2303,7 +2309,7 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-screen-colorgamut">
    <b><a href="#dom-screen-colorgamut">#dom-screen-colorgamut</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screen-colorgamut-1">3.4. Screen extension</a>
+    <li><a href="#ref-for-dom-screen-colorgamut-1">3.4. Screen extension</a> <a href="#ref-for-dom-screen-colorgamut-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screen-luminance">
