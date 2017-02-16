@@ -283,6 +283,18 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
       attribute MUST return whether the user agent will be able to decode the
       media in a power efficient manner. If {{MediaDecodingAbility/supported}}
       returns <code>false</code>, the user agent MUST return <code>false</code>.
+      The user agent SHOULD not take into consideration the current power source
+      in order to determine the decoding power efficiency unless the device's
+      power source has side effects such as enabling different decoding modules.
+    </p>
+
+    <p class='note'>
+      Authors can use {{MediaDecodingAbility/powerEfficient}} in concordance
+      with the Battery Status API [[battery-status]] in order to determine
+      whether the media they would like to play is appropriate for the user
+      configuration. It is worth noting that even when a device is not power
+      constrained, high power usage has side effects such as increasing the
+      temperature or the fans noise.
     </p>
   </section>
 
