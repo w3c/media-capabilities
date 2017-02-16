@@ -418,7 +418,7 @@
 	[data-algorithm]:not(.heading) {
 	  padding: .5em;
 	  border: thin solid #ddd; border-radius: .5em;
-	  margin: .5em 0;
+	  margin: .5em calc(-0.5em - 1px);
 	}
 	[data-algorithm]:not(.heading) > :first-child {
 	  margin-top: 0;
@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 176d39d5a285c04f57d2f0e078fa69273028eb45" name="generator">
+  <meta content="Bikeshed version 70f542b3eb403344eee83c57e6631f734b1c4427" name="generator">
 <style>/* style-md-lists */
 
             /* This is a weird hack for me not yet following the commonmark spec
@@ -1423,7 +1423,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2017-01-18">18 January 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2017-02-16">16 February 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1577,17 +1577,17 @@ the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.3" id="videoconfiguration"><span class="secno">2.1.3. </span><span class="content">VideoConfiguration</span><a class="self-link" href="#videoconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-videoconfiguration">VideoConfiguration</dfn> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-type" id="ref-for-dom-videoconfiguration-type-1">type</a>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype-1">contentType</a>;
   <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a>;
   <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height-1">height</a>;
   <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate-1">bitrate</a>;
   <span class="kt">required</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate-1">framerate</a>;
 };
 </pre>
-      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-type">type</dfn> member
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-contenttype">contentType</dfn> member
         represents the MIME type of the video track. </p>
-      <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="valid-videoconfiguration-type">valid VideoConfiguration type</dfn> MUST include a media type,
-        subtype and full codecs description. </p>
+      <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="valid-videoconfiguration-contenttype">valid VideoConfiguration contentType</dfn> MUST include a media
+        type, subtype and full codecs description. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-width">width</dfn> and <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-height">height</dfn> members represent
         respectively the width and height of the video track. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-bitrate">bitrate</dfn> member
@@ -1600,19 +1600,19 @@ the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.4" id="audioconfiguration"><span class="secno">2.1.4. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-audioconfiguration">AudioConfiguration</dfn> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-type" id="ref-for-dom-audioconfiguration-type-1">type</a>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype-1">contentType</a>;
   <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-1">channels</a>;
   <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate-1">bitrate</a>;
   <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-1">samplerate</a>;
 };
 </pre>
-      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-type">type</dfn> member
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-contenttype">contentType</dfn> member
         represents the MIME type of the audio track. </p>
-      <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="valid-audioconfiguration-type">valid AudioConfiguration type</dfn> MUST include a media type,
-        subtype and full codecs description. </p>
+      <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="valid-audioconfiguration-contenttype">valid AudioConfiguration contentType</dfn> MUST include a media
+        type, subtype and full codecs description. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-channels">channels</dfn> member
         represents the audio channels used by the audio track. </p>
-      <p class="issue" id="issue-322a8f07"><a class="self-link" href="#issue-322a8f07"></a> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-2">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
+      <p class="issue" id="issue-dbf92204"><a class="self-link" href="#issue-dbf92204"></a> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-2">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
         definition is a placeholder. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-bitrate">bitrate</dfn> member
         represents the number of average bitrate of the audio track. The bitrate
@@ -1646,12 +1646,12 @@ the device’s display.</p>
      <h3 class="heading settled" data-level="2.3" id="navigators-extensions"><span class="secno">2.3. </span><span class="content">Navigator and WorkerNavigator extension</span><a class="self-link" href="#navigators-extensions"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>)]
 <span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/webappapis.html#navigator">Navigator</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities" id="ref-for-mediacapabilities-1">MediaCapabilities</a> <dfn class="nv idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export="" data-readonly="" data-type="MediaCapabilities" id="dom-navigator-mediacapabilities">mediaCapabilities<a class="self-link" href="#dom-navigator-mediacapabilities"></a></dfn>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities" id="ref-for-mediacapabilities-1">MediaCapabilities</a> <dfn class="nv idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export="" data-readonly="" data-type="MediaCapabilities" id="dom-navigator-mediacapabilities">mediaCapabilities<a class="self-link" href="#dom-navigator-mediacapabilities"></a></dfn>;
 };
 </pre>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Worker</span>)]
 <span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/workers.html#workernavigator">WorkerNavigator</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities" id="ref-for-mediacapabilities-2">MediaCapabilities</a> <dfn class="nv idl-code" data-dfn-for="WorkerNavigator" data-dfn-type="attribute" data-export="" data-readonly="" data-type="MediaCapabilities" id="dom-workernavigator-mediacapabilities">mediaCapabilities<a class="self-link" href="#dom-workernavigator-mediacapabilities"></a></dfn>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities" id="ref-for-mediacapabilities-2">MediaCapabilities</a> <dfn class="nv idl-code" data-dfn-for="WorkerNavigator" data-dfn-type="attribute" data-export="" data-readonly="" data-type="MediaCapabilities" id="dom-workernavigator-mediacapabilities">mediaCapabilities<a class="self-link" href="#dom-workernavigator-mediacapabilities"></a></dfn>;
 };
 </pre>
     </section>
@@ -1659,18 +1659,18 @@ the device’s display.</p>
      <h3 class="heading settled" data-level="2.4" id="media-capabilities-interface"><span class="secno">2.4. </span><span class="content">Media Capabilities Interface</span><a class="self-link" href="#media-capabilities-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>, <span class="n">Worker</span>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="mediacapabilities">MediaCapabilities</dfn> {
-  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediadecodingability" id="ref-for-mediadecodingability-2">MediaDecodingAbility</a>> <a class="nv idl-code" data-link-type="method" href="#dom-mediacapabilities-query" id="ref-for-dom-mediacapabilities-query-1">query</a>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-4">MediaConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities/query(configuration)" data-dfn-type="argument" data-export="" id="dom-mediacapabilities-query-configuration-configuration">configuration<a class="self-link" href="#dom-mediacapabilities-query-configuration-configuration"></a></dfn>);
+  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediadecodingability" id="ref-for-mediadecodingability-2">MediaDecodingAbility</a>> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" data-lt="query(configuration)" id="dom-mediacapabilities-query">query<a class="self-link" href="#dom-mediacapabilities-query"></a></dfn>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-4">MediaConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities/query(configuration)" data-dfn-type="argument" data-export="" id="dom-mediacapabilities-query-configuration-configuration">configuration<a class="self-link" href="#dom-mediacapabilities-query-configuration-configuration"></a></dfn>);
 };
 </pre>
-     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" data-lt="query(configuration)" id="dom-mediacapabilities-query">query()</dfn> method MUST run the
+     <p> The <dfn class="idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" id="dom-mediacapabilities-query">query()<a class="self-link" href="#dom-mediacapabilities-query"></a></dfn> method MUST run the
       following steps: </p>
      <ol>
       <li> If <var>configuration</var> is not a <a data-link-type="dfn" href="#valid-mediaconfiguration" id="ref-for-valid-mediaconfiguration-1">valid MediaConfiguration</a>,
           return a Promise rejected with a <code>TypeError</code>. 
-      <li> If <code>configuration.video</code> in non-null and <code>configuration.video.type</code> is not a <a data-link-type="dfn" href="#valid-videoconfiguration-type" id="ref-for-valid-videoconfiguration-type-1">valid
-          VideoConfiguration type</a>, return a Promise rejected with a <code>TypeError</code>. 
-      <li> If <code>configuration.audio</code> in non-null and <code>configuration.audio.type</code> is not a <a data-link-type="dfn" href="#valid-audioconfiguration-type" id="ref-for-valid-audioconfiguration-type-1">valid
-          AudioConfiguration type</a>, return a Promise rejected with a <code>TypeError</code>. 
+      <li> If <code>configuration.video</code> in non-null and <code>configuration.video.contentType</code> is not a <a data-link-type="dfn" href="#valid-videoconfiguration-contenttype" id="ref-for-valid-videoconfiguration-contenttype-1">valid
+          VideoConfiguration contentType</a>, return a Promise rejected with a <code>TypeError</code>. 
+      <li> If <code>configuration.audio</code> in non-null and <code>configuration.audio.contentType</code> is not a <a data-link-type="dfn" href="#valid-audioconfiguration-contenttype" id="ref-for-valid-audioconfiguration-contenttype-1">valid
+          AudioConfiguration contentType</a>, return a Promise rejected with a <code>TypeError</code>. 
       <li> Let <var>p</var> be a new promise. 
       <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">In parallel</a>, create a <code class="idl"><a data-link-type="idl" href="#mediadecodingability" id="ref-for-mediadecodingability-3">MediaDecodingAbility</a></code> instance
           representing the user agent ability to decode the given <var>configuration</var>. 
@@ -1728,9 +1728,8 @@ the device’s display.</p>
     </section>
     <section>
      <h3 class="heading settled" data-level="3.4" id="screen-extension"><span class="secno">3.4. </span><span class="content">Screen extension</span><a class="self-link" href="#screen-extension"></a></h3>
-     <p class="issue" id="issue-15e9d0d4"><a class="self-link" href="#issue-15e9d0d4"></a> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is
-      tracking merging the changes. </p>
-<pre class="idl highlight def"><span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
+     <p class="issue" id="issue-882a03eb"><a class="self-link" href="#issue-882a03eb"></a> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is tracking merging the changes. This partial interface requires the <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a></code> interface to become an <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></code>. </p>
+<pre class="idl highlight def"><span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut-3">ScreenColorGamut</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut?" href="#dom-screen-colorgamut" id="ref-for-dom-screen-colorgamut-1">colorGamut</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance" id="ref-for-screenluminance-2">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance" id="ref-for-dom-screen-luminance-1">luminance</a>;
 
@@ -1925,6 +1924,12 @@ the device’s display.</p>
    <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.4</span>
    <li><a href="#dom-screen-colordepth">colorDepth</a><span>, in §3.4</span>
    <li><a href="#dom-screen-colorgamut">colorGamut</a><span>, in §3.4</span>
+   <li>
+    contentType
+    <ul>
+     <li><a href="#dom-videoconfiguration-contenttype">dict-member for VideoConfiguration</a><span>, in §2.1.3</span>
+     <li><a href="#dom-audioconfiguration-contenttype">dict-member for AudioConfiguration</a><span>, in §2.1.4</span>
+    </ul>
    <li><a href="#dom-mediaconfigurationtype-file">file</a><span>, in §2.1.2</span>
    <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.3</span>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.3</span>
@@ -1946,6 +1951,7 @@ the device’s display.</p>
    <li><a href="#dom-screencolorgamut-p3">p3</a><span>, in §3.2</span>
    <li><a href="#dom-screen-pixeldepth">pixelDepth</a><span>, in §3.4</span>
    <li><a href="#dom-mediadecodingability-powerefficient">powerEfficient</a><span>, in §2.2</span>
+   <li><a href="#dom-mediacapabilities-query">query()</a><span>, in §2.4</span>
    <li><a href="#dom-mediacapabilities-query">query(configuration)</a><span>, in §2.4</span>
    <li><a href="#dom-screencolorgamut-rec2020">rec2020</a><span>, in §3.2</span>
    <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.4</span>
@@ -1955,16 +1961,10 @@ the device’s display.</p>
    <li><a href="#dom-mediadecodingability-smooth">smooth</a><span>, in §2.2</span>
    <li><a href="#dom-screencolorgamut-srgb">srgb</a><span>, in §3.2</span>
    <li><a href="#dom-mediadecodingability-supported">supported</a><span>, in §2.2</span>
-   <li>
-    type
-    <ul>
-     <li><a href="#dom-mediaconfiguration-type">dict-member for MediaConfiguration</a><span>, in §2.1.1</span>
-     <li><a href="#dom-videoconfiguration-type">dict-member for VideoConfiguration</a><span>, in §2.1.3</span>
-     <li><a href="#dom-audioconfiguration-type">dict-member for AudioConfiguration</a><span>, in §2.1.4</span>
-    </ul>
-   <li><a href="#valid-audioconfiguration-type">valid AudioConfiguration type</a><span>, in §2.1.4</span>
+   <li><a href="#dom-mediaconfiguration-type">type</a><span>, in §2.1.1</span>
+   <li><a href="#valid-audioconfiguration-contenttype">valid AudioConfiguration contentType</a><span>, in §2.1.4</span>
    <li><a href="#valid-mediaconfiguration">valid MediaConfiguration</a><span>, in §2.1.1</span>
-   <li><a href="#valid-videoconfiguration-type">valid VideoConfiguration type</a><span>, in §2.1.3</span>
+   <li><a href="#valid-videoconfiguration-contenttype">valid VideoConfiguration contentType</a><span>, in §2.1.3</span>
    <li><a href="#dom-mediaconfiguration-video">video</a><span>, in §2.1.1</span>
    <li><a href="#dictdef-videoconfiguration">VideoConfiguration</a><span>, in §2.1.3</span>
    <li><a href="#dom-videoconfiguration-width">width</a><span>, in §2.1.3</span>
@@ -2003,6 +2003,7 @@ the device’s display.</p>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
      <li><a href="https://heycam.github.io/webidl/#Exposed">Exposed</a>
+     <li><a href="https://heycam.github.io/webidl/#SameObject">SameObject</a>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
@@ -2042,7 +2043,7 @@ the device’s display.</p>
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-videoconfiguration">VideoConfiguration</a> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-type">type</a>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype">contentType</a>;
   <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width">width</a>;
   <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height">height</a>;
   <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate">bitrate</a>;
@@ -2050,7 +2051,7 @@ the device’s display.</p>
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-audioconfiguration">AudioConfiguration</a> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-type">type</a>;
+  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype">contentType</a>;
   <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels">channels</a>;
   <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate">bitrate</a>;
   <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
@@ -2064,17 +2065,17 @@ the device’s display.</p>
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>)]
 <span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/webappapis.html#navigator">Navigator</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities">MediaCapabilities</a> <a class="nv" data-readonly="" data-type="MediaCapabilities" href="#dom-navigator-mediacapabilities">mediaCapabilities</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities">MediaCapabilities</a> <a class="nv" data-readonly="" data-type="MediaCapabilities" href="#dom-navigator-mediacapabilities">mediaCapabilities</a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Worker</span>)]
 <span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/workers.html#workernavigator">WorkerNavigator</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities">MediaCapabilities</a> <a class="nv" data-readonly="" data-type="MediaCapabilities" href="#dom-workernavigator-mediacapabilities">mediaCapabilities</a>;
+  [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SameObject">SameObject</a>] <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#mediacapabilities">MediaCapabilities</a> <a class="nv" data-readonly="" data-type="MediaCapabilities" href="#dom-workernavigator-mediacapabilities">mediaCapabilities</a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>, <span class="n">Worker</span>)]
 <span class="kt">interface</span> <a class="nv" href="#mediacapabilities">MediaCapabilities</a> {
-  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediadecodingability">MediaDecodingAbility</a>> <a class="nv idl-code" data-link-type="method" href="#dom-mediacapabilities-query">query</a>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration">MediaConfiguration</a> <a class="nv" href="#dom-mediacapabilities-query-configuration-configuration">configuration</a>);
+  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediadecodingability">MediaDecodingAbility</a>> <a class="nv" href="#dom-mediacapabilities-query">query</a>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration">MediaConfiguration</a> <a class="nv" href="#dom-mediacapabilities-query-configuration-configuration">configuration</a>);
 };
 
 <span class="kt">interface</span> <a class="nv" href="#screenluminance">ScreenLuminance</a> {
@@ -2088,7 +2089,7 @@ the device’s display.</p>
   <a class="s idl-code" data-link-type="enum-value" href="#dom-screencolorgamut-rec2020">"rec2020"</a>,
 };
 
-<span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> : <a class="n" data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a> {
+<span class="kt">partial</span> <span class="kt">interface</span> <a class="nv idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a> {
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut">ScreenColorGamut</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenColorGamut?" href="#dom-screen-colorgamut">colorGamut</a>;
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance">luminance</a>;
 
@@ -2103,9 +2104,8 @@ the device’s display.</p>
   <h2 class="no-num no-ref heading settled" id="issues-index"><span class="content">Issues Index</span><a class="self-link" href="#issues-index"></a></h2>
   <div style="counter-reset:issue">
    <div class="issue"> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
-        definition is a placeholder. <a href="#issue-322a8f07"> ↵ </a></div>
-   <div class="issue"> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is
-      tracking merging the changes. <a href="#issue-15e9d0d4"> ↵ </a></div>
+        definition is a placeholder. <a href="#issue-dbf92204"> ↵ </a></div>
+   <div class="issue"> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is tracking merging the changes. This partial interface requires the <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view/#screen">Screen</a></code> interface to become an <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a></code>. <a href="#issue-882a03eb"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="dictdef-mediaconfiguration">
    <b><a href="#dictdef-mediaconfiguration">#dictdef-mediaconfiguration</a></b><b>Referenced in:</b>
@@ -2146,16 +2146,16 @@ the device’s display.</p>
     <li><a href="#ref-for-dictdef-videoconfiguration-1">2.1.1. MediaConfiguration</a> <a href="#ref-for-dictdef-videoconfiguration-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-videoconfiguration-type">
-   <b><a href="#dom-videoconfiguration-type">#dom-videoconfiguration-type</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-videoconfiguration-contenttype">
+   <b><a href="#dom-videoconfiguration-contenttype">#dom-videoconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-type-1">2.1.3. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-contenttype-1">2.1.3. VideoConfiguration</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="valid-videoconfiguration-type">
-   <b><a href="#valid-videoconfiguration-type">#valid-videoconfiguration-type</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="valid-videoconfiguration-contenttype">
+   <b><a href="#valid-videoconfiguration-contenttype">#valid-videoconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valid-videoconfiguration-type-1">2.4. Media Capabilities Interface</a>
+    <li><a href="#ref-for-valid-videoconfiguration-contenttype-1">2.4. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-width">
@@ -2188,16 +2188,16 @@ the device’s display.</p>
     <li><a href="#ref-for-dictdef-audioconfiguration-1">2.1.1. MediaConfiguration</a> <a href="#ref-for-dictdef-audioconfiguration-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-audioconfiguration-type">
-   <b><a href="#dom-audioconfiguration-type">#dom-audioconfiguration-type</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-audioconfiguration-contenttype">
+   <b><a href="#dom-audioconfiguration-contenttype">#dom-audioconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-type-1">2.1.4. AudioConfiguration</a>
+    <li><a href="#ref-for-dom-audioconfiguration-contenttype-1">2.1.4. AudioConfiguration</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="valid-audioconfiguration-type">
-   <b><a href="#valid-audioconfiguration-type">#valid-audioconfiguration-type</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="valid-audioconfiguration-contenttype">
+   <b><a href="#valid-audioconfiguration-contenttype">#valid-audioconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-valid-audioconfiguration-type-1">2.4. Media Capabilities Interface</a>
+    <li><a href="#ref-for-valid-audioconfiguration-contenttype-1">2.4. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-channels">
@@ -2247,12 +2247,6 @@ the device’s display.</p>
    <b><a href="#mediacapabilities">#mediacapabilities</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-mediacapabilities-1">2.3. Navigator and WorkerNavigator extension</a> <a href="#ref-for-mediacapabilities-2">(2)</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-mediacapabilities-query">
-   <b><a href="#dom-mediacapabilities-query">#dom-mediacapabilities-query</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-mediacapabilities-query-1">2.4. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="screenluminance">
