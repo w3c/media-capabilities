@@ -150,7 +150,7 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 
       <pre class='idl'>
         dictionary VideoConfiguration {
-          required DOMString type;
+          required DOMString contentType;
           required unsigned long width;
           required unsigned long height;
           required unsigned long bitrate;
@@ -159,13 +159,13 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
       </pre>
 
       <p>
-        The <dfn for='VideoConfiguration' dict-member>type</dfn> member
+        The <dfn for='VideoConfiguration' dict-member>contentType</dfn> member
         represents the MIME type of the video track.
       </p>
 
       <p>
-        A <dfn>valid VideoConfiguration type</dfn> MUST include a media type,
-        subtype and full codecs description.
+        A <dfn>valid VideoConfiguration contentType</dfn> MUST include a media
+        type, subtype and full codecs description.
       </p>
 
       <p>
@@ -192,7 +192,7 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 
       <pre class='idl'>
         dictionary AudioConfiguration {
-          required DOMString type;
+          required DOMString contentType;
           DOMString channels;
           unsigned long bitrate;
           unsigned long samplerate;
@@ -200,13 +200,13 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
       </pre>
 
       <p>
-        The <dfn for='AudioConfiguration' dict-member>type</dfn> member
+        The <dfn for='AudioConfiguration' dict-member>contentType</dfn> member
         represents the MIME type of the audio track.
       </p>
 
       <p>
-        A <dfn>valid AudioConfiguration type</dfn> MUST include a media type,
-        subtype and full codecs description.
+        A <dfn>valid AudioConfiguration contentType</dfn> MUST include a media
+        type, subtype and full codecs description.
       </p>
 
       <p>
@@ -319,14 +319,14 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
         </li>
         <li>
           If <code>configuration.video</code> in non-null and
-          <code>configuration.video.type</code> is not a <a>valid
-          VideoConfiguration type</a>, return a Promise rejected with a
+          <code>configuration.video.contentType</code> is not a <a>valid
+          VideoConfiguration contentType</a>, return a Promise rejected with a
           <code>TypeError</code>.
         </li>
         <li>
           If <code>configuration.audio</code> in non-null and
-          <code>configuration.audio.type</code> is not a <a>valid
-          AudioConfiguration type</a>, return a Promise rejected with a
+          <code>configuration.audio.contentType</code> is not a <a>valid
+          AudioConfiguration contentType</a>, return a Promise rejected with a
           <code>TypeError</code>.
         </li>
         <li>
