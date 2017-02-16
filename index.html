@@ -1640,7 +1640,16 @@ the device’s display.</p>
       return whether the user agent will be able to decode the media at a pace
       that will allow a smooth playback. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-2">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>. </p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-powerefficient">powerEfficient</dfn> attribute MUST return whether the user agent will be able to decode the
-      media in a power efficient manner. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-3">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>. </p>
+      media in a power efficient manner. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-3">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>.
+      The user agent SHOULD not take into consideration the current power source
+      in order to determine the decoding power efficiency unless the device’s
+      power source has side effects such as enabling different decoding modules. </p>
+     <p class="note" role="note"> Authors can use <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-powerefficient" id="ref-for-dom-mediadecodingability-powerefficient-2">powerEfficient</a></code> in concordance
+      with the Battery Status API <a data-link-type="biblio" href="#biblio-battery-status">[battery-status]</a> in order to determine
+      whether the media they would like to play is appropriate for the user
+      configuration. It is worth noting that even when a device is not power
+      constrained, high power usage has side effects such as increasing the
+      temperature or the fans noise. </p>
     </section>
     <section>
      <h3 class="heading settled" data-level="2.3" id="navigators-extensions"><span class="secno">2.3. </span><span class="content">Navigator and WorkerNavigator extension</span><a class="self-link" href="#navigators-extensions"></a></h3>
@@ -2030,6 +2039,8 @@ the device’s display.</p>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
+   <dt id="biblio-battery-status">[BATTERY-STATUS]
+   <dd>Anssi Kostiainen; Mounir Lamouri. <a href="https://w3c.github.io/battery/">Battery Status API</a>. URL: <a href="https://w3c.github.io/battery/">https://w3c.github.io/battery/</a>
    <dt id="biblio-media-playback-quality">[MEDIA-PLAYBACK-QUALITY]
    <dd><a href="https://wicg.github.io/media-playback-quality/">Media Playback Quality Specification</a>. CG-DRAFT. URL: <a href="https://wicg.github.io/media-playback-quality/">https://wicg.github.io/media-playback-quality/</a>
    <dt id="biblio-srgb">[sRGB]
@@ -2246,7 +2257,7 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-mediadecodingability-powerefficient">
    <b><a href="#dom-mediadecodingability-powerefficient">#dom-mediadecodingability-powerefficient</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediadecodingability-powerefficient-1">2.2. Media Decoding Ability</a>
+    <li><a href="#ref-for-dom-mediadecodingability-powerefficient-1">2.2. Media Decoding Ability</a> <a href="#ref-for-dom-mediadecodingability-powerefficient-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="mediacapabilities">
