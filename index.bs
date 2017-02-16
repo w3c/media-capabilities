@@ -430,12 +430,13 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 
     <p class='issue'>
       Part of this section is 🐵 patching of the CSSOM View Module. <a
-      href='https://github.com/WICG/media-capabilities/issues/4'>Issue #4</a> is
-      tracking merging the changes.
+      href='https://github.com/WICG/media-capabilities/issues/4'>Issue #4</a>
+      is tracking merging the changes. This partial interface requires the
+      {{Screen}} interface to become an {{EventTarget}}.
     </p>
 
     <pre class='idl'>
-      partial interface Screen : EventTarget {
+      partial interface Screen {
         readonly attribute ScreenColorGamut? colorGamut;
         readonly attribute ScreenLuminance? luminance;
 
