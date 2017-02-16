@@ -288,13 +288,13 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
     <pre class='idl'>
       [Exposed=(Window)]
       partial interface Navigator {
-        readonly attribute MediaCapabilities mediaCapabilities;
+        [SameObject] readonly attribute MediaCapabilities mediaCapabilities;
       };
     </pre>
     <pre class='idl'>
       [Exposed=(Worker)]
       partial interface WorkerNavigator {
-        readonly attribute MediaCapabilities mediaCapabilities;
+        [SameObject] readonly attribute MediaCapabilities mediaCapabilities;
       };
     </pre>
   </section>
