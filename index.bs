@@ -127,7 +127,7 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
       <pre class='idl'>
         enum MediaConfigurationType {
           "file",
-          "MediaSource",
+          "media-source",
         };
       </pre>
 
@@ -137,7 +137,7 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
           <li><dfn for='MediaConfigurationType' enum-value>file</dfn> is used to
           represent a configuration that is meant to be used for a plain file
           playback.</li>
-          <li><dfn for='MediaConfigurationType' enum-value>MediaSource</dfn> is
+          <li><dfn for='MediaConfigurationType' enum-value>media-source</dfn> is
           used to represent a configuration that is meant to be used for
           playback of a {{MediaSource/MediaSource}} as defined in the
           [[media-source]] specification.</li>
