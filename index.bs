@@ -371,6 +371,7 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
       interface ScreenLuminance {
         readonly attribute double min;
         readonly attribute double max;
+        readonly attribute double maxAverage;
       };
     </pre>
 
@@ -381,16 +382,26 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
 
     <p>
       The <dfn for='ScreenLuminance' attribute>min</dfn> attribute MUST return
-      the minimal screen luminance that can be emmited by the screen in candela
-      per square metre. The minimal screen luminance is the luminance used when
-      showing the darkest color the screen can display.
+      the minimal screen luminance that a pixel of the screen can emit in
+      candela per square metre. The minimal screen luminance is the luminance
+      used when showing the darkest color a pixel on the screen can display.
     </p>
 
     <p>
       The <dfn for='ScreenLuminance' attribute>max</dfn> attribute MUST return
-      the maximal screen luminance that can be emmited by the screen in candela
-      per square metre. The maximal screen luminance is the luminance used when
-      showing the whitest color the screen can display.
+      the maximal screen luminance that a pixel of the screen can emit in
+      candela per square metre. The maximal screen luminance is the luminance
+      used when showing the whitest color a pixel on the screen can display.
+    </p>
+
+    <p>
+      The <dfn for='ScreenLuminance' attribute>maxAverage</dfn> attribute MUST
+      return the maximal average screen luminance that the screen can emit in
+      candela per square metre. The maximal average screen luminance is the
+      maximal luminance value such as all the pixels of the screen emit the same
+      luminance. The value returned by {{ScreenLuminance/maxAverage}} is
+      expected to be different from {{ScreenLuminance/max}} as screens usually
+      can't apply the maximal screen luminance to the entire panel.
     </p>
   </section>
 
