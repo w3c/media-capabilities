@@ -1,35 +1,39 @@
-# EME Extension: Policy Check
+# EME Extension: HDCP Policy Check
 
 ## Motivation
 
-A content license can contain a policy that the CDM must enforce.  A given
-platform may or may not be able to enforce that policy at any given time.  For
-example, a license might require output protection, such as HDCP, for high
-resolution representations of the content.
+A content license can contain a policy that the CDM must enforce. The ability
+of a platform to enforce these policies is a key factor in deciding whether to
+begin streaming media and at what quality (resolution and framerate).
 
-Currently, applications can only know if these requirements are met through key
-statuses, which are only reported after providing  a license.  To know if a
-policy can be enforced, applications must generate a license request, post that
+HDCP is a common policy requirement for streaming high resolutions of protected
+content. Currently, applications can only know if this requirements is met
+through key statuses, which are only reported after providing a license. To
+provide a license, applications must: generate a license request, post that
 request to a license server, wait for the response, provide the response to the
 CDM, wait for key status events, and check key statuses.
 
-Application developers would like to know before fetching content if certain
-policies can be enforced.  That would allow the application to start
-pre-fetching the best content for that user without starting at a low resolution
-or waiting for the license exchange.
+Application developers would like to know before fetching content if HDCP (and
+what version) can be enforced. This would allow the application to start
+pre-fetching high resolution content rather than starting at a low resolution or
+waiting for the license exchange.
 
+HDCP may be one of many requirements for a content license. The proposed
+interface may later be extended to include other requirements as requested by
+application developers.
 
 ## Overview
 
-The new API will allow application developers to query the status of a policy
-without a round-trip to the license server.  Because policies and their
-enforcement are Key System-specific, policy information will be represented in
-Key System-specific, opaque blobs, which could be hard-coded into the
-application.
+The new API will allow application developers to query the status of an HDCP
+policy without a round-trip to the license server.
 
 ```
+interface MediaKeysPolicy {
+  DOMString minHdcpVersion;
+}
+
 partial interface MediaKeys {
-  Promise<MediaKeyStatus> getStatusForPolicy(BufferSource policy);
+  Promise<MediaKeyStatus> getStatusForPolicy(MediaKeysPolicy policy);
 }
 ```
 
@@ -37,6 +41,9 @@ partial interface MediaKeys {
 ## Examples
 
 ```js
+let hdcpPolicy = new MediaKeysPolicy();
+hdcpPolicy.minHdcpVersion = "1.0";
+
 video.mediaKeys.getStatusForPolicy(hdcpPolicy).then(function(status) {
   if (status == 'usable') {
     // Pre-fetch HD content.
@@ -49,11 +56,11 @@ video.mediaKeys.getStatusForPolicy(hdcpPolicy).then(function(status) {
 
 ## Privacy Considerations
 
-This would allow an application to discover HDCP status using a policy blob
-taken from another site.  To mitigate this, we could require policy blobs to be
-domain-specific.
+This would allow an application to discover HDCP availability. HDCP is widely
+available on most modern operating systems and display types. It is not expected
+to add much entropy for fingerprinting.
 
 As access to this API is gated by `requestMediaKeySystemAccess()`, use of this
-API would require user consent (e.g., prompt), if required by the user agent for
-the configuration.  This should make it more difficult to abuse the API on those
+API may require user consent (e.g., prompt), if required by the user agent for
+the configuration. This should make it more difficult to abuse the API on those
 user agents.
