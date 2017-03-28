@@ -28,6 +28,11 @@ The new API will allow application developers to query the status of an HDCP
 policy without a round-trip to the license server.
 
 ```
+dictionary MediaKeysPolicyInit {
+  DOMString minHdcpVersion = "";
+};
+
+[Constructor(optional MediaKeysPolicyInit init), Exposed=Window]
 interface MediaKeysPolicy {
   DOMString minHdcpVersion;
 }
@@ -41,8 +46,7 @@ partial interface MediaKeys {
 ## Examples
 
 ```js
-let hdcpPolicy = new MediaKeysPolicy();
-hdcpPolicy.minHdcpVersion = "1.0";
+let hdcpPolicy = new MediaKeysPolicy({minHdcpVersion: "1.0"});
 
 video.mediaKeys.getStatusForPolicy(hdcpPolicy).then(function(status) {
   if (status == 'usable') {
