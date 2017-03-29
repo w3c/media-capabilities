@@ -1176,7 +1176,8 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 70f542b3eb403344eee83c57e6631f734b1c4427" name="generator">
+  <meta content="Bikeshed version 31cb2a09cfa9e1757739fb1eb0bb2da567f58c60" name="generator">
+  <link href="https://wicg.github.io/media-capabilities/" rel="canonical">
 <style>/* style-md-lists */
 
             /* This is a weird hack for me not yet following the commonmark spec
@@ -1423,7 +1424,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2017-02-16">16 February 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2017-03-29">29 March 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1577,11 +1578,11 @@ the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.3" id="videoconfiguration"><span class="secno">2.1.3. </span><span class="content">VideoConfiguration</span><a class="self-link" href="#videoconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-videoconfiguration">VideoConfiguration</dfn> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype-1">contentType</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height-1">height</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate-1">bitrate</a>;
-  <span class="kt">required</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate-1">framerate</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype-1">contentType</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height-1">height</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate-1">bitrate</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate-1">framerate</a>;
 };
 </pre>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-contenttype">contentType</dfn> member
@@ -1600,10 +1601,10 @@ the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.4" id="audioconfiguration"><span class="secno">2.1.4. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-audioconfiguration">AudioConfiguration</dfn> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype-1">contentType</a>;
-  <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-1">channels</a>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate-1">bitrate</a>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-1">samplerate</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype-1">contentType</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-1">channels</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate-1">bitrate</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-1">samplerate</a>;
 };
 </pre>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-contenttype">contentType</dfn> member
@@ -1627,9 +1628,9 @@ the device’s display.</p>
     <section>
      <h3 class="heading settled" data-level="2.2" id="media-decoding-ability"><span class="secno">2.2. </span><span class="content">Media Decoding Ability</span><a class="self-link" href="#media-decoding-ability"></a></h3>
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="mediadecodingability">MediaDecodingAbility</dfn> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-1">supported</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth" id="ref-for-dom-mediadecodingability-smooth-1">smooth</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient" id="ref-for-dom-mediadecodingability-powerefficient-1">powerEfficient</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-1">supported</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth" id="ref-for-dom-mediadecodingability-smooth-1">smooth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient" id="ref-for-dom-mediadecodingability-powerefficient-1">powerEfficient</a>;
 };
 </pre>
      <p> The ability to decode a given <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-3">MediaConfiguration</a></code> <var>configuration</var> is represented by a <code class="idl"><a data-link-type="idl" href="#mediadecodingability" id="ref-for-mediadecodingability-1">MediaDecodingAbility</a></code> object. </p>
@@ -1693,9 +1694,9 @@ the device’s display.</p>
     <section>
      <h3 class="heading settled" data-level="3.1" id="screen-luminance"><span class="secno">3.1. </span><span class="content">Screen Luminance</span><a class="self-link" href="#screen-luminance"></a></h3>
 <pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="screenluminance">ScreenLuminance</dfn> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-min" id="ref-for-dom-screenluminance-min-1">min</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max" id="ref-for-dom-screenluminance-max-1">max</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-maxaverage" id="ref-for-dom-screenluminance-maxaverage-1">maxAverage</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-min" id="ref-for-dom-screenluminance-min-1">min</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max" id="ref-for-dom-screenluminance-max-1">max</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-maxaverage" id="ref-for-dom-screenluminance-maxaverage-1">maxAverage</a>;
 };
 </pre>
      <p> The <code class="idl"><a data-link-type="idl" href="#screenluminance" id="ref-for-screenluminance-1">ScreenLuminance</a></code> object represents the known luminance
@@ -1751,8 +1752,8 @@ the device’s display.</p>
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance" id="ref-for-screenluminance-2">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance" id="ref-for-dom-screen-luminance-1">luminance</a>;
 
   // Overriden from CSSOM View Module.
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-colordepth" id="ref-for-dom-screen-colordepth-1">colorDepth</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-pixeldepth" id="ref-for-dom-screen-pixeldepth-1">pixelDepth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-colordepth" id="ref-for-dom-screen-colordepth-1">colorDepth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-pixeldepth" id="ref-for-dom-screen-pixeldepth-1">pixelDepth</a>;
 
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-screen-onchange" id="ref-for-dom-screen-onchange-1">onchange</a>;
 };
@@ -1994,7 +1995,7 @@ the device’s display.</p>
      <li><a href="https://drafts.csswg.org/cssom-view/#screen">Screen</a>
     </ul>
    <li>
-    <a data-link-type="biblio">[WHATWG-DOM]</a> defines the following terms:
+    <a data-link-type="biblio">[DOM]</a> defines the following terms:
     <ul>
      <li><a href="https://dom.spec.whatwg.org/#eventtarget">EventTarget</a>
      <li><a href="https://dom.spec.whatwg.org/#concept-event-fire">fire an event</a>
@@ -2024,32 +2025,36 @@ the device’s display.</p>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
+     <li><a href="https://heycam.github.io/webidl/#idl-DOMString">DOMString</a>
      <li><a href="https://heycam.github.io/webidl/#Exposed">Exposed</a>
      <li><a href="https://heycam.github.io/webidl/#SameObject">SameObject</a>
+     <li><a href="https://heycam.github.io/webidl/#idl-boolean">boolean</a>
+     <li><a href="https://heycam.github.io/webidl/#idl-double">double</a>
+     <li><a href="https://heycam.github.io/webidl/#idl-unsigned-long">unsigned long</a>
     </ul>
   </ul>
   <h2 class="no-num no-ref heading settled" id="references"><span class="content">References</span><a class="self-link" href="#references"></a></h2>
   <h3 class="no-num no-ref heading settled" id="normative"><span class="content">Normative References</span><a class="self-link" href="#normative"></a></h3>
   <dl>
    <dt id="biblio-cssom-view-1">[CSSOM-VIEW-1]
-   <dd>Simon Pieters. <a href="https://drafts.csswg.org/cssom-view/">CSSOM View Module</a>. URL: <a href="https://drafts.csswg.org/cssom-view/">https://drafts.csswg.org/cssom-view/</a>
+   <dd>Simon Pieters. <a href="https://www.w3.org/TR/cssom-view-1/">CSSOM View Module</a>. URL: <a href="https://www.w3.org/TR/cssom-view-1/">https://www.w3.org/TR/cssom-view-1/</a>
+   <dt id="biblio-dom">[DOM]
+   <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/">HTML Standard</a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
    <dt id="biblio-media-source">[MEDIA-SOURCE]
-   <dd>Matthew Wolenetz; et al. <a href="https://w3c.github.io/media-source/">Media Source Extensions™</a>. URL: <a href="https://w3c.github.io/media-source/">https://w3c.github.io/media-source/</a>
+   <dd>Matthew Wolenetz; et al. <a href="https://www.w3.org/TR/media-source/">Media Source Extensions™</a>. URL: <a href="https://www.w3.org/TR/media-source/">https://www.w3.org/TR/media-source/</a>
    <dt id="biblio-mediaqueries-4">[MEDIAQUERIES-4]
-   <dd>Florian Rivoal; Tab Atkins Jr.. <a href="https://drafts.csswg.org/mediaqueries-4/">Media Queries Level 4</a>. URL: <a href="https://drafts.csswg.org/mediaqueries-4/">https://drafts.csswg.org/mediaqueries-4/</a>
+   <dd>Florian Rivoal; Tab Atkins Jr.. <a href="https://www.w3.org/TR/mediaqueries-4/">Media Queries Level 4</a>. URL: <a href="https://www.w3.org/TR/mediaqueries-4/">https://www.w3.org/TR/mediaqueries-4/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://tools.ietf.org/html/rfc2119">Key words for use in RFCs to Indicate Requirement Levels</a>. March 1997. Best Current Practice. URL: <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
-   <dt id="biblio-whatwg-dom">[WHATWG-DOM]
-   <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/">DOM Standard</a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
+   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://www.w3.org/TR/WebIDL-1/">Web IDL</a>. URL: <a href="https://www.w3.org/TR/WebIDL-1/">https://www.w3.org/TR/WebIDL-1/</a>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
    <dt id="biblio-battery-status">[BATTERY-STATUS]
-   <dd>Anssi Kostiainen; Mounir Lamouri. <a href="https://w3c.github.io/battery/">Battery Status API</a>. URL: <a href="https://w3c.github.io/battery/">https://w3c.github.io/battery/</a>
+   <dd>Anssi Kostiainen; Mounir Lamouri. <a href="https://www.w3.org/TR/battery-status/">Battery Status API</a>. URL: <a href="https://www.w3.org/TR/battery-status/">https://www.w3.org/TR/battery-status/</a>
    <dt id="biblio-media-playback-quality">[MEDIA-PLAYBACK-QUALITY]
    <dd><a href="https://wicg.github.io/media-playback-quality/">Media Playback Quality Specification</a>. CG-DRAFT. URL: <a href="https://wicg.github.io/media-playback-quality/">https://wicg.github.io/media-playback-quality/</a>
    <dt id="biblio-srgb">[sRGB]
@@ -2069,24 +2074,24 @@ the device’s display.</p>
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-videoconfiguration">VideoConfiguration</a> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype">contentType</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width">width</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height">height</a>;
-  <span class="kt">required</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate">bitrate</a>;
-  <span class="kt">required</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate">framerate</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype">contentType</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width">width</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height">height</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate">bitrate</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate">framerate</a>;
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-audioconfiguration">AudioConfiguration</a> {
-  <span class="kt">required</span> <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype">contentType</a>;
-  <span class="kt">DOMString</span> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels">channels</a>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate">bitrate</a>;
-  <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype">contentType</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels">channels</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate">bitrate</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
 };
 
 <span class="kt">interface</span> <a class="nv" href="#mediadecodingability">MediaDecodingAbility</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported">supported</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth">smooth</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">boolean</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient">powerEfficient</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported">supported</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth">smooth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient">powerEfficient</a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>)]
@@ -2105,9 +2110,9 @@ the device’s display.</p>
 };
 
 <span class="kt">interface</span> <a class="nv" href="#screenluminance">ScreenLuminance</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-min">min</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max">max</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">double</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-maxaverage">maxAverage</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-min">min</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-max">max</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="double" href="#dom-screenluminance-maxaverage">maxAverage</a>;
 };
 
 <span class="kt">enum</span> <a class="nv" href="#enumdef-screencolorgamut">ScreenColorGamut</a> {
@@ -2121,8 +2126,8 @@ the device’s display.</p>
   <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="#screenluminance">ScreenLuminance</a>? <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="ScreenLuminance?" href="#dom-screen-luminance">luminance</a>;
 
   // Overriden from CSSOM View Module.
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-colordepth">colorDepth</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <span class="kt">unsigned</span> <span class="kt">long</span> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-pixeldepth">pixelDepth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-colordepth">colorDepth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="unsigned long" href="#dom-screen-pixeldepth">pixelDepth</a>;
 
   <span class="kt">attribute</span> <a class="n" data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">EventHandler</a> <a class="nv idl-code" data-link-type="attribute" data-type="EventHandler" href="#dom-screen-onchange">onchange</a>;
 };
