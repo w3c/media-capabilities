@@ -24,8 +24,9 @@ application developers.
 
 ## Overview
 
-The new API will allow application developers to query the status of an HDCP
-policy without a round-trip to the license server.
+The new API will allow application developers to query the status of a
+hypothetical key associated with an HDCP policy, without the need to fetch a
+real license.
 
 ```
 dictionary MediaKeysPolicyInit {
