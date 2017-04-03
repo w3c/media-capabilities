@@ -28,6 +28,14 @@ The new API will allow application developers to query the status of a
 hypothetical key associated with an HDCP policy, without the need to fetch a
 real license.
 
+If HDCP is available at the specified version, the promise should return
+a MediaKeyStatus of "usable". Otherwise, the promise should return
+a MediaKeyStatus of "output-restricted".
+
+A MediaKeyStatus value of "status-pending" must never be returned. Implementers
+must give decisive actionable return values for developers to make decisions
+about what content to fetch.
+
 ```
 dictionary MediaKeysPolicyInit {
   DOMString minHdcpVersion = "";
