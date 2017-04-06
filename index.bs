@@ -10,9 +10,9 @@ Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://google.com/
 
 Abstract: This specification intends to provide APIs to allow websites to make
 Abstract: an optimal decision when picking media content for the user. The APIs
-Abstract: will expose information about the decoding capabilities for a given
-Abstract: format but also output capabilities to find the best match based on
-Abstract: the device's display.
+Abstract: will expose information about the decoding and encoding capabilities
+Abstract: for a given format but also output capabilities to find the best match
+Abstract: based on the device's display.
 
 !Participate: <a href='https://github.com/wicg/media-capabilities'>Git Repository.</a>
 !Participate: <a href='https://github.com/wicg/media-capabilities/issues/new'>File an issue.</a>
@@ -63,13 +63,22 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     <ul>
       <li>
         <p>
-          An API to query the user agent with regards to the decoding abilities
-          of the device based on information such as the codecs, profile,
-          resolution, bitrates, etc. The API exposes information such as whether
-          the playback should be smooth and power efficient.
+          An API to query the user agent with regards to the decoding and
+          encoding abilities of the device based on information such as the
+          codecs, profile, resolution, bitrates, etc. The API exposes
+          information such as whether the playback should be smooth and power
+          efficient.
         </p>
         <p>
-          The intent of purposes of this decoding capabilities API is to provide
+          The intent of purposes of the decoding capabilities API is to provide
+          a powerful replacement to API such as
+          {{MediaSource/isTypeSupported()}} or
+          {{HTMLMediaElement/canPlayType()}} which are vague and mostly help the
+          callers to know if something can not be decoded but not how well it
+          should perform.
+        </p>
+        <p>
+          The intent of purposes of the decoding capabilities API is to provide
           a powerful replacement to API such as
           {{MediaSource/isTypeSupported()}} or
           {{HTMLMediaElement/canPlayType()}} which are vague and mostly help the
@@ -99,7 +108,7 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
 </section>
 
 <section>
-  <h2 id='decoding-capabilities'>Decoding Capabilities</h2>
+  <h2 id='decoding-encoding-capabilities'>Decoding and Encoding Capabilities</h2>
 
   <section>
     <h3 id='media-configurations'>Media Configurations</h3>
@@ -109,15 +118,27 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
 
       <pre class='idl'>
         dictionary MediaConfiguration {
-          required MediaConfigurationType type;
-
           VideoConfiguration video;
           AudioConfiguration audio;
         };
       </pre>
+
+      <pre class='idl'>
+        dictionary MediaDecodingConfiguration : MediaConfiguration {
+          required MediaDecodingType type;
+        };
+      </pre>
+
+      <pre class='idl'>
+        dictionary MediaEncodingConfiguration : MediaConfiguration {
+          required MediaEncodingType type;
+        };
+      </pre>
+
       <p>
         The input to the decoding capabilities is represented by a
-        {{MediaConfiguration}} dictionary.
+        {{MediaDecodingConfiguration}} dictionary and the input of the encoding
+        capabilities by a {{MediaEncodingConfiguration}} dictionary.
       </p>
       <p>
         A <dfn>valid MediaConfiguration</dfn> MUST contain at least a
@@ -126,26 +147,40 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     </section>
 
     <section>
-      <h4 id='mediaconfigurationtype'>MediaConfigurationType</h4>
+      <h4 id='mediadecodingtype'>MediaDecodingType</h4>
 
       <pre class='idl'>
-        enum MediaConfigurationType {
+        enum MediaDecodingType {
           "file",
           "media-source",
         };
       </pre>
 
       <p>
-        A {{MediaConfiguration}} has two types:
+        A {{MediaDecodingConfiguration}} has two types:
         <ul>
-          <li><dfn for='MediaConfigurationType' enum-value>file</dfn> is used to
+          <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
           represent a configuration that is meant to be used for a plain file
           playback.</li>
-          <li><dfn for='MediaConfigurationType' enum-value>media-source</dfn> is
-          used to represent a configuration that is meant to be used for
-          playback of a {{MediaSource/MediaSource}} as defined in the
-          [[media-source]] specification.</li>
+          <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
+          to represent a configuration that is meant to be used for playback of
+          a {{MediaSource/MediaSource}} as defined in the [[media-source]]
+          specification.</li>
         </ul>
+      </p>
+    </section>
+
+    <section>
+      <h4 id='mediaencodingtype'>MediaEncodingType</h4>
+
+      <pre class='idl'>
+        enum MediaEncodingType {
+          "todo",
+        };
+      </pre>
+
+      <p>
+        TODO
       </p>
     </section>
 
@@ -259,33 +294,111 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     </pre>
 
     <p>
-      The ability to decode a given {{MediaConfiguration}}
-      <var>configuration</var> is represented by a {{MediaCapabilitiesInfo}}
-      object.
+      The {{MediaCapabilitiesInfo}} has an associated <dfn
+      for='MediaCapabilitiesInfo'>configuration</dfn> which is a
+      {{MediaDecodingConfiguration}} or {{MediaEncodingConfiguration}}.
+    </p>
+
+    <p>
+      A {{MediaCapabilitiesInfo}} has associated <dfn
+      for='MediaCapabilitiesInfo'>supported</dfn>, <dfn
+      for='MediaCapabilitiesInfo'>smooth</dfn>, <dfn
+      for='MediaCapabilitiesInfo'>powerEfficient</dfn> fields which are
+      booleans.
+    </p>
+
+    <p>
+      When the <dfn>create a MediaCapabilitiesInfo algorithm</dfn> with a
+      <var>configuration</var> is invoked, the user agent MUST run the following
+      steps:
+      <ol>
+        <li>
+          Let <var>info</var> be a new {{MediaCapabilitiesInfo}} instance.
+          Unless stated otherwise, reading and writing apply to <var>info</var>
+          for the next steps.
+        </li>
+        <li>
+          Set <a for=MediaCapabilitiesInfo>configuration</a> to
+          <var>configuration</var>.
+        </li>
+        <li>
+          If <a for=MediaCapabilitiesInfo>configuration</a> is of type
+          {{MediaDecodingConfiguration}}, run the following substeps:
+          <ol>
+            <li>
+              If the user agent is able to decode the media represented by
+              <a for=MediaCapabilitiesInfo>configuration</a>, set
+              <a for=MediaCapabilitiesInfo>supported</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to decode the media represented by
+              <a for=MediaCapabilitiesInfo>configuration</a> at a pace that
+              allows a smooth playback, set <a
+              for=MediaCapabilitiesInfo>smooth</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to decode the media represented by
+              <a for=MediaCapabilitiesInfo>configuration</a> in a power efficient
+              manner, set <a for=MediaCapabilitiesInfo>powerEfficient</a> to
+              <code>true</code>. Otherwise set it to <code>false</code>. The
+              user agent SHOULD NOT take into consideration the current power
+              source in order to determine the decoding power efficiency unless
+              the device's power source has side effects such as enabling
+              different decoding modules.
+            </li>
+          </ol>
+        </li>
+        <li>
+          If <a for=MediaCapabilitiesInfo>configuration</a> is of type
+          {{MediaEncodingConfiguration}}, run the following substeps:
+          <ol>
+            <li>
+              If the user agent is able to encode the media represented by
+              <a for=MediaCapabilitiesInfo>configuration</a>, set
+              <a for=MediaCapabilitiesInfo>supported</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to encode the media represented by
+              <a for=MediaCapabilitiesInfo>configuration</a> at a pace that
+              allows encoding frames at the same pace as they are sent to the
+              encoder, set <a for=MediaCapabilitiesInfo>smooth</a> to
+              <code>true</code>. Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to encode the media represented by
+              <a for=MediaCapabilitiesInfo>configuration</a> in a power
+              efficient manner, set <a
+              for=MediaCapabilitiesInfo>powerEfficient</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>. The user agent SHOULD NOT
+              take into consideration the current power source in order to
+              determine the encoding power efficiency unless the device's power
+              source has side effects such as enabling different encoding
+              modules.
+            </li>
+          </ol>
+          <li>
+            Return <var>info</var>.
+          </li>
+        </li>
+      </ol>
     </p>
 
     <p>
       The <dfn for='MediaCapabilitiesInfo' attribute>supported</dfn> attribute
-      MUST return <code>false</code> if the user agent is not able to decode the
-      media represented by <var>configuration</var>. Otherwise, it MUST return
-      <code>true</code>.
+      MUST return <a for=MediaCapabilitiesInfo>supported</a>.
     </p>
 
     <p>
       The <dfn for='MediaCapabilitiesInfo' attribute>smooth</dfn> attribute MUST
-      return whether the user agent will be able to decode the media at a pace
-      that will allow a smooth playback. If {{MediaCapabilitiesInfo/supported}}
-      returns <code>false</code>, the user agent MUST return <code>false</code>.
+      return <a for=MediaCapabilitiesInfo>smooth</a>.
     </p>
 
     <p>
       The <dfn for='MediaCapabilitiesInfo' attribute>powerEfficient</dfn>
-      attribute MUST return whether the user agent will be able to decode the
-      media in a power efficient manner. If {{MediaCapabilitiesInfo/supported}}
-      returns <code>false</code>, the user agent MUST return <code>false</code>.
-      The user agent SHOULD not take into consideration the current power source
-      in order to determine the decoding power efficiency unless the device's
-      power source has side effects such as enabling different decoding modules.
+      attribute MUST return <a for=MediaCapabilitiesInfo>powerEfficient</a>.
     </p>
 
     <p class='note'>
@@ -321,12 +434,14 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     <pre class='idl'>
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
-        Promise&lt;MediaCapabilitiesInfo&gt; decodingInfo(MediaConfiguration configuration);
+        Promise&lt;MediaCapabilitiesInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
+        Promise&lt;MediaCapabilitiesInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
       };
     </pre>
 
     <p>
-      The <dfn for='MediaCapabilities' method>decodingInfo()</dfn> method MUST
+      The <dfn for='MediaCapabilities' method>decodingInfo()</dfn> method and
+      the <dfn for='MediaCapabilities' method>encodingInfo()</dfn> method MUST
       run the following steps:
       <ol>
         <li>
@@ -349,9 +464,9 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
           Let <var>p</var> be a new promise.
         </li>
         <li>
-          <a>In parallel</a>, create a {{MediaCapabilitiesInfo}} instance
-          representing the user agent ability to decode the given
-          <var>configuration</var>.
+          <a>In parallel</a>, run the <a>create a MediaCapabilitiesInfo
+          algorithm</a> with <var>configuration</var> and resolve <var>p</var>
+          with its result.
         </li>
         <li>
           Return <var>p</var>.
