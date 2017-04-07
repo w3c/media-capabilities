@@ -1176,7 +1176,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version b734e371910e25ac23b774dca3dea5cfc7b7fc0b" name="generator">
+  <meta content="Bikeshed version 81c00a31d8c468599cf8337dd150a8be9a2b4e5d" name="generator">
   <link href="https://wicg.github.io/media-capabilities/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1424,7 +1424,7 @@ pre.idl.highlight { color: #708090; }
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2017-04-04">4 April 2017</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2017-04-07">7 April 2017</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1452,9 +1452,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>This specification intends to provide APIs to allow websites to make
 
 an optimal decision when picking media content for the user. The APIs
-will expose information about the decoding capabilities for a given
-format but also output capabilities to find the best match based on
-the device’s display.</p>
+will expose information about the decoding and encoding capabilities
+for a given format but also output capabilities to find the best match
+based on the device’s display.</p>
   </div>
   <div data-fill-with="at-risk"></div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
@@ -1473,17 +1473,18 @@ the device’s display.</p>
    <ol class="toc" role="directory">
     <li><a href="#introduction"><span class="secno">1</span> <span class="content">Introduction</span></a>
     <li>
-     <a href="#decoding-capabilities"><span class="secno">2</span> <span class="content">Decoding Capabilities</span></a>
+     <a href="#decoding-encoding-capabilities"><span class="secno">2</span> <span class="content">Decoding and Encoding Capabilities</span></a>
      <ol class="toc">
       <li>
        <a href="#media-configurations"><span class="secno">2.1</span> <span class="content">Media Configurations</span></a>
        <ol class="toc">
         <li><a href="#mediaconfiguration"><span class="secno">2.1.1</span> <span class="content">MediaConfiguration</span></a>
-        <li><a href="#mediaconfigurationtype"><span class="secno">2.1.2</span> <span class="content">MediaConfigurationType</span></a>
-        <li><a href="#videoconfiguration"><span class="secno">2.1.3</span> <span class="content">VideoConfiguration</span></a>
-        <li><a href="#audioconfiguration"><span class="secno">2.1.4</span> <span class="content">AudioConfiguration</span></a>
+        <li><a href="#mediadecodingtype"><span class="secno">2.1.2</span> <span class="content">MediaDecodingType</span></a>
+        <li><a href="#mediaencodingtype"><span class="secno">2.1.3</span> <span class="content">MediaEncodingType</span></a>
+        <li><a href="#videoconfiguration"><span class="secno">2.1.4</span> <span class="content">VideoConfiguration</span></a>
+        <li><a href="#audioconfiguration"><span class="secno">2.1.5</span> <span class="content">AudioConfiguration</span></a>
        </ol>
-      <li><a href="#media-decoding-ability"><span class="secno">2.2</span> <span class="content">Media Decoding Ability</span></a>
+      <li><a href="#media-capabilities-info"><span class="secno">2.2</span> <span class="content">Media Capabilities Information</span></a>
       <li><a href="#navigators-extensions"><span class="secno">2.3</span> <span class="content">Navigator and WorkerNavigator extension</span></a>
       <li><a href="#media-capabilities-interface"><span class="secno">2.4</span> <span class="content">Media Capabilities Interface</span></a>
      </ol>
@@ -1519,11 +1520,16 @@ the device’s display.</p>
     <p> This specification relies on exposing the following sets of properties: </p>
     <ul>
      <li>
-      <p> An API to query the user agent with regards to the decoding abilities
-          of the device based on information such as the codecs, profile,
-          resolution, bitrates, etc. The API exposes information such as whether
-          the playback should be smooth and power efficient. </p>
-      <p> The intent of purposes of this decoding capabilities API is to provide
+      <p> An API to query the user agent with regards to the decoding and
+          encoding abilities of the device based on information such as the
+          codecs, profile, resolution, bitrates, etc. The API exposes
+          information such as whether the playback should be smooth and power
+          efficient. </p>
+      <p> The intent of purposes of the decoding capabilities API is to provide
+          a powerful replacement to API such as <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#dom-mediasource-istypesupported">isTypeSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/#dom-navigator-canplaytype">canPlayType()</a></code> which are vague and mostly help the
+          callers to know if something can not be decoded but not how well it
+          should perform. </p>
+      <p> The intent of purposes of the decoding capabilities API is to provide
           a powerful replacement to API such as <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#dom-mediasource-istypesupported">isTypeSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/#dom-navigator-canplaytype">canPlayType()</a></code> which are vague and mostly help the
           callers to know if something can not be decoded but not how well it
           should perform. </p>
@@ -1542,41 +1548,56 @@ the device’s display.</p>
     <p></p>
    </section>
    <section>
-    <h2 class="heading settled" data-level="2" id="decoding-capabilities"><span class="secno">2. </span><span class="content">Decoding Capabilities</span><a class="self-link" href="#decoding-capabilities"></a></h2>
+    <h2 class="heading settled" data-level="2" id="decoding-encoding-capabilities"><span class="secno">2. </span><span class="content">Decoding and Encoding Capabilities</span><a class="self-link" href="#decoding-encoding-capabilities"></a></h2>
     <section>
      <h3 class="heading settled" data-level="2.1" id="media-configurations"><span class="secno">2.1. </span><span class="content">Media Configurations</span><a class="self-link" href="#media-configurations"></a></h3>
      <section>
       <h4 class="heading settled" data-level="2.1.1" id="mediaconfiguration"><span class="secno">2.1.1. </span><span class="content">MediaConfiguration</span><a class="self-link" href="#mediaconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mediaconfiguration">MediaConfiguration</dfn> {
-  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mediaconfigurationtype" id="ref-for-enumdef-mediaconfigurationtype-1">MediaConfigurationType</a> <dfn class="nv idl-code" data-dfn-for="MediaConfiguration" data-dfn-type="dict-member" data-export="" data-type="MediaConfigurationType " id="dom-mediaconfiguration-type">type<a class="self-link" href="#dom-mediaconfiguration-type"></a></dfn>;
-
   <a class="n" data-link-type="idl-name" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration-1">VideoConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaConfiguration" data-dfn-type="dict-member" data-export="" data-type="VideoConfiguration " id="dom-mediaconfiguration-video">video<a class="self-link" href="#dom-mediaconfiguration-video"></a></dfn>;
   <a class="n" data-link-type="idl-name" href="#dictdef-audioconfiguration" id="ref-for-dictdef-audioconfiguration-1">AudioConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaConfiguration" data-dfn-type="dict-member" data-export="" data-type="AudioConfiguration " id="dom-mediaconfiguration-audio">audio<a class="self-link" href="#dom-mediaconfiguration-audio"></a></dfn>;
 };
 </pre>
-      <p> The input to the decoding capabilities is represented by a <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-1">MediaConfiguration</a></code> dictionary. </p>
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mediadecodingconfiguration">MediaDecodingConfiguration</dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-1">MediaConfiguration</a> {
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mediadecodingtype" id="ref-for-enumdef-mediadecodingtype-1">MediaDecodingType</a> <dfn class="nv idl-code" data-dfn-for="MediaDecodingConfiguration" data-dfn-type="dict-member" data-export="" data-type="MediaDecodingType " id="dom-mediadecodingconfiguration-type">type<a class="self-link" href="#dom-mediadecodingconfiguration-type"></a></dfn>;
+};
+</pre>
+<pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-mediaencodingconfiguration">MediaEncodingConfiguration</dfn> : <a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-2">MediaConfiguration</a> {
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype-1">MediaEncodingType</a> <dfn class="nv idl-code" data-dfn-for="MediaEncodingConfiguration" data-dfn-type="dict-member" data-export="" data-type="MediaEncodingType " id="dom-mediaencodingconfiguration-type">type<a class="self-link" href="#dom-mediaencodingconfiguration-type"></a></dfn>;
+};
+</pre>
+      <p> The input to the decoding capabilities is represented by a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration-1">MediaDecodingConfiguration</a></code> dictionary and the input of the encoding
+        capabilities by a <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration-1">MediaEncodingConfiguration</a></code> dictionary. </p>
       <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="valid-mediaconfiguration">valid MediaConfiguration</dfn> MUST contain at least a <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration-2">VideoConfiguration</a></code> or an <code class="idl"><a data-link-type="idl" href="#dictdef-audioconfiguration" id="ref-for-dictdef-audioconfiguration-2">AudioConfiguration</a></code>. </p>
      </section>
      <section>
-      <h4 class="heading settled" data-level="2.1.2" id="mediaconfigurationtype"><span class="secno">2.1.2. </span><span class="content">MediaConfigurationType</span><a class="self-link" href="#mediaconfigurationtype"></a></h4>
-<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-mediaconfigurationtype">MediaConfigurationType</dfn> {
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-file" id="ref-for-dom-mediaconfigurationtype-file-1">"file"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-media-source" id="ref-for-dom-mediaconfigurationtype-media-source-1">"media-source"</a>,
+      <h4 class="heading settled" data-level="2.1.2" id="mediadecodingtype"><span class="secno">2.1.2. </span><span class="content">MediaDecodingType</span><a class="self-link" href="#mediadecodingtype"></a></h4>
+<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-mediadecodingtype">MediaDecodingType</dfn> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file-1">"file"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source-1">"media-source"</a>,
 };
 </pre>
-      <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-2">MediaConfiguration</a></code> has two types: </p>
+      <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration-2">MediaDecodingConfiguration</a></code> has two types: </p>
       <ul>
-       <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaConfigurationType" data-dfn-type="enum-value" data-export="" id="dom-mediaconfigurationtype-file">file</dfn> is used to
+       <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingType" data-dfn-type="enum-value" data-export="" id="dom-mediadecodingtype-file">file</dfn> is used to
           represent a configuration that is meant to be used for a plain file
           playback.
-       <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaConfigurationType" data-dfn-type="enum-value" data-export="" id="dom-mediaconfigurationtype-media-source">media-source</dfn> is
-          used to represent a configuration that is meant to be used for
-          playback of a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#media-source">MediaSource</a></code> as defined in the <a data-link-type="biblio" href="#biblio-media-source">[media-source]</a> specification.
+       <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingType" data-dfn-type="enum-value" data-export="" id="dom-mediadecodingtype-media-source">media-source</dfn> is used
+          to represent a configuration that is meant to be used for playback of
+          a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/media-source/#media-source">MediaSource</a></code> as defined in the <a data-link-type="biblio" href="#biblio-media-source">[media-source]</a> specification.
       </ul>
       <p></p>
      </section>
      <section>
-      <h4 class="heading settled" data-level="2.1.3" id="videoconfiguration"><span class="secno">2.1.3. </span><span class="content">VideoConfiguration</span><a class="self-link" href="#videoconfiguration"></a></h4>
+      <h4 class="heading settled" data-level="2.1.3" id="mediaencodingtype"><span class="secno">2.1.3. </span><span class="content">MediaEncodingType</span><a class="self-link" href="#mediaencodingtype"></a></h4>
+<pre class="idl highlight def"><span class="kt">enum</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="enum" data-export="" id="enumdef-mediaencodingtype">MediaEncodingType</dfn> {
+  <dfn class="s idl-code" data-dfn-for="MediaEncodingType" data-dfn-type="enum-value" data-export="" data-lt="&quot;todo&quot;|todo" id="dom-mediaencodingtype-todo">"todo"<a class="self-link" href="#dom-mediaencodingtype-todo"></a></dfn>,
+};
+</pre>
+      <p> TODO </p>
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="2.1.4" id="videoconfiguration"><span class="secno">2.1.4. </span><span class="content">VideoConfiguration</span><a class="self-link" href="#videoconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-videoconfiguration">VideoConfiguration</dfn> {
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype-1">contentType</a>;
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a>;
@@ -1599,7 +1620,7 @@ the device’s display.</p>
         of frames used in one second (frames per second). </p>
      </section>
      <section>
-      <h4 class="heading settled" data-level="2.1.4" id="audioconfiguration"><span class="secno">2.1.4. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
+      <h4 class="heading settled" data-level="2.1.5" id="audioconfiguration"><span class="secno">2.1.5. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-audioconfiguration">AudioConfiguration</dfn> {
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype-1">contentType</a>;
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-1">channels</a>;
@@ -1626,26 +1647,62 @@ the device’s display.</p>
      </section>
     </section>
     <section>
-     <h3 class="heading settled" data-level="2.2" id="media-decoding-ability"><span class="secno">2.2. </span><span class="content">Media Decoding Ability</span><a class="self-link" href="#media-decoding-ability"></a></h3>
-<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="mediadecodingability">MediaDecodingAbility</dfn> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-1">supported</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth" id="ref-for-dom-mediadecodingability-smooth-1">smooth</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient" id="ref-for-dom-mediadecodingability-powerefficient-1">powerEfficient</a>;
+     <h3 class="heading settled" data-level="2.2" id="media-capabilities-info"><span class="secno">2.2. </span><span class="content">Media Capabilities Information</span><a class="self-link" href="#media-capabilities-info"></a></h3>
+<pre class="idl highlight def"><span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="mediacapabilitiesinfo">MediaCapabilitiesInfo</dfn> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported-1">supported</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth-1">smooth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient-1">powerEfficient</a>;
 };
 </pre>
-     <p> The ability to decode a given <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-3">MediaConfiguration</a></code> <var>configuration</var> is represented by a <code class="idl"><a data-link-type="idl" href="#mediadecodingability" id="ref-for-mediadecodingability-1">MediaDecodingAbility</a></code> object. </p>
-     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-supported">supported</dfn> attribute
-      MUST return <code>false</code> if the user agent is not able to decode the
-      media represented by <var>configuration</var>. Otherwise, it MUST return <code>true</code>. </p>
-     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-smooth">smooth</dfn> attribute MUST
-      return whether the user agent will be able to decode the media at a pace
-      that will allow a smooth playback. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-2">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>. </p>
-     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingAbility" data-dfn-type="attribute" data-export="" id="dom-mediadecodingability-powerefficient">powerEfficient</dfn> attribute MUST return whether the user agent will be able to decode the
-      media in a power efficient manner. If <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-supported" id="ref-for-dom-mediadecodingability-supported-3">supported</a></code> returns <code>false</code>, the user agent MUST return <code>false</code>.
-      The user agent SHOULD not take into consideration the current power source
-      in order to determine the decoding power efficiency unless the device’s
-      power source has side effects such as enabling different decoding modules. </p>
-     <p class="note" role="note"> Authors can use <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingability-powerefficient" id="ref-for-dom-mediadecodingability-powerefficient-2">powerEfficient</a></code> in concordance
+     <p> The <code class="idl"><a data-link-type="idl" href="#mediacapabilitiesinfo" id="ref-for-mediacapabilitiesinfo-1">MediaCapabilitiesInfo</a></code> has an associated <dfn class="dfn-paneled" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dfn" data-noexport="" id="mediacapabilitiesinfo-configuration">configuration</dfn> which is a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration-3">MediaDecodingConfiguration</a></code> or <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration-2">MediaEncodingConfiguration</a></code>. </p>
+     <p> A <code class="idl"><a data-link-type="idl" href="#mediacapabilitiesinfo" id="ref-for-mediacapabilitiesinfo-2">MediaCapabilitiesInfo</a></code> has associated <dfn class="dfn-paneled" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dfn" data-noexport="" id="mediacapabilitiesinfo-supported">supported</dfn>, <dfn class="dfn-paneled" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dfn" data-noexport="" id="mediacapabilitiesinfo-smooth">smooth</dfn>, <dfn class="dfn-paneled" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dfn" data-noexport="" id="mediacapabilitiesinfo-powerefficient">powerEfficient</dfn> fields which are
+      booleans. </p>
+     <p> When the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport="" id="create-a-mediacapabilitiesinfo-algorithm">create a MediaCapabilitiesInfo algorithm</dfn> with a <var>configuration</var> is invoked, the user agent MUST run the following
+      steps: </p>
+     <ol>
+      <li> Let <var>info</var> be a new <code class="idl"><a data-link-type="idl" href="#mediacapabilitiesinfo" id="ref-for-mediacapabilitiesinfo-3">MediaCapabilitiesInfo</a></code> instance.
+          Unless stated otherwise, reading and writing apply to <var>info</var> for the next steps. 
+      <li> Set <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-1">configuration</a> to <var>configuration</var>. 
+      <li>
+        If <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-2">configuration</a> is of type <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration-4">MediaDecodingConfiguration</a></code>, run the following substeps: 
+       <ol>
+        <li> If the user agent is able to decode the media represented by <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-3">configuration</a>, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-supported" id="ref-for-mediacapabilitiesinfo-supported-1">supported</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>. 
+        <li> If the user agent is able to decode the media represented by <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-4">configuration</a> at a pace that
+              allows a smooth playback, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth-1">smooth</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>. 
+        <li> If the user agent is able to decode the media represented by <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-5">configuration</a> in a power efficient
+              manner, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-powerefficient" id="ref-for-mediacapabilitiesinfo-powerefficient-1">powerEfficient</a> to <code>true</code>. Otherwise set it to <code>false</code>. The
+              user agent SHOULD NOT take into consideration the current power
+              source in order to determine the decoding power efficiency unless
+              the device’s power source has side effects such as enabling
+              different decoding modules. 
+       </ol>
+      <li>
+        If <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-6">configuration</a> is of type <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration-3">MediaEncodingConfiguration</a></code>, run the following substeps: 
+       <ol>
+        <li> If the user agent is able to encode the media represented by <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-7">configuration</a>, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-supported" id="ref-for-mediacapabilitiesinfo-supported-2">supported</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>. 
+        <li> If the user agent is able to encode the media represented by <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-8">configuration</a> at a pace that
+              allows encoding frames at the same pace as they are sent to the
+              encoder, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth-2">smooth</a> to <code>true</code>. Otherwise set it to <code>false</code>. 
+        <li> If the user agent is able to encode the media represented by <a data-link-type="dfn" href="#mediacapabilitiesinfo-configuration" id="ref-for-mediacapabilitiesinfo-configuration-9">configuration</a> in a power
+              efficient manner, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-powerefficient" id="ref-for-mediacapabilitiesinfo-powerefficient-2">powerEfficient</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>. The user agent SHOULD NOT
+              take into consideration the current power source in order to
+              determine the encoding power efficiency unless the device’s power
+              source has side effects such as enabling different encoding
+              modules. 
+       </ol>
+      <li> Return <var>info</var>. 
+     </ol>
+     <p></p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="attribute" data-export="" id="dom-mediacapabilitiesinfo-supported">supported</dfn> attribute
+      MUST return <a data-link-type="dfn" href="#mediacapabilitiesinfo-supported" id="ref-for-mediacapabilitiesinfo-supported-3">supported</a>. </p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="attribute" data-export="" id="dom-mediacapabilitiesinfo-smooth">smooth</dfn> attribute MUST
+      return <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth-3">smooth</a>. </p>
+     <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="attribute" data-export="" id="dom-mediacapabilitiesinfo-powerefficient">powerEfficient</dfn> attribute MUST return <a data-link-type="dfn" href="#mediacapabilitiesinfo-powerefficient" id="ref-for-mediacapabilitiesinfo-powerefficient-3">powerEfficient</a>. </p>
+     <p class="note" role="note"> Authors can use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient-2">powerEfficient</a></code> in concordance
       with the Battery Status API <a data-link-type="biblio" href="#biblio-battery-status">[battery-status]</a> in order to determine
       whether the media they would like to play is appropriate for the user
       configuration. It is worth noting that even when a device is not power
@@ -1669,11 +1726,13 @@ the device’s display.</p>
      <h3 class="heading settled" data-level="2.4" id="media-capabilities-interface"><span class="secno">2.4. </span><span class="content">Media Capabilities Interface</span><a class="self-link" href="#media-capabilities-interface"></a></h3>
 <pre class="idl highlight def">[<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>, <span class="n">Worker</span>)]
 <span class="kt">interface</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="interface" data-export="" id="mediacapabilities">MediaCapabilities</dfn> {
-  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediadecodingability" id="ref-for-mediadecodingability-2">MediaDecodingAbility</a>> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" data-lt="query(configuration)" id="dom-mediacapabilities-query">query<a class="self-link" href="#dom-mediacapabilities-query"></a></dfn>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration-4">MediaConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities/query(configuration)" data-dfn-type="argument" data-export="" id="dom-mediacapabilities-query-configuration-configuration">configuration<a class="self-link" href="#dom-mediacapabilities-query-configuration-configuration"></a></dfn>);
+  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediacapabilitiesinfo" id="ref-for-mediacapabilitiesinfo-4">MediaCapabilitiesInfo</a>> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" data-lt="decodingInfo(configuration)" id="dom-mediacapabilities-decodinginfo">decodingInfo<a class="self-link" href="#dom-mediacapabilities-decodinginfo"></a></dfn>(<a class="n" data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration-5">MediaDecodingConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities/decodingInfo(configuration)" data-dfn-type="argument" data-export="" id="dom-mediacapabilities-decodinginfo-configuration-configuration">configuration<a class="self-link" href="#dom-mediacapabilities-decodinginfo-configuration-configuration"></a></dfn>);
+  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediacapabilitiesinfo" id="ref-for-mediacapabilitiesinfo-5">MediaCapabilitiesInfo</a>> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" data-lt="encodingInfo(configuration)" id="dom-mediacapabilities-encodinginfo">encodingInfo<a class="self-link" href="#dom-mediacapabilities-encodinginfo"></a></dfn>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration-4">MediaEncodingConfiguration</a> <dfn class="nv idl-code" data-dfn-for="MediaCapabilities/encodingInfo(configuration)" data-dfn-type="argument" data-export="" id="dom-mediacapabilities-encodinginfo-configuration-configuration">configuration<a class="self-link" href="#dom-mediacapabilities-encodinginfo-configuration-configuration"></a></dfn>);
 };
 </pre>
-     <p> The <dfn class="idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" id="dom-mediacapabilities-query">query()<a class="self-link" href="#dom-mediacapabilities-query"></a></dfn> method MUST run the
-      following steps: </p>
+     <p> The <dfn class="idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" id="dom-mediacapabilities-decodinginfo">decodingInfo()<a class="self-link" href="#dom-mediacapabilities-decodinginfo"></a></dfn> method and
+      the <dfn class="idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export="" id="dom-mediacapabilities-encodinginfo">encodingInfo()<a class="self-link" href="#dom-mediacapabilities-encodinginfo"></a></dfn> method MUST
+      run the following steps: </p>
      <ol>
       <li> If <var>configuration</var> is not a <a data-link-type="dfn" href="#valid-mediaconfiguration" id="ref-for-valid-mediaconfiguration-1">valid MediaConfiguration</a>,
           return a Promise rejected with a <code>TypeError</code>. 
@@ -1682,8 +1741,8 @@ the device’s display.</p>
       <li> If <code>configuration.audio</code> in non-null and <code>configuration.audio.contentType</code> is not a <a data-link-type="dfn" href="#valid-audioconfiguration-contenttype" id="ref-for-valid-audioconfiguration-contenttype-1">valid
           AudioConfiguration contentType</a>, return a Promise rejected with a <code>TypeError</code>. 
       <li> Let <var>p</var> be a new promise. 
-      <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">In parallel</a>, create a <code class="idl"><a data-link-type="idl" href="#mediadecodingability" id="ref-for-mediadecodingability-3">MediaDecodingAbility</a></code> instance
-          representing the user agent ability to decode the given <var>configuration</var>. 
+      <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel">In parallel</a>, run the <a data-link-type="dfn" href="#create-a-mediacapabilitiesinfo-algorithm" id="ref-for-create-a-mediacapabilitiesinfo-algorithm-1">create a MediaCapabilitiesInfo
+          algorithm</a> with <var>configuration</var> and resolve <var>p</var> with its result. 
       <li> Return <var>p</var>. 
      </ol>
      <p></p>
@@ -1931,25 +1990,31 @@ the device’s display.</p>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#dom-mediaconfiguration-audio">audio</a><span>, in §2.1.1</span>
-   <li><a href="#dictdef-audioconfiguration">AudioConfiguration</a><span>, in §2.1.4</span>
+   <li><a href="#dictdef-audioconfiguration">AudioConfiguration</a><span>, in §2.1.5</span>
    <li>
     bitrate
     <ul>
-     <li><a href="#dom-videoconfiguration-bitrate">dict-member for VideoConfiguration</a><span>, in §2.1.3</span>
-     <li><a href="#dom-audioconfiguration-bitrate">dict-member for AudioConfiguration</a><span>, in §2.1.4</span>
+     <li><a href="#dom-videoconfiguration-bitrate">dict-member for VideoConfiguration</a><span>, in §2.1.4</span>
+     <li><a href="#dom-audioconfiguration-bitrate">dict-member for AudioConfiguration</a><span>, in §2.1.5</span>
     </ul>
-   <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.4</span>
+   <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.5</span>
    <li><a href="#dom-screen-colordepth">colorDepth</a><span>, in §3.4</span>
    <li><a href="#dom-screen-colorgamut">colorGamut</a><span>, in §3.4</span>
+   <li><a href="#mediacapabilitiesinfo-configuration">configuration</a><span>, in §2.2</span>
    <li>
     contentType
     <ul>
-     <li><a href="#dom-videoconfiguration-contenttype">dict-member for VideoConfiguration</a><span>, in §2.1.3</span>
-     <li><a href="#dom-audioconfiguration-contenttype">dict-member for AudioConfiguration</a><span>, in §2.1.4</span>
+     <li><a href="#dom-videoconfiguration-contenttype">dict-member for VideoConfiguration</a><span>, in §2.1.4</span>
+     <li><a href="#dom-audioconfiguration-contenttype">dict-member for AudioConfiguration</a><span>, in §2.1.5</span>
     </ul>
-   <li><a href="#dom-mediaconfigurationtype-file">file</a><span>, in §2.1.2</span>
-   <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.3</span>
-   <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.3</span>
+   <li><a href="#create-a-mediacapabilitiesinfo-algorithm">create a MediaCapabilitiesInfo algorithm</a><span>, in §2.2</span>
+   <li><a href="#dom-mediacapabilities-decodinginfo">decodingInfo()</a><span>, in §2.4</span>
+   <li><a href="#dom-mediacapabilities-decodinginfo">decodingInfo(configuration)</a><span>, in §2.4</span>
+   <li><a href="#dom-mediacapabilities-encodinginfo">encodingInfo()</a><span>, in §2.4</span>
+   <li><a href="#dom-mediacapabilities-encodinginfo">encodingInfo(configuration)</a><span>, in §2.4</span>
+   <li><a href="#dom-mediadecodingtype-file">file</a><span>, in §2.1.2</span>
+   <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.4</span>
+   <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.4</span>
    <li><a href="#dom-screen-luminance">luminance</a><span>, in §3.4</span>
    <li><a href="#dom-screenluminance-max">max</a><span>, in §3.1</span>
    <li><a href="#dom-screenluminance-maxaverage">maxAverage</a><span>, in §3.1</span>
@@ -1960,32 +2025,55 @@ the device’s display.</p>
      <li><a href="#dom-navigator-mediacapabilities">attribute for Navigator</a><span>, in §2.3</span>
      <li><a href="#dom-workernavigator-mediacapabilities">attribute for WorkerNavigator</a><span>, in §2.3</span>
     </ul>
+   <li><a href="#mediacapabilitiesinfo">MediaCapabilitiesInfo</a><span>, in §2.2</span>
    <li><a href="#dictdef-mediaconfiguration">MediaConfiguration</a><span>, in §2.1.1</span>
-   <li><a href="#enumdef-mediaconfigurationtype">MediaConfigurationType</a><span>, in §2.1.2</span>
-   <li><a href="#mediadecodingability">MediaDecodingAbility</a><span>, in §2.2</span>
-   <li><a href="#dom-mediaconfigurationtype-media-source">media-source</a><span>, in §2.1.2</span>
+   <li><a href="#dictdef-mediadecodingconfiguration">MediaDecodingConfiguration</a><span>, in §2.1.1</span>
+   <li><a href="#enumdef-mediadecodingtype">MediaDecodingType</a><span>, in §2.1.2</span>
+   <li><a href="#dictdef-mediaencodingconfiguration">MediaEncodingConfiguration</a><span>, in §2.1.1</span>
+   <li><a href="#enumdef-mediaencodingtype">MediaEncodingType</a><span>, in §2.1.3</span>
+   <li><a href="#dom-mediadecodingtype-media-source">media-source</a><span>, in §2.1.2</span>
    <li><a href="#dom-screenluminance-min">min</a><span>, in §3.1</span>
    <li><a href="#dom-screen-onchange">onchange</a><span>, in §3.4</span>
    <li><a href="#dom-screencolorgamut-p3">p3</a><span>, in §3.2</span>
    <li><a href="#dom-screen-pixeldepth">pixelDepth</a><span>, in §3.4</span>
-   <li><a href="#dom-mediadecodingability-powerefficient">powerEfficient</a><span>, in §2.2</span>
-   <li><a href="#dom-mediacapabilities-query">query()</a><span>, in §2.4</span>
-   <li><a href="#dom-mediacapabilities-query">query(configuration)</a><span>, in §2.4</span>
+   <li>
+    powerEfficient
+    <ul>
+     <li><a href="#mediacapabilitiesinfo-powerefficient">dfn for MediaCapabilitiesInfo</a><span>, in §2.2</span>
+     <li><a href="#dom-mediacapabilitiesinfo-powerefficient">attribute for MediaCapabilitiesInfo</a><span>, in §2.2</span>
+    </ul>
    <li><a href="#dom-screencolorgamut-rec2020">rec2020</a><span>, in §3.2</span>
-   <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.4</span>
+   <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.5</span>
    <li><a href="#screen-color-depth">screen color depth</a><span>, in §3.3</span>
    <li><a href="#enumdef-screencolorgamut">ScreenColorGamut</a><span>, in §3.2</span>
    <li><a href="#screenluminance">ScreenLuminance</a><span>, in §3.1</span>
-   <li><a href="#dom-mediadecodingability-smooth">smooth</a><span>, in §2.2</span>
+   <li>
+    smooth
+    <ul>
+     <li><a href="#mediacapabilitiesinfo-smooth">dfn for MediaCapabilitiesInfo</a><span>, in §2.2</span>
+     <li><a href="#dom-mediacapabilitiesinfo-smooth">attribute for MediaCapabilitiesInfo</a><span>, in §2.2</span>
+    </ul>
    <li><a href="#dom-screencolorgamut-srgb">srgb</a><span>, in §3.2</span>
-   <li><a href="#dom-mediadecodingability-supported">supported</a><span>, in §2.2</span>
-   <li><a href="#dom-mediaconfiguration-type">type</a><span>, in §2.1.1</span>
-   <li><a href="#valid-audioconfiguration-contenttype">valid AudioConfiguration contentType</a><span>, in §2.1.4</span>
+   <li>
+    supported
+    <ul>
+     <li><a href="#mediacapabilitiesinfo-supported">dfn for MediaCapabilitiesInfo</a><span>, in §2.2</span>
+     <li><a href="#dom-mediacapabilitiesinfo-supported">attribute for MediaCapabilitiesInfo</a><span>, in §2.2</span>
+    </ul>
+   <li><a href="#dom-mediaencodingtype-todo">todo</a><span>, in §2.1.3</span>
+   <li><a href="#dom-mediaencodingtype-todo">"todo"</a><span>, in §2.1.3</span>
+   <li>
+    type
+    <ul>
+     <li><a href="#dom-mediadecodingconfiguration-type">dict-member for MediaDecodingConfiguration</a><span>, in §2.1.1</span>
+     <li><a href="#dom-mediaencodingconfiguration-type">dict-member for MediaEncodingConfiguration</a><span>, in §2.1.1</span>
+    </ul>
+   <li><a href="#valid-audioconfiguration-contenttype">valid AudioConfiguration contentType</a><span>, in §2.1.5</span>
    <li><a href="#valid-mediaconfiguration">valid MediaConfiguration</a><span>, in §2.1.1</span>
-   <li><a href="#valid-videoconfiguration-contenttype">valid VideoConfiguration contentType</a><span>, in §2.1.3</span>
+   <li><a href="#valid-videoconfiguration-contenttype">valid VideoConfiguration contentType</a><span>, in §2.1.4</span>
    <li><a href="#dom-mediaconfiguration-video">video</a><span>, in §2.1.1</span>
-   <li><a href="#dictdef-videoconfiguration">VideoConfiguration</a><span>, in §2.1.3</span>
-   <li><a href="#dom-videoconfiguration-width">width</a><span>, in §2.1.3</span>
+   <li><a href="#dictdef-videoconfiguration">VideoConfiguration</a><span>, in §2.1.4</span>
+   <li><a href="#dom-videoconfiguration-width">width</a><span>, in §2.1.4</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -2062,15 +2150,25 @@ the device’s display.</p>
   </dl>
   <h2 class="no-num no-ref heading settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="idl def"><span class="kt">dictionary</span> <a class="nv" href="#dictdef-mediaconfiguration">MediaConfiguration</a> {
-  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mediaconfigurationtype">MediaConfigurationType</a> <a class="nv" data-type="MediaConfigurationType " href="#dom-mediaconfiguration-type">type</a>;
-
   <a class="n" data-link-type="idl-name" href="#dictdef-videoconfiguration">VideoConfiguration</a> <a class="nv" data-type="VideoConfiguration " href="#dom-mediaconfiguration-video">video</a>;
   <a class="n" data-link-type="idl-name" href="#dictdef-audioconfiguration">AudioConfiguration</a> <a class="nv" data-type="AudioConfiguration " href="#dom-mediaconfiguration-audio">audio</a>;
 };
 
-<span class="kt">enum</span> <a class="nv" href="#enumdef-mediaconfigurationtype">MediaConfigurationType</a> {
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-file">"file"</a>,
-  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediaconfigurationtype-media-source">"media-source"</a>,
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-mediadecodingconfiguration">MediaDecodingConfiguration</a> : <a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration">MediaConfiguration</a> {
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mediadecodingtype">MediaDecodingType</a> <a class="nv" data-type="MediaDecodingType " href="#dom-mediadecodingconfiguration-type">type</a>;
+};
+
+<span class="kt">dictionary</span> <a class="nv" href="#dictdef-mediaencodingconfiguration">MediaEncodingConfiguration</a> : <a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration">MediaConfiguration</a> {
+  <span class="kt">required</span> <a class="n" data-link-type="idl-name" href="#enumdef-mediaencodingtype">MediaEncodingType</a> <a class="nv" data-type="MediaEncodingType " href="#dom-mediaencodingconfiguration-type">type</a>;
+};
+
+<span class="kt">enum</span> <a class="nv" href="#enumdef-mediadecodingtype">MediaDecodingType</a> {
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-file">"file"</a>,
+  <a class="s idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-media-source">"media-source"</a>,
+};
+
+<span class="kt">enum</span> <a class="nv" href="#enumdef-mediaencodingtype">MediaEncodingType</a> {
+  <a class="s" href="#dom-mediaencodingtype-todo">"todo"</a>,
 };
 
 <span class="kt">dictionary</span> <a class="nv" href="#dictdef-videoconfiguration">VideoConfiguration</a> {
@@ -2088,10 +2186,10 @@ the device’s display.</p>
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate">samplerate</a>;
 };
 
-<span class="kt">interface</span> <a class="nv" href="#mediadecodingability">MediaDecodingAbility</a> {
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-supported">supported</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-smooth">smooth</a>;
-  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediadecodingability-powerefficient">powerEfficient</a>;
+<span class="kt">interface</span> <a class="nv" href="#mediacapabilitiesinfo">MediaCapabilitiesInfo</a> {
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediacapabilitiesinfo-supported">supported</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediacapabilitiesinfo-smooth">smooth</a>;
+  <span class="kt">readonly</span> <span class="kt">attribute</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean"><span class="kt">boolean</span></a> <a class="nv idl-code" data-link-type="attribute" data-readonly="" data-type="boolean" href="#dom-mediacapabilitiesinfo-powerefficient">powerEfficient</a>;
 };
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>)]
@@ -2106,7 +2204,8 @@ the device’s display.</p>
 
 [<a class="nv idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed">Exposed</a>=(<span class="n">Window</span>, <span class="n">Worker</span>)]
 <span class="kt">interface</span> <a class="nv" href="#mediacapabilities">MediaCapabilities</a> {
-  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediadecodingability">MediaDecodingAbility</a>> <a class="nv" href="#dom-mediacapabilities-query">query</a>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaconfiguration">MediaConfiguration</a> <a class="nv" href="#dom-mediacapabilities-query-configuration-configuration">configuration</a>);
+  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediacapabilitiesinfo">MediaCapabilitiesInfo</a>> <a class="nv" href="#dom-mediacapabilities-decodinginfo">decodingInfo</a>(<a class="n" data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration">MediaDecodingConfiguration</a> <a class="nv" href="#dom-mediacapabilities-decodinginfo-configuration-configuration">configuration</a>);
+  <span class="kt">Promise</span>&lt;<a class="n" data-link-type="idl-name" href="#mediacapabilitiesinfo">MediaCapabilitiesInfo</a>> <a class="nv" href="#dom-mediacapabilities-encodinginfo">encodingInfo</a>(<a class="n" data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration">MediaEncodingConfiguration</a> <a class="nv" href="#dom-mediacapabilities-encodinginfo-configuration-configuration">configuration</a>);
 };
 
 <span class="kt">interface</span> <a class="nv" href="#screenluminance">ScreenLuminance</a> {
@@ -2142,10 +2241,24 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dictdef-mediaconfiguration">
    <b><a href="#dictdef-mediaconfiguration">#dictdef-mediaconfiguration</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dictdef-mediaconfiguration-1">2.1.1. MediaConfiguration</a>
-    <li><a href="#ref-for-dictdef-mediaconfiguration-2">2.1.2. MediaConfigurationType</a>
-    <li><a href="#ref-for-dictdef-mediaconfiguration-3">2.2. Media Decoding Ability</a>
-    <li><a href="#ref-for-dictdef-mediaconfiguration-4">2.4. Media Capabilities Interface</a>
+    <li><a href="#ref-for-dictdef-mediaconfiguration-1">2.1.1. MediaConfiguration</a> <a href="#ref-for-dictdef-mediaconfiguration-2">(2)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dictdef-mediadecodingconfiguration">
+   <b><a href="#dictdef-mediadecodingconfiguration">#dictdef-mediadecodingconfiguration</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration-1">2.1.1. MediaConfiguration</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration-2">2.1.2. MediaDecodingType</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration-3">2.2. Media Capabilities Information</a> <a href="#ref-for-dictdef-mediadecodingconfiguration-4">(2)</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration-5">2.4. Media Capabilities Interface</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dictdef-mediaencodingconfiguration">
+   <b><a href="#dictdef-mediaencodingconfiguration">#dictdef-mediaencodingconfiguration</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration-1">2.1.1. MediaConfiguration</a>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration-2">2.2. Media Capabilities Information</a> <a href="#ref-for-dictdef-mediaencodingconfiguration-3">(2)</a>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration-4">2.4. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-mediaconfiguration">
@@ -2154,22 +2267,28 @@ the device’s display.</p>
     <li><a href="#ref-for-valid-mediaconfiguration-1">2.4. Media Capabilities Interface</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="enumdef-mediaconfigurationtype">
-   <b><a href="#enumdef-mediaconfigurationtype">#enumdef-mediaconfigurationtype</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="enumdef-mediadecodingtype">
+   <b><a href="#enumdef-mediadecodingtype">#enumdef-mediadecodingtype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-enumdef-mediaconfigurationtype-1">2.1.1. MediaConfiguration</a>
+    <li><a href="#ref-for-enumdef-mediadecodingtype-1">2.1.1. MediaConfiguration</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-mediaconfigurationtype-file">
-   <b><a href="#dom-mediaconfigurationtype-file">#dom-mediaconfigurationtype-file</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-mediadecodingtype-file">
+   <b><a href="#dom-mediadecodingtype-file">#dom-mediadecodingtype-file</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediaconfigurationtype-file-1">2.1.2. MediaConfigurationType</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-file-1">2.1.2. MediaDecodingType</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-mediaconfigurationtype-media-source">
-   <b><a href="#dom-mediaconfigurationtype-media-source">#dom-mediaconfigurationtype-media-source</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-mediadecodingtype-media-source">
+   <b><a href="#dom-mediadecodingtype-media-source">#dom-mediadecodingtype-media-source</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediaconfigurationtype-media-source-1">2.1.2. MediaConfigurationType</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-media-source-1">2.1.2. MediaDecodingType</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="enumdef-mediaencodingtype">
+   <b><a href="#enumdef-mediaencodingtype">#enumdef-mediaencodingtype</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-enumdef-mediaencodingtype-1">2.1.1. MediaConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-videoconfiguration">
@@ -2181,7 +2300,7 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-contenttype">
    <b><a href="#dom-videoconfiguration-contenttype">#dom-videoconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-contenttype-1">2.1.3. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-contenttype-1">2.1.4. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-videoconfiguration-contenttype">
@@ -2193,25 +2312,25 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-width">
    <b><a href="#dom-videoconfiguration-width">#dom-videoconfiguration-width</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-width-1">2.1.3. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-width-1">2.1.4. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-height">
    <b><a href="#dom-videoconfiguration-height">#dom-videoconfiguration-height</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-height-1">2.1.3. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-height-1">2.1.4. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-bitrate">
    <b><a href="#dom-videoconfiguration-bitrate">#dom-videoconfiguration-bitrate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-bitrate-1">2.1.3. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-bitrate-1">2.1.4. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-framerate">
    <b><a href="#dom-videoconfiguration-framerate">#dom-videoconfiguration-framerate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-framerate-1">2.1.3. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-framerate-1">2.1.4. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-audioconfiguration">
@@ -2223,7 +2342,7 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-contenttype">
    <b><a href="#dom-audioconfiguration-contenttype">#dom-audioconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-contenttype-1">2.1.4. AudioConfiguration</a>
+    <li><a href="#ref-for-dom-audioconfiguration-contenttype-1">2.1.5. AudioConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-audioconfiguration-contenttype">
@@ -2235,44 +2354,74 @@ the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-channels">
    <b><a href="#dom-audioconfiguration-channels">#dom-audioconfiguration-channels</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-channels-1">2.1.4. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-channels-2">(2)</a>
+    <li><a href="#ref-for-dom-audioconfiguration-channels-1">2.1.5. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-channels-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-bitrate">
    <b><a href="#dom-audioconfiguration-bitrate">#dom-audioconfiguration-bitrate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-bitrate-1">2.1.4. AudioConfiguration</a>
+    <li><a href="#ref-for-dom-audioconfiguration-bitrate-1">2.1.5. AudioConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-samplerate">
    <b><a href="#dom-audioconfiguration-samplerate">#dom-audioconfiguration-samplerate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-samplerate-1">2.1.4. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-samplerate-2">(2)</a>
+    <li><a href="#ref-for-dom-audioconfiguration-samplerate-1">2.1.5. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-samplerate-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="mediadecodingability">
-   <b><a href="#mediadecodingability">#mediadecodingability</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="mediacapabilitiesinfo">
+   <b><a href="#mediacapabilitiesinfo">#mediacapabilitiesinfo</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-mediadecodingability-1">2.2. Media Decoding Ability</a>
-    <li><a href="#ref-for-mediadecodingability-2">2.4. Media Capabilities Interface</a> <a href="#ref-for-mediadecodingability-3">(2)</a>
+    <li><a href="#ref-for-mediacapabilitiesinfo-1">2.2. Media Capabilities Information</a> <a href="#ref-for-mediacapabilitiesinfo-2">(2)</a> <a href="#ref-for-mediacapabilitiesinfo-3">(3)</a>
+    <li><a href="#ref-for-mediacapabilitiesinfo-4">2.4. Media Capabilities Interface</a> <a href="#ref-for-mediacapabilitiesinfo-5">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-mediadecodingability-supported">
-   <b><a href="#dom-mediadecodingability-supported">#dom-mediadecodingability-supported</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="mediacapabilitiesinfo-configuration">
+   <b><a href="#mediacapabilitiesinfo-configuration">#mediacapabilitiesinfo-configuration</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediadecodingability-supported-1">2.2. Media Decoding Ability</a> <a href="#ref-for-dom-mediadecodingability-supported-2">(2)</a> <a href="#ref-for-dom-mediadecodingability-supported-3">(3)</a>
+    <li><a href="#ref-for-mediacapabilitiesinfo-configuration-1">2.2. Media Capabilities Information</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-2">(2)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-3">(3)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-4">(4)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-5">(5)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-6">(6)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-7">(7)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-8">(8)</a> <a href="#ref-for-mediacapabilitiesinfo-configuration-9">(9)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-mediadecodingability-smooth">
-   <b><a href="#dom-mediadecodingability-smooth">#dom-mediadecodingability-smooth</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="mediacapabilitiesinfo-supported">
+   <b><a href="#mediacapabilitiesinfo-supported">#mediacapabilitiesinfo-supported</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediadecodingability-smooth-1">2.2. Media Decoding Ability</a>
+    <li><a href="#ref-for-mediacapabilitiesinfo-supported-1">2.2. Media Capabilities Information</a> <a href="#ref-for-mediacapabilitiesinfo-supported-2">(2)</a> <a href="#ref-for-mediacapabilitiesinfo-supported-3">(3)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-mediadecodingability-powerefficient">
-   <b><a href="#dom-mediadecodingability-powerefficient">#dom-mediadecodingability-powerefficient</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="mediacapabilitiesinfo-smooth">
+   <b><a href="#mediacapabilitiesinfo-smooth">#mediacapabilitiesinfo-smooth</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediadecodingability-powerefficient-1">2.2. Media Decoding Ability</a> <a href="#ref-for-dom-mediadecodingability-powerefficient-2">(2)</a>
+    <li><a href="#ref-for-mediacapabilitiesinfo-smooth-1">2.2. Media Capabilities Information</a> <a href="#ref-for-mediacapabilitiesinfo-smooth-2">(2)</a> <a href="#ref-for-mediacapabilitiesinfo-smooth-3">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="mediacapabilitiesinfo-powerefficient">
+   <b><a href="#mediacapabilitiesinfo-powerefficient">#mediacapabilitiesinfo-powerefficient</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-mediacapabilitiesinfo-powerefficient-1">2.2. Media Capabilities Information</a> <a href="#ref-for-mediacapabilitiesinfo-powerefficient-2">(2)</a> <a href="#ref-for-mediacapabilitiesinfo-powerefficient-3">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="create-a-mediacapabilitiesinfo-algorithm">
+   <b><a href="#create-a-mediacapabilitiesinfo-algorithm">#create-a-mediacapabilitiesinfo-algorithm</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-create-a-mediacapabilitiesinfo-algorithm-1">2.4. Media Capabilities Interface</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-mediacapabilitiesinfo-supported">
+   <b><a href="#dom-mediacapabilitiesinfo-supported">#dom-mediacapabilitiesinfo-supported</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mediacapabilitiesinfo-supported-1">2.2. Media Capabilities Information</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-mediacapabilitiesinfo-smooth">
+   <b><a href="#dom-mediacapabilitiesinfo-smooth">#dom-mediacapabilitiesinfo-smooth</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mediacapabilitiesinfo-smooth-1">2.2. Media Capabilities Information</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-mediacapabilitiesinfo-powerefficient">
+   <b><a href="#dom-mediacapabilitiesinfo-powerefficient">#dom-mediacapabilitiesinfo-powerefficient</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-mediacapabilitiesinfo-powerefficient-1">2.2. Media Capabilities Information</a> <a href="#ref-for-dom-mediacapabilitiesinfo-powerefficient-2">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="mediacapabilities">
