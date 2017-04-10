@@ -192,7 +192,7 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
           required DOMString contentType;
           required unsigned long width;
           required unsigned long height;
-          required unsigned long bitrate;
+          required unsigned long bandwidth;
           required double framerate;
         };
       </pre>
@@ -214,9 +214,9 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
       </p>
 
       <p>
-        The <dfn for='VideoConfiguration' dict-member>bitrate</dfn> member
-        represents the number of average bitrate of the video track. The bitrate
-        is the number of bits used to encode a second of the video track.
+        The <dfn for='VideoConfiguration' dict-member>bandwidth</dfn> member
+        represents the average number of bits required to represent one second
+        of the video track. This is also known as bitrate.
       </p>
 
       <p>
@@ -233,7 +233,7 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
         dictionary AudioConfiguration {
           required DOMString contentType;
           DOMString channels;
-          unsigned long bitrate;
+          unsigned long bandwidth;
           unsigned long samplerate;
         };
       </pre>
@@ -261,9 +261,9 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
       </p>
 
       <p>
-        The <dfn for='AudioConfiguration' dict-member>bitrate</dfn> member
-        represents the number of average bitrate of the audio track. The bitrate
-        is the number of bits used to encode a second of the audio track.
+        The <dfn for='AudioConfiguration' dict-member>bandwidth</dfn> member
+        represents the average number of bits required to represent one second
+        of the audio track. This is also known as bitrate.
       </p>
 
       <p>
