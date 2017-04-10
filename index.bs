@@ -582,10 +582,6 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
         readonly attribute ScreenColorGamut colorGamut;
         readonly attribute ScreenLuminance? luminance;
 
-        // Overriden from CSSOM View Module.
-        readonly attribute unsigned long colorDepth;
-        readonly attribute unsigned long pixelDepth;
-
         attribute EventHandler onchange;
       };
     </pre>
@@ -610,18 +606,6 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
       luminance characteristics of the screen, it MUST return <code>null</code>.
       The user agent MAY also return <code>null</code> if it does not want to
       expose the luminance information for privacy reasons.
-    </p>
-
-    <p>
-      The <dfn for='Screen' attribute>colorDepth</dfn> attribute SHOULD return
-      the <a>screen color depth</a> of the {{Screen}}. The user agent MAY return
-      <code>24</code> as a default value for privacy consideration.
-    </p>
-
-    <p>
-      The <dfn for='Screen' attribute>pixelDepth</dfn> attribute SHOULD return
-      the <a>screen color depth</a> of the {{Screen}}. The user agent MAY return
-      <code>24</code> as a default value for privacy consideration.
     </p>
 
     <p>
