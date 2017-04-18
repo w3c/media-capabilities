@@ -42,11 +42,14 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     type: interface
         text: color-gamut
-</pre>
-<pre class="anchors">
-urlPrefix: https://www.w3.org/TR/mediastream-recording/#; type:interface; text: MediaRecorder; url: mediarecorder
 
-urlPrefix: https://www.w3.org/TR/webrtc/#; type: interface; text: RTCPeerConnection; url: interface-definition
+spec: mediacapture-record; urlPrefix: https://www.w3.org/TR/mediastream-recording/#
+    type:interface
+        text: MediaRecorder; url: mediarecorder
+
+spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
+    type: interface
+        text: RTCPeerConnection; url: interface-definition
 </pre>
 <pre class='biblio'>
 {
