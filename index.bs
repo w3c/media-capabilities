@@ -53,6 +53,9 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
 
 spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     type: dfn; text: valid mime type; url: valid-mime-type
+
+spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
+    type: dfn; text: present
 </pre>
 <pre class='biblio'>
 {
@@ -152,8 +155,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         capabilities by a {{MediaEncodingConfiguration}} dictionary.
       </p>
       <p>
-        A <dfn>valid MediaConfiguration</dfn> MUST contain at least a
-        {{VideoConfiguration}} or an {{AudioConfiguration}}.
+        For a {{MediaConfiguration}} to be a <dfn>valid
+        MediaConfiguration</dfn>, <code>audio</code> or <code>video</code> MUST
+        be <a>present</a>.
       </p>
     </section>
 
@@ -211,8 +215,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         In the context of this specification, a MIME type is also called content
         type. A <dfn>valid media MIME type</dfn> is a string that is a <a>valid
         MIME type</a> per [[mimesniff]] and must have only one parameter that is
-        named <code>codecs</code> which contains only one value that is not the
-        empty string.
+        named <code>codecs</code> with a value describing a simple media codec.
       </p>
 
       <p>
@@ -250,10 +253,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         To check if a {{VideoConfiguration}} <var>configuration</var> is a
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
         <ol>
-          <li>
-            If <var>configuration</var> is <code>null</code>, return
-            <code>true</code> and abort these steps.
-          </li>
           <li>
             If <var>configuration</var>'s {{VideoConfiguration/contentType}} is
             not a <a>valid video MIME type</a>, return <code>false</code> and
@@ -310,10 +309,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         To check if a {{AudioConfiguration}} <var>configuration</var> is a
         <dfn>valid audio configuration</dfn>, the following steps MUST be run:
         <ol>
-          <li>
-            If <var>configuration</var> is <code>null</code>, return
-            <code>true</code> and abort these steps.
-          </li>
           <li>
             If <var>configuration</var>'s {{AudioConfiguration/contentType}} is
             not a <a>valid audio MIME type</a>, return <code>false</code> and
@@ -526,13 +521,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           return a Promise rejected with a <code>TypeError</code>.
         </li>
         <li>
-          If <code>configuration.video</code> is not a <a>valid video
-          configuration</a>, return a Promise rejected with a
+          If <code>configuration.video</code> is <a>present</a> and is not a
+          <a>valid video configuration</a>, return a Promise rejected with a
           <code>TypeError</code>.
         </li>
         <li>
-          If <code>configuration.audio</code> is not a <a>valid audio
-          configuration</a>, return a Promise rejected with a
+          If <code>configuration.audio</code> is <a>present</a> and is not a
+          <a>valid audio configuration</a>, return a Promise rejected with a
           <code>TypeError</code>.
         </li>
         <li>
