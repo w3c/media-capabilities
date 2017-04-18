@@ -653,8 +653,6 @@ urlPrefix: https://www.w3.org/TR/webrtc/#; type: interface; text: RTCPeerConnect
 
       <div class="example" highlight="javascript">
         <pre>
-          &lt;html>
-          &lt;body>
           &lt;script>
             const configuration = {
                 type : 'record',
@@ -678,8 +676,6 @@ urlPrefix: https://www.w3.org/TR/webrtc/#; type: interface; text: RTCPeerConnect
                 });
             });
           &lt;/script>
-          &lt;/body>
-          &lt;/html>
         </pre>
       </div>
   </section>
