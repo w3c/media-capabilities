@@ -42,6 +42,14 @@ spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
 spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     type: interface
         text: color-gamut
+
+spec: mediacapture-record; urlPrefix: https://www.w3.org/TR/mediastream-recording/#
+    type:interface
+        text: MediaRecorder; url: mediarecorder
+
+spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
+    type: interface
+        text: RTCPeerConnection; url: interface-definition
 </pre>
 <pre class='biblio'>
 {
@@ -175,12 +183,21 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
 
       <pre class='idl'>
         enum MediaEncodingType {
-          "todo",
+          "record",
+          "transmission"
         };
       </pre>
 
       <p>
-        TODO
+        A {{MediaEncodingConfiguration}} can have one of two types:
+        <ul>
+          <li><dfn for='MediaEncodingType' enum-value>record</dfn> is used to
+          represent a configuration for recording of media, e.g. using
+          {{MediaRecorder}} as defined in [[mediastream-recording]].</li>
+          <li><dfn for='MediaEncodingType' enum-value>transmission</dfn> is used
+          to represent a configuration meant to be transmitted over electronic
+          means (e.g. using {{RTCPeerConnection}}).</li>
+        </ul>
       </p>
     </section>
 
@@ -621,5 +638,48 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
       queue a task to <a>fire an event</a> named <code>change</code> on
       {{Screen}}.
     </p>
+  </section>
+</section>
+
+
+<section>
+  <h3 id='examples'>Examples</h3>
+
+  <section>
+    <h3 id='example1'>Query recording capabilities with {{encodingInfo()}}</h3>
+
+      <div class="note">
+        The following example can also be found in e.g.
+        <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0">
+        this codepen</a> with minimal modifications.
+      </div>
+
+      <div class="example" highlight="javascript">
+        <pre>
+          &lt;script>
+            const configuration = {
+                type : 'record',
+                video : {
+                  contentType : 'video/webm;codecs=vp8',
+                  width : 640,
+                  height : 480,
+                  bitrate : 10000,
+                  framerate : 30
+              }
+            };
+            navigator.mediaCapabilities.encodingInfo(configuration)
+                .then((result) => {
+                  console.log(contentType + ' is:'
+                      + (result.supported ? '' : ' NOT') + ' supported,'
+                      + (result.smooth ? '' : ' NOT') + ' smooth and'
+                      + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+                })
+                .catch(() => {
+                  console.error(contentType + ' caused encodingInfo to throw');
+                });
+            });
+          &lt;/script>
+        </pre>
+      </div>
   </section>
 </section>
