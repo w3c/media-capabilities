@@ -643,7 +643,7 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
 
 
 <section>
-  <h3 id='examples'>Examples</h3>
+  <h2 id='examples'>Examples</h2>
 
   <section>
     <h3 id='example1'>Query recording capabilities with {{encodingInfo()}}</h3>
