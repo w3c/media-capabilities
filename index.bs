@@ -214,8 +214,10 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       <p>
         In the context of this specification, a MIME type is also called content
         type. A <dfn>valid media MIME type</dfn> is a string that is a <a>valid
-        MIME type</a> per [[mimesniff]] and must have only one parameter that is
+        MIME type</a> per [[mimesniff]]. If the MIME type does not imply a
+        codec, the string MUST also have one and only one parameter that is
         named <code>codecs</code> with a value describing a single media codec.
+        Otherwise, it MUST contain no parameters.
       </p>
 
       <p>
