@@ -1632,7 +1632,7 @@ based on the device’s display.</p>
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype-1">contentType</a>;
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width-1">width</a>;
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height-1">height</a>;
-  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bandwidth" id="ref-for-dom-videoconfiguration-bandwidth-1">bandwidth</a>;
+  <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate-1">bitrate</a>;
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt">double</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate-1">framerate</a>;
 };
 </pre>
@@ -1651,9 +1651,9 @@ based on the device’s display.</p>
       <p></p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-width">width</dfn> and <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-height">height</dfn> members represent
         respectively the width and height of the video track. </p>
-      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-bandwidth">bandwidth</dfn> member
-        represents the average number of bits required to represent one second
-        of the video track. This is also known as bitrate. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-bitrate">bitrate</dfn> member
+        represents the number of average bitrate of the video track. The bitrate
+        is the number of bits used to encode a second of the video track. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export="" id="dom-videoconfiguration-framerate">framerate</dfn> member
         represents the framerate of the video track. The framerate is the number
         of frames used in one second (frames per second). </p>
@@ -1663,7 +1663,7 @@ based on the device’s display.</p>
 <pre class="idl highlight def"><span class="kt">dictionary</span> <dfn class="nv dfn-paneled idl-code" data-dfn-type="dictionary" data-export="" id="dictdef-audioconfiguration">AudioConfiguration</dfn> {
   <span class="kt">required</span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype-1">contentType</a>;
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt">DOMString</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-1">channels</a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bandwidth" id="ref-for-dom-audioconfiguration-bandwidth-1">bandwidth</a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate-1">bitrate</a>;
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt">unsigned</span> <span class="kt">long</span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-1">samplerate</a>;
 };
 </pre>
@@ -1681,9 +1681,9 @@ based on the device’s display.</p>
         represents the audio channels used by the audio track. </p>
       <p class="issue" id="issue-dbf92204"><a class="self-link" href="#issue-dbf92204"></a> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels-2">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
         definition is a placeholder. </p>
-      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-bandwidth">bandwidth</dfn> member
-        represents the average number of bits required to represent one second
-        of the audio track. This is also known as bitrate. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-bitrate">bitrate</dfn> member
+        represents the number of average bitrate of the audio track. The bitrate
+        is the number of bits used to encode a second of the audio track. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export="" id="dom-audioconfiguration-samplerate">samplerate</dfn> represents the samplerate of the audio track in. The samplerate is the
         number of samples of audio carried per second. </p>
       <p class="note" role="note"> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate-2">samplerate</a></code> is expressed in <code>Hz</code> (ie. number of samples of audio per second). Sometimes the samplerates
@@ -2061,10 +2061,10 @@ based on the device’s display.</p>
    <li><a href="#dom-mediaconfiguration-audio">audio</a><span>, in §2.1.1</span>
    <li><a href="#dictdef-audioconfiguration">AudioConfiguration</a><span>, in §2.1.6</span>
    <li>
-    bandwidth
+    bitrate
     <ul>
-     <li><a href="#dom-videoconfiguration-bandwidth">dict-member for VideoConfiguration</a><span>, in §2.1.5</span>
-     <li><a href="#dom-audioconfiguration-bandwidth">dict-member for AudioConfiguration</a><span>, in §2.1.6</span>
+     <li><a href="#dom-videoconfiguration-bitrate">dict-member for VideoConfiguration</a><span>, in §2.1.5</span>
+     <li><a href="#dom-audioconfiguration-bitrate">dict-member for AudioConfiguration</a><span>, in §2.1.6</span>
     </ul>
    <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.6</span>
    <li><a href="#dom-screen-colorgamut">colorGamut</a><span>, in §3.4</span>
@@ -2268,14 +2268,14 @@ based on the device’s display.</p>
   <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt"><span class="kt">DOMString</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype"><span class="nv">contentType</span></a>;
   <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width"><span class="nv">width</span></a>;
   <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height"><span class="nv">height</span></a>;
-  <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bandwidth"><span class="nv">bandwidth</span></a>;
+  <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-bitrate"><span class="nv">bitrate</span></a>;
   <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-double"><span class="kt"><span class="kt">double</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="double " href="#dom-videoconfiguration-framerate"><span class="nv">framerate</span></a>;
 };
 
 <span class="kt"><span class="kt">dictionary</span></span> <a class="nv" href="#dictdef-audioconfiguration"><span class="nv">AudioConfiguration</span></a> {
   <span class="kt"><span class="kt">required</span></span> <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt"><span class="kt">DOMString</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype"><span class="nv">contentType</span></a>;
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><span class="kt"><span class="kt">DOMString</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels"><span class="nv">channels</span></a>;
-  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bandwidth"><span class="nv">bandwidth</span></a>;
+  <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-bitrate"><span class="nv">bitrate</span></a>;
   <a class="n idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long"><span class="kt"><span class="kt">unsigned</span></span> <span class="kt"><span class="kt">long</span></span></a> <a class="nv idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate"><span class="nv">samplerate</span></a>;
 };
 
@@ -2442,10 +2442,10 @@ based on the device’s display.</p>
     <li><a href="#ref-for-dom-videoconfiguration-height-1">2.1.5. VideoConfiguration</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-videoconfiguration-bandwidth">
-   <b><a href="#dom-videoconfiguration-bandwidth">#dom-videoconfiguration-bandwidth</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-videoconfiguration-bitrate">
+   <b><a href="#dom-videoconfiguration-bitrate">#dom-videoconfiguration-bitrate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-bandwidth-1">2.1.5. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-bitrate-1">2.1.5. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-framerate">
@@ -2479,10 +2479,10 @@ based on the device’s display.</p>
     <li><a href="#ref-for-dom-audioconfiguration-channels-1">2.1.6. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-channels-2">(2)</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="dom-audioconfiguration-bandwidth">
-   <b><a href="#dom-audioconfiguration-bandwidth">#dom-audioconfiguration-bandwidth</a></b><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="dom-audioconfiguration-bitrate">
+   <b><a href="#dom-audioconfiguration-bitrate">#dom-audioconfiguration-bitrate</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-bandwidth-1">2.1.6. AudioConfiguration</a>
+    <li><a href="#ref-for-dom-audioconfiguration-bitrate-1">2.1.6. AudioConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-samplerate">
