@@ -241,7 +241,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
           required DOMString contentType;
           required unsigned long width;
           required unsigned long height;
-          required unsigned long bandwidth;
+          required unsigned long bitrate;
           required double framerate;
         };
       </pre>
@@ -278,9 +278,9 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       </p>
 
       <p>
-        The <dfn for='VideoConfiguration' dict-member>bandwidth</dfn> member
-        represents the average number of bits required to represent one second
-        of the video track. This is also known as bitrate.
+        The <dfn for='VideoConfiguration' dict-member>bitrate</dfn> member
+        represents the number of average bitrate of the video track. The bitrate
+        is the number of bits used to encode a second of the video track.
       </p>
 
       <p>
@@ -297,7 +297,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
         dictionary AudioConfiguration {
           required DOMString contentType;
           DOMString channels;
-          unsigned long bandwidth;
+          unsigned long bitrate;
           unsigned long samplerate;
         };
       </pre>
@@ -335,9 +335,9 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       </p>
 
       <p>
-        The <dfn for='AudioConfiguration' dict-member>bandwidth</dfn> member
-        represents the average number of bits required to represent one second
-        of the audio track. This is also known as bitrate.
+        The <dfn for='AudioConfiguration' dict-member>bitrate</dfn> member
+        represents the number of average bitrate of the audio track. The bitrate
+        is the number of bits used to encode a second of the audio track.
       </p>
 
       <p>
