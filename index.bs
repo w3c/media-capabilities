@@ -50,6 +50,12 @@ spec: mediacapture-record; urlPrefix: https://www.w3.org/TR/mediastream-recordin
 spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
     type: interface
         text: RTCPeerConnection; url: interface-definition
+
+spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
+    type: dfn; text: valid mime type; url: valid-mime-type
+
+spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
+    type: dfn; text: present
 </pre>
 <pre class='biblio'>
 {
@@ -149,8 +155,9 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
         capabilities by a {{MediaEncodingConfiguration}} dictionary.
       </p>
       <p>
-        A <dfn>valid MediaConfiguration</dfn> MUST contain at least a
-        {{VideoConfiguration}} or an {{AudioConfiguration}}.
+        For a {{MediaConfiguration}} to be a <dfn>valid
+        MediaConfiguration</dfn>, <code>audio</code> or <code>video</code> MUST
+        be <a>present</a>.
       </p>
     </section>
 
@@ -202,6 +209,31 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
     </section>
 
     <section>
+      <h4 id='mime-type'>MIME types</h4>
+
+      <p>
+        In the context of this specification, a MIME type is also called content
+        type. A <dfn>valid media MIME type</dfn> is a string that is a <a>valid
+        MIME type</a> per [[mimesniff]]. If the MIME type does not imply a
+        codec, the string MUST also have one and only one parameter that is
+        named <code>codecs</code> with a value describing a single media codec.
+        Otherwise, it MUST contain no parameters.
+      </p>
+
+      <p>
+        A <dfn>valid audio MIME type</dfn> is a string that is <a>valid media
+        MIME type</a> and for which the <code>type</code> per [[RFC7231]] is
+        <code>audio</code>.
+      </p>
+
+      <p>
+        A <dfn>valid video MIME type</dfn> is a string that is a <a>valid media
+        MIME type</a> and for which the <code>type</code> per [[RFC7231]] is
+        <code>video</code>.
+      </p>
+    </section>
+
+    <section>
       <h4 id='videoconfiguration'>VideoConfiguration</h4>
 
       <pre class='idl'>
@@ -220,8 +252,23 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
       </p>
 
       <p>
-        A <dfn>valid VideoConfiguration contentType</dfn> MUST include a media
-        type, subtype and full codecs description.
+        To check if a {{VideoConfiguration}} <var>configuration</var> is a
+        <dfn>valid video configuration</dfn>, the following steps MUST be run:
+        <ol>
+          <li>
+            If <var>configuration</var>'s {{VideoConfiguration/contentType}} is
+            not a <a>valid video MIME type</a>, return <code>false</code> and
+            abort these steps.
+          </li>
+          <li>
+            If <var>configuration</var>'{{VideoConfiguration/framerate}} is not
+            a finite value greater than 0, return <code>false</code> and abort
+            these steps.
+          </li>
+          <li>
+            Return <code>true</code>.
+          </li>
+        </ol>
       </p>
 
       <p>
@@ -261,8 +308,18 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
       </p>
 
       <p>
-        A <dfn>valid AudioConfiguration contentType</dfn> MUST include a media
-        type, subtype and full codecs description.
+        To check if a {{AudioConfiguration}} <var>configuration</var> is a
+        <dfn>valid audio configuration</dfn>, the following steps MUST be run:
+        <ol>
+          <li>
+            If <var>configuration</var>'s {{AudioConfiguration/contentType}} is
+            not a <a>valid audio MIME type</a>, return <code>false</code> and
+            abort these steps.
+          </li>
+          <li>
+            Return <code>true</code>.
+          </li>
+        </ol>
       </p>
 
       <p>
@@ -466,15 +523,13 @@ spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
           return a Promise rejected with a <code>TypeError</code>.
         </li>
         <li>
-          If <code>configuration.video</code> in non-null and
-          <code>configuration.video.contentType</code> is not a <a>valid
-          VideoConfiguration contentType</a>, return a Promise rejected with a
+          If <code>configuration.video</code> is <a>present</a> and is not a
+          <a>valid video configuration</a>, return a Promise rejected with a
           <code>TypeError</code>.
         </li>
         <li>
-          If <code>configuration.audio</code> in non-null and
-          <code>configuration.audio.contentType</code> is not a <a>valid
-          AudioConfiguration contentType</a>, return a Promise rejected with a
+          If <code>configuration.audio</code> is <a>present</a> and is not a
+          <a>valid audio configuration</a>, return a Promise rejected with a
           <code>TypeError</code>.
         </li>
         <li>
