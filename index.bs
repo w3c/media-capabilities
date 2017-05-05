@@ -243,6 +243,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
           required unsigned long height;
           required unsigned long bitrate;
           required double framerate;
+          RenderCapability renderCapability;
         };
       </pre>
 
@@ -288,8 +289,82 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
         represents the framerate of the video track. The framerate is the number
         of frames used in one second (frames per second).
       </p>
-    </section>
 
+      <p>
+        The <dfn for='VideoConfiguration' dict-member>renderCapability</dfn>
+        member represents capabilities requested in rendering the media after
+        decoding. The primary use case for this member is to constrain who the
+        video is handled by the platform after decoding, for example, ensuring
+        HDR rendering for HDR content. For the case where a display that is
+        connected via HDMI, and the host platform is able to send video rendered
+        to the level requested over the HDMI link because the currently
+        attached device will allow the HDMI mode to be switched to support those
+        attributes, then it should simply respond with
+        {{MediaCapabilitiesInfo/supported}} since it can output the signal to the
+        display as specified but cannot guarantee how the display willultimately
+        render the video.
+      </p>
+    </section>
+    <section>
+      <h4 id='rendercapability'>RenderCapability</h4>
+
+      <pre class='idl'>
+        dictionary RenderCapability {
+          DOMString colorProfile = "srgb";
+          unsigned long colorDepth = 24;
+          DOMString transferFunction;
+        };
+      </pre>
+
+      <p>
+        The <dfn for='RenderCapability' dict-member>colorProfile</dfn> member
+        represents the color space to which the video should be rendered. The
+        default value is "srgb".
+      </p>
+      <p>
+        The {{colorProfile}} values are:
+        <ul>
+          <li>
+            <dfn for='colorProfile' enum-value>srgb</dfn>, it represents the
+            [[sRGB]] color space.
+          </li>
+          <li>
+            <dfn for='colorSpace' enum-value>p3</dfn>, it represents the DCI
+            P3 Color Space.
+          </li>
+          <li>
+            <dfn for='colorSpace' enum-value>rec2020</dfn>, it represents
+            the ITU-R Recommendation BT.2020 color gamut.
+          </li>
+        </ul>
+      </p>
+      <p>
+        The <dfn for='RenderCapability' dict-member>colorDepth</dfn> member
+        represents the number of bits per pixel. The default is 24.
+      </p>
+      <p>
+        The <dfn for='RenderCapability' dict-member>transferFunction</dfn> member
+        represents the electro-optical transfer function to be applied.
+      </p>
+      <p>
+        The {{transferFunction}} values are:
+        <ul>
+          <li>
+            <dfn for='transferFunction' enum-value>gamma</dfn>, it represents
+            the standard sRGB Gamma function from ITU BT.1886.
+          </li>
+          <li>
+            <dfn for='transferFunction' enum-value>pq</dfn>, it represents the
+            PQ function from SMPTE ST2084.
+          </li>
+          <li>
+            <dfn for='transferFunction' enum-value>hlg</dfn>, it represents
+            the Hybrid Log Gamma function.
+          </li>
+        </ul>
+      </p>
+
+    </section>
     <section>
       <h4 id='audioconfiguration'>AudioConfiguration</h4>
 
