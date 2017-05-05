@@ -292,17 +292,15 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
 
       <p>
         The <dfn for='VideoConfiguration' dict-member>renderCapability</dfn>
-        member represents capabilities requested in rendering the media after
-        decoding. The primary use case for this member is to constrain who the
-        video is handled by the platform after decoding, for example, ensuring
-        HDR rendering for HDR content. For the case where a display that is
-        connected via HDMI, and the host platform is able to send video rendered
-        to the level requested over the HDMI link because the currently
-        attached device will allow the HDMI mode to be switched to support those
-        attributes, then it should simply respond with
-        {{MediaCapabilitiesInfo/supported}} since it can output the signal to the
-        display as specified but cannot guarantee how the display willultimately
-        render the video.
+        member represents capabilities requested for video rendering after
+        decoding. The primary use case for this member is to constrain how the
+        video is handled by the platform after decoding: for example, ensuring
+        HDR rendering for HDR content as opposed to mapping to SDR levels.
+        For the case of an HDMI connected display, if the host platform is able
+        to send the decoded video through the driver to the currently attached
+        display device at an appropriate mode that satisfies the RenderCapability
+        requested, then the query should respond with
+        {{MediaCapabilitiesInfo/supported}}.
       </p>
     </section>
     <section>
@@ -351,7 +349,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
         <ul>
           <li>
             <dfn for='transferFunction' enum-value>gamma</dfn>, it represents
-            the standard sRGB Gamma function from ITU BT.1886.
+            the standard [[sRGB]] Gamma function from ITU BT.1886.
           </li>
           <li>
             <dfn for='transferFunction' enum-value>pq</dfn>, it represents the
