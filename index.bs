@@ -223,13 +223,13 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       <p>
         A <dfn>valid audio MIME type</dfn> is a string that is <a>valid media
         MIME type</a> and for which the <code>type</code> per [[RFC7231]] is
-        <code>audio</code>.
+        either <code>audio</code> or <code>application</code>.
       </p>
 
       <p>
         A <dfn>valid video MIME type</dfn> is a string that is a <a>valid media
         MIME type</a> and for which the <code>type</code> per [[RFC7231]] is
-        <code>video</code>.
+        either <code>video</code> or <code>application</code>.
       </p>
     </section>
 
