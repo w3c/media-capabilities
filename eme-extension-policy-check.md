@@ -25,8 +25,9 @@ application developers.
 ## Overview
 
 The new API will allow application developers to query the status of a
-hypothetical key associated with an HDCP policy, without the need to fetch a
-real license.
+hypothetical key associated with an HDCP policy, without the need to create a
+MediaKeySession or fetch a real license. It does not require the MediaKeys to be
+attached to any HTMLMediaElement either.
 
 If HDCP is available at the specified version, the promise should return
 a MediaKeyStatus of "usable". Otherwise, the promise should return
