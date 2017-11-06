@@ -696,6 +696,57 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
   </section>
 </section>
 
+<section class='non-normative'>
+  <h2 id='security-privacy-considerations'>
+    Security and Privacy Considerations
+  </h2>
+
+  <section>
+    <p>
+      This specification does not introduce any security-sensitive information
+      or APIs but is provides an easier access to some information that can be
+      used to fingerprint users.
+    </p>
+
+    <section>
+      <h3 id='decoding-encoding-fingerprinting'>
+        Decoding/Encoding and Fingerprinting
+      </h3>
+
+      <p>
+        The information exposed by the decoding/encoding capabilities can
+        already be discovered via experimentation with the exception that the
+        API will likely provide more accurate and consistent information. This
+        information is expected to have a high correlation with other
+        information already available to the web pages as a given class of
+        device is expected to have very similar decoding/encoding capabilities.
+        In other words, high end devices from a certain year are expected to
+        decode some type of videos while older devices may not. Therefore, it is
+        expected that the entropy added with this API isn't going to be
+        significant.
+      </p>
+
+      <p>
+        If an implementation wishes to implement a fingerprint-proof version of
+        this specification, it would be recommended to fake a given set of
+        capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
+        always yes or always no as the latte approach could considerably degrade
+        the user's experience.
+      </p>
+    </section>
+
+    <section>
+      <h3 id='display-fingerprinting'>Display and Fingerprinting</h3>
+
+      <p>
+        The information exposed by the display capabilities can already be
+        accessed via CSS for the most part. The specification also provides
+        default values when the user agent does not which to expose the feature
+        for privacy reasons.
+      </p>
+    </section>
+  </section>
+</section>
 
 <section>
   <h2 id='examples'>Examples</h2>
