@@ -19,8 +19,9 @@ pre-fetching high resolution content rather than starting at a low resolution or
 waiting for the license exchange.
 
 HDCP may be one of many requirements for a content license. The proposed
-interface may later be extended to include other requirements as requested by
-application developers.
+dictionary may later be extended to include other requirements as requested by
+application developers. Feature detection can be done by developers by setting
+throwing getters.
 
 ## Overview
 
@@ -38,14 +39,9 @@ must give decisive actionable return values for developers to make decisions
 about what content to fetch.
 
 ```
-dictionary MediaKeysPolicyInit {
+dictionary MediaKeysPolicy {
   DOMString minHdcpVersion = "";
 };
-
-[Constructor(optional MediaKeysPolicyInit init), Exposed=Window]
-interface MediaKeysPolicy {
-  DOMString minHdcpVersion;
-}
 
 partial interface MediaKeys {
   Promise<MediaKeyStatus> getStatusForPolicy(MediaKeysPolicy policy);
@@ -56,9 +52,9 @@ partial interface MediaKeys {
 ## Examples
 
 ```js
-let hdcpPolicy = new MediaKeysPolicy({minHdcpVersion: "1.0"});
-
-video.mediaKeys.getStatusForPolicy(hdcpPolicy).then(function(status) {
+video.mediaKeys.getStatusForPolicy({
+  minHdcpVersion: '1.0'
+}).then(function(status) {
   if (status == 'usable') {
     // Pre-fetch HD content.
   } else {  // such as 'output-restricted' or 'output-downscaled'
