@@ -30,6 +30,8 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
     type: method
         urlPrefx: embedded-content.html/
             for: HTMLMediaElement; text: canPlayType(); url: #dom-navigator-canplaytype
+    type: dfn
+        text: rules for parsing floating-point number values
 
 spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
     type: interface
@@ -242,7 +244,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
           required unsigned long width;
           required unsigned long height;
           required unsigned long bitrate;
-          required double framerate;
+          required DOMString framerate;
         };
       </pre>
 
@@ -261,9 +263,23 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
             abort these steps.
           </li>
           <li>
-            If <var>configuration</var>'{{VideoConfiguration/framerate}} is not
-            a finite value greater than 0, return <code>false</code> and abort
-            these steps.
+            If none of the following is true, return <code>false</code> and
+            abort these steps:
+            <ul>
+              <li>
+                Applying the <a>rules for parsing floating-point number
+                values</a> to <var>configuration</var>'s
+                {{VideoConfiguration/framerate}} results in a number that is
+                finite and greater than 0.
+              </li>
+              <li>
+                <var>Configuration</var>'{{VideoConfiguration/framerate}}
+                contains one occurence of U+002F SLASH character (/) and the
+                substrings before and after this character, when applying the
+                <a>rules for parsing floating-point number values</a> results in
+                a number that is finite and greater than 0.
+              </li>
+            </ul>
           </li>
           <li>
             Return <code>true</code>.
@@ -286,7 +302,8 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       <p>
         The <dfn for='VideoConfiguration' dict-member>framerate</dfn> member
         represents the framerate of the video track. The framerate is the number
-        of frames used in one second (frames per second).
+        of frames used in one second (frames per second). It is represented
+        either as a double or as a fraction.
       </p>
     </section>
 
@@ -719,7 +736,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
                   width : 640,
                   height : 480,
                   bitrate : 10000,
-                  framerate : 30
+                  framerate : '30'
               }
             };
             navigator.mediaCapabilities.encodingInfo(configuration)
