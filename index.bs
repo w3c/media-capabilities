@@ -730,7 +730,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
         capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
-        always yes or always no as the latte approach could considerably degrade
+        always yes or always no as the latter approach could considerably degrade
         the user's experience.
       </p>
     </section>
