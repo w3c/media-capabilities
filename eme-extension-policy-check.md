@@ -53,9 +53,9 @@ partial interface MediaKeys {
 
 ```js
 video.mediaKeys.getStatusForPolicy({
-  minHdcpVersion: '1.0'
-}).then(function(status) {
-  if (status == 'usable') {
+  minHdcpVersion: 'hdcp-1.0'
+}).then(status => {
+  if (status === 'usable') {
     // Pre-fetch HD content.
   } else {  // such as 'output-restricted' or 'output-downscaled'
     // Pre-fetch SD content.
