@@ -243,7 +243,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
           required DOMString contentType;
           required unsigned long width;
           required unsigned long height;
-          required unsigned long bitrate;
+          required unsigned long long bitrate;
           required DOMString framerate;
         };
       </pre>
@@ -314,7 +314,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
         dictionary AudioConfiguration {
           required DOMString contentType;
           DOMString channels;
-          unsigned long bitrate;
+          unsigned long long bitrate;
           unsigned long samplerate;
         };
       </pre>
