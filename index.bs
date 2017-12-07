@@ -93,14 +93,6 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
           callers to know if something can not be decoded but not how well it
           should perform.
         </p>
-        <p>
-          The intent of purposes of the decoding capabilities API is to provide
-          a powerful replacement to API such as
-          {{MediaSource/isTypeSupported()}} or
-          {{HTMLMediaElement/canPlayType()}} which are vague and mostly help the
-          callers to know if something can not be decoded but not how well it
-          should perform.
-        </p>
       </li>
       <li>
         <p>
