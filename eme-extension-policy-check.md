@@ -70,6 +70,7 @@ This would allow an application to discover HDCP availability. HDCP is widely
 available on most modern operating systems and display types. It is not expected
 to add much entropy for fingerprinting.
 
-As access to this API is gated by the async `requestMediaKeySystemAccess()` which 
-may require user content, the HDCP privacy concerns are the same as the 
-[EME ones](https://w3c.github.io/encrypted-media/#privacy).
+As access to this API is gated by `requestMediaKeySystemAccess()`, use of this
+API may require user consent (e.g., prompt), if required by the user agent for
+the configuration. This should make it more difficult to abuse the API on those
+user agents.
