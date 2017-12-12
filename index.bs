@@ -282,7 +282,8 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       <p>
         The <dfn for='VideoConfiguration' dict-member>width</dfn> and
         <dfn for='VideoConfiguration' dict-member>height</dfn> members represent
-        respectively the width and height of the video track.
+        respectively the visible horizontal and vertical encoded pixels in the
+        encoded video frames.
       </p>
 
       <p>
