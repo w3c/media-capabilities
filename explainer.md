@@ -64,7 +64,7 @@ The user agent will be aware that the format as described can’t be played at a
 
 **Would this format play smoothly?** The user agent should be able to give an answer regarding the expected observed playback quality. This information can’t be guaranteed because the browser might not be aware of what the user is currently doing outside of the browser or the user bandwidth might also not be able to keep up. Instead, it should be done based on the best of the user agent’s knowledge.
 
-**Would the playback be power efficient?** The user agent has a priori knowledge about the power efficiency of playback and can share this information with the web page. Power efficiency is usually associated with hardware decoding but in practice hardware decoding is just one factor alongside others like resolution. For example, at lower resolutions, software decoded formats are usually power efficient. This is information that the application can combine with the usage of the [Battery Status API](https://w3c.github.io/battery/) [t](https://w3c.github.io/battery/)o[ ](https://w3c.github.io/battery/)m[a](https://w3c.github.io/battery/)k[e](https://w3c.github.io/battery/) [d](https://w3c.github.io/battery/)e[c](https://w3c.github.io/battery/)i[s](https://w3c.github.io/battery/)i[o](https://w3c.github.io/battery/)n[s](https://w3c.github.io/battery/).
+**Would the playback be power efficient?** The user agent has a priori knowledge about the power efficiency of playback and can share this information with the web page. Power efficiency is usually associated with hardware decoding but in practice hardware decoding is just one factor alongside others like resolution. For example, at lower resolutions, software decoded formats are usually power efficient. This is information that the application can combine with the usage of the [Battery Status API](https://w3c.github.io/battery/) to make decisions.
 
 ```
 navigator.mediaCapabilities.query({
@@ -99,7 +99,8 @@ This aim of this API is to help websites provide an optimal initial experience. 
 
 ## Encryption
 
-The [Encrypted Media Extension](https://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
+The [Encrypted Media Extension](
+s://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
 
 The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection. 
 
