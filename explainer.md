@@ -44,7 +44,7 @@ A special case of real time experience is when one page wants to play multiple v
 
 ## Bandwidth and network information
 
-The Media Capabilities API does not intend to give information to the developers about the capabilities of the device to download a file of a given size or stream at a given bitrate. Other APIs like [Network Information API](https://wicg.github.io/netinfo/) and bandwidth estimations techniques can be used for this.
+The Media Capabilities API does not intend to give information to the developers about the capabilities of the device to download a file of a given size or stream at a given bitrate. Other APIs like [Network Information API](https://wicg.github.io/netinfo/) and bandwidth estimation techniques can be used for this.
 
 ## Media Capture
 
@@ -54,7 +54,7 @@ The Media Capabilities API does not intend to integrate with the [Media Capture 
 
 ## Decoding capabilities
 
-The main role of this API is to provide a better solution than `canPlayType` and `isTypeSupported` methods and give clearer, more granular information about the decode abilities of the user agent and the device. To ensure it is able to provide useful information, the API will require some information from the callers in addition of the container MIME type. Both the `video` and the `audio` information will need a MIME type string containing the full codec information. In addition, other information such as `width`, `height`, `bitrate` and `framerate` for `video and `channels`, `samplerate` and `bitrate` for `audio` will be required.
+The main role of this API is to provide a better solution than `canPlayType` and `isTypeSupported` methods and give clearer, more granular information about the decode abilities of the user agent and the device. To ensure it is able to provide useful information, the API will require some information from the callers in addition of the container MIME type. Both the `video` and the `audio` information will need a MIME type string containing the full codec information. In addition, other information such as `width`, `height`, `bitrate` and `framerate` for `video` and `channels`, `samplerate` and `bitrate` for `audio` will be required.
 
 Based on this data, the API will provide the following information.
 
@@ -64,7 +64,7 @@ The user agent will be aware that the format as described can’t be played at a
 
 **Would this format play smoothly?** The user agent should be able to give an answer regarding the expected observed playback quality. This information can’t be guaranteed because the browser might not be aware of what the user is currently doing outside of the browser or the user bandwidth might also not be able to keep up. Instead, it should be done based on the best of the user agent’s knowledge.
 
-**Would the playback be power efficient?** The user agent has a priori knowledge about the power efficiency of playback and can share this information with the web page. Power efficiency is usually associated with hardware decoding but in practice hardware decoding is just one factor alongside others like resolution. For example, at lowerresolutions, software decoded formats are usually power efficient. This is information that the application can combine with the usage of the [Battery Status API](https://w3c.github.io/battery/) [t](https://w3c.github.io/battery/)o[ ](https://w3c.github.io/battery/)m[a](https://w3c.github.io/battery/)k[e](https://w3c.github.io/battery/) [d](https://w3c.github.io/battery/)e[c](https://w3c.github.io/battery/)i[s](https://w3c.github.io/battery/)i[o](https://w3c.github.io/battery/)n[s](https://w3c.github.io/battery/).
+**Would the playback be power efficient?** The user agent has a priori knowledge about the power efficiency of playback and can share this information with the web page. Power efficiency is usually associated with hardware decoding but in practice hardware decoding is just one factor alongside others like resolution. For example, at lower resolutions, software decoded formats are usually power efficient. This is information that the application can combine with the usage of the [Battery Status API](https://w3c.github.io/battery/) to make decisions.
 
 ```
 navigator.mediaCapabilities.query({
@@ -95,11 +95,12 @@ The examples in the explainer use a boolean to expose power efficiency and playb
 
 ## Optimising for initial experience
 
-This aim of this API isaims to help websites provide an optimal initial experience. In other words, allow them to pick the best quality stream the user’s client should be able to handle. In order to do so, other APIs such as the Battery Status API and the [Network Information API](http://wicg.github.io/netinfo/) will be required. As mentioned above, live feedback or capabilities based on the current system load is a non goal.
+This aim of this API is to help websites provide an optimal initial experience. In other words, allow them to pick the best quality stream the user’s client should be able to handle. In order to do so, other APIs such as the Battery Status API and the [Network Information API](http://wicg.github.io/netinfo/) will be required. As mentioned above, live feedback or capabilities based on the current system load is a non goal.
 
 ## Encryption
 
-The [Encrypted Media Extension](https://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
+The [Encrypted Media Extension](
+s://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
 
 The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection. 
 
