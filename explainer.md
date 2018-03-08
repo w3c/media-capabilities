@@ -24,7 +24,7 @@ In addition to not addressing successful playback, current APIs give no indicati
 
 In the spirit of an extensible Web, this API does not intend to make a decision for the website. Instead, its intent is to offer the tools for the website to make the right decisions. Some consumers of this API will have complex use cases and will decide to make different trade offs than others.
 
-As a fundamental platform layer, the intent is for other APIs using capability detection to use this API. For example, the EME capability detection could ideally be defined on top of this one. To be clear, Media Capabilities API cannot and will not replace existing ‘canPlayType’ and ‘isTypeSupported’ because of the contract to be explicit and certain. Media Capabilities API will support new and more granular classifications of media and allow a unified capability detection method. In this respect, the goal is to also allow extensibility for future media format and technology improvements. 
+As a fundamental platform layer, the intent is for other APIs using capability detection to use this API. For example, the EME capability detection could ideally be defined on top of this one. To be clear, Media Capabilities API cannot and will not replace existing ‘canPlayType’ and ‘isTypeSupported’ because of the contract to be explicit and certain. Media Capabilities API will support new and more granular classifications of media and allow a unified capability detection method. In this respect, the goal is to also allow extensibility for future media format and technology improvements.
 
 A possible future layer would be to allow the user agent, when given a list of formats, to pick the one that will provide the best user experience. This algorithm could be exposed in an API and integrated in the [resource selection algorithm](https://html.spec.whatwg.org/multipage/embedded-content.html#concept-media-load-algorithm) from the HTMLMediaElement. In addition, it is expected that libraries (eg. [Shaka Player](https://github.com/google/shaka-player), [JWPlayer](https://www.jwplayer.com/)) will pick up the signals exposed by the API to make their own decisions.
 
@@ -70,7 +70,7 @@ The user agent will be aware that the format as described can’t be played at a
 navigator.mediaCapabilities.decodingInfo({
   type: "file",
   video: {
-    contentType: "video/webm; codecs=vp9.0",
+    contentType: "video/webm; codecs=vp09.00.10.08",
     height: 1080,
     width: 1920,
     framerate: 24,
@@ -101,7 +101,7 @@ This aim of this API isaims to help websites provide an optimal initial experien
 
 The [Encrypted Media Extension](https://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
 
-The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection. 
+The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection.
 
 The approach taken by the Media Capabilities API is to define an API at a lower level. The Media Capabilities API could be used to describe the EME capabilities detection apart from the permission requesting. This means that the Media Capabilities API will lack the user friendliness that [requestMediaSystemAccess](https://w3c.github.io/encrypted-media/#dom-navigator-requestmediakeysystemaccess) has.
 
@@ -111,7 +111,7 @@ Finally, the Media Capabilities API will not return a [MediaKeySystemAccess](htt
 // Check support and performance.
 navigator.mediaCapabilities.decodingInfo({
   type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp9.0", width: 1280, height: 720,
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
            framerate: 24, bitrate: 123456 },
   audio: { contentType: "audio/webm; codecs=opus" },
   encryption: { robustness: { audio: "bar", video: "foo" },
@@ -131,7 +131,7 @@ navigator.mediaCapabilities.decodingInfo({
   return navigator.requestMediaKeySystemAccess("org.w3.clearkey", [{
     audioCapabilities: [ { contentType: "video/webm; codecs=opus",
                            robustness: "bar" } ],
-    videoCapabilities: [ { contentType: "video/webm; codecs=vp9.0",
+    videoCapabilities: [ { contentType: "video/webm; codecs=vp09.00.10.08",
                            robustness: "foo" } ],
     initDataTypes: [ "keyids" ],
     persistentState: "required",
@@ -163,7 +163,7 @@ This solution is very similar to the previous one but instead of exposing the pe
 
 ## HDR
 
-HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible. 
+HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
 
 ### Screen capabilities
 
@@ -192,7 +192,7 @@ The minimum and maximum brightness should be exposed on the *Screen* object. In 
 ```JavaScript
 function canDisplayMyHDRStreams() {
   // The conditions below are entirely made up :)
-  return window.screen.colorGamut == "rec2020" && 
+  return window.screen.colorGamut == "rec2020" &&
          window.screen.pixelDepth == "30" &&
          window.screen.brightness.max > 500 &&
          window.screen.brightness.min < 0.1;
@@ -220,7 +220,7 @@ Regardless of what is exposed, the HDR information will be part of an *hdr* sub-
 ```JavaScript
 navigator.mediaCapabilities.decodingInfo({
   type: 'file',
-  video: { contentType: "video/webm; codecs=vp9.0", width: 1280, height: 720,
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
            framerate: 24, bitrate: 123456,
            hdr: { ... } },
   audio: { contentType: "audio/webm; codecs=opus" },
@@ -271,7 +271,7 @@ With a transition capabilities, a website no longer need to assume that supports
 ```JavaScript
 navigator.mediaCapabilities.decodingInfo({
   type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp9.0", width: 1280, height: 720,
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
            framerate: 24, bitrate: 123456 },
   audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
@@ -304,7 +304,7 @@ navigator.mediaCapabilities.decodingInfo({
 
 navigator.mediaCapabilities.decodingInfo({
   type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp9.0", width: 1280, height: 720,
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
            framerate: 24, bitrate: 123456 },
   audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
@@ -335,7 +335,7 @@ navigator.mediaCapabilities.decodingInfo({
 
 navigator.mediaCapabilities.decodingInfo({
   type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp9.0", width: 1280, height: 720,
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
            framerate: 24, bitrate: 123456 },
   audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
@@ -395,8 +395,8 @@ There might be a concern specifically about exposing permission information for 
 
 Some examples of DASH Manifest:
 
-*   https://github.com/Axinom/dash-test-vectors 
-*   http://dash-mse-test.appspot.com/media.html 
+*   https://github.com/Axinom/dash-test-vectors
+*   http://dash-mse-test.appspot.com/media.html
 
 This is assuming that the DASH Manifest does not use encrypted content.
 
