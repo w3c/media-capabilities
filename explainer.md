@@ -24,7 +24,7 @@ In addition to not addressing successful playback, current APIs give no indicati
 
 In the spirit of an extensible Web, this API does not intend to make a decision for the website. Instead, its intent is to offer the tools for the website to make the right decisions. Some consumers of this API will have complex use cases and will decide to make different trade offs than others.
 
-As a fundamental platform layer, the intent is for other APIs using capability detection to use this API. For example, the EME capability detection could ideally be defined on top of this one. To be clear, Media Capabilities API cannot and will not replace existing ‘canPlayType’ and ‘isTypeSupported’ because of the contract to be explicit and certain. Media Capabilities API will support new and more granular classifications of media and allow a unified capability detection method. In this respect, the goal is to also allow extensibility for future media format and technology improvements. 
+As a fundamental platform layer, the intent is for other APIs using capability detection to use this API. For example, the EME capability detection could ideally be defined on top of this one. To be clear, Media Capabilities API cannot and will not replace existing ‘canPlayType’ and ‘isTypeSupported’ because of the contract to be explicit and certain. Media Capabilities API will support new and more granular classifications of media and allow a unified capability detection method. In this respect, the goal is to also allow extensibility for future media format and technology improvements.
 
 A possible future layer would be to allow the user agent, when given a list of formats, to pick the one that will provide the best user experience. This algorithm could be exposed in an API and integrated in the [resource selection algorithm](https://html.spec.whatwg.org/multipage/embedded-content.html#concept-media-load-algorithm) from the HTMLMediaElement. In addition, it is expected that libraries (eg. [Shaka Player](https://github.com/google/shaka-player), [JWPlayer](https://www.jwplayer.com/)) will pick up the signals exposed by the API to make their own decisions.
 
@@ -66,26 +66,26 @@ The user agent will be aware that the format as described can’t be played at a
 
 **Would the playback be power efficient?** The user agent has a priori knowledge about the power efficiency of playback and can share this information with the web page. Power efficiency is usually associated with hardware decoding but in practice hardware decoding is just one factor alongside others like resolution. For example, at lower resolutions, software decoded formats are usually power efficient. This is information that the application can combine with the usage of the [Battery Status API](https://w3c.github.io/battery/) to make decisions.
 
-```
-navigator.mediaCapabilities.query({
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
   type: "file",
   video: {
-    type: "video/webm codec=vp9.0",
+    contentType: "video/webm; codecs=vp09.00.10.08",
     height: 1080,
     width: 1920,
     framerate: 24,
     bitrate: 2826848,
   },
   audio: {
-    type: "audio/webm codec=opus",
+    contentType: "audio/webm; codecs=opus",
     channels: "2.1",
     samplerate: 44100,
     bitrate: 255236,
   }
 }).then(result => {
-  console.log(result.isSupported);
-  console.log(result.isSmoothPlayback);
-  console.log(result.isPowerEfficient);
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
 });
 ```
 
@@ -102,19 +102,19 @@ This aim of this API is to help websites provide an optimal initial experience. 
 The [Encrypted Media Extension](
 s://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
 
-The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection. 
+The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection.
 
 The approach taken by the Media Capabilities API is to define an API at a lower level. The Media Capabilities API could be used to describe the EME capabilities detection apart from the permission requesting. This means that the Media Capabilities API will lack the user friendliness that [requestMediaSystemAccess](https://w3c.github.io/encrypted-media/#dom-navigator-requestmediakeysystemaccess) has.
 
 Finally, the Media Capabilities API will not return a [MediaKeySystemAccess](https://w3c.github.io/encrypted-media/#idl-def-mediakeysystemaccess) object. Authors using EME will have to ultimately call [requestMediaSystemAccess](https://w3c.github.io/encrypted-media/#dom-navigator-requestmediakeysystemaccess) in order to get the MediaKeys object and obtain keys.
 
-```
+```JavaScript
 // Check support and performance.
-navigator.mediaCapabilities.query({
-  type: 'MediaSource',
-  video: { type: "video/webm codec=vp9.0", width: 1280, height: 720,
-           framerate: 24, bitrate: … },
-  audio: { type: "audio/webm codec=opus" },
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
+           framerate: 24, bitrate: 123456 },
+  audio: { contentType: "audio/webm; codecs=opus" },
   encryption: { robustness: { audio: "bar", video: "foo" },
                 keySystem: "org.w3.clearkey",
                 initDataType: "keyids",
@@ -124,22 +124,22 @@ navigator.mediaCapabilities.query({
   },
 }).then(result => {
   // If the key system isn't supported, the key system doesn't support the
-  // codecs, or there is any other issue, isSupported will be false.
-  if (!result.isSupported || !result.isSmoothPlayback)
+  // codecs, or there is any other issue, supported will be false.
+  if (!result.supported || !result.smooth)
     throw Error("Don't play this");
 
   // This call is only meant to get a MediaSystemAccess object.
-  return navigator.requestMediaKeySystemAccess("org.w3.clearkey", [)
-    audioCapabilities: [ { contentType: "video/webm codec=opus",
+  return navigator.requestMediaKeySystemAccess("org.w3.clearkey", [{
+    audioCapabilities: [ { contentType: "video/webm; codecs=opus",
                            robustness: "bar" } ],
-    videoCapabilities: [ { contentType: "video/webm codec=vp9.0",
+    videoCapabilities: [ { contentType: "video/webm; codecs=vp09.00.10.08",
                            robustness: "foo" } ],
     initDataTypes: [ "keyids" ],
     persistentState: "required",
     sessionTypes: [ "temporarypersistent-usage-record",
                     "persistent-license" ],
   }]);
-}).catch{_ = {
+}).catch(_ => {
   // Try another format/key system/robustness combination.
 });
 ```
@@ -164,7 +164,7 @@ This solution is very similar to the previous one but instead of exposing the pe
 
 ## HDR
 
-HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible. 
+HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
 
 ### Screen capabilities
 
@@ -190,10 +190,10 @@ The minimum and maximum brightness should be exposed on the *Screen* object. In 
 
 #### Example
 
-```
+```JavaScript
 function canDisplayMyHDRStreams() {
   // The conditions below are entirely made up :)
-  return window.screen.colorGamut == "rec2020" && 
+  return window.screen.colorGamut == "rec2020" &&
          window.screen.pixelDepth == "30" &&
          window.screen.brightness.max > 500 &&
          window.screen.brightness.min < 0.1;
@@ -218,13 +218,13 @@ At the moment, no operating system besides Android exposes HDR capabilities. And
 
 Regardless of what is exposed, the HDR information will be part of an *hdr* sub-dictionary as part of the *video* information.
 
-```
-navigator.mediaCapabilities.query({
-  Type: 'file',
-  video: { type: "video/webm codec=vp9.0", width: 1280, height: 720,
-           framerate: 24, bitrate: `… ,
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
+  type: 'file',
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
+           framerate: 24, bitrate: 123456,
            hdr: { ... } },
-  audio: { type: "audio/webm codec=opus" },
+  audio: { contentType: "audio/webm; codecs=opus" },
 });
 ```
 
@@ -252,108 +252,105 @@ Therefore, exposing transition capabilities is considered part of the specificat
 
 An approach taken by the EME API and that might sound natural is to expose the ability to transition from multiple formats inside a list. The EME API does something a bit more sophisticated and will start with the first working configuration and will append to the returned lists all the format transitions that are possible.
 
-The downsides of this approach is that it does not offer a clear view of the consequences of transitioning: one can transition from A to B but it does not mean that the playback of A and B will be of the same quality (isSmoothPlayback and isPowerEfficient). Also, in the case of the EME approach, picking the first working configuration would be against the principles of making decisions for the website because a configuration might be playable but not ideal and the user agent would have to decide whether to start with this one or another one.
+The downsides of this approach is that it does not offer a clear view of the consequences of transitioning: one can transition from A to B but it does not mean that the playback of A and B will be of the same quality (`smooth` and `powerEfficient`). Also, in the case of the EME approach, picking the first working configuration would be against the principles of making decisions for the website because a configuration might be playable but not ideal and the user agent would have to decide whether to start with this one or another one.
 
 ### Examples
 
 Without exposing transition capabilities, in order for a website to check if a list of formats are supported, the best approach is the following:
 
-```
+```JavaScript
 function canAdapt(formats) {
-  var capabilities = [];
-  formats.forEach(entry => capabilities.push_back(navigator.mediaCapabilities.query(entry)));
+  var capabilities = formats.map(entry => navigator.mediaCapabilities.decodingInfo(entry));
   return Promise.all(capabilities).then(results => {
-    bool supported = true;
-    results.forEach(r => { if (!r.isSupported) supported = false; });
-    return supported;
+    return results.every(r => r.supported);
   });
 }
 ```
 
 With a transition capabilities, a website no longer need to assume that supports of {A, B} means ability to transition from A to B and B to A with the same capabilities as playing A or B independently.
 
-```
-navigator.mediaCapabilities.query({
-  type: 'MediaSource',
-  video: { type: "video/webm codec=vp9.0", width: 1280, height: 720,
-           framerate: 24, bitrate: … },
-  audio: { type: "audio/webm codec=opus" }
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
+           framerate: 24, bitrate: 123456 },
+  audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
-  console.log(result.isSupported);
-  console.log(result.isSmoothPlayback);
-  console.log(result.isPowerEfficient);
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
   return result.transition({
-    type: 'MediaSource',
-    video: { type: "video/webm codec=vp10", width: 1280, height: 720,
-             framerate: 24, bitrate: … },
-    audio: { type: "audio/webm codec=opus" }});
+    type: 'media-source',
+    video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
+             framerate: 24, bitrate: 123456 },
+    audio: { contentType: "audio/webm; codecs=opus" }});
 }).then(result => {
-  // isSupported is specific to vp9 to vp10 transition here.
+  // supported is specific to vp9 to vp10 transition here.
   // If vp10 isn't supported, it will never be true but if vp10 is supported
   // it does not mean it will be true.
-  console.log(result.isSupported);
-  console.log(result.isSmoothPlayback);
-  console.log(result.isPowerEfficient);
-});;
-
-// Here we assume than vp9 and vp10 are using a different pipeline.
-navigator.mediaCapabilities.query({
-  type: 'MediaSource',
-  video: { type: "video/webm codec=vp10", width: 1280, height: 720,
-           framerate: 24,  bitrate: … },
-  audio: { type: "audio/webm codec=opus" }
-}).then(result => {
-  // result.isSupported == true;
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
 });
 
-navigator.mediaCapabilities.query({
-  type: 'MediaSource',
-  video: { type: "video/webm codec=vp9.0", width: 1280, height: 720,
-           framerate: 24, bitrate: … },
-  audio: { type: "audio/webm codec=opus" }
+// Here we assume than vp9 and vp10 are using a different pipeline.
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
+           framerate: 24,  bitrate: 123456 },
+  audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
-  // result.isSupported == true;
+  // result.supported == true;
+});
+
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
+           framerate: 24, bitrate: 123456 },
+  audio: { contentType: "audio/webm; codecs=opus" }
+}).then(result => {
+  // result.supported == true;
   return result.transition({
-    type: 'MediaSource',
-    video: { type: "video/webm codec=vp10", width: 1280, height: 720,
-             framerate: 24, bitrate: …  },
-    audio: { type: "audio/webm codec=opus" }});
+    type: 'media-source',
+    video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
+             framerate: 24, bitrate: 123456  },
+    audio: { contentType: "audio/webm; codecs=opus" }});
 }).then(result => {
-  // result.isSupported == false;
-});;
+  // result.supported == false;
+});
 ```
 
 However, transitions are not symmetric, the capabilities of a transition from A to B are not similar to the capabilities to transition from B to A.
 
-```
+```JavaScript
 // Here we assume than vp9 and vp10 are using a different pipeline.
-navigator.mediaCapabilities.query({
-  type: 'MediaSource',
-  video: { type: "video/webm codec=vp10", width: 1280, height: 720,
-           framerate: 24, bitrate: … },
-  audio: { type: "audio/webm codec=opus" }
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
+           framerate: 24, bitrate: 123456 },
+  audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
-  // result.isSupported == true;
-  // result.isPowerEfficient == true;
+  // result.supported == true;
+  // result.powerEfficient == true;
 });
 
-navigator.mediaCapabilities.query({
-  type: 'MediaSource',
-  video: { type: "video/webm codec=vp9.0", width: 1280, height: 720,
-           framerate: 24, bitrate: … },
-  audio: { type: "audio/webm codec=opus" }
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
+           framerate: 24, bitrate: 123456 },
+  audio: { contentType: "audio/webm; codecs=opus" }
 }).then(result => {
-  // result.isSupported == true;
-  // result.isPowerEfficient == false;
+  // result.supported == true;
+  // result.powerEfficient == false;
   return result.transition({
-    type: 'MediaSource',
-    video: { type: "video/webm codec=vp10", width: 1280, height: 720,
-             framerate: 24, bitrate: … },
-    audio: { type: "audio/webm codec=opus" }});
+    type: 'media-source',
+    video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
+             framerate: 24, bitrate: 123456 },
+    audio: { contentType: "audio/webm; codecs=opus" }});
 }).then(result => {
-  // result.isSupported == true;
-  // result.isPowerEfficient == false;
-});;
+  // result.supported == true;
+  // result.powerEfficient == false;
+});
 ```
 
 ## HDCP support
@@ -362,9 +359,9 @@ Content providers might have requirements to only show some content if HDCP is e
 
 Another, more straightforward, approach is to expose HDCP on the `Screen` object as an asynchronous property. The returned Promise could expose the supported HDCP level if any or reject if the information is not available.
 
-```
+```JavaScript
 window.screen.hdcp.then(value => {
-  If (value.startsWith(`2.')
+  if (value.startsWith('2.'))
     Hdcp2IsSupported();
 });
 ```
@@ -399,8 +396,8 @@ There might be a concern specifically about exposing permission information for 
 
 Some examples of DASH Manifest:
 
-*   https://github.com/Axinom/dash-test-vectors 
-*   http://dash-mse-test.appspot.com/media.html 
+*   https://github.com/Axinom/dash-test-vectors
+*   http://dash-mse-test.appspot.com/media.html
 
 This is assuming that the DASH Manifest does not use encrypted content.
 
@@ -408,13 +405,13 @@ A DASH Manifest contains a list of `AdaptationSet` which represent a media strea
 
 An implementation could build a list of `Representation` for a given `AdaptationSet` and use the API to discover the ability of the device for the each representation. The example below assumes that `representations` is an array of `Element` that represents the XML element from the DASH Manifest and the implementation will filter out the entry that are not playable (`contentType` is `video`).
 
-```
+```JavaScript
 function triageVideoRepresentations(representations) {
   var capabilitiesRequests = [];
   representations.forEach(representation => {
-    capabilitiesRequests.append(navigator.mediaCapabilities.query({
+    capabilitiesRequests.append(navigator.mediaCapabilities.decodingInfo({
       video: {
-        type: representation.getAttribute('mimeType') + '; ' + representation.getAttribute('codecs'),
+        contentType: representation.getAttribute('mimeType') + '; ' + representation.getAttribute('codecs'),
         bitrate: representation.getAttribute('bandwidth'),
         height: representations.getAttribute('height'),
         width: representations.getAttribute('width'),
@@ -427,7 +424,7 @@ function triageVideoRepresentations(representations) {
     // This is assuming `representations` can still be accessed.
     var filteredRepresentations = [];
     for (var i = 0; i < representations; ++i) {
-      if (results.isSupported && results.isSmoothPlayback)
+      if (results.supported && results.smooth)
         filteredRepresentations.append(representations[i]);
     }
     return filteredRepresentations;
