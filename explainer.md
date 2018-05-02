@@ -99,68 +99,153 @@ This aim of this API is to help websites provide an optimal initial experience. 
 
 ## Encryption
 
-The [Encrypted Media Extension](
-s://w3c.github.io/encrypted-media/) (aka EME) implements its own capability functionality. Decryption (DRM) adds specific restrictions to the playback: a supported Key System might not be available, some might not play media formats that can otherwise be played by the user agent, some level of robustness might not be available, etc.
+Playbacks using [Encrypted Media Extensions](
+s://w3c.github.io/encrypted-media/) (aka EME) employ specialized decoding and rendering code paths. This means different codec support and performance compared to clear playbacks. Hence, callers should describe a key system configuration as part of the `MediaDecodingConfiguration` dictionary.
 
-The EME capability detection is the most advanced currently in the Web Platform but is specific to encrypted content so can not be used for general capability detection.
-
-The approach taken by the Media Capabilities API is to define an API at a lower level. The Media Capabilities API could be used to describe the EME capabilities detection apart from the permission requesting. This means that the Media Capabilities API will lack the user friendliness that [requestMediaSystemAccess](https://w3c.github.io/encrypted-media/#dom-navigator-requestmediakeysystemaccess) has.
-
-Finally, the Media Capabilities API will not return a [MediaKeySystemAccess](https://w3c.github.io/encrypted-media/#idl-def-mediakeysystemaccess) object. Authors using EME will have to ultimately call [requestMediaSystemAccess](https://w3c.github.io/encrypted-media/#dom-navigator-requestmediakeysystemaccess) in order to get the MediaKeys object and obtain keys.
-
-```JavaScript
-// Check support and performance.
-navigator.mediaCapabilities.decodingInfo({
-  type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456 },
-  audio: { contentType: "audio/webm; codecs=opus" },
-  encryption: { robustness: { audio: "bar", video: "foo" },
-                keySystem: "org.w3.clearkey",
-                initDataType: "keyids",
-                persistentState: "required",
-                sessionTypes: [ "temporarypersistent-usage-record",
-                                "persistent-license" ],
-  },
-}).then(result => {
-  // If the key system isn't supported, the key system doesn't support the
-  // codecs, or there is any other issue, supported will be false.
-  if (!result.supported || !result.smooth)
-    throw Error("Don't play this");
-
-  // This call is only meant to get a MediaSystemAccess object.
-  return navigator.requestMediaKeySystemAccess("org.w3.clearkey", [{
-    audioCapabilities: [ { contentType: "video/webm; codecs=opus",
-                           robustness: "bar" } ],
-    videoCapabilities: [ { contentType: "video/webm; codecs=vp09.00.10.08",
-                           robustness: "foo" } ],
-    initDataTypes: [ "keyids" ],
-    persistentState: "required",
-    sessionTypes: [ "temporarypersistent-usage-record",
-                    "persistent-license" ],
-  }]);
-}).catch(_ => {
-  // Try another format/key system/robustness combination.
-});
+```Javascript
+partial dictionary MediaDecodingConfiguration {
+    MediaCapabilitiesKeySystemConfiguration keySystemConfig;
+};
 ```
 
-### Permissions
+The key system configuration is a dictionary with the following pieces.
 
-The EME API is designed to be able to prompt the user if needed. The reasons is that the DRM systems might require some “super cookie” to identify the device or, for example, with Firefox, the browser might need to download the components on-demand.
+```Javascript
+dictionary MediaCapabilitiesKeySystemConfiguration {
+  required DOMString keySystem;
+  DOMString initDataType = "";
+  DOMString audioRobustness = "";
+  DOMString videoRobustness = "";
+  MediaKeysRequirement distinctiveIdentifier = "optional"
+  MediaKeysRequirement persistentState = "optional"
+  sequence<DOMString> sessionTypes;
+};
+```
 
-It makes a querying API such as Media Capabilities more complex because the capabilities of the device might actually depend on the action the user takes on the requestMediaKeySystemAccess’ permission prompt. The following are proposals to solve this problem.
+This replicates the inputs provided to EME's [requestMediaKeySystemAccess](https://www.w3.org/TR/encrypted-media/#navigator-extension:-requestmediakeysystemaccess()) `(rMKSA)` with  one major difference: sequences of inputs provided to `rMKSA` are reduced to a single value wherever the intent of the sequence was to have `rMKSA` choose a subset it supports.
 
-#### Prompt from Media Capabilities calls
+Specifically, `rMKSA` takes a sequence of `MediaKeySystemConfigurations`, ordered by preference. Each entry may contain a sequence of initDataTypes and sequences of audio and video contentTypes with robustness. In the dictionary above, all of these sequences are reduced to single values. 
 
-One solution is for the Media Capabilities API to check and request consent (i.e. prompt) when the `encryption` member is present and user consent is required. The returned capabilities will depend on the user decision. The downsides of this approach is that it might be surprising for developers because the API is otherwise never prompting. In addition, it is possible that the user dismisses the Media Capabilities API prompt in which case the API will have to expose the permission as not granted but could not guarantee that a call to `requestMediaKeySystemAccess` would provide the same result.
+This is a fundamental difference between the APIs. MediaCapabilities aims to describe the quality (smoothness and power efficiency) of support for a single pair of audio and video streams without making a decision for the caller. Callers should still order media configurations as they do with `rMKSA`, only now they walk the list themselves, calling MediaCapabiliites once for each option. These calls will return immediately with the promises resolving asynchronously.
 
-#### Expose request status in Media Capabilities response
+When a key system configuration is included in the `MediaDecodingConfiguration`, `mediaCapabilities.decodingInfo()` will return a promise containing the usual three booleans (`supported`, `smooth`, and `powerEfficient`) plus a `MediaKeySystemAccess` object whenever `supported = true`. The caller may use the `MediaKeySystemAccess` as they would in traditional EME to request media keys and setup encrypted media playback. This removes the need to call `rMKSA`.
 
-This approach will not prompt but instead will provide a boolean exposing if a call to `requestMediaKeySystemAccess` will require a prompt. It will allow the developers to implement their flow based on this information. It resolves the uncertainty of getting different results from Media Capabilities and EME. However, the Media Capabilities response will depend on the prompt result. The Media Capabilities results will have to either expose the results if the permission is granted, denied or not expose results in this situation. Exposing results based on the permission being denied is probably the most conservative and privacy aware solution because the developer will not build an experience that might be broken if the prompt is rejected and can instead be ready for the worse case scenario.
+ Here's a sample usage:
 
-#### Building on top of the Permissions API
+```Javascript
+let capabilitiesPromises = []
 
-This solution is very similar to the previous one but instead of exposing the permission status in the Media Capabilities, it is re-using other components of the Web Platform. With this approach, the developer would have to query the Permissions API for the permissions status and the Media Capabilities API for the capabilities. The capabilities will matching the current permission status. As above, the capabilities should probably expose the not granted results if the permission status is set to `prompt`. In addition of re-using other APIs, this approach could also use the work in progress `request` method of the Permissions API which will allow the developers to request permission for a specific EME configuration before making a call to the `requestMediaKeySystemAccess`.
+// Like rMSKA(), orderedOptions is ordered from most -> least wanted.
+for (option in orderedOptions) {
+  let promise = navigator.mediaCapabilities.decodingInfo(
+    option.decodingConfig, option.keySystemConfig);
+
+  capabilitiesPromises.push(promise)
+}
+
+(async _ => {
+  // Assume this app wants a supported && smooth config.
+  let bestConfig = null;
+  for await (const mediaCapabilityInfo of capabilitiesPromises) {
+    
+    if (!mediaCapabilityInfo.supported)
+      continue;
+
+    if (!mediaCapabilityInfo.smooth)
+      continue;
+
+    bestConfig = mediaCapabilityInfo;
+    break;
+  }
+
+  if (bestConfig) {
+    let keys = await bestConfig.keySystemAccess.createMediaKeys();
+    // NOT SHOWN: rest of EME path as-is 
+  } else {
+    console.log('No smooth configs found!');
+    
+    // NOT SHOWN: More app logic here. Maybe choose the lowest
+    // resolution and framerate available.
+  }
+})();
+```
+
+
+
+### Permission prompts
+
+EME specifies that a handful of steps in `rMKSA` may request consent from the user. This consent is critical to knowing what encrypted media capabilities are available. Hence, MediaCapabilies will prompt in the same way as `rMKSA`. 
+
+The spec will make clear that calling the API with a key system configuration may result in permission prompts. 
+
+MediaCapabilities should not show more prompts than `rMKSA`, in spite of requiring more calls to setup encrypted playback. User Agents have a lot of flexibility as to what triggers a prompt and how long the outcome is saved before prompting again. For MediaCapabilities, each implementer should save the outcome at a scoping (e.g. time limited, or session limited) that allows for sufficient reuse between MediaCapabilities calls to avoid spamming the user. 
+
+
+### Codec and Robustness Compatibility
+
+Media Capabilities should offer a means of surfacing when different MediaDecodingConfigurations are compatible. There are two motivations.
+
+ 1. `rMKSA` already does this. The returned `MediaKeySystemAccess` contains a `MediaKeySystemConfiguration` that describes a sequence of key-system-permitted media mime types and robustnesses. The `rMSKA` algorithm produces this sequence by starting with the input sequence and removing incompatible options (prioritizing those that come earlier in the list). Incompatibility may arise when a given codec or robustness requires a particular pipeline (e.g. hw secure decrypt+decode) which may not support a codec or robustness described later in the input sequence. The media keys used by this pipeline may be impossible to export, blocking transitions to another pipeline with different capabilities. 
+
+    If MediaCapabilities is to stand in for `rMKSA`, it should similarly be capable describing the restricted set of codecs/robustnesses allowed by a given key system configuration.
+
+2. Various proposals are being considered for MSE and EME to allow codec/container transitions within a MSE SourceBuffer.
+ 
+    https://github.com/wolenetz/media-source/blob/codec-switching/codec-switching-explainer.md
+    https://github.com/w3c/encrypted-media/pull/374 
+    https://github.com/w3c/encrypted-media/issues/251 
+
+
+    To use this feature effectively, developers will need to know up front (before downloading streams) whether a given codec transition can be supported. 
+
+In support of the above, Media Capabilities could describe compatible codecs by allowing chained `compatibleDecodingInfo()` calls to be issued from a previously returned `MediaCapabilitiesInfo` object. Like `decodingInfo()`, this API takes a `MediaDecodingConfiguration` dictionary and returns a `MediaCapabilitiesInfo` object. 
+
+Here's an example:
+
+```Javascript
+let mediaConfig = {
+  'video': {
+    'contentType': 'vp09.00.10.08';
+    'width': 1920,
+    ...
+  },
+  // This is MediaCapabilities version: NO sequences here. 
+  'keySystemConfig': {
+    keySystem: 'com.widevine.alpha',
+    videoRobustness: 'HW_SECURE_ALL,',
+    ...
+  }
+};
+
+// Check whether the initial mediaConfig (including its keySystemConfig) is supported.
+mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
+  // Not shown: optional checks for smooth || powerEfficient.
+  if (!info.supported)
+    Promise.reject('Initial config not supported');
+
+  // MediaKeySystemAccess is provided whenever the encrypted configuration is supported
+  console.assert(!!vp9CapabilityInfo.keySystemAccess);
+
+  // Great! Now change the codec and make a chained query to determine if it too is
+  // supported by the pipeline associated with the provided capabilityInfo.
+  mediaConfig.video.contentType = 'avc3.42E01E';
+  return vp9CapabilityInfo.compatibleDecodingInfo(mediaConfig);
+
+}).then(function(avcCapabilityInfo) {
+  // Not shown: optional checks for smooth || powerEfficient. All fields of
+  // otherCapaibilityInfo describe the performance of 'avc3.42E01E' under the media
+  // pipeline chosen by the 'initial' decodingInfo() query.
+  if (!avcCapabilityInfo.supported)
+  Promise.reject('Second config not supported');
+
+  // KeySystemAccess is again provided, now with context that both codecs may be used.
+  console.assert(!!avcCapabilityInfo.keySystemAccess);
+
+  // Download streams and setup playback!
+  let keys = await avcCapabilityInfo.keySystemAccess.createMediaKeys();
+  // NOT SHOWN: rest of EME path as-is 
+};
+```
 
 ## HDR
 
