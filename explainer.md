@@ -137,17 +137,14 @@ let capabilitiesPromises = []
 
 // Like rMSKA(), orderedOptions is ordered from most -> least wanted.
 for (option in orderedOptions) {
-  let promise = navigator.mediaCapabilities.decodingInfo(
-    option.decodingConfig, option.keySystemConfig);
-
-  capabilitiesPromises.push(promise)
+  capabilitiesPromises.push(navigator.mediaCapabilities.decodingInfo(
+      option.decodingConfig, option.keySystemConfig));
 }
 
 (async _ => {
   // Assume this app wants a supported && smooth config.
   let bestConfig = null;
-  for await (const mediaCapabilityInfo of capabilitiesPromises) {
-    
+  for await (const mediaCapabilityInfo of capabilitiesPromises) {    
     if (!mediaCapabilityInfo.supported)
       continue;
 
@@ -176,10 +173,11 @@ for (option in orderedOptions) {
 
 EME specifies that a handful of steps in `rMKSA` may request consent from the user. This consent is critical to knowing what encrypted media capabilities are available. Hence, MediaCapabilies will prompt in the same way as `rMKSA`. 
 
-The spec will make clear that calling the API with a key system configuration may result in permission prompts. 
+The spec will make clear that calling the API with a key system configuration may result in permission prompts. In practice, such prompts are rare. Currently only Chrome and Mozilla show EME prompts, and Mozilla limits theirs to once per browser profile. 
 
 MediaCapabilities should not show more prompts than `rMKSA`, in spite of requiring more calls to setup encrypted playback. User Agents have a lot of flexibility as to what triggers a prompt and how long the outcome is saved before prompting again. For MediaCapabilities, each implementer should save the outcome at a scoping (e.g. time limited, or session limited) that allows for sufficient reuse between MediaCapabilities calls to avoid spamming the user. 
 
+Additionally, the Permissions API could hypothetically accept the MediaCapabilitiesKeySystemConfiguration dictionary to know when prompts would be shown. 
 
 ### Codec and Robustness Compatibility
 
@@ -198,54 +196,7 @@ Media Capabilities should offer a means of surfacing when different MediaDecodin
 
     To use this feature effectively, developers will need to know up front (before downloading streams) whether a given codec transition can be supported. 
 
-In support of the above, Media Capabilities could describe compatible codecs by allowing chained `compatibleDecodingInfo()` calls to be issued from a previously returned `MediaCapabilitiesInfo` object. Like `decodingInfo()`, this API takes a `MediaDecodingConfiguration` dictionary and returns a `MediaCapabilitiesInfo` object. 
-
-Here's an example:
-
-```Javascript
-let mediaConfig = {
-  'video': {
-    'contentType': 'vp09.00.10.08';
-    'width': 1920,
-    ...
-  },
-  // This is MediaCapabilities version: NO sequences here. 
-  'keySystemConfig': {
-    keySystem: 'com.widevine.alpha',
-    videoRobustness: 'HW_SECURE_ALL,',
-    ...
-  }
-};
-
-// Check whether the initial mediaConfig (including its keySystemConfig) is supported.
-mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
-  // Not shown: optional checks for smooth || powerEfficient.
-  if (!info.supported)
-    Promise.reject('Initial config not supported');
-
-  // MediaKeySystemAccess is provided whenever the encrypted configuration is supported
-  console.assert(!!vp9CapabilityInfo.keySystemAccess);
-
-  // Great! Now change the codec and make a chained query to determine if it too is
-  // supported by the pipeline associated with the provided capabilityInfo.
-  mediaConfig.video.contentType = 'avc3.42E01E';
-  return vp9CapabilityInfo.compatibleDecodingInfo(mediaConfig);
-
-}).then(function(avcCapabilityInfo) {
-  // Not shown: optional checks for smooth || powerEfficient. All fields of
-  // otherCapaibilityInfo describe the performance of 'avc3.42E01E' under the media
-  // pipeline chosen by the 'initial' decodingInfo() query.
-  if (!avcCapabilityInfo.supported)
-  Promise.reject('Second config not supported');
-
-  // KeySystemAccess is again provided, now with context that both codecs may be used.
-  console.assert(!!avcCapabilityInfo.keySystemAccess);
-
-  // Download streams and setup playback!
-  let keys = await avcCapabilityInfo.keySystemAccess.createMediaKeys();
-  // NOT SHOWN: rest of EME path as-is 
-};
-```
+In support of the above, Media Capabilities could describe compatible codecs by allowing chained `transtion()` calls to be made on the returned MediaCapabilitiesInfo object. See the an [example](#encrypted-transition) in the [transitions section below](#transitions). In practice, most users will avoid this complexity by choosing a single codec+robustness.
 
 ## HDR
 
@@ -313,7 +264,7 @@ navigator.mediaCapabilities.decodingInfo({
 });
 ```
 
-## Adaptive playback and transitions
+## <a name="transitions"></a>Adaptive playback and transitions
 
 Transitioning between states, either between encrypted and clear playback or between different formats during adaptive playback can change the playback quality either because of implementation bugs or limitations. There are four types of transition issues:
 
@@ -437,6 +388,54 @@ navigator.mediaCapabilities.decodingInfo({
   // result.powerEfficient == false;
 });
 ```
+
+<a name="encrypted-transition"></a>Here's an example using a key system configuration.
+
+```Javascript
+let mediaConfig = {
+  'video': {
+    'contentType': 'vp09.00.10.08';
+    'width': 1920,
+    ...
+  },
+  // This is MediaCapabilities version: NO sequences here. 
+  'keySystemConfig': {
+    keySystem: 'com.widevine.alpha',
+    videoRobustness: 'HW_SECURE_ALL,',
+    ...
+  }
+};
+
+// Check whether the initial mediaConfig (including its keySystemConfig) is supported.
+mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
+  // Not shown: optional checks for smooth || powerEfficient.
+  if (!info.supported)
+    Promise.reject('Initial config not supported');
+
+  // MediaKeySystemAccess is provided whenever the encrypted configuration is supported
+  console.assert(!!vp9CapabilityInfo.keySystemAccess);
+
+  // Great! Now change the codec and make a chained query to determine if it too is
+  // supported by the pipeline associated with the provided capabilityInfo.
+  mediaConfig.video.contentType = 'avc3.42E01E';
+  return vp9CapabilityInfo.transition(mediaConfig);
+
+}).then(function(avcCapabilityInfo) {
+  // Not shown: optional checks for smooth || powerEfficient. All fields of
+  // otherCapaibilityInfo describe the performance of 'avc3.42E01E' under the media
+  // pipeline chosen by the 'initial' decodingInfo() query.
+  if (!avcCapabilityInfo.supported)
+  Promise.reject('Second config not supported');
+
+  // KeySystemAccess is again provided, now with context that both codecs may be used.
+  console.assert(!!avcCapabilityInfo.keySystemAccess);
+
+  // Download streams and setup playback!
+  let keys = await avcCapabilityInfo.keySystemAccess.createMediaKeys();
+  // NOT SHOWN: rest of EME path as-is 
+};
+```
+
 
 ## HDCP support
 
