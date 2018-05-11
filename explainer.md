@@ -278,7 +278,7 @@ navigator.mediaCapabilities.decodingInfo({
   // Initial config supported! Now query for second config using H264
   return info.transition({
     type: 'media-source',
-    video: { contentType: "video/webm; codecs="avc3.64001f", ... }
+    video: { contentType: 'video/webm; codecs="avc3.64001f"', ... }
   });
 }).then(result => {
   if (!result.supported)
@@ -313,14 +313,14 @@ Here's an `transition()` example using a Key System configuration:
 ```JavaScript
 let mediaConfig = {
   'video': {
-    'contentType': 'vp09.00.10.08';
+    'contentType': 'video/webm; codecs="vp09.00.10.08"';
     'width': 1920,
     ...
   },
   // This is MediaCapabilities version: NO sequences here. 
   'keySystemConfig': {
-    keySystem: 'com.widevine.alpha',
-    videoRobustness: 'HW_SECURE_ALL,',
+    'keySystem': 'com.widevine.alpha',
+    'videoRobustness': 'HW_SECURE_ALL,',
     ...
   }
 };
@@ -336,7 +336,7 @@ mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
 
   // Great! Now change the codec and make a chained query to determine if it too is
   // supported by the pipeline associated with the provided capabilityInfo.
-  mediaConfig.video.contentType = 'avc3.42E01E';
+  mediaConfig.video.contentType = 'video/mp4; codecs="avc3.42E01E"';
   return vp9CapabilityInfo.transition(mediaConfig);
 
 }).then(function(combinedInfo) {
