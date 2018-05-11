@@ -181,22 +181,7 @@ Additionally, the Permissions API could hypothetically accept the MediaCapabilit
 
 ### Codec and Robustness Compatibility
 
-Media Capabilities should offer a means of surfacing when different MediaDecodingConfigurations are compatible. There are two motivations.
-
- 1. `rMKSA` already does this. The returned `MediaKeySystemAccess` contains a `MediaKeySystemConfiguration` that describes a sequence of key-system-permitted media mime types and robustnesses. The `rMSKA` algorithm produces this sequence by starting with the input sequence and removing incompatible options (prioritizing those that come earlier in the list). Incompatibility may arise when a given codec or robustness requires a particular pipeline (e.g. hw secure decrypt+decode) which may not support a codec or robustness described later in the input sequence. The media keys used by this pipeline may be impossible to export, blocking transitions to another pipeline with different capabilities. 
-
-    If MediaCapabilities is to stand in for `rMKSA`, it should similarly be capable describing the restricted set of codecs/robustnesses allowed by a given key system configuration.
-
-2. Various proposals are being considered for MSE and EME to allow codec/container transitions within a MSE SourceBuffer.
- 
-    https://github.com/wolenetz/media-source/blob/codec-switching/codec-switching-explainer.md
-    https://github.com/w3c/encrypted-media/pull/374 
-    https://github.com/w3c/encrypted-media/issues/251 
-
-
-    To use this feature effectively, developers will need to know up front (before downloading streams) whether a given codec transition can be supported. 
-
-In support of the above, Media Capabilities could describe compatible codecs by allowing chained `transtion()` calls to be made on the returned MediaCapabilitiesInfo object. See the an [example](#encrypted-transition) in the [transitions section below](#transitions). In practice, most users will avoid this complexity by choosing a single codec+robustness.
+Media Capabilities should offer a means of surfacing when different MediaDecodingConfigurations are compatible. This is achieved by allowing chained `transtion()` calls to be made on the returned MediaCapabilitiesInfo object. See the [the section below for more on transitions](#transitions).
 
 ## HDR
 
@@ -264,134 +249,68 @@ navigator.mediaCapabilities.decodingInfo({
 });
 ```
 
-## <a name="transitions"></a>Adaptive playback and transitions
+## <a name="transitions"></a>Transitioning between stream configurations
 
-Transitioning between states, either between encrypted and clear playback or between different formats during adaptive playback can change the playback quality either because of implementation bugs or limitations. There are four types of transition issues:
+The MediaCapabilities `transition()` API will surface when a media element is capable of transitioning between different stream configurations. The primary motivations are:
 
-**Switching from encrypted to clear playback:** Chrome fails to do such transition, see [bug](https://crbug.com/597443). In this case, content will have to either have two different players and switch (the transition will unlikely be smooth) or the playback will stop. This happens for encrypted content streaming that has clear playback interstitials like ads.
+*  EME's `requestMediaKeySystemAccess` (`rMKSA`) filters an input sequence of codecs+robustness pairs down to a subset that is compatible for use with the returned `MediaKeySystemAccess`. If MediaCapabilities is to stand in for `rMKSA` (see Encryption), it should similarly be able to receive a signal that the developer intends to use multiple codec configurations and be able to surface what combinations are supported how they will perform.
 
-**Switching from one video codec to another:** Browsers are usually not able to change codecs during adaptive playback. Media Source Extension v1 does not allow seamless codec transition and allows but does not require codec transitions using different tracks. As above, a common use case is interstitials that might be in a different codec than the main content.
+*  vNext features are being incubated for MSE and EME to allow codec/container transitions within a MSE `SourceBuffer`. These address a long standing feature request from streaming sites where advertising may use a different codec or encryption configuration (often clear) from that of the primary content. 
 
-**Switching from hardware to software playback:** Some browsers can’t switch out of their hardware playback pipeline such as if the adaptive playback goes to a resolution that can’t be played using the pipeline, the playback will fail. A player that attempts to play at low resolution and increase the quality might hit such bugs in implementations where the hardware decoding can’t handle more than 1080p.
+   https://github.com/wolenetz/media-source/blob/codec-switching/codec-switching-explainer.md 
+   https://github.com/w3c/encrypted-media/pull/374
+   https://github.com/w3c/encrypted-media/issues/251
 
-**Switching from software to hardware playback:** Some browsers will not switch back to hardware playback when the playback has already started on the software pipeline. In such situations the playback information returned for playing two different formats will not be the same as playing one then switching to the other.
+   To use this feature effectively, developers will need to know up front whether a given codec transition can be supported. Some implementations may not support transitioning between configurations where the transition would require a different decoding pipeline (e.g. HW vs SW).
 
-Exposing the ability to transition would allow website to make better decisions with regards to which codec to use and which format to start playback with. Most of the limitations are currently well known and websites already assume that transitioning codecs during an adaptive streaming using the same source buffer is not possible. In other words, most of the quality of implementation problems are mostly accounted for by websites and exposing an API to discover them would not dramatically impact websites unless user agents start fixing these bugs at the same time.
+### Usage
+`transition()` is exposed from the `MediaCapabilitiesInfo` object. Callers should first specify an initial stream configuration to `mediaCapabilities.decodingInfo()`, and then pass a secondary `MediaDecodingConfiguration` to the `transition()` API. 
 
-However, exposing transition capabilities would allow websites to understand and take into account some implementation decisions made by websites. For example, the software to hardware transition might come with a surprise to a website that tries to go above the hardware pipeline limit and when going back does not achieve the same performance.
+```JavaScript 
+// Querying for an initial decoding configuration using VP9
+navigator.mediaCapabilities.decodingInfo({
+  type: 'media-source',
+  video: { contentType: 'video/webm; codecs="vp09.00.10.08"', ...}
+}).then(result => {
+  if (!result.supported)
+      return Promise.reject("Initial configuration unsupported");
 
-Furthermore, exposing transition abilities will help toward the goal of expressing other media API with this API. The *requestMediaKeySystemAccess* method in EME handles capability combinations; with support for transition capability detection, it could be expressed fully with the Media Capabilities API with the exception of the permission handling.
-
-Therefore, exposing transition capabilities is considered part of the specification but will not be one of the first priorities because of its limited use cases. This could be revisited if web authors express interest.
-
-### Why not a list of formats?
-
-An approach taken by the EME API and that might sound natural is to expose the ability to transition from multiple formats inside a list. The EME API does something a bit more sophisticated and will start with the first working configuration and will append to the returned lists all the format transitions that are possible.
-
-The downsides of this approach is that it does not offer a clear view of the consequences of transitioning: one can transition from A to B but it does not mean that the playback of A and B will be of the same quality (`smooth` and `powerEfficient`). Also, in the case of the EME approach, picking the first working configuration would be against the principles of making decisions for the website because a configuration might be playable but not ideal and the user agent would have to decide whether to start with this one or another one.
-
-### Examples
-
-Without exposing transition capabilities, in order for a website to check if a list of formats are supported, the best approach is the following:
-
-```JavaScript
-function canAdapt(formats) {
-  var capabilities = formats.map(entry => navigator.mediaCapabilities.decodingInfo(entry));
-  return Promise.all(capabilities).then(results => {
-    return results.every(r => r.supported);
+  // Initial config supported! Now query for second config using H264
+  return info.transition({
+    type: 'media-source',
+    video: { contentType: "video/webm; codecs="avc3.64001f", ... }
   });
-}
+}).then(result => {
+  if (!result.supported)
+    return Promise.reject("Second configuration not supported");
+
+  // Both supported. Inspect the result to see if the *combination* is smooth 
+  // and power efficient
+  console.log("combined result smooth:%s, powerEffecient:%s", 
+              result.smooth, result.powerEfficient);  
+
+  // Not shown: begin playback with the described configuration 
+});
 ```
 
-With a transition capabilities, a website no longer need to assume that supports of {A, B} means ability to transition from A to B and B to A with the same capabilities as playing A or B independently.
+Note that the input and return types for `transition()` match those from `decodingInfo()`. Both APIs take in a `MediaDecodingConfiguration` and return a promise including a `MediaCapabilitiesInfo` object.
+
+When a `MediaCapabilitiesInfo` object is provided by a `transition()` call, the contents of that object describe the whole chain of decoding configurations observed so far. If any of the configuration is unsupported, the value of supported will be false. Similarly, if any configuration is not smooth or not power efficient, those fields will also be false. 
+
+### Build your own MediaKeySystemAccess
+Like the `decodingInfo()` API, `transition()` will also accept a `MediaCapabilitiesKeySystemConfiguration` and the returned `MediaCapabilitiesInfo` will contain a `MediaKeySystemAccess` whenever the configuration is supported.
+
+Each call to `transition()` is a signal that the caller desires to use an additional decoding configuration. Unlike `rMKSA`, the initial MediaCapabilities `decodingInfo()` call does not provide a sequence of codecs+robustness to consider, so it will optimize for whatever has been initially requested. Calling `transition()` will invoke an algorithm to create a new `MediaKeySystemAccess` that can support the new decoding configuration in combination with any configurations provided to the initial `decodingInfo()` or previous chained `trainsion()` calls. 
+
+If no key system can be found to support the combined configurations, the `transition()` promise will resolve with `supported=false` and no `MediaKeySystemAccess` will be provided. 
+
+It may also occur that a supported Key System is available, but the trade off of broader support is worse performance. For example, say the initial `decodingInfo()` call indicated smooth support thanks to a codec-specific HW pipeline. A `transition()` call that specifies a different codec may now report `smooth=false` because only a software pipeline was able to support both configurations. Keep in mind that the `MediaCapabilitiesInfo` object returned from a `transition()` call describes the lowest capabilities across all links in the chain.
+
+Any previously returned `MediaKeySystemAccess` (earlier in the chain) may still be used to setup playback for the configurations it supported. Callers may leverage this if later transition calls are found to be unsupported or if their performance is poor. 
+
+Here's an `transition()` example using a Key System configuration:
 
 ```JavaScript
-navigator.mediaCapabilities.decodingInfo({
-  type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456 },
-  audio: { contentType: "audio/webm; codecs=opus" }
-}).then(result => {
-  console.log(result.supported);
-  console.log(result.smooth);
-  console.log(result.powerEfficient);
-  return result.transition({
-    type: 'media-source',
-    video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
-             framerate: 24, bitrate: 123456 },
-    audio: { contentType: "audio/webm; codecs=opus" }});
-}).then(result => {
-  // supported is specific to vp9 to vp10 transition here.
-  // If vp10 isn't supported, it will never be true but if vp10 is supported
-  // it does not mean it will be true.
-  console.log(result.supported);
-  console.log(result.smooth);
-  console.log(result.powerEfficient);
-});
-
-// Here we assume than vp9 and vp10 are using a different pipeline.
-navigator.mediaCapabilities.decodingInfo({
-  type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
-           framerate: 24,  bitrate: 123456 },
-  audio: { contentType: "audio/webm; codecs=opus" }
-}).then(result => {
-  // result.supported == true;
-});
-
-navigator.mediaCapabilities.decodingInfo({
-  type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456 },
-  audio: { contentType: "audio/webm; codecs=opus" }
-}).then(result => {
-  // result.supported == true;
-  return result.transition({
-    type: 'media-source',
-    video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
-             framerate: 24, bitrate: 123456  },
-    audio: { contentType: "audio/webm; codecs=opus" }});
-}).then(result => {
-  // result.supported == false;
-});
-```
-
-However, transitions are not symmetric, the capabilities of a transition from A to B are not similar to the capabilities to transition from B to A.
-
-```JavaScript
-// Here we assume than vp9 and vp10 are using a different pipeline.
-navigator.mediaCapabilities.decodingInfo({
-  type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456 },
-  audio: { contentType: "audio/webm; codecs=opus" }
-}).then(result => {
-  // result.supported == true;
-  // result.powerEfficient == true;
-});
-
-navigator.mediaCapabilities.decodingInfo({
-  type: 'media-source',
-  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456 },
-  audio: { contentType: "audio/webm; codecs=opus" }
-}).then(result => {
-  // result.supported == true;
-  // result.powerEfficient == false;
-  return result.transition({
-    type: 'media-source',
-    video: { contentType: "video/webm; codecs=vp10", width: 1280, height: 720,
-             framerate: 24, bitrate: 123456 },
-    audio: { contentType: "audio/webm; codecs=opus" }});
-}).then(result => {
-  // result.supported == true;
-  // result.powerEfficient == false;
-});
-```
-
-<a name="encrypted-transition"></a>Here's an example using a key system configuration.
-
-```Javascript
 let mediaConfig = {
   'video': {
     'contentType': 'vp09.00.10.08';
@@ -406,7 +325,7 @@ let mediaConfig = {
   }
 };
 
-// Check whether the initial mediaConfig (including its keySystemConfig) is supported.
+// Check whether the initial mediaConfig (including keySystemConfig) is supported.
 mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
   // Not shown: optional checks for smooth || powerEfficient.
   if (!info.supported)
@@ -420,35 +339,29 @@ mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
   mediaConfig.video.contentType = 'avc3.42E01E';
   return vp9CapabilityInfo.transition(mediaConfig);
 
-}).then(function(avcCapabilityInfo) {
-  // Not shown: optional checks for smooth || powerEfficient. All fields of
-  // otherCapaibilityInfo describe the performance of 'avc3.42E01E' under the media
-  // pipeline chosen by the 'initial' decodingInfo() query.
-  if (!avcCapabilityInfo.supported)
-  Promise.reject('Second config not supported');
+}).then(function(combinedInfo) {
+  // Not shown: optional checks for smooth || powerEfficient. These fields describe the combined   
+  // chain based on the lowest performing config. In other words, smooth = true iff all codecs in
+  // the chain can be smoothly decoded.
+  if (!combinedInfo.supported)
+    Promise.reject('Second config not supported');
 
   // KeySystemAccess is again provided, now with context that both codecs may be used.
-  console.assert(!!avcCapabilityInfo.keySystemAccess);
+  console.assert(!!combinedInfo.keySystemAccess);
 
   // Download streams and setup playback!
-  let keys = await avcCapabilityInfo.keySystemAccess.createMediaKeys();
+  let keys = await combinedInfo.keySystemAccess.createMediaKeys();
+  
   // NOT SHOWN: rest of EME path as-is 
 };
 ```
 
+### Choosing a pipeline for clear content
+Unlike encrypted content, clear playbacks do not have an analog to the MediaKeySystemAccess which can be used to select a pipeline that supports a combination of decoding configurations. In practice, this may not be an issue: implementers have more flexibility when switching between pipelines during clear playback (no keys to worry about). But if needed we could explore choosing clear pipelines by using a MediaCapabilitiesInfo to seed the creation of media elements.
 
 ## HDCP support
 
-Content providers might have requirements to only show some content if HDCP is enabled. HDCP support could be bundled into the EME API or added as part of the *encryption* dictionary in the Media Capabilities API. However, both approach will allow websites to find out if HDCP is enabled without having a direct access to the information.
-
-Another, more straightforward, approach is to expose HDCP on the `Screen` object as an asynchronous property. The returned Promise could expose the supported HDCP level if any or reject if the information is not available.
-
-```JavaScript
-window.screen.hdcp.then(value => {
-  if (value.startsWith('2.'))
-    Hdcp2IsSupported();
-});
-```
+Now covered in a [separate repository](https://github.com/WICG/hdcp-detection/blob/master/explainer.md).
 
 ## Audio channels/speakers configuration
 
