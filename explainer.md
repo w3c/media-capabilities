@@ -133,12 +133,9 @@ When a key system configuration is included in the `MediaDecodingConfiguration`,
  Here's a sample usage:
 
 ```Javascript
-let capabilitiesPromises = []
-
-// Like rMSKA(), orderedConfigs is ordered from most -> least wanted.
-for (config in orderedConfigs) {
-  capabilitiesPromises.push(navigator.mediaCapabilities.decodingInfo(config));
-}
+// Like rMSKA(), orderedMediaConfigs is ordered from most -> least wanted.
+const capabilitiesPromises = orderedMediaConfigs
+    .map(mediaConfig => navigator.mediaCapabilities.decodingInfo(mediaConfig));
 
 (async _ => {
   // Assume this app wants a supported && smooth config.
