@@ -135,10 +135,9 @@ When a key system configuration is included in the `MediaDecodingConfiguration`,
 ```Javascript
 let capabilitiesPromises = []
 
-// Like rMSKA(), orderedOptions is ordered from most -> least wanted.
-for (option in orderedOptions) {
-  capabilitiesPromises.push(navigator.mediaCapabilities.decodingInfo(
-      option.decodingConfig, option.keySystemConfig));
+// Like rMSKA(), orderedConfigs is ordered from most -> least wanted.
+for (config in orderedConfigs) {
+  capabilitiesPromises.push(navigator.mediaCapabilities.decodingInfo(config));
 }
 
 (async _ => {
@@ -328,8 +327,8 @@ let mediaConfig = {
 // Check whether the initial mediaConfig (including keySystemConfig) is supported.
 mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
   // Not shown: optional checks for smooth || powerEfficient.
-  if (!info.supported)
-    Promise.reject('Initial config not supported');
+  if (!vp9CapabilityInfo.supported)
+    return Promise.reject('Initial config not supported');
 
   // MediaKeySystemAccess is provided whenever the encrypted configuration is supported
   console.assert(!!vp9CapabilityInfo.keySystemAccess);
@@ -344,7 +343,7 @@ mediaCapabilities.decodingInfo(mediaConfig).then( function(vp9CapabilityInfo) {
   // chain based on the lowest performing config. In other words, smooth = true iff all codecs in
   // the chain can be smoothly decoded.
   if (!combinedInfo.supported)
-    Promise.reject('Second config not supported');
+    return Promise.reject('Second config not supported');
 
   // KeySystemAccess is again provided, now with context that both codecs may be used.
   console.assert(!!combinedInfo.keySystemAccess);
