@@ -524,8 +524,8 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     <pre class='idl'>
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
-        Promise&lt;MediaCapabilitiesInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
-        Promise&lt;MediaCapabilitiesInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
+        [NewObject] Promise&lt;MediaCapabilitiesInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
+        [NewObject] Promise&lt;MediaCapabilitiesInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
       };
     </pre>
 
