@@ -505,13 +505,13 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     <h3 id='navigators-extensions'>Navigator and WorkerNavigator extension</h3>
 
     <pre class='idl'>
-      [Exposed=(Window)]
+      [Exposed=Window]
       partial interface Navigator {
         [SameObject] readonly attribute MediaCapabilities mediaCapabilities;
       };
     </pre>
     <pre class='idl'>
-      [Exposed=(Worker)]
+      [Exposed=Worker]
       partial interface WorkerNavigator {
         [SameObject] readonly attribute MediaCapabilities mediaCapabilities;
       };
