@@ -107,7 +107,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
           Real time feedback about the playback so an adaptative streaming can
           alter the quality of the content based on actual user perceived
           quality. Such information will allow websites to react to a pick of
-          CPU/GPU usage in real time. It is expected that this will be tacklked
+          CPU/GPU usage in real time. It is expected that this will be tackled
           as part of the [[media-playback-quality]] specification.
         </p>
       </li>
