@@ -1058,9 +1058,10 @@ Possible extra rowspan handling
 			   comprising the first items of each top-level section. */
 			margin-top: 1.1rem;
 		}
-		#toc .secno {
+		#toc#toc .secno { /* Ugh, need more specificity to override base.css */
 			grid-column: 1;
 			width: auto;
+			margin-left: 0;
 		}
 		#toc .content {
 			grid-column: 2;
@@ -1211,7 +1212,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 2c9a9a721fc32a5205a74753d47a41e1d5b633da" name="generator">
+  <meta content="Bikeshed version 3678d496235a6f1964fc14f56861db11f24476c4" name="generator">
   <link href="https://wicg.github.io/media-capabilities/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1459,7 +1460,7 @@ pre.highlight, pre > code.highlight { display: block; padding: 1em; margin: .5em
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-06-29">29 June 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-07-19">19 July 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1585,7 +1586,7 @@ based on the device’s display.</p>
       <p> Real time feedback about the playback so an adaptative streaming can
           alter the quality of the content based on actual user perceived
           quality. Such information will allow websites to react to a pick of
-          CPU/GPU usage in real time. It is expected that this will be tacklked
+          CPU/GPU usage in real time. It is expected that this will be tackled
           as part of the <a data-link-type="biblio" href="#biblio-media-playback-quality">[media-playback-quality]</a> specification. </p>
     </ul>
     <p></p>
