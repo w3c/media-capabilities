@@ -375,7 +375,6 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     <h3 id='media-capabilities-info'>Media Capabilities Information</h3>
 
     <pre class='idl'>
-      [Exposed=(Window, Worker)]
       dictionary MediaCapabilitiesInfo {
         required boolean supported;
         required boolean smooth;
