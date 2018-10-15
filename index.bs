@@ -376,10 +376,10 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
 
     <pre class='idl'>
       [Exposed=(Window, Worker)]
-      interface MediaCapabilitiesInfo {
-        readonly attribute boolean supported;
-        readonly attribute boolean smooth;
-        readonly attribute boolean powerEfficient;
+      dictionary MediaCapabilitiesInfo {
+        required boolean supported;
+        required boolean smooth;
+        required boolean powerEfficient;
       };
     </pre>
 
@@ -403,7 +403,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       steps:
       <ol>
         <li>
-          Let <var>info</var> be a new {{MediaCapabilitiesInfo}} instance.
+          Let <var>info</var> be a new {{MediaCapabilitiesInfo}} dictionary.
           Unless stated otherwise, reading and writing apply to <var>info</var>
           for the next steps.
         </li>
