@@ -402,7 +402,7 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       steps:
       <ol>
         <li>
-          Let <var>info</var> be a new {{MediaCapabilitiesInfo}} dictionary.
+          Let <var>info</var> be a new {{MediaCapabilitiesInfo}} instance.
           Unless stated otherwise, reading and writing apply to <var>info</var>
           for the next steps.
         </li>
