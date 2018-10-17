@@ -652,10 +652,9 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     <h3 id='screen-color-depth-section'>Screen Color Depth</h3>
 
     <p>
-      The <dfn>screen color depth</dfn> of a given <var>screen</var> is the
-      the number of bits used to represent a color on the <var>screen</var>.
-      Most screens will return 24. Screen able to represent wider color range
-      will encode bits in more than 24 bits.
+      <dfn>Screen color depth</dfn> represents the total bit depth for all color
+      channels of a given <var>screen</var>. Alpha channels, or any padding
+      for byte alignment, is excluded.
     </p>
   </section>
 
