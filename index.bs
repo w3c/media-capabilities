@@ -649,16 +649,6 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
   </section>
 
   <section>
-    <h3 id='screen-color-depth-section'>Screen Color Depth</h3>
-
-    <p>
-      <dfn>Screen color depth</dfn> represents the total bit depth for all color
-      channels of a given <var>screen</var>. Alpha channels, or any padding
-      for byte alignment, is excluded.
-    </p>
-  </section>
-
-  <section>
     <h3 id='screen-extension'>Screen extension</h3>
 
     <p class='issue'>
