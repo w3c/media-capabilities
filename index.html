@@ -1530,8 +1530,7 @@ based on the device’s display.</p>
      <ol class="toc">
       <li><a href="#screen-luminance"><span class="secno">3.1</span> <span class="content">Screen Luminance</span></a>
       <li><a href="#color-gamut"><span class="secno">3.2</span> <span class="content">Screen Color Gamut</span></a>
-      <li><a href="#screen-color-depth-section"><span class="secno">3.3</span> <span class="content">Screen Color Depth</span></a>
-      <li><a href="#screen-extension"><span class="secno">3.4</span> <span class="content">Screen extension</span></a>
+      <li><a href="#screen-extension"><span class="secno">3.3</span> <span class="content">Screen extension</span></a>
      </ol>
     <li>
      <a href="#security-privacy-considerations"><span class="secno">4</span> <span class="content"> Security and Privacy Considerations </span></a>
@@ -1897,14 +1896,7 @@ based on the device’s display.</p>
      </ul>
     </section>
     <section>
-     <h3 class="heading settled" data-level="3.3" id="screen-color-depth-section"><span class="secno">3.3. </span><span class="content">Screen Color Depth</span><a class="self-link" href="#screen-color-depth-section"></a></h3>
-     <p> The <dfn data-dfn-type="dfn" data-noexport id="screen-color-depth">screen color depth<a class="self-link" href="#screen-color-depth"></a></dfn> of a given <var>screen</var> is the
-      the number of bits used to represent a color on the <var>screen</var>.
-      Most screens will return 24. Screen able to represent wider color range
-      will encode bits in more than 24 bits. </p>
-    </section>
-    <section>
-     <h3 class="heading settled" data-level="3.4" id="screen-extension"><span class="secno">3.4. </span><span class="content">Screen extension</span><a class="self-link" href="#screen-extension"></a></h3>
+     <h3 class="heading settled" data-level="3.3" id="screen-extension"><span class="secno">3.3. </span><span class="content">Screen extension</span><a class="self-link" href="#screen-extension"></a></h3>
      <p class="issue" id="issue-cd50b0fc"><a class="self-link" href="#issue-cd50b0fc"></a> Part of this section is 🐵 patching of the CSSOM View Module. <a href="https://github.com/WICG/media-capabilities/issues/4">Issue #4</a> is tracking merging the changes. This partial interface requires the <code class="idl"><a data-link-type="idl" href="https://drafts.csswg.org/cssom-view/#screen" id="ref-for-screen①">Screen</a></code> interface to become an <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget">EventTarget</a></code>. </p>
 <pre class="idl highlight def"><c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://drafts.csswg.org/cssom-view/#screen" id="ref-for-screen②"><c- g>Screen</c-></a> {
   <c- b>readonly</c-> <c- b>attribute</c-> <a class="n" data-link-type="idl-name" href="#enumdef-screencolorgamut" id="ref-for-enumdef-screencolorgamut②"><c- n>ScreenColorGamut</c-></a> <a class="idl-code" data-link-type="attribute" data-readonly data-type="ScreenColorGamut" href="#dom-screen-colorgamut" id="ref-for-dom-screen-colorgamut"><c- g>colorGamut</c-></a>;
@@ -2156,7 +2148,7 @@ based on the device’s display.</p>
      <li><a href="#dom-videoconfiguration-bitrate">dict-member for VideoConfiguration</a><span>, in §2.1.5</span>
     </ul>
    <li><a href="#dom-audioconfiguration-channels">channels</a><span>, in §2.1.6</span>
-   <li><a href="#dom-screen-colorgamut">colorGamut</a><span>, in §3.4</span>
+   <li><a href="#dom-screen-colorgamut">colorGamut</a><span>, in §3.3</span>
    <li><a href="#mediacapabilitiesinfo-configuration">configuration</a><span>, in §2.2</span>
    <li>
     contentType
@@ -2172,7 +2164,7 @@ based on the device’s display.</p>
    <li><a href="#dom-mediadecodingtype-file">file</a><span>, in §2.1.2</span>
    <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.5</span>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.5</span>
-   <li><a href="#dom-screen-luminance">luminance</a><span>, in §3.4</span>
+   <li><a href="#dom-screen-luminance">luminance</a><span>, in §3.3</span>
    <li><a href="#dom-screenluminance-max">max</a><span>, in §3.1</span>
    <li><a href="#dom-screenluminance-maxaverage">maxAverage</a><span>, in §3.1</span>
    <li><a href="#mediacapabilities">MediaCapabilities</a><span>, in §2.4</span>
@@ -2190,7 +2182,7 @@ based on the device’s display.</p>
    <li><a href="#enumdef-mediaencodingtype">MediaEncodingType</a><span>, in §2.1.3</span>
    <li><a href="#dom-mediadecodingtype-media-source">media-source</a><span>, in §2.1.2</span>
    <li><a href="#dom-screenluminance-min">min</a><span>, in §3.1</span>
-   <li><a href="#dom-screen-onchange">onchange</a><span>, in §3.4</span>
+   <li><a href="#dom-screen-onchange">onchange</a><span>, in §3.3</span>
    <li><a href="#dom-screencolorgamut-p3">p3</a><span>, in §3.2</span>
    <li>
     powerEfficient
@@ -2202,7 +2194,6 @@ based on the device’s display.</p>
    <li><a href="#dom-screencolorgamut-rec2020">rec2020</a><span>, in §3.2</span>
    <li><a href="#dom-mediaencodingtype-record">record</a><span>, in §2.1.3</span>
    <li><a href="#dom-audioconfiguration-samplerate">samplerate</a><span>, in §2.1.6</span>
-   <li><a href="#screen-color-depth">screen color depth</a><span>, in §3.3</span>
    <li><a href="#enumdef-screencolorgamut">ScreenColorGamut</a><span>, in §3.2</span>
    <li><a href="#screenluminance">ScreenLuminance</a><span>, in §3.1</span>
    <li>
@@ -2241,25 +2232,25 @@ based on the device’s display.</p>
    <a href="https://drafts.csswg.org/cssom-view/#screen">https://drafts.csswg.org/cssom-view/#screen</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-screen">3.2. Screen Color Gamut</a>
-    <li><a href="#ref-for-screen①">3.4. Screen extension</a> <a href="#ref-for-screen②">(2)</a> <a href="#ref-for-screen③">(3)</a> <a href="#ref-for-screen④">(4)</a> <a href="#ref-for-screen⑤">(5)</a> <a href="#ref-for-screen⑥">(6)</a>
+    <li><a href="#ref-for-screen①">3.3. Screen extension</a> <a href="#ref-for-screen②">(2)</a> <a href="#ref-for-screen③">(3)</a> <a href="#ref-for-screen④">(4)</a> <a href="#ref-for-screen⑤">(5)</a> <a href="#ref-for-screen⑥">(6)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-eventtarget">
    <a href="https://dom.spec.whatwg.org/#eventtarget">https://dom.spec.whatwg.org/#eventtarget</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventtarget">3.4. Screen extension</a>
+    <li><a href="#ref-for-eventtarget">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-event-fire">
    <a href="https://dom.spec.whatwg.org/#concept-event-fire">https://dom.spec.whatwg.org/#concept-event-fire</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-concept-event-fire">3.4. Screen extension</a>
+    <li><a href="#ref-for-concept-event-fire">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-eventhandler">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler">https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-eventhandler">3.4. Screen extension</a>
+    <li><a href="#ref-for-eventhandler">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-navigator">
@@ -2283,13 +2274,13 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="term-for-event-handlers">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers">https://html.spec.whatwg.org/multipage/webappapis.html#event-handlers</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-handlers">3.4. Screen extension</a>
+    <li><a href="#ref-for-event-handlers">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-event-handler-event-type">
    <a href="https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type">https://html.spec.whatwg.org/multipage/webappapis.html#event-handler-event-type</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-event-handler-event-type">3.4. Screen extension</a>
+    <li><a href="#ref-for-event-handler-event-type">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-in-parallel">
@@ -2325,7 +2316,7 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="term-for-color-gamut">
    <a href="https://drafts.csswg.org/mediaqueries-4/#color-gamut">https://drafts.csswg.org/mediaqueries-4/#color-gamut</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-color-gamut">3.4. Screen extension</a>
+    <li><a href="#ref-for-color-gamut">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-valid-mime-type">
@@ -2807,7 +2798,7 @@ based on the device’s display.</p>
    <b><a href="#screenluminance">#screenluminance</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-screenluminance">3.1. Screen Luminance</a>
-    <li><a href="#ref-for-screenluminance①">3.4. Screen extension</a> <a href="#ref-for-screenluminance②">(2)</a>
+    <li><a href="#ref-for-screenluminance①">3.3. Screen extension</a> <a href="#ref-for-screenluminance②">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screenluminance-min">
@@ -2832,14 +2823,14 @@ based on the device’s display.</p>
    <b><a href="#enumdef-screencolorgamut">#enumdef-screencolorgamut</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-screencolorgamut">3.2. Screen Color Gamut</a> <a href="#ref-for-enumdef-screencolorgamut①">(2)</a>
-    <li><a href="#ref-for-enumdef-screencolorgamut②">3.4. Screen extension</a> <a href="#ref-for-enumdef-screencolorgamut③">(2)</a>
+    <li><a href="#ref-for-enumdef-screencolorgamut②">3.3. Screen extension</a> <a href="#ref-for-enumdef-screencolorgamut③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screencolorgamut-srgb">
    <b><a href="#dom-screencolorgamut-srgb">#dom-screencolorgamut-srgb</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-screencolorgamut-srgb">3.2. Screen Color Gamut</a> <a href="#ref-for-dom-screencolorgamut-srgb①">(2)</a>
-    <li><a href="#ref-for-dom-screencolorgamut-srgb②">3.4. Screen extension</a> <a href="#ref-for-dom-screencolorgamut-srgb③">(2)</a>
+    <li><a href="#ref-for-dom-screencolorgamut-srgb②">3.3. Screen extension</a> <a href="#ref-for-dom-screencolorgamut-srgb③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screencolorgamut-p3">
@@ -2857,19 +2848,19 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-screen-colorgamut">
    <b><a href="#dom-screen-colorgamut">#dom-screen-colorgamut</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screen-colorgamut">3.4. Screen extension</a> <a href="#ref-for-dom-screen-colorgamut①">(2)</a>
+    <li><a href="#ref-for-dom-screen-colorgamut">3.3. Screen extension</a> <a href="#ref-for-dom-screen-colorgamut①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screen-luminance">
    <b><a href="#dom-screen-luminance">#dom-screen-luminance</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screen-luminance">3.4. Screen extension</a>
+    <li><a href="#ref-for-dom-screen-luminance">3.3. Screen extension</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-screen-onchange">
    <b><a href="#dom-screen-onchange">#dom-screen-onchange</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-screen-onchange">3.4. Screen extension</a>
+    <li><a href="#ref-for-dom-screen-onchange">3.3. Screen extension</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
