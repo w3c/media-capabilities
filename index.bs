@@ -206,12 +206,48 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
       <h4 id='mime-type'>MIME types</h4>
 
       <p>
-        In the context of this specification, a MIME type is also called content
-        type. A <dfn>valid media MIME type</dfn> is a string that is a <a>valid
-        MIME type</a> per [[mimesniff]]. If the MIME type does not imply a
-        codec, the string MUST also have one and only one parameter that is
-        named <code>codecs</code> with a value describing a single media codec.
-        Otherwise, it MUST contain no parameters.
+        To check if a string <var>mimeString</var> is a <dfn>valid media MIME
+        type</dfn>, the following steps MUST be run:
+        <ul>
+          <li>
+            Let <var>parsedMime</var> be the result of running the <a>parse a
+            MIME type</a> [[mimesniff]] algorithm with <var>mimeString</var>.
+          </li>
+          <li>
+            If the value of <var>parsedMime</var> is <code>failure</code>,
+            return <code>false</code> and abort these steps.
+          </li>
+          <li>
+            If the combined <code>type</code> and <code>subtype</code> members
+            of <var>parsedMime</var> imply a single media codec, run these
+            substeps:
+              <ul>
+                <li>
+                  If the <code>parameters</code> member of <var>parsedMime</var>
+                  is not empty, return <code>false</code> and abort these steps.
+                </li>
+                <li>Otherwise, return <code>true</code>.</li>
+              </ul>
+          </li>
+          <li>
+            Otherwise run the following substeps:
+            <ul>
+              <li>
+                If the <code>parameters</code> member of <var>parsedMime</var>
+                does not contain a single key named "codecs", return
+                <code>false</code> and abort these steps.
+              </li>
+              <li>
+                If the value of <code>parsedMime.parameters["codecs"]</code>
+                does not describe a single media codec, return
+                <code>false</code> and abort these steps.
+              </li>
+              <li>
+                Otherwise, return true.
+              </li>
+            </ul>
+          </li>
+        </ul>
       </p>
 
       <p>
