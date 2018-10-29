@@ -491,11 +491,10 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     <h3 id='media-capabilities-info'>Media Capabilities Information</h3>
 
     <pre class='idl'>
-      [Exposed=(Window, Worker)]
-      interface MediaCapabilitiesInfo {
-        readonly attribute boolean supported;
-        readonly attribute boolean smooth;
-        readonly attribute boolean powerEfficient;
+      dictionary MediaCapabilitiesInfo {
+        required boolean supported;
+        required boolean smooth;
+        required boolean powerEfficient;
         readonly attribute MediaKeySystemAccess keySystemAccess;
       };
     </pre>
@@ -946,17 +945,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           the ITU-R Recommendation BT.2020 color gamut. This color gamut
           includes the {{ScreenColorGamut/p3}} gamut.
         </li>
-    </p>
-  </section>
-
-  <section>
-    <h3 id='screen-color-depth-section'>Screen Color Depth</h3>
-
-    <p>
-      The <dfn>screen color depth</dfn> of a given <var>screen</var> is the
-      the number of bits used to represent a color on the <var>screen</var>.
-      Most screens will return 24. Screen able to represent wider color range
-      will encode bits in more than 24 bits.
     </p>
   </section>
 
