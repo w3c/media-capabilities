@@ -94,6 +94,12 @@ spec: encrypted-media; urlPrefix: https://www.w3.org/TR/encrypted-media/#
         for: EME; text: Get Supported Configuration; url: get-supported-configuration
     type: interface
         for: EME; text: MediaKeySystemMediaCapability; url: mediakeysystemmediacapability-dictionary
+    type: interface
+        for: EME; text: MediaKeysRequirement; url: dom-mediakeysrequirement
+    type: interface
+        for: EME; text: audioCapabilities; url: dom-mediakeysystemconfiguration-audiocapabilities
+    type: interface
+        for: EME; text: contentType; url: dom-mediakeysystemmediacapability-contenttype
 
 spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     type: dfn; text: Is the environment settings object settings a secure context?; url: #settings-object
@@ -428,17 +434,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </h4>
 
       <pre class='idl'>
-      <xmp>
-        dictionary MediaCapabilitiesKeySystemConfiguration {
-          required DOMString keySystem;
-          DOMString initDataType = "";
-          DOMString audioRobustness = "";
-          DOMString videoRobustness = "";
-          MediaKeysRequirement distinctiveIdentifier = "optional";
-          MediaKeysRequirement persistentState = "optional";
-          sequence<DOMString> sessionTypes;
-        };
-      </xmp>
+        <xmp>
+          dictionary MediaCapabilitiesKeySystemConfiguration {
+            required DOMString keySystem;
+            DOMString initDataType = "";
+            DOMString audioRobustness = "";
+            DOMString videoRobustness = "";
+            MediaKeysRequirement distinctiveIdentifier = "optional";
+            MediaKeysRequirement persistentState = "optional";
+            sequence<DOMString> sessionTypes;
+          };
+        </xmp>
       </pre>
 
       <p class='note'>
@@ -495,7 +501,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        readonly attribute MediaKeySystemAccess keySystemAccess;
+        MediaKeySystemAccess keySystemAccess;
       };
     </pre>
 
@@ -661,35 +667,41 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           <ol>
             <li>
               If the {{keySystem}} member of
-              <var>config.keySystemConfiguration</var> is not one of the
+              <code>config.keySystemConfiguration</code> is not one of the
               <a for='EME'>Key Systems</a> supported by the user agent, return
               <code>null</code>. String comparison is case-sensitive.
             </li>
 
-            <li>Let <var>document</var> be the calling context's <a>Document</a>.</li>
-            <li>Let <var>origin</var> be the <a>origin</a> of <var>document</var>.
-            <li>Let <var>implementation</var> be the implementation of <var>keySystem</var>.
+            <li>
+              Let <var>document</var> be the calling context's <a>Document</a>.
+            </li>
+            <li>
+              Let <var>origin</var> be the <a>origin</a> of <var>document</var>.
+            </li>
+            <li>
+              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>
+            </li>
 
             <li>
-              Let emeConfig be a new {{EME/MediaKeySystemConfiguration}}, and
-              initialize it as follows:
+              Let <var>emeConfiguration</var> be a new 
+              {{EME/MediaKeySystemConfiguration}}, and initialize it as follows:
             </li>
             <ol>
               <li>
                 Set the {{EME/initDataTypes}} attribute to a sequence containing
-                <var>config.keySystemConfiguration.initDataType</var>.
+                <code>config.keySystemConfiguration.initDataType</code>.
               </li>
               <li>
                 Set the {{EME/distinctiveIdentifier}} attribute to
-                <var>config.keySystemConfiguration.distinctiveIdentifier</var>.
+                <code>config.keySystemConfiguration.distinctiveIdentifier</code>.
               </li>
               <li>
                 Set the {{EME/persistentState}} attribute to
-                <var>config.keySystemConfiguration.peristentState</var>.
+                <code>config.keySystemConfiguration.peristentState</code>.
               </li>
               <li>
                 Set the {{EME/sessionTypes}} attribute to
-                <var>config.keySystemConfiguration.sessionTypes</var>.
+                <code>config.keySystemConfiguration.sessionTypes</code>.
               </li>
               <li>
                 If an {{audio}} is <a>present</a> in <var>config</var>, set the
@@ -738,15 +750,15 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                 object, and initialize it as follows:
                 <ol>
                   <li>
-                    Set the {{EME-Access/keySystem}} attribute to
-                    <var>emeConfig.keySystem</var>.
+                    Set the {{EME/keySystem}} attribute to
+                    <code>emeConfiguration.keySystem</code>.
                   </li>
                   <li>
                     Let the <var>configuration</var> value be
                     <var>supported configuration</var>.
                   </li>
                   <li>
-                    Let the <var>cdm implementation</var> value be
+                    Let the <var ignore=''>cdm implementation</var> value be
                     <var>implementation</var>.
                   </li>
                 </ol>
@@ -787,9 +799,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     </pre>
 
     <p>
-      The <dfn for='MediaCapabilities' method>decodingInfo()</dfn> method and
-      the <dfn for='MediaCapabilities' method>encodingInfo()</dfn> method MUST
-      run the following steps:
+      The {{decodingInfo()}} method and the {{encodingInfo()}} method MUST run
+      the following steps:
       <ol>
         <li>
           If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
