@@ -63,49 +63,35 @@ spec: dom; urlPrefix: https://www.w3.org/TR/dom/#
     type: dfn; text: Document; url:concept-document
 
 spec: html52; urlPrefix: https://www.w3.org/TR/html52/
-    type: dfn; text: origin; url:browsers.html#concept-cross-origin
+    type: dfn; 
+        text: origin; url:browsers.html#concept-cross-origin
+        text: global object; url:webappapis.html#global-object
+        text: relevant settings object; url:webappapis.html#relevant-settings-object
 
-spec: encrypted-media; urlPrefix: https://www.w3.org/TR/encrypted-media/#
+spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-media/#
+    type: attribute
+        text: keySystem; url: dom-mediakeysystemaccess-keysystem
+        text: initDataTypes; url: dom-mediakeysystemconfiguration-initdatatypes
+        text: robustness; url: dom-mediakeysystemmediacapability-robustness
+        text: distinctiveIdentifier; url: dom-mediakeysystemconfiguration-distinctiveidentifier
+        text: persistentState; url: dom-mediakeysystemconfiguration-persistentstate
+        text: sessionTypes; url: dom-mediakeysystemconfiguration-sessiontypes
     type: dfn
-        for: EME; text: encrypted media
-    type: dfn
-        for: EME; text: Key System; url: key-system
+        text: encrypted media
+        text: Key System; url: key-system
+        text: Get Supported Configuration; url: get-supported-configuration
     type: interface
-        for: EME; text: MediaKeySystemAccess; url: mediakeysystemaccess-interface
-    type: interface
-        for: EME; text: MediaKeys; url: mediakeys-interface
-    type: attribute
-        for: EME; text: keySystem; url: dom-mediakeysystemaccess-keysystem
-    type: attribute
-        for: EME; text: initDataTypes; url: dom-mediakeysystemconfiguration-initdatatypes
-    type: attribute
-        for: EME; text: robustness; url: dom-mediakeysystemmediacapability-robustness
-    type: attribute
-        for: EME; text: distinctiveIdentifier; url: dom-mediakeysystemconfiguration-distinctiveidentifier
-    type: attribute
-        for: EME; text: persistentState; url: dom-mediakeysystemconfiguration-persistentstate
-    type: attribute
-        for: EME; text: sessionTypes; url: dom-mediakeysystemconfiguration-sessiontypes
-    type: interface
-        for: EME; text: MediaKeySystemConfiguration; url: mediakeysystemconfiguration-dictionary
-    type: interface
-        for: EME; text: requestMediaKeySystemAccess(); url: navigator-extension:-requestmediakeysystemaccess()
-    type: dfn
-        for: EME; text: Get Supported Configuration; url: get-supported-configuration
-    type: interface
-        for: EME; text: MediaKeySystemMediaCapability; url: mediakeysystemmediacapability-dictionary
-    type: interface
-        for: EME; text: MediaKeysRequirement; url: dom-mediakeysrequirement
-    type: interface
-        for: EME; text: audioCapabilities; url: dom-mediakeysystemconfiguration-audiocapabilities
-    type: interface
-        for: EME; text: contentType; url: dom-mediakeysystemmediacapability-contenttype
+        text: MediaKeySystemAccess; url: mediakeysystemaccess-interface
+        text: MediaKeys; url: mediakeys-interface
+        text: MediaKeySystemConfiguration; url: mediakeysystemconfiguration-dictionary
+        text: requestMediaKeySystemAccess(); url: navigator-extension:-requestmediakeysystemaccess()
+        text: MediaKeySystemMediaCapability; url: mediakeysystemmediacapability-dictionary
+        text: MediaKeysRequirement; url: dom-mediakeysrequirement
+        text: audioCapabilities; url: dom-mediakeysystemconfiguration-audiocapabilities
+        text: contentType; url: dom-mediakeysystemmediacapability-contenttype
 
 spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     type: dfn; text: Is the environment settings object settings a secure context?; url: #settings-object
-
-spec: ecma262; urlPrefix: https://tc39.github.io/ecma262/#
-    type: dfn; text: ECMAScript global environment; url: global-environment
 
 spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     type: interface; text: WorkerGlobalScope; url: the-workerglobalscope-common-interface
@@ -501,7 +487,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        MediaKeySystemAccess keySystemAccess;
+        MediaKeySystemAccess? keySystemAccess;
       };
     </pre>
 
@@ -567,7 +553,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
               <var>configuration</var>.
             </li>
             <li>
-              If <a for=MediaCapabilitiesInfo>configuration</a> is of type
+              If <var>configuration</var> is of type
               {{MediaDecodingConfiguration}}, run the following substeps:
               <ol>
                 <li>
@@ -601,14 +587,13 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                 </li>
                 <li>
                   If the user agent is able to decode the media represented by
-                  <a for=MediaCapabilitiesInfo>configuration</a> (FIXME - here and above, agree on style) at a pace that
-                  allows a smooth playback, set <a
-                  for=MediaCapabilitiesInfo>smooth</a> to <code>true</code>.
-                  Otherwise set it to <code>false</code>.
+                  <var>configuration</var> at a pace that allows a smooth
+                  playback, set <a for=MediaCapabilitiesInfo>smooth</a> to 
+                  <code>true</code>. Otherwise set it to <code>false</code>.
                 </li>
                 <li>
                   If the user agent is able to decode the media represented by
-                  <a for=MediaCapabilitiesInfo>configuration</a> in a power efficient
+                  <var>configuration</var> in a power efficient
                   manner, set <a for=MediaCapabilitiesInfo>powerEfficient</a> to
                   <code>true</code>. Otherwise set it to <code>false</code>. The
                   user agent SHOULD NOT take into consideration the current power
@@ -619,25 +604,25 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
               </ol>
             </li>
             <li>
-              If <a for=MediaCapabilitiesInfo>configuration</a> is of type
+              If <var>configuration</var> is of type
               {{MediaEncodingConfiguration}}, run the following substeps:
               <ol>
                 <li>
                   If the user agent is able to encode the media represented by
-                  <a for=MediaCapabilitiesInfo>configuration</a>, set
+                  <var>configuration</var>, set
                   <a for=MediaCapabilitiesInfo>supported</a> to <code>true</code>.
                   Otherwise set it to <code>false</code>.
                 </li>
                 <li>
                   If the user agent is able to encode the media represented by
-                  <a for=MediaCapabilitiesInfo>configuration</a> at a pace that
+                  <var>configuration</var> at a pace that
                   allows encoding frames at the same pace as they are sent to the
                   encoder, set <a for=MediaCapabilitiesInfo>smooth</a> to
                   <code>true</code>. Otherwise set it to <code>false</code>.
                 </li>
                 <li>
                   If the user agent is able to encode the media represented by
-                  <a for=MediaCapabilitiesInfo>configuration</a> in a power
+                  <var>configuration</var> in a power
                   efficient manner, set <a
                   for=MediaCapabilitiesInfo>powerEfficient</a> to <code>true</code>.
                   Otherwise set it to <code>false</code>. The user agent SHOULD NOT
@@ -671,12 +656,9 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
               <a for='EME'>Key Systems</a> supported by the user agent, return
               <code>null</code>. String comparison is case-sensitive.
             </li>
-
             <li>
-              Let <var>document</var> be the calling context's <a>Document</a>.
-            </li>
-            <li>
-              Let <var>origin</var> be the <a>origin</a> of <var>document</var>.
+              Let <var>origin</var> be the <a>origin</a> of the calling 
+              context's <a>Document</a>.
             </li>
             <li>
               Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>
@@ -734,37 +716,37 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                   </li>
                 </ol>
               </li>
-              <li>
-                Let <var>supported configuration</var> be the result of
-                executing the <a for='EME'>Get Supported Configuration</a>
-                algorithm on <var>implementation</var>,
-                <var>emeConfiguration</var>, and <var>origin</var>.
-              </li>
-              <li>
-                If <var>supported configuration</var> is
-                <code>NotSupported</code>, return <code>null</code> and abort
-                these steps.
-              </li>
-              <li>
-                Let <var>access</var> be a new {{EME/MediaKeySystemAccess}}
-                object, and initialize it as follows:
-                <ol>
-                  <li>
-                    Set the {{EME/keySystem}} attribute to
-                    <code>emeConfiguration.keySystem</code>.
-                  </li>
-                  <li>
-                    Let the <var>configuration</var> value be
-                    <var>supported configuration</var>.
-                  </li>
-                  <li>
-                    Let the <var ignore=''>cdm implementation</var> value be
-                    <var>implementation</var>.
-                  </li>
-                </ol>
-              </li>
-              <li>return <var>access</var></li>
             </ol>
+            <li>
+              Let <var>supported configuration</var> be the result of
+              executing the <a for='EME'>Get Supported Configuration</a>
+              algorithm on <var>implementation</var>,
+              <var>emeConfiguration</var>, and <var>origin</var>.
+            </li>
+            <li>
+              If <var>supported configuration</var> is
+              <code>NotSupported</code>, return <code>null</code> and abort
+              these steps.
+            </li>
+            <li>
+              Let <var>access</var> be a new {{EME/MediaKeySystemAccess}}
+              object, and initialize it as follows:
+              <ol>
+                <li>
+                  Set the {{EME/keySystem}} attribute to
+                  <code>emeConfiguration.keySystem</code>.
+                </li>
+                <li>
+                  Let the <var>configuration</var> value be
+                  <var>supported configuration</var>.
+                </li>
+                <li>
+                  Let the <var ignore=''>cdm implementation</var> value be
+                  <var>implementation</var>.
+                </li>
+              </ol>
+            </li>
+            <li>Return <var>access</var></li>
           </ol>
         </p>
       </section>
@@ -822,19 +804,14 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           <a>present</a>, run the following substeps:
           <ol>
             <li>
-              If the <a>ECMAScript global environment</a> is of type
-              {{WorkerGlobalScope}}, return a Promise rejected with a
-              <code>TypeError</code>.
-            </li>
-            <li>Let <var>document</var> be the calling context's <a>Document</a>.</li>
-            <li>Let <var>origin</var> be the <a>origin</a> of <var>document</var>.</li>
-            <li>
-              Let <var>context</var> be the result of running
-              <a for>Is the environment settings object settings a secure context?</a>
-              [[!secure-contexts]] with <var>origin</var>.
+              If the <a>global object</a> is of type {{WorkerGlobalScope}},
+              return a Promise rejected with a <code>TypeError</code>.
             </li>
             <li>
-              If <var>context</var> is not "Secure", return a Promise rejected
+              If the result of running <a>Is the
+              environment settings object settings a secure context?</a> 
+              [[!secure-contexts]] with the <a>global object's</a> <a>relevant 
+              settings object</a> is not "Secure", return a Promise rejected
               with a <code>TypeError</code>.
             </li>
             <li>
