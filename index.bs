@@ -188,13 +188,48 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         capabilities by a {{MediaEncodingConfiguration}} dictionary.
       </p>
       <p>
-        For a {{MediaConfiguration}} to be a <dfn>valid MediaConfiguration
-        </dfn>, <code>audio</code> or <code>video</code> MUST be <a>present</a>.
+        For a {{MediaConfiguration}} to be a <dfn>valid 
+        MediaConfiguration</dfn>, all of the following conditions MUST be true:
+        <ol>
+          <li>
+            <code>audio</code> and/or <code>video</code> MUST be <a>present</a>.
+          </li>
+          <li>
+            <code>audio</code> MUST be a <a>valid audio configuration</a> if 
+            <a>present</a>.
+          </li>
+          <li>
+            <code>video</code> MUST be a <a>valid video configuration</a> if 
+            <a>present</a>.
+          </li>
+        </ol>
       </p>
       <p>
-        For a {{MediaDecodingConfiguration}} to describe <a>encrypted media</a>
-        [[!ENCRYPTED-MEDIA]], a {{keySystemConfiguration}} MUST be
-        <a>present</a>.
+        For a {{MediaDecodingConfiguration}} to be a <dfn>valid 
+        MediaDecodingConfiguration</dfn>, all of the following conditions MUST
+        be true:
+        <ol>
+          <li>
+            It MUST be a <a>valid MediaConfiguration</a>.
+          </li>
+          <li>
+            If <code>keySystemConfiguration</code> is <a>present</a>:
+            <ol>
+              <li>
+                If <code>keySystemConfiguration.audioRubstness</code> is 
+                <a>present</a>, <code>audio</code> MUST also be <a>present</a>.
+              </li>
+              <li>
+                If <code>keySystemConfiguration.videoRubstness</code> is 
+                <a>present</a>, <code>video</code> MUST also be <a>present</a>.
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </p>
+      <p>
+        For a {{MediaDecodingConfiguration}} to describe [[!ENCRYPTED-MEDIA]], a
+        {{keySystemConfiguration}} MUST be <a>present</a>.
       </p>
     </section>
 
@@ -487,7 +522,13 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        MediaKeySystemAccess? keySystemAccess;
+        
+      };
+    </pre>
+
+    <pre class='idl'>
+      dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
+        required MediaKeySystemAccess keySystemAccess;
       };
     </pre>
 
@@ -515,13 +556,9 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     </p>
 
     <p>
-      A {{MediaCapabilitiesInfo}} has associated <dfn
-      for='MediaCapabilitiesInfo'>keySystemAccess</dfn> which is a
-      {{MediaKeySystemAccess}}. This field is only assigned when
-      {{decodingInfo()}} is called with a {{MediaDecodingConfiguration}} that
-      has {{keySystemConfiguration}} <a>present</a>. Its value will be
-      <code>null</code> if the configuration is not
-      <a for='MediaCapabilitiesInfo'>supported</a>.
+      A {{MediaCapabilitiesDecodingInfo}} has associated <dfn
+      for='MediaCapabilitiesDecodingInfo'>keySystemAccess</dfn> which is a
+      {{EME/MediaKeySystemAccess}} or <code>null</code> as appropriate.
     </p>
 
     <p class='note'>
@@ -539,7 +576,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           <dfn>Create a MediaCapabilitiesInfo</dfn>
         </h4>
         <p>
-          Given a {{MediaConfiguration}} <var>configuration</var>, this
+          Given a {{MediaEncodingConfiguration}} <var>configuration</var>, this
           algorithm returns a {{MediaCapabilitiesInfo}}. The following steps are
           run:
           <ol>
@@ -553,88 +590,96 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
               <var>configuration</var>.
             </li>
             <li>
-              If <var>configuration</var> is of type
-              {{MediaDecodingConfiguration}}, run the following substeps:
+              If the user agent is able to encode the media represented by
+              <var>configuration</var>, set
+              <a for=MediaCapabilitiesInfo>supported</a> to 
+              <code>true</code>. Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to encode the media represented by
+              <var>configuration</var> at a pace that
+              allows encoding frames at the same pace as they are sent to 
+              the encoder, set <a for=MediaCapabilitiesInfo>smooth</a> to
+              <code>true</code>. Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to encode the media represented by
+              <var>configuration</var> in a power
+              efficient manner, set <a
+              for=MediaCapabilitiesInfo>powerEfficient</a> to 
+              <code>true</code>. Otherwise set it to <code>false</code>. 
+              The user agent SHOULD NOT take into consideration the current 
+              power source in order to determine the encoding power 
+              efficiency unless the device's power source has side effects 
+              such as enabling different encoding modules.
+            </li>
+            <li>
+              Return <var>info</var>.
+            </li>
+          </ol>
+        </p>
+      </section>
+
+      <section>
+        <h4 id='create-media-capabilities-decoding-info'>
+          <dfn>Create a MediaCapabilitiesDecodingInfo</dfn>
+        </h4>
+        <p>
+          Given a {{MediaDecodingConfiguration}} <var>configuration</var>, this
+          algorithm returns a {{MediaCapabilitiesDecodingInfo}}. The following 
+          steps are run:
+          <ol>
+            <li>
+              If <code>configuration.keySystemConfiguration</code> is
+              <a>present</a>:
               <ol>
                 <li>
-                  If <code>configuration.keySystemConfiguration</code> is
-                  <a>present</a>:
-                  <ol>
-                    <li>
-                      Set <a for=MediaCapabilitiesInfo>keySystemAccess</a> to
-                      the result of running the <a>Check Encrypted Decoding Support</a>
-                      algorithm with <var>configuration</var>.
-                    </li>
-                    <li>
-                      If <a for=MediaCapabilitiesInfo>keySystemAccess</a> is not
-                      <code>null</code> set
-                      <a for=MediaCapabilitiesInfo>supported</a> to
-                      <code>true</code>. Otherwise set it to <code>false</code>.
-                    </li>
-                  </ol>
+                  Set <a for=MediaCapabilitiesDecodingInfo>keySystemAccess</a>
+                  to the result of running the <a>Check Encrypted Decoding 
+                  Support</a> algorithm with <var>configuration</var>.
                 </li>
                 <li>
-                  Otherwise, run the following steps:
-                  <ol>
-                    <li>
-                      If the user agent is able to decode the media represented
-                      by <var>configuration</var>, set
-                      <a for=MediaCapabilitiesInfo>supported</a> to
-                      <code>true</code>.
-                    </li>
-                    <li>Otherwise, set it to <code>false</code>.</li>
-                  </ol>
-                </li>
-                <li>
-                  If the user agent is able to decode the media represented by
-                  <var>configuration</var> at a pace that allows a smooth
-                  playback, set <a for=MediaCapabilitiesInfo>smooth</a> to 
+                  If <a for=MediaCapabilitiesDecodingInfo>keySystemAccess</a>
+                  is not <code>null</code> set 
+                  <a for=MediaCapabilitiesInfo>supported</a> to 
                   <code>true</code>. Otherwise set it to <code>false</code>.
-                </li>
-                <li>
-                  If the user agent is able to decode the media represented by
-                  <var>configuration</var> in a power efficient
-                  manner, set <a for=MediaCapabilitiesInfo>powerEfficient</a> to
-                  <code>true</code>. Otherwise set it to <code>false</code>. The
-                  user agent SHOULD NOT take into consideration the current power
-                  source in order to determine the decoding power efficiency unless
-                  the device's power source has side effects such as enabling
-                  different decoding modules.
                 </li>
               </ol>
             </li>
             <li>
-              If <var>configuration</var> is of type
-              {{MediaEncodingConfiguration}}, run the following substeps:
+              Otherwise, run the following steps:
               <ol>
                 <li>
-                  If the user agent is able to encode the media represented by
-                  <var>configuration</var>, set
-                  <a for=MediaCapabilitiesInfo>supported</a> to <code>true</code>.
-                  Otherwise set it to <code>false</code>.
+                  Set <a for=MediaCapabilitiesDecodingInfo>keySystemAccess</a>
+                  to <code>null</code>.
                 </li>
                 <li>
-                  If the user agent is able to encode the media represented by
-                  <var>configuration</var> at a pace that
-                  allows encoding frames at the same pace as they are sent to the
-                  encoder, set <a for=MediaCapabilitiesInfo>smooth</a> to
-                  <code>true</code>. Otherwise set it to <code>false</code>.
+                  If the user agent is able to decode the media represented
+                  by <var>configuration</var>, set
+                  <a for=MediaCapabilitiesInfo>supported</a> to
+                  <code>true</code>.
                 </li>
-                <li>
-                  If the user agent is able to encode the media represented by
-                  <var>configuration</var> in a power
-                  efficient manner, set <a
-                  for=MediaCapabilitiesInfo>powerEfficient</a> to <code>true</code>.
-                  Otherwise set it to <code>false</code>. The user agent SHOULD NOT
-                  take into consideration the current power source in order to
-                  determine the encoding power efficiency unless the device's power
-                  source has side effects such as enabling different encoding
-                  modules.
-                </li>
+                <li>Otherwise, set it to <code>false</code>.</li>
               </ol>
-              <li>
-                Return <var>info</var>.
-              </li>
+            </li>
+            <li>
+              If the user agent is able to decode the media represented by
+              <var>configuration</var> at a pace that allows a smooth
+              playback, set <a for=MediaCapabilitiesInfo>smooth</a> to 
+              <code>true</code>. Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If the user agent is able to decode the media represented by
+              <var>configuration</var> in a power efficient
+              manner, set <a for=MediaCapabilitiesInfo>powerEfficient</a> to
+              <code>true</code>. Otherwise set it to <code>false</code>. The
+              user agent SHOULD NOT take into consideration the current 
+              power source in order to determine the decoding power 
+              efficiency unless the device's power source has side effects 
+              such as enabling different decoding modules.
+            </li>
+            <li>
+              Return <var>info</var>.
             </li>
           </ol>
         </p>
@@ -775,32 +820,21 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     <pre class='idl'>
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
-        [NewObject] Promise&lt;MediaCapabilitiesInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
+        [NewObject] Promise&lt;MediaCapabilitiesDecodingInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
         [NewObject] Promise&lt;MediaCapabilitiesInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
       };
     </pre>
 
     <p>
-      The {{decodingInfo()}} method and the {{encodingInfo()}} method MUST run
-      the following steps:
+      The {{decodingInfo()}} method method MUST run the following steps:
       <ol>
         <li>
-          If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
-          return a Promise rejected with a <code>TypeError</code>.
-        </li>
-        <li>
-          If <code>configuration.video</code> is <a>present</a> and is not a
-          <a>valid video configuration</a>, return a Promise rejected with a
+          If <var>configuration</var> is not a <a>valid
+          MediaDecodingConfiguration</a>, return a Promise rejected with a 
           <code>TypeError</code>.
         </li>
         <li>
-          If <code>configuration.audio</code> is <a>present</a> and is not a
-          <a>valid audio configuration</a>, return a Promise rejected with a
-          <code>TypeError</code>.
-        </li>
-        <li>
-          If <var>configuration</var> is of type {{MediaDecodingConfiguration}}
-          and if <code>configuration.keySystemConfiguration</code> is
+          If <code>configuration.keySystemConfiguration</code> is 
           <a>present</a>, run the following substeps:
           <ol>
             <li>
@@ -808,25 +842,40 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
               return a Promise rejected with a <code>TypeError</code>.
             </li>
             <li>
-              If the result of running <a>Is the
-              environment settings object settings a secure context?</a> 
-              [[!secure-contexts]] with the <a>global object's</a> <a>relevant 
-              settings object</a> is not "Secure", return a Promise rejected
-              with a <code>TypeError</code>.
-            </li>
-            <li>
-              If <code>keySystemConfiguration.audioRobustness</code> is
-              <a>present</a> and <code>configuration.audio</code> is not
-              <a>present</a>, return a Promise rejected with a
-              <code>TypeError</code>.
-            </li>
-            <li>
-              If <code>keySystemConfiguration.videoRobustness</code> is
-              <a>present</a> and <code>configuration.video</code> is not
-              <a>present</a>, return a Promise rejected with a
-              <code>TypeError</code>.
+              If the result of running <a>Is the environment settings object 
+              settings a secure context?</a> [[!secure-contexts]] with the 
+              <a>global object's</a> <a>relevant settings object</a> is not
+              "Secure", return a Promise rejected with a <code>TypeError</code>.
             </li>
           </ol>
+        </li>
+        <li>
+          Let <var>p</var> be a new promise.
+        </li>
+        <li>
+          <a>In parallel</a>, run the <a>Create a 
+          MediaCapabilitiesDecodingInfo</a> algorithm with 
+          <var>configuration</var> and resolve <var>p</var> with its result.
+        </li>
+        <li>
+          Return <var>p</var>.
+        </li>
+      </ol>
+    </p>
+
+    <p class='note'>
+      Note, calling {{decodingInfo()}} with a {{keySystemConfiguration}} present
+      may have user-visible effects, including requests for user consent. Such
+      calls should only be made when the author intends to create and use a
+      {{EME/MediaKeys}} object with the provided configuration.
+    </p>
+
+    <p>
+      The {{encodingInfo()}} method MUST run the following steps:
+      <ol>
+        <li>
+          If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
+          return a Promise rejected with a <code>TypeError</code>.
         </li>
         <li>
           Let <var>p</var> be a new promise.
@@ -842,12 +891,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </ol>
     </p>
 
-    <p class='note'>
-      Note, calling {{decodingInfo()}} with a {{keySystemConfiguration}} present
-      may have user-visible effects, including requests for user consent. Such
-      calls should only be made when the author intends to create and use a
-      {{EME/MediaKeys}} object with the provided configuration.
-    </p>
   </section>
 </section>
 
@@ -1027,8 +1070,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
         capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
-        always yes or always no as the latter approach could considerably degrade
-        the user's experience.
+        always yes or always no as the latter approach could considerably 
+        degrade the user's experience.
       </p>
     </section>
 
