@@ -58,6 +58,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
 spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     type: dfn; text: present; url:dfn-present
+    type: dfn; text: SecurityError; url:securityerror
+    type: interface; text: DOMException; url:#idl-DOMException
 
 spec: dom; urlPrefix: https://www.w3.org/TR/dom/#
     type: dfn; text: Document; url:concept-document
@@ -831,7 +833,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         <li>
           If <var>configuration</var> is not a <a>valid
           MediaDecodingConfiguration</a>, return a Promise rejected with a 
-          <code>TypeError</code>.
+          newly created {{TypeError}}.
         </li>
         <li>
           If <code>configuration.keySystemConfiguration</code> is 
@@ -839,13 +841,14 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           <ol>
             <li>
               If the <a>global object</a> is of type {{WorkerGlobalScope}},
-              return a Promise rejected with a <code>TypeError</code>.
+              return a Promise rejected with a newly created {{TypeError}}.
             </li>
             <li>
               If the result of running <a>Is the environment settings object 
               settings a secure context?</a> [[!secure-contexts]] with the 
               <a>global object's</a> <a>relevant settings object</a> is not
-              "Secure", return a Promise rejected with a <code>TypeError</code>.
+              "Secure", return a Promise rejected with a newly created 
+              {{DOMException}} whose name is <a>SecurityError</a>.
             </li>
           </ol>
         </li>
@@ -875,7 +878,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       <ol>
         <li>
           If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
-          return a Promise rejected with a <code>TypeError</code>.
+          return a Promise rejected with a newly created {{TypeError}}.
         </li>
         <li>
           Let <var>p</var> be a new promise.
