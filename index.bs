@@ -464,8 +464,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           dictionary MediaCapabilitiesKeySystemConfiguration {
             required DOMString keySystem;
             DOMString initDataType = "";
-            DOMString audioRobustness = "";
-            DOMString videoRobustness = "";
+            DOMString audioRobustness;
+            DOMString videoRobustness;
             MediaKeysRequirement distinctiveIdentifier = "optional";
             MediaKeysRequirement persistentState = "optional";
             sequence<DOMString> sessionTypes;
@@ -527,13 +527,12 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        
       };
     </pre>
 
     <pre class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
-        required MediaKeySystemAccess keySystemAccess;
+        MediaKeySystemAccess? keySystemAccess = null;
       };
     </pre>
 
@@ -746,8 +745,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                     <code>config.audio.contentType</code>.
                   </li>
                   <li>
-                    Set the {{EME/robustness}} attribute to
+                    Let <var>robustness</var> be a <code>DOMString</a>
+                    initialized to the empty string (<code>""</code>).
+                  </li>
+                  <li>
+                    If
+                    <code>config.keySystemConfiguration.audioRobustness</code>
+                    is present, set <var>robustness</var> to
                     <code>config.keySystemConfiguration.audioRobustness</code>.
+                  </li>
+                  <li>
+                    Set the {{EME/robustness}} attribute to <var>robustness</var>.
                   </li>
                 </ol>
               </li>
@@ -761,9 +769,19 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                     <code>config.video.contentType</code>.
                   </li>
                   <li>
-                    Set the {{EME/robustness}} attribute to
+                    Let <var>robustness</var> be a <code>DOMString</a>
+                    initialized to the empty string (<code>""</code>).
+                  </li>
+                  <li>
+                    If
+                    <code>config.keySystemConfiguration.videoRobustness</code>
+                    is present, set <var>robustness</var> to
                     <code>config.keySystemConfiguration.videoRobustness</code>.
                   </li>
+                  <li>
+                    Set the {{EME/robustness}} attribute to <var>robustness</var>.
+                  </li>
+
                 </ol>
               </li>
             </ol>
