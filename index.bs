@@ -59,7 +59,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     type: dfn; text: present; url:dfn-present
     type: dfn; text: SecurityError; url:securityerror
-    type: interface; text: DOMException; url:#idl-DOMException
+    type: interface; text: DOMException; url:idl-DOMException
+    type: dfn; text: InvalidStateError; url:invalidstateerror
 
 spec: dom; urlPrefix: https://www.w3.org/TR/dom/#
     type: dfn; text: Document; url:concept-document
@@ -841,7 +842,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           <ol>
             <li>
               If the <a>global object</a> is of type {{WorkerGlobalScope}},
-              return a Promise rejected with a newly created {{TypeError}}.
+              return a Promise rejected with a newly created {{DOMException}}
+              whose name is <a>InvalidStateError</a>.
             </li>
             <li>
               If the result of running <a>Is the environment settings object 
