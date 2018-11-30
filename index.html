@@ -1212,7 +1212,7 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 0da7328bb90ef81993146377e4e0fed236969c4c" name="generator">
+  <meta content="Bikeshed version f9fa604b61e5fc96edf5cdebd2c04e0e69b33a7b" name="generator">
   <link href="https://wicg.github.io/media-capabilities/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1460,7 +1460,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-11-22">22 November 2018</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2018-11-30">30 November 2018</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1962,10 +1962,10 @@ based on the device’s display.</p>
          If <code>configuration.keySystemConfiguration</code> is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#dfn-present" id="ref-for-dfn-present①③">present</a>, run the following substeps: 
         <ol>
          <li> If the <a data-link-type="dfn" href="https://www.w3.org/TR/html52/webappapis.html#global-object" id="ref-for-global-object">global object</a> is of type <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/workers/#the-workerglobalscope-common-interface" id="ref-for-the-workerglobalscope-common-interface">WorkerGlobalScope</a></code>,
-              return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror" id="ref-for-sec-native-error-types-used-in-this-standard-typeerror①">TypeError</a></code>. 
+              return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code> whose name is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a>. 
          <li> If the result of running <a data-link-type="dfn" href="https://www.w3.org/TR/secure-contexts/#settings-object" id="ref-for-settings-object">Is the environment settings object 
               settings a secure context?</a> <a data-link-type="biblio" href="#biblio-secure-contexts">[secure-contexts]</a> with the <a data-link-type="dfn" href="https://www.w3.org/TR/html52/webappapis.html#global-object" id="ref-for-global-object①">global object’s</a> <a data-link-type="dfn" href="https://www.w3.org/TR/html52/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a> is not
-              "Secure", return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/##idl-DOMException" id="ref-for-#idl-DOMException">DOMException</a></code> whose name is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a>. 
+              "Secure", return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://heycam.github.io/webidl/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> whose name is <a data-link-type="dfn" href="https://heycam.github.io/webidl/#securityerror" id="ref-for-securityerror">SecurityError</a>. 
         </ol>
        <li> Let <var>p</var> be a new promise. 
        <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">In parallel</a>, run the <a data-link-type="dfn" href="#create-a-mediacapabilitiesdecodinginfo" id="ref-for-create-a-mediacapabilitiesdecodinginfo">Create a 
@@ -1979,7 +1979,7 @@ based on the device’s display.</p>
       <p> The <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo">encodingInfo()</a></code> method MUST run the following steps: </p>
       <ol>
        <li> If <var>configuration</var> is not a <a data-link-type="dfn" href="#valid-mediaconfiguration" id="ref-for-valid-mediaconfiguration①">valid MediaConfiguration</a>,
-          return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror" id="ref-for-sec-native-error-types-used-in-this-standard-typeerror②">TypeError</a></code>. 
+          return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror" id="ref-for-sec-native-error-types-used-in-this-standard-typeerror①">TypeError</a></code>. 
        <li> Let <var>p</var> be a new promise. 
        <li> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">In parallel</a>, run the <a data-link-type="dfn" href="#create-a-mediacapabilitiesinfo" id="ref-for-create-a-mediacapabilitiesinfo">Create a MediaCapabilitiesInfo</a> algorithm with <var>configuration</var> and resolve <var>p</var> with its result. 
        <li> Return <var>p</var>. 
@@ -2414,7 +2414,7 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="term-for-sec-native-error-types-used-in-this-standard-typeerror">
    <a href="https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror">https://tc39.github.io/ecma262/#sec-native-error-types-used-in-this-standard-typeerror</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror">2.5. Media Capabilities Interface</a> <a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror①">(2)</a> <a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror②">(3)</a>
+    <li><a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror">2.5. Media Capabilities Interface</a> <a href="#ref-for-sec-native-error-types-used-in-this-standard-typeerror①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-mediakeysystemaccess-interface">
@@ -2645,10 +2645,10 @@ based on the device’s display.</p>
     <li><a href="#ref-for-settings-object">2.5. Media Capabilities Interface</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-#idl-DOMException">
-   <a href="https://heycam.github.io/webidl/##idl-DOMException">https://heycam.github.io/webidl/##idl-DOMException</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-idl-DOMException">
+   <a href="https://heycam.github.io/webidl/#idl-DOMException">https://heycam.github.io/webidl/#idl-DOMException</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-%23idl-DOMException">2.5. Media Capabilities Interface</a>
+    <li><a href="#ref-for-idl-DOMException">2.5. Media Capabilities Interface</a> <a href="#ref-for-idl-DOMException①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-DOMString">
@@ -2689,6 +2689,12 @@ based on the device’s display.</p>
    <a href="https://heycam.github.io/webidl/#idl-double">https://heycam.github.io/webidl/#idl-double</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-idl-double">3.1. Screen Luminance</a> <a href="#ref-for-idl-double①">(2)</a> <a href="#ref-for-idl-double②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="term-for-invalidstateerror">
+   <a href="https://heycam.github.io/webidl/#invalidstateerror">https://heycam.github.io/webidl/#invalidstateerror</a><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-invalidstateerror">2.5. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-dfn-present">
@@ -2821,13 +2827,14 @@ based on the device’s display.</p>
    <li>
     <a data-link-type="biblio">[WebIDL]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-#idl-DOMException" style="color:initial">DOMException</span>
+     <li><span class="dfn-paneled" id="term-for-idl-DOMException" style="color:initial">DOMException</span>
      <li><span class="dfn-paneled" id="term-for-idl-DOMString" style="color:initial">DOMString</span>
      <li><span class="dfn-paneled" id="term-for-Exposed" style="color:initial">Exposed</span>
      <li><span class="dfn-paneled" id="term-for-NewObject" style="color:initial">NewObject</span>
      <li><span class="dfn-paneled" id="term-for-SameObject" style="color:initial">SameObject</span>
      <li><span class="dfn-paneled" id="term-for-idl-boolean" style="color:initial">boolean</span>
      <li><span class="dfn-paneled" id="term-for-idl-double" style="color:initial">double</span>
+     <li><span class="dfn-paneled" id="term-for-invalidstateerror" style="color:initial">invalidstateerror</span>
      <li><span class="dfn-paneled" id="term-for-dfn-present" style="color:initial">present</span>
      <li><span class="dfn-paneled" id="term-for-securityerror" style="color:initial">securityerror</span>
      <li><span class="dfn-paneled" id="term-for-idl-unsigned-long" style="color:initial">unsigned long</span>
