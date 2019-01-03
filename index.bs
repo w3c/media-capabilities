@@ -219,11 +219,11 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
             If <code>keySystemConfiguration</code> is <a>present</a>:
             <ol>
               <li>
-                If <code>keySystemConfiguration.audioRubstness</code> is 
+                If <code>keySystemConfiguration.audioRobustness</code> is 
                 <a>present</a>, <code>audio</code> MUST also be <a>present</a>.
               </li>
               <li>
-                If <code>keySystemConfiguration.videoRubstness</code> is 
+                If <code>keySystemConfiguration.videoRobustness</code> is 
                 <a>present</a>, <code>video</code> MUST also be <a>present</a>.
               </li>
             </ol>
