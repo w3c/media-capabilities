@@ -393,7 +393,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         when decoded. If false, the video stream cannot produce per-pixel alpha channel
         information when decoded. If undefined, the UA should determine whether the
         video stream encodes alpha channel information based on the indicated
-        {{VideoConfiguration/contentType}}, if possible.
+        {{VideoConfiguration/contentType}}, if possible. Otherwise, the UA should
+        presume that the video stream cannot produce alpha channel information.
       </p>
     </section>
 
