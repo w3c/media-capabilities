@@ -318,6 +318,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           required unsigned long height;
           required unsigned long long bitrate;
           required DOMString framerate;
+          boolean hasAlphaChannel;
         };
       </pre>
 
@@ -383,6 +384,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         represents the framerate of the video track. The framerate is the number
         of frames used in one second (frames per second). It is represented
         either as a double or as a fraction.
+      </p>
+
+      <p>
+        The <dfn for='VideoConfiguration' dict-member>hasAlphaChannel</dfn> member
+        represents whether the video track contains alpha channel information. If
+        true, the encoded video stream can produce per-pixel alpha channel information
+        when decoded. If false, the video stream cannot produce per-pixel alpha channel
+        information when decoded. If undefined, the UA should determine whether the
+        video stream encodes alpha channel information based on the indicated
+        {{VideoConfiguration/contentType}}, if possible. Otherwise, the UA should
+        presume that the video stream cannot produce alpha channel information.
       </p>
     </section>
 
