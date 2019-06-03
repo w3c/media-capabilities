@@ -1212,7 +1212,8 @@ Possible extra rowspan handling
 		}
 	}
 </style>
-  <meta content="Bikeshed version 6dcb46ba8cae3704b42c05bcd8578c92d239786a" name="generator">
+  <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
+  <meta content="Bikeshed version e036b293b2a1c6b3630bc094922f64bed031a220" name="generator">
   <link href="https://wicg.github.io/media-capabilities/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1460,7 +1461,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-01-03">3 January 2019</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2019-06-03">3 June 2019</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1701,6 +1702,7 @@ based on the device’s display.</p>
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height"><c- g>height</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate"><c- g>bitrate</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate"><c- g>framerate</c-></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-videoconfiguration-hasalphachannel" id="ref-for-dom-videoconfiguration-hasalphachannel"><c- g>hasAlphaChannel</c-></a>;
 };
 </pre>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-contenttype"><code>contentType</code></dfn> member
@@ -1739,6 +1741,13 @@ based on the device’s display.</p>
         represents the framerate of the video track. The framerate is the number
         of frames used in one second (frames per second). It is represented
         either as a double or as a fraction. </p>
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-hasalphachannel"><code>hasAlphaChannel</code></dfn> member
+        represents whether the video track contains alpha channel information. If
+        true, the encoded video stream can produce per-pixel alpha channel information
+        when decoded. If false, the video stream cannot produce per-pixel alpha channel
+        information when decoded. If undefined, the UA should determine whether the
+        video stream encodes alpha channel information based on the indicated <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype③">contentType</a></code>, if possible. Otherwise, the UA should
+        presume that the video stream cannot produce alpha channel information. </p>
      </section>
      <section>
       <h4 class="heading settled" data-level="2.1.6" id="audioconfiguration"><span class="secno">2.1.6. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
@@ -1805,9 +1814,9 @@ based on the device’s display.</p>
     <section>
      <h3 class="heading settled" data-level="2.2" id="media-capabilities-info"><span class="secno">2.2. </span><span class="content">Media Capabilities Information</span><a class="self-link" href="#media-capabilities-info"></a></h3>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mediacapabilitiesinfo"><code><c- g>MediaCapabilitiesInfo</c-></code></dfn> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean"><c- b>boolean</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mediacapabilitiesinfo-supported"><code><c- g>supported</c-></code><a class="self-link" href="#dom-mediacapabilitiesinfo-supported"></a></dfn>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mediacapabilitiesinfo-smooth"><code><c- g>smooth</c-></code><a class="self-link" href="#dom-mediacapabilitiesinfo-smooth"></a></dfn>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mediacapabilitiesinfo-powerefficient"><code><c- g>powerEfficient</c-></code></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①"><c- b>boolean</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mediacapabilitiesinfo-supported"><code><c- g>supported</c-></code><a class="self-link" href="#dom-mediacapabilitiesinfo-supported"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②"><c- b>boolean</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mediacapabilitiesinfo-smooth"><code><c- g>smooth</c-></code><a class="self-link" href="#dom-mediacapabilitiesinfo-smooth"></a></dfn>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><c- b>boolean</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export data-type="boolean " id="dom-mediacapabilitiesinfo-powerefficient"><code><c- g>powerEfficient</c-></code></dfn>;
   
 };
 </pre>
@@ -2308,6 +2317,7 @@ based on the device’s display.</p>
    <li><a href="#dom-mediacapabilities-encodinginfo">encodingInfo(configuration)</a><span>, in §2.5</span>
    <li><a href="#dom-mediadecodingtype-file">file</a><span>, in §2.1.2</span>
    <li><a href="#dom-videoconfiguration-framerate">framerate</a><span>, in §2.1.5</span>
+   <li><a href="#dom-videoconfiguration-hasalphachannel">hasAlphaChannel</a><span>, in §2.1.5</span>
    <li><a href="#dom-videoconfiguration-height">height</a><span>, in §2.1.5</span>
    <li><a href="#dom-mediacapabilitieskeysystemconfiguration-initdatatype">initDataType</a><span>, in §2.1.7</span>
    <li><a href="#dom-mediacapabilitieskeysystemconfiguration-keysystem">keySystem</a><span>, in §2.1.7</span>
@@ -2682,7 +2692,8 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="term-for-idl-boolean">
    <a href="https://heycam.github.io/webidl/#idl-boolean">https://heycam.github.io/webidl/#idl-boolean</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-idl-boolean">2.2. Media Capabilities Information</a> <a href="#ref-for-idl-boolean①">(2)</a> <a href="#ref-for-idl-boolean②">(3)</a>
+    <li><a href="#ref-for-idl-boolean">2.1.5. VideoConfiguration</a>
+    <li><a href="#ref-for-idl-boolean①">2.2. Media Capabilities Information</a> <a href="#ref-for-idl-boolean②">(2)</a> <a href="#ref-for-idl-boolean③">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-idl-double">
@@ -2877,7 +2888,7 @@ based on the device’s display.</p>
    <dt id="biblio-secure-contexts">[SECURE-CONTEXTS]
    <dd>Mike West. <a href="https://www.w3.org/TR/secure-contexts/">Secure Contexts</a>. 15 September 2016. CR. URL: <a href="https://www.w3.org/TR/secure-contexts/">https://www.w3.org/TR/secure-contexts/</a>
    <dt id="biblio-webidl">[WebIDL]
-   <dd>Cameron McCormack; Boris Zbarsky; Tobie Langel. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
+   <dd>Boris Zbarsky. <a href="https://heycam.github.io/webidl/">Web IDL</a>. 15 December 2016. ED. URL: <a href="https://heycam.github.io/webidl/">https://heycam.github.io/webidl/</a>
    <dt id="biblio-workers">[WORKERS]
    <dd>Ian Hickson. <a href="https://www.w3.org/TR/workers/">Web Workers</a>. 24 September 2015. WD. URL: <a href="https://www.w3.org/TR/workers/">https://www.w3.org/TR/workers/</a>
   </dl>
@@ -2890,7 +2901,7 @@ based on the device’s display.</p>
    <dt id="biblio-mediastream-recording">[MEDIASTREAM-RECORDING]
    <dd>Miguel Casas-sanchez; James Barnett; Travis Leithead. <a href="https://www.w3.org/TR/mediastream-recording/">MediaStream Recording</a>. 21 June 2017. WD. URL: <a href="https://www.w3.org/TR/mediastream-recording/">https://www.w3.org/TR/mediastream-recording/</a>
    <dt id="biblio-rfc7231">[RFC7231]
-   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://tools.ietf.org/html/rfc7231">Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>. June 2014. Proposed Standard. URL: <a href="https://tools.ietf.org/html/rfc7231">https://tools.ietf.org/html/rfc7231</a>
+   <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html">Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
    <dt id="biblio-srgb">[sRGB]
    <dd><a href="https://webstore.iec.ch/publication/6169">Multimedia systems and equipment - Colour measurement and management - Part 2-1: Colour management - Default RGB colour space - sRGB</a>. URL: <a href="https://webstore.iec.ch/publication/6169">https://webstore.iec.ch/publication/6169</a>
   </dl>
@@ -2920,11 +2931,12 @@ based on the device’s display.</p>
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-videoconfiguration"><code><c- g>VideoConfiguration</c-></code></a> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑨"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype③"><c- g>contentType</c-></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString⑨"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④"><c- g>contentType</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long③"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width①"><c- g>width</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long" id="ref-for-idl-unsigned-long①①"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height①"><c- g>height</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long②"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long long " href="#dom-videoconfiguration-bitrate" id="ref-for-dom-videoconfiguration-bitrate①"><c- g>bitrate</c-></a>;
   <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①①"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate③"><c- g>framerate</c-></a>;
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean④"><c- b>boolean</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="boolean " href="#dom-videoconfiguration-hasalphachannel" id="ref-for-dom-videoconfiguration-hasalphachannel①"><c- g>hasAlphaChannel</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-audioconfiguration"><code><c- g>AudioConfiguration</c-></code></a> {
@@ -2946,9 +2958,9 @@ based on the device’s display.</p>
 
 
 <c- b>dictionary</c-> <a href="#dictdef-mediacapabilitiesinfo"><code><c- g>MediaCapabilitiesInfo</c-></code></a> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③"><c- b>boolean</c-></a> <a data-type="boolean " href="#dom-mediacapabilitiesinfo-supported"><code><c- g>supported</c-></code></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a> <a data-type="boolean " href="#dom-mediacapabilitiesinfo-smooth"><code><c- g>smooth</c-></code></a>;
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②①"><c- b>boolean</c-></a> <a data-type="boolean " href="#dom-mediacapabilitiesinfo-powerefficient"><code><c- g>powerEfficient</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean①①"><c- b>boolean</c-></a> <a data-type="boolean " href="#dom-mediacapabilitiesinfo-supported"><code><c- g>supported</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean②①"><c- b>boolean</c-></a> <a data-type="boolean " href="#dom-mediacapabilitiesinfo-smooth"><code><c- g>smooth</c-></code></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-boolean" id="ref-for-idl-boolean③①"><c- b>boolean</c-></a> <a data-type="boolean " href="#dom-mediacapabilitiesinfo-powerefficient"><code><c- g>powerEfficient</c-></code></a>;
   
 };
 
@@ -3128,7 +3140,7 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-contenttype">
    <b><a href="#dom-videoconfiguration-contenttype">#dom-videoconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-contenttype">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-videoconfiguration-contenttype①">(2)</a> <a href="#ref-for-dom-videoconfiguration-contenttype②">(3)</a>
+    <li><a href="#ref-for-dom-videoconfiguration-contenttype">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-videoconfiguration-contenttype①">(2)</a> <a href="#ref-for-dom-videoconfiguration-contenttype②">(3)</a> <a href="#ref-for-dom-videoconfiguration-contenttype③">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-video-configuration">
@@ -3159,6 +3171,12 @@ based on the device’s display.</p>
    <b><a href="#dom-videoconfiguration-framerate">#dom-videoconfiguration-framerate</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-videoconfiguration-framerate">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-videoconfiguration-framerate①">(2)</a> <a href="#ref-for-dom-videoconfiguration-framerate②">(3)</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-videoconfiguration-hasalphachannel">
+   <b><a href="#dom-videoconfiguration-hasalphachannel">#dom-videoconfiguration-hasalphachannel</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-videoconfiguration-hasalphachannel">2.1.5. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dictdef-audioconfiguration">
