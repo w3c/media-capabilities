@@ -104,7 +104,7 @@ s://w3c.github.io/encrypted-media/) (aka EME) employ specialized decoding and re
 
 ```Javascript
 partial dictionary MediaDecodingConfiguration {
-    MediaCapabilitiesKeySystemConfiguration keySystemConfig;
+    MediaCapabilitiesKeySystemConfiguration keySystemConfiguration;
 };
 ```
 
