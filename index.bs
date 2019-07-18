@@ -407,6 +407,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           DOMString channels;
           unsigned long long bitrate;
           unsigned long samplerate;
+          SpatialAudioFormat spatialFormat;
         };
       </pre>
 
@@ -461,6 +462,20 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         thousands of samples of audio per second.<br>
         44100 <code>Hz</code> is equivalent to 44.1 <code>kHz</code>.
       </p>
+
+      <p>
+        The <dfn for='AudioConfiguration' dict-member>spatialFormat</dfn> member
+        specifies the spatial audio format used by the audio track. 
+        The user agent SHOULD only indicate support for a specific spatial audio format 
+        if it supports rendering the format without falling back to a non-spatial mix of the stream.
+      </p>
+
+      <pre class='idl'>
+        enum SpatialAudioFormat {
+        "DolbyAtmos",
+        "DTSX",
+        };
+      </pre>
     </section>
   </section>
 
