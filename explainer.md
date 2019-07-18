@@ -103,7 +103,7 @@ Playbacks using [Encrypted Media Extensions](https://w3c.github.io/encrypted-med
 
 ```Javascript
 partial dictionary MediaDecodingConfiguration {
-    MediaCapabilitiesKeySystemConfiguration keySystemConfig;
+    MediaCapabilitiesKeySystemConfiguration keySystemConfiguration;
 };
 ```
 
