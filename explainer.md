@@ -99,8 +99,7 @@ This aim of this API is to help websites provide an optimal initial experience. 
 
 ## Encryption
 
-Playbacks using [Encrypted Media Extensions](
-s://w3c.github.io/encrypted-media/) (aka EME) employ specialized decoding and rendering code paths. This means different codec support and performance compared to clear playbacks. Hence, callers should describe a key system configuration as part of the `MediaDecodingConfiguration` dictionary.
+Playbacks using [Encrypted Media Extensions](https://w3c.github.io/encrypted-media/) (aka EME) employ specialized decoding and rendering code paths. This means different codec support and performance compared to clear playbacks. Hence, callers should describe a key system configuration as part of the `MediaDecodingConfiguration` dictionary.
 
 ```Javascript
 partial dictionary MediaDecodingConfiguration {
@@ -126,7 +125,7 @@ This replicates the inputs provided to EME's [requestMediaKeySystemAccess](https
 
 Specifically, `rMKSA` takes a sequence of `MediaKeySystemConfigurations`, ordered by preference. Each entry may contain a sequence of initDataTypes and sequences of audio and video contentTypes with robustness. In the dictionary above, all of these sequences are reduced to single values. 
 
-This is a fundamental difference between the APIs. MediaCapabilities aims to describe the quality (smoothness and power efficiency) of support for a single pair of audio and video streams without making a decision for the caller. Callers should still order media configurations as they do with `rMKSA`, only now they walk the list themselves, calling MediaCapabiliites once for each option. These calls will return immediately with the promises resolving asynchronously.
+This is a fundamental difference between the APIs. MediaCapabilities aims to describe the quality (smoothness and power efficiency) of support for a single pair of audio and video streams without making a decision for the caller. Callers should still order media configurations as they do with `rMKSA`, only now they walk the list themselves, calling MediaCapabilities once for each option. These calls will return immediately with the promises resolving asynchronously.
 
 When a key system configuration is included in the `MediaDecodingConfiguration`, `mediaCapabilities.decodingInfo()` will return a promise containing the usual three booleans (`supported`, `smooth`, and `powerEfficient`) plus a `MediaKeySystemAccess` object whenever `supported = true`. The caller may use the `MediaKeySystemAccess` as they would in traditional EME to request media keys and setup encrypted media playback. This removes the need to call `rMKSA`.
 
@@ -167,7 +166,7 @@ const capabilitiesPromises = orderedMediaConfigs
 
 ### Permission prompts
 
-EME specifies that a handful of steps in `rMKSA` may request consent from the user. This consent is critical to knowing what encrypted media capabilities are available. Hence, MediaCapabilies will prompt in the same way as `rMKSA`. 
+EME specifies that a handful of steps in `rMKSA` may request consent from the user. This consent is critical to knowing what encrypted media capabilities are available. Hence, MediaCapabilities will prompt in the same way as `rMKSA`. 
 
 The spec will make clear that calling the API with a key system configuration may result in permission prompts. In practice, such prompts are rare. Currently only Chrome and Mozilla show EME prompts, and Mozilla limits theirs to once per browser profile. 
 
