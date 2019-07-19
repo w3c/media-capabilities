@@ -319,6 +319,9 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           required unsigned long long bitrate;
           required DOMString framerate;
           boolean hasAlphaChannel;
+          ColorGamut colorGamut;
+          TransferFunction transferFunction;
+          HdrMetadata hdrMetadata
         };
       </pre>
 
@@ -396,6 +399,137 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         {{VideoConfiguration/contentType}}, if possible. Otherwise, the UA should
         presume that the video stream cannot produce alpha channel information.
       </p>
+    </section>
+
+    <section>
+      <h5 id='render-capabilities'>Render Capabilities</h5>
+
+      <p class='advisement'>
+        This section is still Work In Progress and has no shipping implementation.
+        Please look into it in details before implementing it.
+      </p>
+
+      <p>
+        ColorGamut, TransferFunction, and, optionally, Metadata can be used
+        in specified combinations in order to query support for HDR rendering
+        capabilites of the user agent. Note that display capabilities may also
+        need to be queried using the Screen API.
+      </p>
+
+      <p>
+        Some MIME types contain information about these properties. When these
+        conflict with those explicitly specified in VideoConfiguration, the
+        MIME type properties will be ignored.
+      </p>
+
+      <section>
+        <h6 id='color-gamut'>Color Gamut</h6>
+
+        <pre class='idl'>
+          enum ColorGamut {
+            "srgb",
+            "p3",
+            "rec2020"
+          };
+        </pre>
+
+        <p>
+          The {{ColorGamut}} represents the color gamut supported by the rendering
+          capabilities of a user agent, that means the range of color that the user
+          agent can render independent of what the screen can display.
+        </p>
+
+        <p>
+          The {{ColorGamut}} values are:
+          <ul>
+            <li>
+              <dfn for='ColorGamut' enum-value>srgb</dfn>, representing the
+              [[sRGB]] color gamut.
+            </li>
+            <li>
+              <dfn for='ColorGamut' enum-value>p3</dfn>, representing the DCI
+              P3 Color Space color gamut. This color gamut includes the
+              {{ColorGamut/srgb}} gamut.
+            </li>
+            <li>
+              <dfn for='ColorGamut' enum-value>rec2020</dfn>, representing
+              the ITU-R Recommendation BT.2020 color gamut. This color gamut
+              includes the {{ColorGamut/p3}} gamut.
+            </li>
+        </p>
+      </section>
+
+      <section>
+        <h6 id='transfer-function'>Transfer Function</h6>
+
+        <pre class='idl'>
+          enum TransferFunction {
+            "srgb",
+            "pq",
+            "hlg"
+          };
+        </pre>
+
+        <p>
+          The {{TransferFunction}} represents the electro-optical algorithm
+          supported by the rendering capabilities of a user agent, independent
+          of the display, to map the source colors in the decoded media into the
+          colors to be displayed.
+        </p>
+
+        <p>
+          The {{TransferFunction}} values are:
+          <ul>
+            <li>
+              <dfn for='TransferFunction' enum-value>srgb</dfn>, representing
+              the transfer function defined by [[sRGB]].
+            </li>
+            <li>
+              <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
+              "Perceptual Quantizer" transfer function defined by 
+              [[SMPTE-ST-2084]].
+            </li>
+            <li>
+              <dfn for='TransferFunction' enum-value>hlg</dfn>, representing the
+              "Hybrid Log Gamma" transfer function defined by [BT.2100].
+            </li>
+        </p>
+      </section>
+
+      <section>
+        <h6 id='hdr-metadata'>HdrMetadata</h6>
+
+        <pre class='idl'>
+          enum HdrMetadata {
+            "smpteSt2086",
+            "smpteSt2094-10",
+            "smpteSt2094-40"
+          };
+        </pre>
+
+        <p>
+          The {{HdrMetadata}} represents frame metadata
+          supported by the rendering capabilities of a user agent, independent of
+          the display, the color volume and and luminance of content.
+        </p>
+
+        <p>
+          The {{HdrMetadata}} values are:
+          <ul>
+            <li>
+              <dfn for='HdrMetadata' enum-value>smpteSt2086</dfn>, representing
+              static metadata as defined by [[SMPTE-ST-2086]].
+            </li>
+            <li>
+              <dfn for='HdrMetadata' enum-value>smpteSt2094-10</dfn>, representing the
+              "Perceptual Quantizer" transfer function defined by [[SMPTE-ST-2094]].
+            </li>
+            <li>
+              <dfn for='HdrMetadata' enum-value>smpteSt2094-40</dfn>, representing the
+              "Hybrid Log Gamma" transfer function defined by [[SMPTE-ST-2094]].
+            </li>
+        </p>
+      </section>
     </section>
 
     <section>
