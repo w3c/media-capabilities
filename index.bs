@@ -107,6 +107,27 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         "title": "Media Playback Quality Specification",
         "status": "CG-DRAFT",
         "publisher": "WICG"
+    },
+    "SMPTE-ST-2084": {
+        "href": "https://ieeexplore.ieee.org/document/7291452",
+        "title": "High Dynamic Range Electro-Optical Transfer Function of Mastering Reference Displays",
+        "publisher": "SMPTE",
+        "date": "2014",
+        "id": "SMPTE-ST-2084"
+    },
+    "SMPTE-ST-2086": {
+        "href": "https://ieeexplore.ieee.org/document/7291707",
+        "title": "Mastering Display Color Volume Metadata Supporting High Luminance and Wide Color Gamut Images",
+        "publisher": "SMPTE",
+        "date": "2014",
+        "id": "SMPTE-ST-2086"
+    },
+    "SMPTE-ST-2094": {
+        "href": "https://standards.globalspec.com/std/10031977/SMPTE%20ST%202094-1",
+        "title": "Dynamic Metadata for Color Volume Transform Core Components",
+        "publisher": "SMPTE",
+        "date": "2016",
+        "id": "SMPTE-ST-2094"
     }
 }
 </pre>
@@ -321,7 +342,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           boolean hasAlphaChannel;
           ColorGamut colorGamut;
           TransferFunction transferFunction;
-          HdrMetadata hdrMetadata
+          HdrMetadata hdrMetadata;
         };
       </pre>
 
@@ -1095,7 +1116,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
   </section>
 
   <section>
-    <h3 id='color-gamut'>Screen Color Gamut</h3>
+    <h3 id='screen-color-gamut'>Screen Color Gamut</h3>
 
     <pre class='idl'>
       enum ScreenColorGamut {
@@ -1158,8 +1179,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       {{ScreenColorGamut/srgb}}, or if the user agent does not want to expose
       this information for privacy consideration, it SHOULD return
       {{ScreenColorGamut/srgb}} as a default value. The value returned by
-      {{Screen/colorGamut}} MUST match the value returned by the {{color-gamut}}
-      CSS media query.
+      {{Screen/colorGamut}} MUST match the value returned by the 
+      {{screen-color-gamut}} CSS media query.
     </p>
 
     <p>
