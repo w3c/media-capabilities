@@ -407,7 +407,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           DOMString channels;
           unsigned long long bitrate;
           unsigned long samplerate;
-          SpatialAudioFormat spatialFormat;
+          boolean spatialRendering;
         };
       </pre>
 
@@ -464,18 +464,11 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
-        The <dfn for='AudioConfiguration' dict-member>spatialFormat</dfn> member
-        specifies the spatial audio format used by the audio track. 
-        The user agent SHOULD only indicate support for a specific spatial audio format 
-        if it supports rendering the format without falling back to a non-spatial mix of the stream.
+        The <dfn for='AudioConfiguration' dict-member>spatialRendering</dfn> member
+        specifies whether the audio track has the ability to be rendered spatially.
+        The user agent SHOULD only indicate support for an {{AudioConfiguration}} with {{AudioConfiguration/spatialRendering}}
+        set to <code>true</code> if it supports rendering the track without falling back to a non-spatial mix of the stream.
       </p>
-
-      <pre class='idl'>
-        enum SpatialAudioFormat {
-        "DolbyAtmos",
-        "DTSX",
-        };
-      </pre>
     </section>
   </section>
 
