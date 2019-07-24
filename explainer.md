@@ -2,7 +2,7 @@
 
 This is the explainer for the Media Capabilities API. The document explains the goals and non-goals of the API and in general helps understand the thought process behind the API. The API shape in the document is mostly for information and might not be final.
 
-This document is a bit more dense that some readers might want. A quick one-pager can be found in the [README.md](https://github.com/WICG/media-capabilities/blob/master/README.md) file.
+This document is a bit more dense that some readers might want. A quick one-pager can be found in the [README.md](https://github.com/w3c/media-capabilities/blob/master/README.md) file.
 
 # Objective
 
