@@ -971,7 +971,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
   </section>
 
   <section>
-    <h3 id='screen-color-gamut'>Screen Color Gamut</h3>
+    <h3 id='color-gamut'>Screen Color Gamut</h3>
 
     <pre class='idl'>
       enum ScreenColorGamut {
@@ -1035,7 +1035,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       this information for privacy consideration, it SHOULD return
       {{ScreenColorGamut/srgb}} as a default value. The value returned by
       {{Screen/colorGamut}} MUST match the value returned by the 
-      {{screen-color-gamut}} CSS media query.
+      {{color-gamut}} CSS media query.
     </p>
 
     <p>
