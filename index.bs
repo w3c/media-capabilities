@@ -464,10 +464,14 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
-        The <dfn for='AudioConfiguration' dict-member>spatialRendering</dfn> member
-        specifies whether the audio track has the ability to be rendered spatially.
-        The user agent SHOULD only indicate support for an {{AudioConfiguration}} with {{AudioConfiguration/spatialRendering}}
-        set to <code>true</code> if it supports rendering the track without falling back to a non-spatial mix of the stream.
+        The <dfn for='AudioConfiguration' dict-member>spatialRendering</dfn> 
+        member indicates that the audio SHOULD be renderered spatially. The 
+        details of spatial rendering SHOULD be inferred from the 
+        {{AudioConfiguration/contentType}}. If not <a>present</a>, the UA MUST 
+        presume spatialRendering is not required. When <code>true</code>, the 
+        user agent SHOULD only report this configuration as 
+        <a for=MediaCapabilitiesInfo>supported</a> if it can support spatial 
+        rendering without falling back to a non-spatial mix of the stream.
       </p>
     </section>
   </section>
