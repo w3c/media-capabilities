@@ -84,7 +84,7 @@ their browser information.
 **Does this specification have a "Security Considerations" and
 "Privacy Considerations" section?**
 
-[Yes](https://wicg.github.io/media-capabilities/#security-privacy-considerations).
+[Yes](https://w3c.github.io/media-capabilities/#security-privacy-considerations).
 
 **Does this specification allow downgrading default security characteristics?**
 
