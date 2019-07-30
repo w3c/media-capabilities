@@ -979,6 +979,15 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
   </p>
 
   <section>
+    <p>
+      Display capabilities can differ between graphics and video. These discrepancies
+      are acknowledged by separating certain graphics and video properties into
+      window.screen and window.screen.video, respectively, as video can be a special
+      case of graphics.
+    </p>
+  </section>
+
+  <section>
     <h3 id='screen-luminance'>Screen Luminance</h3>
 
     <pre class='idl'>
@@ -1110,6 +1119,112 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       {{Screen}}.
     </p>
   </section>
+
+  <section>
+    <h3 id='video-display-capabilities'>Video Display Capabilities</h3>
+
+    <section>
+      <h4 id='video-display-configuration'>VideoDisplayConfiguration</h4>
+
+      <pre class='idl'>
+        dictionary VideoDisplayConfiguration {
+          required unsigned long width;
+          required unsigned long height;
+          required boolean hasHdrCapabilities;
+        };
+      </pre>
+
+      <p>
+        The <dfn for='VideoDisplayConfiguration' dict-member>width</dfn> member
+        represents the width of the video in physical pixels, not CSS pixels.
+      </p>
+
+      <p>
+        The <dfn for='VideoDisplayConfiguration' dict-member>height</dfn> member
+        represents the height of the video in physical pixels, not CSS pixels.
+      </p>
+
+      <p>
+        The <dfn for='VideoDisplayConfiguration' dict-member>hasHdrCapabilities</dfn>
+        member represents all HDR-relevant color gamuts ([[sRGB]], p3, rec2020) and
+        transfer function ([[sRGB]], pq, hlg).
+      </p>
+    </section>
+
+    <section>
+      <h4 id='video-display-info'>VideoDisplayInfo</h4>
+
+      <pre class='idl'>
+        dictionary VideoDisplayInfo {
+          required boolean supported;
+        };
+      </pre>
+
+      <p>
+        A {{VideoDisplayInfo}} has associated <dfn
+        for='VideoDisplayInfo'>supported</dfn> fields which is a boolean.
+      </p>
+
+    <section>
+      <h4 id='Video'>Video</h4>
+
+      <pre class='idl'>
+        [Exposed=(Window)]
+        interface Video {
+          [NewObject] Promise&lt;VideoDisplayInfo&gt; displayInfo(VideoDisplayConfiguration configuration);
+        };
+      </pre>
+
+      <p>
+        The {{displayInfo()}} method method MUST run the following steps:
+        <ol>
+          <li>
+            If <var>configuration</var> is not a <a>valid
+            VideoDisplayConfiguration</a>, return a Promise rejected with a 
+            newly created {{TypeError}}.
+          </li>
+          <li>
+            Let <var>p</var> be a new promise.
+          </li>
+          <li>
+            <a>In parallel</a>, run the <a>Create a 
+            VideoDisplayInfo</a> algorithm with <var>configuration</var> and
+            resolve <var>p</var> with its result.
+          </li>
+          <li>
+            Return <var>p</var>.
+          </li>
+        </ol>
+      </p>
+
+      <p class='note'>
+        Note, calling {{displayInfo()}} may have user-visible effects, including
+        requests for user consent.
+      </p>
+    </section>
+  
+    <section>
+      <h3 id='screen-video-extension'>Screen Video extension</h3>
+  
+      <p class='issue'>
+        Part of this section is 🐵 patching of the CSSOM View Module. <a
+        href='https://github.com/WICG/media-capabilities/issues/4'>Issue #4</a>
+        is tracking merging the changes. This partial interface requires the
+        {{Screen}} interface to become an {{EventTarget}}.
+      </p>
+  
+      <pre class='idl'>
+        partial interface Screen {
+          [SameObject] readonly attribute Video video;
+        };
+      </pre>
+  
+      <p>
+        The <dfn for='Screen' attribute>video</dfn> attribute SHOULD return
+        the {{Video}}. Video represents video display capabilities of the screen.
+      </p>
+    </section>
+  </section
 </section>
 
 <section class='non-normative'>
