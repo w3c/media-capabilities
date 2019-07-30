@@ -343,7 +343,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           required unsigned long long bitrate;
           required DOMString framerate;
           boolean hasAlphaChannel;
-          boolean hasHdrMetadata;
+          HdrMetadataType hdrMetadataType;
         };
       </pre>
 
@@ -423,9 +423,37 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
-        The <dfn for='VideoConfiguration' dict-member>hasHdrMetadata</dfn> member
-        represents if the decoder can parse HDR metadata. HDR Metadata includes
-        one or more of "smpteSt2086", "smpteSt2094-10", "smpteSt2094-40".
+        <pre class='idl'>
+          enum HdrMetadataType {
+            "smpteSt2086",
+            "smpteSt2094-10",
+            "smpteSt2094-40"
+          };
+        </pre>
+
+        <p>
+          If specified, the <dfn for='VideoConfiguration' dict-member>hdrMetadataType</dfn> 
+          represents the HDR metadata type the decoder needs to support in order
+          to successfully decode the video track.
+        </p>
+
+        <p>
+          The {{HdrMetadataType}} values are:
+          <ul>
+            <li>
+              <dfn for='HdrMetadataType' enum-value>smpteSt2086</dfn>, representing
+              the static metadata type defined by [[SMPTE-ST-2086]].
+            </li>
+            <li>
+              <dfn for='HdrMetadataType' enum-value>smpteSt2094-10</dfn>, representing
+              the dynamic metadata type defined by [[SMPTE-ST-2094]].
+            </li>
+            <li>
+              <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>, representing
+              the dynamic metadata type defined by [[SMPTE-ST-2094]].
+            </li>
+        </p>
+
       </p>
     </section>
 
