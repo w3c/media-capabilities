@@ -108,6 +108,27 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         "title": "Media Playback Quality Specification",
         "status": "CG-DRAFT",
         "publisher": "WICG"
+    },
+    "SMPTE-ST-2084": {
+        "href": "https://ieeexplore.ieee.org/document/7291452",
+        "title": "High Dynamic Range Electro-Optical Transfer Function of Mastering Reference Displays",
+        "publisher": "SMPTE",
+        "date": "2014",
+        "id": "SMPTE-ST-2084"
+    },
+    "SMPTE-ST-2086": {
+        "href": "https://ieeexplore.ieee.org/document/7291707",
+        "title": "Mastering Display Color Volume Metadata Supporting High Luminance and Wide Color Gamut Images",
+        "publisher": "SMPTE",
+        "date": "2014",
+        "id": "SMPTE-ST-2086"
+    },
+    "SMPTE-ST-2094": {
+        "href": "https://standards.globalspec.com/std/10031977/SMPTE%20ST%202094-1",
+        "title": "Dynamic Metadata for Color Volume Transform Core Components",
+        "publisher": "SMPTE",
+        "date": "2016",
+        "id": "SMPTE-ST-2094"
     }
 }
 </pre>
