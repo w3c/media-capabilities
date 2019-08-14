@@ -7,6 +7,7 @@ Shortname: media-capabilities
 Level: 1
 Group: mediawg
 Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://google.com/
+Editor: Chris Cunningham, w3cid 114832, Google Inc. https://google.com/
 
 Abstract: This specification intends to provide APIs to allow websites to make
 Abstract: an optimal decision when picking media content for the user. The APIs
