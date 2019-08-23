@@ -913,6 +913,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     <h3 id='screen-luminance'>Screen Luminance</h3>
 
     <pre class='idl'>
+      [Exposed=Window]
       interface ScreenLuminance {
         readonly attribute double min;
         readonly attribute double max;
