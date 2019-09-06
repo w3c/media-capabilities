@@ -344,6 +344,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           required DOMString framerate;
           boolean hasAlphaChannel;
           HdrMetadataType hdrMetadataType;
+          ColorGamut colorGamut;
+          TransferFunction transferFunction;
         };
       </pre>
 
@@ -452,9 +454,84 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
               <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>, representing
               the dynamic metadata type defined by [[SMPTE-ST-2094]].
             </li>
+          </ul>
         </p>
-
       </p>
+
+      <p>
+	      <pre class='idl'>
+	        enum ColorGamut {
+	          "srgb",
+	          "p3",
+	          "rec2020"
+	        };
+	      </pre>
+	
+	      <p>
+	        The {{ColorGamut}} represents the color gamut supported by the UA and
+          output device. That is, if the UA receives content with colors in the
+          specified space it can cause the output device to render the appropriate
+          color, or something appropriately close enough. Note: this definition
+          is borrowed from the 'color-gamut' CSS media query definition.
+	      </p>
+	
+	      <p>
+	        The {{ColorGamut}} values are:
+	        <ul>
+	          <li>
+	            <dfn for='ColorGamut' enum-value>srgb</dfn>, representing the
+	            [[sRGB]] color gamut.
+	          </li>
+	          <li>
+	            <dfn for='ColorGamut' enum-value>p3</dfn>, representing the DCI
+	            P3 Color Space color gamut. This color gamut includes the
+	            {{ColorGamut/srgb}} gamut.
+	          </li>
+	          <li>
+	            <dfn for='ColorGamut' enum-value>rec2020</dfn>, representing
+	            the ITU-R Recommendation BT.2020 color gamut. This color gamut
+	            includes the {{ColorGamut/p3}} gamut.
+	          </li>
+          </ul>
+	      </p>
+      </p>
+
+      <p>
+	      <pre class='idl'>
+	        enum TransferFunction {
+	          "srgb",
+	          "pq",
+	          "hlg"
+	        };
+	      </pre>
+
+	      <p>
+	        The {{TransferFunction}} represents the electro-optical algorithm
+	        supported by the rendering capabilities of a user agent, independent
+	        of the display, to map the source colors in the decoded media into the
+	        colors to be displayed.
+	      </p>
+
+	      <p>
+	        The {{TransferFunction}} values are:
+	        <ul>
+	          <li>
+	            <dfn for='TransferFunction' enum-value>srgb</dfn>, representing
+	            the transfer function defined by [[sRGB]].
+	          </li>
+	          <li>
+	            <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
+	            "Perceptual Quantizer" transfer function defined by 
+	            [[SMPTE-ST-2084]].
+	          </li>
+	          <li>
+	            <dfn for='TransferFunction' enum-value>hlg</dfn>, representing the
+	            "Hybrid Log Gamma" transfer function defined by [BT.2100].
+	          </li>
+          </ul>
+	      </p>
+      </p>
+
     </section>
 
     <section>
@@ -1029,7 +1106,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
   </section>
 
   <section>
-    <h3 id='color-gamut'>Screen Color Gamut</h3>
+    <h3 id='screen-color-gamut'>Screen Color Gamut</h3>
 
     <pre class='idl'>
       enum ScreenColorGamut {
@@ -1092,8 +1169,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       {{ScreenColorGamut/srgb}}, or if the user agent does not want to expose
       this information for privacy consideration, it SHOULD return
       {{ScreenColorGamut/srgb}} as a default value. The value returned by
-      {{Screen/colorGamut}} MUST match the value returned by the {{color-gamut}}
-      CSS media query.
+      {{Screen/colorGamut}} MUST match the value returned by the
+      {{screen-color-gamut}} CSS media query.
     </p>
 
     <p>
@@ -1258,11 +1335,29 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
+        HDR detection is more nuanced. Adding colotGamut, transferFunction,
+        and hdrMetadataType has the potential to add significant entropy. However,
+        for UAs whose decoders are implemented in software and therefore whose
+        capabilities are fixed across devices, this feature adds no effective
+        entropy. Similarly, for UAs whose decoders are implemented by the platform,
+        which have fixed decoding capabilities, this feature also adds no effective
+        entropy. 
+      </p>
+
+      <p>
+        Because these features require directly calling asynchronous Web APIs,
+        they are very detectable by the UA, and does not represent risk of 
+        passive fingerprinting.
+      </p>
+
+      <p>
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
         capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
         always yes or always no as the latter approach could considerably 
-        degrade the user's experience.
+        degrade the user's experience. Another mitigation could be to limit these
+        Web APIs to top-level browsing contexts. Yet another is to use a privacy
+        budget that throttles and/or blocks calls to the API above a threshold.
       </p>
     </section>
 
