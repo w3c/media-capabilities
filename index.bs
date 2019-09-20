@@ -435,8 +435,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
 
         <p>
           If specified, the <dfn for='VideoConfiguration' dict-member>hdrMetadataType</dfn> 
-          represents the HDR metadata type the decoder needs to support in order
-          to successfully decode the video track.
+          describes the capability to interpret HDR metadata of the specified type.
         </p>
 
         <p>
@@ -468,11 +467,10 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
 	      </pre>
 	
 	      <p>
-	        The {{ColorGamut}} represents the color gamut supported by the UA and
-          output device. That is, if the UA receives content with colors in the
+	        The {{ColorGamut}} represents the color gamut supported by the UA. 
+          That is, if the UA receives content with colors in the
           specified space it can cause the output device to render the appropriate
-          color, or something appropriately close enough. Note: this definition
-          is borrowed from the {{color-gamut}} CSS media query definition.
+          color, or something appropriately close enough.
 	      </p>
 	
 	      <p>
@@ -1213,18 +1211,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
 
       <p>
         The <dfn for='VideoDisplayConfiguration' dict-member>width</dfn> member
-        represents the width of the video in physical pixels, not CSS pixels.
+        represents the width of the display in physical pixels, not CSS pixels.
       </p>
 
       <p>
         The <dfn for='VideoDisplayConfiguration' dict-member>height</dfn> member
-        represents the height of the video in physical pixels, not CSS pixels.
+        represents the height of the display in physical pixels, not CSS pixels.
       </p>
 
       <p>
         The <dfn for='VideoDisplayConfiguration' dict-member>hasHdrCapabilities</dfn>
-        member represents all HDR-relevant color gamuts ([[sRGB]], p3, rec2020) and
-        transfer function ([[sRGB]], pq, hlg).
+        describes the screen's capability to display HDR.
       </p>
     </section>
 
