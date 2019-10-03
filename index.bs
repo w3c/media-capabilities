@@ -100,15 +100,8 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     type: interface; text: WorkerGlobalScope; url: the-workerglobalscope-common-interface
 </pre>
 
-<<<<<<< HEAD
 <pre class='biblio'>
 {
-    "media-playback-quality": {
-        "href": "https://wicg.github.io/media-playback-quality/",
-        "title": "Media Playback Quality Specification",
-        "status": "CG-DRAFT",
-        "publisher": "WICG"
-    },
     "SMPTE-ST-2084": {
         "href": "https://ieeexplore.ieee.org/document/7291452",
         "title": "High Dynamic Range Electro-Optical Transfer Function of Mastering Reference Displays",
@@ -124,7 +117,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         "id": "SMPTE-ST-2086"
     },
     "SMPTE-ST-2094": {
-        "href": "https://standards.globalspec.com/std/10031977/SMPTE%20ST%202094-1",
+        "href": "https://ieeexplore.ieee.org/document/7513361",
         "title": "Dynamic Metadata for Color Volume Transform Core Components",
         "publisher": "SMPTE",
         "date": "2016",
@@ -133,8 +126,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
 }
 </pre>
 
-=======
->>>>>>> Update spec info to point to Media WG
 <section class='non-normative'>
   <h2 id='introduction'>Introduction</h2>
   <em>This section is non-normative</em>
@@ -425,6 +416,37 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
+        If present, the <dfn for='VideoConfiguration' dict-member>hdrMetadataType</dfn>
+        member represents that the video track includes the specified HDR
+        metadata type, which the UA needs to be capable of interpreting for tone
+        mapping the HDR content to a color volume and luminance of the output
+        device. Valid inputs are defined by {{HdrMetadataType}}.
+      </p>
+
+      <p>
+        If present, the <dfn for='VideoConfiguration' dict-member>colorGamut</dfn>
+        member represents that the video track is delivered in the specified
+        color gamut, which describes a set of colors in which the content is
+        intended to be displayed. The UA needs to be able to cause the output
+        device to render the appropriate color, or something appropriately close
+        enough. Valid inputs are defined by {{ColorGamut}}.
+      </p>
+
+      <p>
+        If present, the <dfn for='VideoConfiguration' dict-member>transferFunction</dfn>}
+        member represents that the video track requires the specified transfer
+        function to be understood by the UA. Transfer function describes the
+        electro-optical algorithm supported by the rendering capabilities of a
+        user agent, independent of the display, to map the source colors in the
+        decoded media into the colors to be displayed. Valid inputs are defined
+        by {{TransferFunction}}.
+      </p>
+    </section>
+
+    <section>
+      <h4 id='videoconfiguration'>HdrMetadataType</h4>
+
+      <p>
         <pre class='idl'>
           enum HdrMetadataType {
             "smpteSt2086",
@@ -434,102 +456,98 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         </pre>
 
         <p>
-          If specified, the <dfn for='VideoConfiguration' dict-member>hdrMetadataType</dfn> 
-          describes the capability to interpret HDR metadata of the specified type.
+          If present, {{HdrMetadataType}} describes the capability to interpret HDR metadata
+          of the specified type.
         </p>
 
         <p>
-          The {{HdrMetadataType}} values are:
+          The {{VideoConfiguration}} may contain one of the following types:
           <ul>
             <li>
-              <dfn for='HdrMetadataType' enum-value>smpteSt2086</dfn>, representing
-              the static metadata type defined by [[SMPTE-ST-2086]].
+              <dfn for='HdrMetadataType' enum-value>smpteSt2086</dfn>,
+              representing the static metadata type defined by
+              [[!SMPTE-ST-2086]].
             </li>
             <li>
-              <dfn for='HdrMetadataType' enum-value>smpteSt2094-10</dfn>, representing
-              the dynamic metadata type defined by [[SMPTE-ST-2094]].
+              <dfn for='HdrMetadataType' enum-value>smpteSt2094-10</dfn>,
+              representing the dynamic metadata type defined by
+              [[!SMPTE-ST-2094]].
             </li>
             <li>
-              <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>, representing
-              the dynamic metadata type defined by [[SMPTE-ST-2094]].
+              <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>,
+              representing the dynamic metadata type defined by 
+              [[!SMPTE-ST-2094]].
             </li>
           </ul>
         </p>
       </p>
+    </section>
+
+    <section>
+      <h4 id='videoconfiguration'>ColorGamut</h4>
 
       <p>
-	      <pre class='idl'>
-	        enum ColorGamut {
-	          "srgb",
-	          "p3",
-	          "rec2020"
-	        };
+        <pre class='idl'>
+          enum ColorGamut {
+            "srgb",
+            "p3",
+            "rec2020"
+          };
 	      </pre>
-	
-	      <p>
-	        The {{ColorGamut}} represents the color gamut supported by the UA. 
-          That is, if the UA receives content with colors in the
-          specified space it can cause the output device to render the appropriate
-          color, or something appropriately close enough.
-	      </p>
-	
-	      <p>
-	        The {{ColorGamut}} values are:
-	        <ul>
-	          <li>
-	            <dfn for='ColorGamut' enum-value>srgb</dfn>, representing the
-	            [[sRGB]] color gamut.
-	          </li>
-	          <li>
-	            <dfn for='ColorGamut' enum-value>p3</dfn>, representing the DCI
-	            P3 Color Space color gamut. This color gamut includes the
-	            {{ColorGamut/srgb}} gamut.
-	          </li>
-	          <li>
-	            <dfn for='ColorGamut' enum-value>rec2020</dfn>, representing
-	            the ITU-R Recommendation BT.2020 color gamut. This color gamut
-	            includes the {{ColorGamut/p3}} gamut.
-	          </li>
+
+        <p>
+          The {{VideoConfiguration}} may contain one of the following types:
+          <ul>
+            <li>
+              <dfn for='ColorGamut' enum-value>srgb</dfn>, representing the
+              [[!sRGB]] color gamut.
+            </li>
+            <li>
+              <dfn for='ColorGamut' enum-value>p3</dfn>, representing the DCI
+              P3 Color Space color gamut. This color gamut includes the
+              {{ColorGamut/srgb}} gamut.
+            </li>
+            <li>
+              <dfn for='ColorGamut' enum-value>rec2020</dfn>, representing
+              the ITU-R Recommendation BT.2020 color gamut. This color gamut
+              includes the {{ColorGamut/p3}} gamut.
+            </li>
           </ul>
-	      </p>
+        </p>
       </p>
+    </section>
+    
+    <section>
+      <h4 id='videoconfiguration'>TransferFunction</h4>
 
       <p>
-	      <pre class='idl'>
-	        enum TransferFunction {
-	          "srgb",
-	          "pq",
-	          "hlg"
-	        };
-	      </pre>
+        <pre class='idl'>
+          enum TransferFunction {
+            "srgb",
+            "pq",
+            "hlg"
+          };
+        </pre>
 
-	      <p>
-	        The {{TransferFunction}} represents the electro-optical algorithm
-	        supported by the rendering capabilities of a user agent, independent
-	        of the display, to map the source colors in the decoded media into the
-	        colors to be displayed.
-	      </p>
-
-	      <p>
-	        The {{TransferFunction}} values are:
-	        <ul>
-	          <li>
-	            <dfn for='TransferFunction' enum-value>srgb</dfn>, representing
-	            the transfer function defined by [[sRGB]].
-	          </li>
-	          <li>
-	            <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
-	            "Perceptual Quantizer" transfer function defined by 
-	            [[SMPTE-ST-2084]].
-	          </li>
-	          <li>
-	            <dfn for='TransferFunction' enum-value>hlg</dfn>, representing the
-	            "Hybrid Log Gamma" transfer function defined by [BT.2100].
-	          </li>
+        <p>
+          The {{VideoConfiguration}} may contain one of the following types:
+          <ul>
+            <li>
+              <dfn for='TransferFunction' enum-value>srgb</dfn>, representing
+              the transfer function defined by [[!sRGB]].
+            </li>
+            <li>
+              <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
+              "Perceptual Quantizer" transfer function defined by 
+              [[!SMPTE-ST-2084]].
+            </li>
+            <li>
+              <dfn for='TransferFunction' enum-value>hlg</dfn>, representing the
+              "Hybrid Log Gamma" transfer function defined by BT.2100.
+            </li>
           </ul>
-	      </p>
+        </p>
       </p>
-
     </section>
 
     <section>
@@ -1048,14 +1066,12 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
 <section>
   <h2 id='display-capabilities'>Display Capabilities</h2>
 
-  <section>
-    <p>
-      Display capabilities can differ between graphics and video. These discrepancies
-      are acknowledged by separating certain graphics and video properties into
-      window.screen and window.screen.video, respectively, as video can be a special
-      case of graphics.
-    </p>
-  </section>
+  <p class='note'>
+      Display capabilities can differ between graphics and video. These
+      discrepancies are acknowledged by separating certain graphics and video
+      properties into window.screen and window.screen.video, respectively, as
+      video can be a special case of graphics.
+  </p>
 
   <section>
     <h3 id='screen-extension'>Screen extension</h3>
@@ -1098,85 +1114,18 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
   <section>
     <h3 id='video-display-capabilities'>Video Display Capabilities</h3>
 
-    <section>
-      <h4 id='video-display-configuration'>VideoDisplayConfiguration</h4>
+    <pre class='idl'>
+      [Exposed=(Window)]
+      interface Video {
+        readonly attribute boolean hdrSupported;
+      };
+    </pre>
 
-      <pre class='idl'>
-        dictionary VideoDisplayConfiguration {
-          required unsigned long width;
-          required unsigned long height;
-          required boolean hasHdrCapabilities;
-        };
-      </pre>
-
-      <p>
-        The <dfn for='VideoDisplayConfiguration' dict-member>width</dfn> member
-        represents the width of the display in physical pixels, not CSS pixels.
-      </p>
-
-      <p>
-        The <dfn for='VideoDisplayConfiguration' dict-member>height</dfn> member
-        represents the height of the display in physical pixels, not CSS pixels.
-      </p>
-
-      <p>
-        The <dfn for='VideoDisplayConfiguration' dict-member>hasHdrCapabilities</dfn>
-        describes the screen's capability to display HDR.
-      </p>
-    </section>
-
-    <section>
-      <h4 id='video-display-info'>VideoDisplayInfo</h4>
-
-      <pre class='idl'>
-        dictionary VideoDisplayInfo {
-          required boolean supported;
-        };
-      </pre>
-
-      <p>
-        A {{VideoDisplayInfo}} has associated <dfn
-        for='VideoDisplayInfo'>supported</dfn> fields which is a boolean.
-      </p>
-
-    <section>
-      <h4 id='Video'>Video</h4>
-
-      <pre class='idl'>
-        [Exposed=(Window)]
-        interface Video {
-          [NewObject] Promise&lt;VideoDisplayInfo&gt; displayInfo(VideoDisplayConfiguration configuration);
-        };
-      </pre>
-
-      <p>
-        The {{displayInfo()}} method method MUST run the following steps:
-        <ol>
-          <li>
-            If <var>configuration</var> is not a <a>valid
-            VideoDisplayConfiguration</a>, return a Promise rejected with a 
-            newly created {{TypeError}}.
-          </li>
-          <li>
-            Let <var>p</var> be a new promise.
-          </li>
-          <li>
-            <a>In parallel</a>, run the <a>Create a 
-            VideoDisplayInfo</a> algorithm with <var>configuration</var> and
-            resolve <var>p</var> with its result.
-          </li>
-          <li>
-            Return <var>p</var>.
-          </li>
-        </ol>
-      </p>
-
-      <p class='note'>
-        Note, calling {{displayInfo()}} may have user-visible effects, including
-        requests for user consent.
-      </p>
-    </section>
-  </section
+    <p>
+      The <dfn for='VideoDisplayConfiguration' dict-member>hdrSupported</dfn>
+      describes the screen's capability to display HDR content.
+    </p>
+  </section>
 </section>
 
 <section class='non-normative'>
@@ -1210,13 +1159,13 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
-        HDR detection is more nuanced. Adding colorGamut, transferFunction,
-        and hdrMetadataType has the potential to add significant entropy. However,
+        HDR detection is more nuanced. Adding colorGamut, transferFunction, and
+        hdrMetadataType has the potential to add significant entropy. However,
         for UAs whose decoders are implemented in software and therefore whose
         capabilities are fixed across devices, this feature adds no effective
-        entropy. Similarly, for UAs whose decoders are implemented by the platform,
-        which have fixed decoding capabilities, this feature also adds no effective
-        entropy. 
+        entropy. Additionally, for many cases, devices tend to fall into large
+        categories, within which capabilities are similar thus minimizing
+        effective entropy.
       </p>
 
       <p>
@@ -1230,9 +1179,10 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         this specification, it would be recommended to fake a given set of
         capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
         always yes or always no as the latter approach could considerably 
-        degrade the user's experience. Another mitigation could be to limit these
-        Web APIs to top-level browsing contexts. Yet another is to use a privacy
-        budget that throttles and/or blocks calls to the API above a threshold.
+        degrade the user's experience. Another mitigation could be to limit
+        these Web APIs to top-level browsing contexts. Yet another is to use a
+        privacy budget that throttles and/or blocks calls to the API above a
+        threshold.
       </p>
     </section>
 
