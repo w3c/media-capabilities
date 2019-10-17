@@ -413,9 +413,12 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         If present, the <dfn for='VideoConfiguration' dict-member>colorGamut</dfn>
         member represents that the video track is delivered in the specified
         color gamut, which describes a set of colors in which the content is
-        intended to be displayed. The UA needs to be able to cause the output
-        device to render the appropriate color, or something appropriately close
-        enough. Valid inputs are defined by {{ColorGamut}}.
+        intended to be displayed. If the attached output device also supports
+        the specified color, the UA needs to be able to cause the output device
+        to render the appropriate color, or something close enough. If the
+        attached output device does not support the specified color, the UA
+        needs to be capable of mapping the specified color to a color supported
+        by the output device. Valid inputs are defined by {{ColorGamut}}.
       </p>
 
       <p>
