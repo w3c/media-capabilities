@@ -422,7 +422,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       </p>
 
       <p>
-        If present, the <dfn for='VideoConfiguration' dict-member>transferFunction</dfn>}
+        If present, the <dfn for='VideoConfiguration' dict-member>transferFunction</dfn>
         member represents that the video track requires the specified transfer
         function to be understood by the UA. Transfer function describes the
         electro-optical algorithm supported by the rendering capabilities of a
@@ -482,7 +482,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
             "p3",
             "rec2020"
           };
-	      </pre>
+        </pre>
 
         <p>
           The {{VideoConfiguration}} may contain one of the following types:
@@ -1065,41 +1065,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
   </section>
 </section>
 
-<section>
-  <h2 id='display-capabilities'>Display Capabilities</h2>
-
-  <section>
-    <h3 id='screen-extension'>Screen extension</h3>
-
-    <p class='issue'>
-      Part of this section is 🐵 patching of the CSSOM View Module. <a
-      href='https://github.com/w3c/media-capabilities/issues/4'>Issue #4</a>
-      is tracking merging the changes. This partial interface requires the
-      {{Screen}} interface to become an {{EventTarget}}.
-    </p>
-
-    <pre class='idl'>
-      partial interface Screen {
-        attribute EventHandler onchange;
-      };
-    </pre>
-
-    <p>
-      The <dfn for='Screen' attribute>onchange</dfn> attribute is an <a>event
-      handler</a> whose corresponding <a>event handler event type</a> is
-      <code>change</code>.
-    </p>
-
-    <p>
-      Whenever the user agent is aware that the state of the {{Screen}}
-      object has changed, that is if one the value exposed on the {{Screen}}
-      object or in an object exposed on the {{Screen}} object, it MUST
-      queue a task to <a>fire an event</a> named <code>change</code> on
-      {{Screen}}.
-    </p>
-  </section>
-</section>
-
 <section class='non-normative'>
   <h2 id='security-privacy-considerations'>
     Security and Privacy Considerations
@@ -1138,12 +1103,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         entropy. Additionally, for many cases, devices tend to fall into large
         categories, within which capabilities are similar thus minimizing
         effective entropy.
-      </p>
-
-      <p>
-        Because these features require directly calling asynchronous Web APIs,
-        they are very detectable by the UA, and does not represent risk of 
-        passive fingerprinting.
       </p>
 
       <p>
