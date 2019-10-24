@@ -235,11 +235,11 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
             If <code>keySystemConfiguration</code> is <a>present</a>:
             <ol>
               <li>
-                If <code>keySystemConfiguration.audioRobustness</code> is 
+                If <code>keySystemConfiguration.audio</code> is 
                 <a>present</a>, <code>audio</code> MUST also be <a>present</a>.
               </li>
               <li>
-                If <code>keySystemConfiguration.videoRobustness</code> is 
+                If <code>keySystemConfiguration.video</code> is 
                 <a>present</a>, <code>video</code> MUST also be <a>present</a>.
               </li>
             </ol>
@@ -628,11 +628,11 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           dictionary MediaCapabilitiesKeySystemConfiguration {
             required DOMString keySystem;
             DOMString initDataType = "";
-            DOMString audioRobustness = "";
-            DOMString videoRobustness = "";
             MediaKeysRequirement distinctiveIdentifier = "optional";
             MediaKeysRequirement persistentState = "optional";
             sequence<DOMString> sessionTypes;
+            KeySystemTrackConfiguration audio;
+            KeySystemTrackConfiguration video;
           };
         </xmp>
       </pre>
@@ -657,16 +657,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         described in [[!ENCRYPTED-MEDIA]].
       </p>
       <p>
-        The <dfn for='MediaCapabilitiesKeySystemConfiguration' dict-member>audioRobustness</dfn>
-        member represents an audio {{EME/robustness}} level as described in
-        [[!ENCRYPTED-MEDIA]].
-      </p>
-      <p>
-        The <dfn for='MediaCapabilitiesKeySystemConfiguration' dict-member>videoRobustness</dfn>
-        member represents a video {{EME/robustness}} level as described in
-        [[!ENCRYPTED-MEDIA]].
-      </p>
-      <p>
         The <dfn for='MediaCapabilitiesKeySystemConfiguration' dict-member>distinctiveIdentifier</dfn>
         member represents a {{EME/distinctiveIdentifier}} requirement as
         described in [[!ENCRYPTED-MEDIA]].
@@ -681,6 +671,33 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         member represents a sequence of required {{EME/sessionTypes}} as
         described in [[!ENCRYPTED-MEDIA]].
       </p>
+      <p>
+        The <dfn for='MediaCapabilitiesKeySystemConfiguration' dict-member>audio</dfn> member
+        represents a {{KeySystemTrackConfiguration}} associated with the {{AudioConfiguration}}.
+      </p>
+      <p>
+        The <dfn for='MediaCapabilitiesKeySystemConfiguration' dict-member>video</dfn> member
+        represents a {{KeySystemTrackConfiguration}} associated with the {{VideoConfiguration}}.
+      </p>
+  </section>
+
+  <section>
+    <h4 id='keysystemtrackconfiguration'>
+      KeySystemTrackConfiguration
+    </h4>
+
+    <pre class='idl'>
+      <xmp>
+        dictionary KeySystemTrackConfiguration {
+          DOMString robustness = "";
+        };
+      </xmp>
+    </pre>
+
+    <p>
+      The <dfn for='KeySystemTrackConfiguration' dict-member>robustness</dfn>
+      member represents a {{EME/robustness}} level as described in [[!ENCRYPTED-MEDIA]].
+    </p>
   </section>
 
   <section>
@@ -691,7 +708,6 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        
       };
     </pre>
 
@@ -900,7 +916,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                 <code>config.keySystemConfiguration.sessionTypes</code>.
               </li>
               <li>
-                If an {{audio}} is <a>present</a> in <var>config</var>, set the
+                If {{MediaConfiguration/audio}} is <a>present</a> in <var>config</var>, set the
                 {{EME/audioCapabilities}} attribute to a sequence containing a
                 single {{EME/MediaKeySystemMediaCapability}}, initialized as
                 follows:
@@ -910,13 +926,13 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                     <code>config.audio.contentType</code>.
                   </li>
                   <li>
-                    Set the {{EME/robustness}} attribute to
-                    <code>config.keySystemConfiguration.audioRobustness</code>.
+                    If <code>config.keySystemConfiguration.audio</code>
+                    is <a>present</a>, set the {{EME/robustness}} attribute to <code>config.keySystemConfiguration.audio.robustness</code>.
                   </li>
                 </ol>
               </li>
               <li>
-                If a {{video}} is <a>present</a> in <var>config</var>, set the
+                If {{MediaConfiguration/video}} is <a>present</a> in <var>config</var>, set the
                 videoCapabilities attribute to a sequence containing a single
                 {{EME/MediaKeySystemMediaCapability}}, initialized as follows:
                 <ol>
@@ -925,8 +941,9 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                     <code>config.video.contentType</code>.
                   </li>
                   <li>
-                    Set the {{EME/robustness}} attribute to
-                    <code>config.keySystemConfiguration.videoRobustness</code>.
+                    If <code>config.keySystemConfiguration.video</code> is <a>present</a>, set the
+                    {{EME/robustness}} attribute to 
+                    <code>config.keySystemConfiguration.video.robustness</code>.
                   </li>
                 </ol>
               </li>
