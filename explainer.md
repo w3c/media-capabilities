@@ -180,69 +180,72 @@ Media Capabilities should offer a means of surfacing when different MediaDecodin
 
 ## HDR
 
-HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
+The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
+
+For HDR support detection, there are three main components whose capabilities need to be surfaced -- the decoder, renderer, and display. The decoder takes in an encoded stream and produces a decoded stream understood by the renderer, which in turn maps the stream's signals to those the display can properly output. Most of the time, the decoder and renderer are part of the UA while the display intuitively describes the physical output monitor, whether this be a computer monitor or TV. To match this natural modularity between the UA and the display, this API is compartmentalized into two (2) parts:
+
+*   *MediaCapabilities.decodingInfo()*: handles the UA pieces, namely decoding and rendering. 
+*   TODO: various aspects of the display are being discussed. 
 
 ### Screen capabilities
 
 Even if a device is able to decode HDR content, if the screen isn’t able to show this content appropriately, it might not be worth using HDR content for the website because of the higher bandwidth consumptions but also the rendering might be worse than a SDR optimised video.
 
-The following data can be used to define whether a screen is HDR-worthy:
+The shape of this API is actively being discussed, specifically how TVs' two-plane problem should be handled. Please refer to issue [#135](https://github.com/w3c/media-capabilities/issues/135).
 
-*   Colour gamut: HDR content requires a wider colour gamut than SDR content. Most screens use the sRGB colour gamut but p3 or BT.2020 are colour gamut that would usually be expected for HDR content.
-*   Colour/pixel depth: even if the screen has a wide colour gamut, the pixels need to be encoded in 30 bits (10 bits per colour component) instead of the usual 24 bits (8 bits per colour component). Otherwise, even if wider colour can be represented, precision would be lost.
-*   Brightness: because of darker blacks and brighter whites, a screen needs to have a large contrast ratio in order to be used for HDR content.
-
-#### Colour gamut
-
-The colour gamut of the screen could be exposed on the *Screen* interface. It is already part of the work in progress [CSS Media Queries 4](https://drafts.csswg.org/mediaqueries-4/#color-gamut) but because various information will have to be read from the *Screen* object for HDR content, it would make sense to have all of them grouped together.
-
-#### Colour/Pixel Depth
-
-It is already exposed on the *Screen* object but only for compatibility reasons. The [CSSOM View Module](https://www.w3.org/TR/cssom-view-1/#dom-screen-pixeldepth) should be updated or amended to make this information available.
-
-#### Brightness
-
-The minimum and maximum brightness should be exposed on the *Screen* object. In order to know the effective brightness, a website would need to know the brightness of the room which can be achieved with the [Ambient Light Sensor](https://w3c.github.io/ambient-light/).
-
-#### Example
-
-```JavaScript
-function canDisplayMyHDRStreams() {
-  // The conditions below are entirely made up :)
-  return window.screen.colorGamut == "rec2020" &&
-         window.screen.pixelDepth == "30" &&
-         window.screen.brightness.max > 500 &&
-         window.screen.brightness.min < 0.1;
-}
-```
-
-### Screen change
-
-The Web Platform only exposes the current screen associated to the website window. That means that a window changing screen will get its `window.screen` updated. A page can poll to find out about this but adding a *change* event to the *Screen* interface might be a more efficient way to expose this information.
+***Work in progress***
 
 ### Decode capabilities
 
 HDR videos have some information that need to be understood by the user agent in order to be rendered correctly. A website might want to check that the user agent will be able to interpret its HDR content before providing it.
 
-HDR content has 4 properties that need to be understood by the decoder: primaries, yuv-to-rgb conversion matrix, transfer function and range. In addition, certain HDR content might also contain frame metadata. Metadata informs user agents of the required brightness for a given content or the transformation to apply for different values. Sometimes, all of these are combined in buckets like [HDR10](https://en.wikipedia.org/wiki/HDR10), [Dolby Vision](https://en.wikipedia.org/wiki/Dolby_Vision) and [HLG](https://en.wikipedia.org/wiki/Hybrid_Log-Gamma).
+HDR content has 3 properties that need to be understood by the decoder and renderer: color gamut, and transfer function, and frame metadata if applicable. They can be used to determine whether a UA supports a particular HDR format.
 
-**Work in progress**
+*   Colour gamut: HDR content requires a wider colour gamut than SDR content. Most UAs support the sRGB colour gamut but p3 or Rec. 2020 are colour gamut that would usually be expected for HDR content.
+*   Transfer function: To map the wider color gamut of HDR content to the display's signals, the UA needs to understand transfer functions like PQ and HLG.
+*   Frame metadata: Certain HDR content might also contain frame metadata. Metadata informs user agents of the required brightness for a given content or the transformation to apply for different values.
 
-At this point, it is unclear what should be exposed in this API: HDR frame metadata formats are not yet standardised, and it remains unclear if other properties should be exposed granularly or in buckets. The first iteration of this specification will not include HDR decoding capabilities until it receives implementer feedback. This is currently slated for $todo.
+Sometimes, all of these are combined in buckets like [HDR10](https://en.wikipedia.org/wiki/HDR10), [HDR10+](https://en.wikipedia.org/wiki/High-dynamic-range_video#HDR10+) [Dolby Vision](https://en.wikipedia.org/wiki/Dolby_Vision) and [HLG](https://en.wikipedia.org/wiki/Hybrid_Log-Gamma). Below are the minimum requirements for frame metadata, color gamut, and transfer respectively for each of the buckets:
 
-At the moment, no operating system besides Android exposes HDR capabilities. Android exposes HDR capabilities using the buckets mentioned above. See [HdrCapabilities](https://developer.android.com/reference/android/view/Display.HdrCapabilities.html) interface and the [HDR Types](https://developer.android.com/reference/android/view/Display.HdrCapabilities.html#getSupportedHdrTypes()).
+*    HDR10: SMPTE-ST-2086 static metadata, Rec. 2020 color space, and PQ transfer function.
+*    HDR10+: SMPTE-ST-2094-40 dynamic metadata, Rec. 2020 color space, and PQ transfer function.
+*    Dolby Vision: SMPTE-ST-2094-10 dynamic metadata, Rec. 2020 color space, and PQ transfer function.
+*    HLG: No metadata, Rec. 2020 color space, and HLG transfer function.
 
-Regardless of what is exposed, the HDR information will be part of an *hdr* sub-dictionary as part of the *video* information.
+Color gamut, transfer function, and frame metadata -- as they they have to do with decoding and rendering -- are exposed individually on the *MediaCapabilities* interface as part of *VideoConfiguration*, which is queried with *MediaCapabilities.decodingInfo()*.
+
+#### Example
 
 ```JavaScript
 navigator.mediaCapabilities.decodingInfo({
-  type: 'file',
-  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456,
-           hdr: { ... } },
-  audio: { contentType: "audio/webm; codecs=opus" },
+  video: { 
+    // Determine UA support for decoding and rendering HDR10.
+    hdrMetadataType: "smpteSt2086",
+    colorGamut: "rec2020",
+    transferFunction: "pq",
+    ...
+  }
+}).then(result => {
+  // Do things based on results. 
+  // Note: While some clients are able to map HDR content to SDR screens, check
+  // Screen capabilities to ensure high-fidelity playback.
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+  ...
 });
 ```
+
+### Fingerprinting
+
+While exposing HDR capabilities could add many bits of entropy for certain platforms, this API was designed with fingerprinting in mind and does its best to adhere to the Privacy Interest Group's suggested best practices:
+
+1. Avoid unnecessary or severe increases to fingerprinting surface, especially for passive fingerprinting.
+*   This API returns only a single boolean per set of input.
+2. Narrow the scope and availability of a feature with fingerprinting surface to what is functionally necessary.
+*   Various mitigations are suggested in the normative specification.
+3. Mark features that contribute to fingerprintability.
+*   The normative specification highlights fingerprinting concerns.
 
 ## <a name="transitions"></a>Transitioning between stream configurations
 
