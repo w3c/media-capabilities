@@ -698,14 +698,15 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     <pre class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
         required MediaKeySystemAccess keySystemAccess;
+        MediaDecodingConfiguration configuration;
       };
     </pre>
 
-    <p>
-      The {{MediaCapabilitiesInfo}} has an associated <dfn
-      for='MediaCapabilitiesInfo'>configuration</dfn> which is a
-      {{MediaDecodingConfiguration}} or {{MediaEncodingConfiguration}}.
-    </p>
+    <pre class='idl'>
+      dictionary MediaCapabilitiesEncodingInfo : MediaCapabilitiesInfo {
+        MediaEncodingConfiguration configuration;
+      };
+    </pre>
 
     <p>
       A {{MediaCapabilitiesInfo}} has associated <dfn
@@ -730,6 +731,20 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       {{EME/MediaKeySystemAccess}} or <code>null</code> as appropriate.
     </p>
 
+    <p>
+      A {{MediaCapabilitiesDecodingInfo}} has an associated <dfn
+      for='MediaCapabilitiesDecodingInfo'>configuration</dfn> which
+      is the decoding configuration properties used to generate the 
+      {{MediaCapabilitiesDecodingInfo}}.
+    </p>
+
+    <p>
+      A {{MediaCapabilitiesEncodingInfo}} has an associated <dfn
+      for='MediaCapabilitiesEncodingInfo'>configuration</dfn> which
+      is the encoding configuration properties used to generate the 
+      {{MediaCapabilitiesEncodingInfo}}.
+    </p>
+
     <p class='note'>
       If the encrypted decoding configuration is supported, the
       resulting {{MediaCapabilitiesInfo}} will include a
@@ -741,23 +756,24 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       <h3 id='info-algorithms'>Algorithms</h3>
 
       <section>
-        <h4 id='create-media-capabilities-info'>
-          <dfn>Create a MediaCapabilitiesInfo</dfn>
+        <h4 id='create-media-capabilities-encoding-info'>
+          <dfn>Create a MediaCapabilitiesEncodingInfo</dfn>
         </h4>
         <p>
           Given a {{MediaEncodingConfiguration}} <var>configuration</var>, this
-          algorithm returns a {{MediaCapabilitiesInfo}}. The following steps are
+          algorithm returns a {{MediaCapabilitiesEncodingInfo}}. The following steps are
           run:
           <ol>
             <li>
-              Let <var>info</var> be a new {{MediaCapabilitiesInfo}} instance.
+              Let <var>info</var> be a new {{MediaCapabilitiesEncodingInfo}} instance.
               Unless stated otherwise, reading and writing apply to
               <var>info</var> for the next steps.
             </li>
             <li>
-              Set <a for=MediaCapabilitiesInfo>configuration</a> to
-              <var>configuration</var>.
-            </li>
+              Set <a for=MediaCapabilitiesEncodingInfo>configuration</a> to be a new
+              {{MediaEncodingConfiguration}}. For every property in <var>configuration</var>
+              create a new property with the same name and value in <a
+              for=MediaCapabilitiesEncodingInfo>configuration</a>. </li>
             <li>
               If the user agent is able to encode the media represented by
               <var>configuration</var>, set
@@ -798,6 +814,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           algorithm returns a {{MediaCapabilitiesDecodingInfo}}. The following 
           steps are run:
           <ol>
+            <li>
+              Let <var>info</var> be a new {{MediaCapabilitiesDecodingInfo}} instance.
+              Unless stated otherwise, reading and writing apply to
+              <var>info</var> for the next steps.
+            </li>
+            <li>
+              Set <a for=MediaCapabilitiesDecodingInfo>configuration</a> to be a new
+              {{MediaDecodingConfiguration}}. For every property in <var>configuration</var>
+              create a new property with the same name and value in <a
+              for=MediaCapabilitiesDecodingInfo>configuration</a>.
+            </li>
             <li>
               If <code>configuration.keySystemConfiguration</code> is
               <a>present</a>:
@@ -1052,7 +1079,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
           Let <var>p</var> be a new promise.
         </li>
         <li>
-          <a>In parallel</a>, run the <a>Create a MediaCapabilitiesInfo</a>
+          <a>In parallel</a>, run the <a>Create a MediaCapabilitiesEncodingInfo</a>
           algorithm with <var>configuration</var> and resolve <var>p</var>
           with its result.
         </li>
