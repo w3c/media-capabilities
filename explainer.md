@@ -364,7 +364,7 @@ This is already exposed by the Web Audio API [somehow](https://webaudio.github.i
 
 ## Spatial audio
 
-This API aims to enable spatial audio on the Web as increasingly more online content providers server high-end media playback experiences; examples include [Dolby Atmos](https://en.wikipedia.org/wiki/Dolby_Atmos) and [DST:X](https://en.wikipedia.org/wiki/DTS_(sound_system)#DTS:X). Like [HDR](https://github.com/w3c/media-capabilities/blob/master/explainer.md#hdr), this is an example of web's growth and this API's extensibility.
+This API aims to enable spatial audio on the Web as increasingly more online content providers serve high-end media playback experiences; examples include [Dolby Atmos](https://en.wikipedia.org/wiki/Dolby_Atmos) and [DST:X](https://en.wikipedia.org/wiki/DTS_(sound_system)#DTS:X). Like [HDR](https://github.com/w3c/media-capabilities/blob/master/explainer.md#hdr), this is an example of web's growth and this API's extensibility.
 
 ### Spatial rendering
 
@@ -372,9 +372,11 @@ Spatial rendering describes the UA's ability to to render spatial audio to a giv
 
 A Web API exposing spatial rendering is necessary for the following reasons:
 
-*    Because spatial audio is not a codec per se, a client's ability to decode a statial-compatible mime type does not necessitate support for rendering spatial audio.
-*    WebAudio's maxChannelCount API cannot be used to discern support for spatial audio, because formats like Dolby Atmos supports two-channel headphones in addition to N-channel speaker systems.
-*    Serving content with spatial audio to clients that can decode but not render it results in wasted bandwidth and potentially lower quality user experience.
+*   Because spatial audio is not a codec per se, a client's ability to decode a statial-compatible mime type does not necessitate support for rendering spatial audio.
+*   WebAudio's maxChannelCount API cannot be used to discern support for spatial audio, because formats like Dolby Atmos supports two-channel headphones in addition to N-channel speaker systems.
+*   Serving content with spatial audio to clients that can decode but not render it results in wasted bandwidth and potentially lower quality user experience.
+
+Spatial rendering is exposed as a boolean included in AudioConfiugration, which can be used to query *MediaCapabilities.decodingInfo()*.
 
 ### Example
 
