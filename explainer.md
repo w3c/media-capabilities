@@ -362,6 +362,41 @@ Now covered in a [separate repository](https://github.com/WICG/hdcp-detection/bl
 
 This is already exposed by the Web Audio API [somehow](https://webaudio.github.io/web-audio-api/#ChannelLayouts). If the Web Audio API is not sufficient, the Media Capabilities API might expose this information too. However, the Web Audio API exposes this information on the destination node which is better than what the Media Capabilities API would be able to do.
 
+## Spatial audio
+
+This API aims to enable spatial audio on the Web as increasingly more online content providers serve high-end media playback experiences; examples include [Dolby Atmos](https://en.wikipedia.org/wiki/Dolby_Atmos) and [DST:X](https://en.wikipedia.org/wiki/DTS_(sound_system)#DTS:X). Like [HDR](https://github.com/w3c/media-capabilities/blob/master/explainer.md#hdr), this is an example of web's growth and this API's extensibility.
+
+### Spatial rendering
+
+Spatial rendering describes the UA's ability to to render spatial audio to a given output device; it can be used in conjunction with the stream's mime type to determine support for a specific spatial audio format. 
+
+A Web API exposing spatial rendering is necessary for the following reasons:
+
+*   Because spatial audio is not a codec per se, a client's ability to decode a statial-compatible mime type does not necessitate support for rendering spatial audio.
+*   WebAudio's maxChannelCount API cannot be used to discern support for spatial audio, because formats like Dolby Atmos supports two-channel headphones in addition to N-channel speaker systems.
+*   Serving content with spatial audio to clients that can decode but not render it results in wasted bandwidth and potentially lower quality user experience.
+
+Spatial rendering is exposed as a boolean included in AudioConfiugration, which can be used to query *MediaCapabilities.decodingInfo()*.
+
+### Example
+
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
+  audio: {
+    // Determine support for Dolby Atmos by checking Dolby Digital Plus and spatial rendering.
+    contentType: "audio/mp4; codecs=ec-3",
+    spatialRendering: true,
+    ...
+  }
+}).then(result => {
+  // Do things based on results.
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+  ...
+});
+```
+
 # Privacy Considerations
 
 The Media Capabilities API will provide a lot of information to enable websites to optimise the user experience. None of this is sensitive information about the user. However, some of the data being exposed could be used to fingerprint users or track them across websites.
