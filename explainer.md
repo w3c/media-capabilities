@@ -182,27 +182,25 @@ Media Capabilities should offer a means of surfacing when different MediaDecodin
 
 The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
 
-For HDR support detection, there are three main components whose capabilities need to be surfaced -- the decoder, renderer, and display. The decoder takes in an encoded stream and produces a decoded stream understood by the renderer, which in turn maps the stream's signals to those the display can properly output. Most of the time, the decoder and renderer are part of the UA while the display intuitively describes the physical output monitor, whether this be a computer monitor or TV. To match this natural modularity between the UA and the display, this API is compartmentalized into two (2) parts:
+For HDR support detection, there are three main components whose capabilities need to be surfaced -- the decoder, renderer, and screen. The decoder takes in an encoded stream and produces a decoded stream understood by the renderer, which in turn maps the stream's signals to those the screen can properly output. Most of the time, the decoder and renderer are part of the UA while the screen represents the physical output monitor, whether this be a computer monitor or TV. To match this natural modularity between the UA and the screen, this API is compartmentalized into two parts:
 
 *   *MediaCapabilities.decodingInfo()*: handles the UA pieces, namely decoding and rendering. 
-*   TODO: various aspects of the display are being discussed. 
+*   TODO: various aspects of the screen are being discussed. 
 
 ### Screen capabilities
 
-Even if a device is able to decode HDR content, if the screen isn’t able to show this content appropriately, it might not be worth using HDR content for the website because of the higher bandwidth consumptions but also the rendering might be worse than a SDR optimised video.
+When the UA reports ability to decode HDR content, but the screen does not report ability to render HDR, it is not recommended to transmit HDR content because it wastes bandwidth and may result in actual rendering that is worse than SDR optimized video on some devices.
 
-The shape of this API is actively being discussed, specifically how TVs' two-plane problem should be handled. Please refer to issue [#135](https://github.com/w3c/media-capabilities/issues/135).
+The shape of this API is actively being discussed, specifically how the two-plane problem in TVs should be handled. Please refer to issue [#135](https://github.com/w3c/media-capabilities/issues/135).
 
 ***Work in progress***
 
 ### Decode capabilities
 
-HDR videos have some information that need to be understood by the user agent in order to be rendered correctly. A website might want to check that the user agent will be able to interpret its HDR content before providing it.
+HDR content has 3 properties that need to be understood by the decoder and renderer: color gamut, transfer function, and frame metadata if applicable. They can be used to determine whether a UA supports a particular HDR format.
 
-HDR content has 3 properties that need to be understood by the decoder and renderer: color gamut, and transfer function, and frame metadata if applicable. They can be used to determine whether a UA supports a particular HDR format.
-
-*   Colour gamut: HDR content requires a wider colour gamut than SDR content. Most UAs support the sRGB colour gamut but p3 or Rec. 2020 are colour gamut that would usually be expected for HDR content.
-*   Transfer function: To map the wider color gamut of HDR content to the display's signals, the UA needs to understand transfer functions like PQ and HLG.
+*   Color gamut: HDR content requires a wider color gamut than SDR content. Most UAs support the sRGB color gamut but p3 or Rec. 2020 are color gamut that would usually be expected for HDR content.
+*   Transfer function: To map the wider color gamut of HDR content to the screen's signals, the UA needs to understand transfer functions like PQ and HLG.
 *   Frame metadata: Certain HDR content might also contain frame metadata. Metadata informs user agents of the required brightness for a given content or the transformation to apply for different values.
 
 Sometimes, all of these are combined in buckets like [HDR10](https://en.wikipedia.org/wiki/HDR10), [HDR10+](https://en.wikipedia.org/wiki/High-dynamic-range_video#HDR10+) [Dolby Vision](https://en.wikipedia.org/wiki/Dolby_Vision) and [HLG](https://en.wikipedia.org/wiki/Hybrid_Log-Gamma). Below are the minimum requirements for frame metadata, color gamut, and transfer respectively for each of the buckets:
