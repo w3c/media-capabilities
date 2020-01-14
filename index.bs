@@ -6,8 +6,8 @@ ED: https://w3c.github.io/media-capabilities/
 Shortname: media-capabilities
 Level: 1
 Group: mediawg
-Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://google.com/
-Editor: Chris Cunningham, w3cid 114832, Google Inc. https://google.com/
+Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://www.google.com/
+Editor: Chris Cunningham, w3cid 114832, Google Inc. https://www.google.com/
 
 Abstract: This specification intends to provide APIs to allow websites to make
 Abstract: an optimal decision when picking media content for the user. The APIs
@@ -21,20 +21,23 @@ Abstract: based on the device's display.
 </pre>
 
 <pre class='anchors'>
-spec: media-source; urlPrefix: https://w3c.github.io/media-source/
+spec: media-source; urlPrefix: https://www.w3.org/TR/media-source/
     type: interface
-        for: MediaSource; text: MediaSource; url: #media-source
+        for: MediaSource; text: MediaSource; url: #mediasource
     type: method
         for: MediaSource; text: isTypeSupported(); url: #dom-mediasource-istypesupported
 
 spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
     type: method
-        urlPrefx: embedded-content.html/
-            for: HTMLMediaElement; text: canPlayType(); url: #dom-navigator-canplaytype
+        for: HTMLMediaElement; text: canPlayType(); url: #dom-navigator-canplaytype
     type: dfn
         text: rules for parsing floating-point number values
+    type: dfn;
+        text: origin; url:#concept-origin
+        text: global object; url:#global-object
+        text: relevant settings object; url:#relevant-settings-object
 
-spec: ECMAScript; urlPrefix: https://tc39.github.io/ecma262/#
+spec: ECMAScript; urlPrefix: https://tc39.es/ecma262/#
     type: interface
         text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
 
@@ -46,11 +49,11 @@ spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
     type: interface
         text: color-gamut
 
-spec: mediacapture-record; urlPrefix: https://www.w3.org/TR/mediastream-recording/#
+spec: mediastream-recording; urlPrefix: https://www.w3.org/TR/mediastream-recording/#
     type:interface
         text: MediaRecorder; url: mediarecorder
 
-spec: webrtc-pc; urlPrefix: https://www.w3.org/TR/webrtc/#
+spec: webrtc; urlPrefix: https://www.w3.org/TR/webrtc/#
     type: interface
         text: RTCPeerConnection; url: interface-definition
 
@@ -63,14 +66,8 @@ spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
     type: interface; text: DOMException; url:idl-DOMException
     type: dfn; text: InvalidStateError; url:invalidstateerror
 
-spec: dom; urlPrefix: https://www.w3.org/TR/dom/#
+spec: dom; urlPrefix: https://dom.spec.whatwg.org/#
     type: dfn; text: Document; url:concept-document
-
-spec: html52; urlPrefix: https://www.w3.org/TR/html52/
-    type: dfn; 
-        text: origin; url:browsers.html#concept-cross-origin
-        text: global object; url:webappapis.html#global-object
-        text: relevant settings object; url:webappapis.html#relevant-settings-object
 
 spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-media/#
     type: attribute
@@ -290,11 +287,13 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         A {{MediaEncodingConfiguration}} can have one of two types:
         <ul>
           <li><dfn for='MediaEncodingType' enum-value>record</dfn> is used to
-          represent a configuration for recording of media, e.g. using
-          {{MediaRecorder}} as defined in [[mediastream-recording]].</li>
+          represent a configuration for recording of media,
+          <span class="informative">e.g. using {{MediaRecorder}} as defined in
+          [[mediastream-recording]]</span>.</li>
           <li><dfn for='MediaEncodingType' enum-value>transmission</dfn> is used
           to represent a configuration meant to be transmitted over electronic
-          means (e.g. using {{RTCPeerConnection}}).</li>
+          means (<span class="informative">e.g. using {{RTCPeerConnection}} as
+          defined in [[webrtc]]</span>).</li>
         </ul>
       </p>
     </section>
@@ -433,7 +432,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     </section>
 
     <section>
-      <h4 id='videoconfiguration'>HdrMetadataType</h4>
+      <h4 id='hdrmetadatatype'>HdrMetadataType</h4>
 
       <p>
         <pre class='idl'>
@@ -473,7 +472,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     </section>
 
     <section>
-      <h4 id='videoconfiguration'>ColorGamut</h4>
+      <h4 id='colorgamut'>ColorGamut</h4>
 
       <p>
         <pre class='idl'>
@@ -507,7 +506,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     </section>
     
     <section>
-      <h4 id='videoconfiguration'>TransferFunction</h4>
+      <h4 id='transferfunction'>TransferFunction</h4>
 
       <p>
         <pre class='idl'>
