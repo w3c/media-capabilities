@@ -91,6 +91,10 @@ spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-medi
         text: audioCapabilities; url: dom-mediakeysystemconfiguration-audiocapabilities
         text: contentType; url: dom-mediakeysystemmediacapability-contenttype
 
+spec: encrypted-media-encryption-scheme; for: EME; urlPrefix: https://wicg.github.io/encrypted-media-encryption-scheme/#
+    type: attribute
+        text: encryptionScheme; url: ref-for-dom-mediakeysystemmediacapability-encryptionscheme
+
 spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     type: dfn; text: Is the environment settings object settings a secure context?; url: #settings-object
 
@@ -120,6 +124,12 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         "publisher": "SMPTE",
         "date": "2016",
         "id": "SMPTE-ST-2094"
+    },
+    "ENCRYPTED-MEDIA-ENCRYPTION-SCHEME": {
+        "href": "https://wicg.github.io/encrypted-media-encryption-scheme",
+        "title": "Encrypted Media: Encryption Scheme Query",
+        "publisher": "WICG",
+        "date": "2019"
     }
 }
 </pre>
@@ -689,6 +699,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
       <xmp>
         dictionary KeySystemTrackConfiguration {
           DOMString robustness = "";
+          DOMString? encryptionScheme = null;
         };
       </xmp>
     </pre>
@@ -696,6 +707,11 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
     <p>
       The <dfn for='KeySystemTrackConfiguration' dict-member>robustness</dfn>
       member represents a {{EME/robustness}} level as described in [[!ENCRYPTED-MEDIA]].
+    </p>
+
+    <p>
+      The <dfn for='KeySystemTrackConfiguration' dict-member>encryptionScheme</dfn>
+      member represents an {{EME/encryptionScheme}} as described in [[!ENCRYPTED-MEDIA-ENCRYPTION-SCHEME]].
     </p>
   </section>
 
@@ -953,7 +969,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                   </li>
                   <li>
                     If <code>config.keySystemConfiguration.audio</code>
-                    is <a>present</a>, set the {{EME/robustness}} attribute to <code>config.keySystemConfiguration.audio.robustness</code>.
+                    is <a>present</a>:
+                    <ol>
+                      <li>
+                        Set the {{EME/robustness}} attribute to <code>
+                        config.keySystemConfiguration.audio.robustness</code>
+                      </li>
+                      <li>
+                        Set the {{EME/encryptionScheme}} attribute to <code>
+                        config.keySystemConfiguration.audio.encryptionScheme</code>
+                      </li>
+                    </ol>
                   </li>
                 </ol>
               </li>
@@ -967,9 +993,17 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
                     <code>config.video.contentType</code>.
                   </li>
                   <li>
-                    If <code>config.keySystemConfiguration.video</code> is <a>present</a>, set the
-                    {{EME/robustness}} attribute to 
-                    <code>config.keySystemConfiguration.video.robustness</code>.
+                    If <code>config.keySystemConfiguration.video</code> is <a>present</a>:
+                    <ol>
+                      <li>
+                        Set the {{EME/robustness}} attribute to <code>
+                        config.keySystemConfiguration.video.robustness</code>.
+                      </li>
+                      <li>
+                        Set the {{EME/encryptionScheme}} attribute to <code>
+                        config.keySystemConfiguration.video.encryptionScheme</code>
+                      </li>
+                    </ol>
                   </li>
                 </ol>
               </li>
