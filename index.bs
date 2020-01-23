@@ -91,9 +91,9 @@ spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-medi
         text: audioCapabilities; url: dom-mediakeysystemconfiguration-audiocapabilities
         text: contentType; url: dom-mediakeysystemmediacapability-contenttype
 
-spec: encrypted-media-encryption-scheme; for: EME; urlPrefix: https://wicg.github.io/encrypted-media-encryption-scheme/#
+spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypted-media/#
     type: attribute
-        text: encryptionScheme; url: ref-for-dom-mediakeysystemmediacapability-encryptionscheme
+        text: encryptionScheme; url: dom-mediakeysystemmediacapability-encryptionscheme
 
 spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     type: dfn; text: Is the environment settings object settings a secure context?; url: #settings-object
@@ -125,11 +125,11 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
         "date": "2016",
         "id": "SMPTE-ST-2094"
     },
-    "ENCRYPTED-MEDIA-ENCRYPTION-SCHEME": {
-        "href": "https://wicg.github.io/encrypted-media-encryption-scheme",
-        "title": "Encrypted Media: Encryption Scheme Query",
-        "publisher": "WICG",
-        "date": "2019"
+    "ENCRYPTED-MEDIA-DRAFT": {
+        "href": "https://w3c.github.io/encrypted-media",
+        "title": "Encrypted Media Extensions",
+        "publisher": "W3C",
+        "date": "13 December 2019"
     }
 }
 </pre>
@@ -711,7 +711,7 @@ spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
 
     <p>
       The <dfn for='KeySystemTrackConfiguration' dict-member>encryptionScheme</dfn>
-      member represents an {{EME/encryptionScheme}} as described in [[!ENCRYPTED-MEDIA-ENCRYPTION-SCHEME]].
+      member represents an {{EME/encryptionScheme}} as described in [[!ENCRYPTED-MEDIA-DRAFT]].
     </p>
   </section>
 
