@@ -98,9 +98,6 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
 
 spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     type: dfn; text: Is the environment settings object settings a secure context?; url: #settings-object
-
-spec: workers; urlPrefix: https://www.w3.org/TR/workers/#
-    type: interface; text: WorkerGlobalScope; url: the-workerglobalscope-common-interface
 </pre>
 
 <pre class='biblio'>
