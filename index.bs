@@ -1220,26 +1220,29 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <div class="example" highlight="javascript">
         <pre>
           &lt;script>
+            const contentType = 'video/webm;codecs=vp8';
+
             const configuration = {
-                type : 'record',
-                video : {
-                  contentType : 'video/webm;codecs=vp8',
-                  width : 640,
-                  height : 480,
-                  bitrate : 10000,
-                  framerate : 29.97
+              type: 'record',
+              video: {
+                contentType: contentType,
+                width: 640,
+                height: 480,
+                bitrate: 10000,
+                framerate: 29.97
               }
             };
+
             navigator.mediaCapabilities.encodingInfo(configuration)
-                .then((result) => {
-                  console.log(result.contentType + ' is:'
-                      + (result.supported ? '' : ' NOT') + ' supported,'
-                      + (result.smooth ? '' : ' NOT') + ' smooth and'
-                      + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
-                })
-                .catch((err) => {
-                  console.error(err, ' caused encodingInfo to throw');
-                });
+              .then((result) => {
+                console.log(contentType + ' is:'
+                  + (result.supported ? '' : ' NOT') + ' supported,'
+                  + (result.smooth ? '' : ' NOT') + ' smooth and'
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+              })
+              .catch((err) => {
+                console.error(err, ' caused encodingInfo to reject');
+              });
           &lt;/script>
         </pre>
       </div>
