@@ -1222,7 +1222,7 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet" type="text/css">
-  <meta content="Bikeshed version 8bc2fccb49a45a0af18c5e75ce18049d75f824b6" name="generator">
+  <meta content="Bikeshed version 7dd49ddf2b095c0a9accc859934f2349a4fb5d3c" name="generator">
   <link href="https://w3c.github.io/media-capabilities/" rel="canonical">
 <style>/* style-md-lists */
 
@@ -1470,7 +1470,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-01-28">28 January 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2020-03-13">13 March 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2178,29 +2178,32 @@ based on the device’s display.</p>
      <section>
       <h3 class="heading settled" data-level="4.1" id="example1"><span class="secno">4.1. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example1"></a></h3>
       <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0"> this codepen</a> with minimal modifications. </div>
-      <div class="example" id="example-e8917eba">
-       <a class="self-link" href="#example-e8917eba"></a> 
+      <div class="example" id="example-264e78d6">
+       <a class="self-link" href="#example-264e78d6"></a> 
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
+  <c- kr>const</c-> contentType <c- o>=</c-> <c- t>'video/webm;codecs=vp8'</c-><c- p>;</c->
+
   <c- kr>const</c-> configuration <c- o>=</c-> <c- p>{</c->
-      type <c- o>:</c-> <c- t>'record'</c-><c- p>,</c->
-      video <c- o>:</c-> <c- p>{</c->
-        contentType <c- o>:</c-> <c- t>'video/webm;codecs=vp8'</c-><c- p>,</c->
-        width <c- o>:</c-> <c- mi>640</c-><c- p>,</c->
-        height <c- o>:</c-> <c- mi>480</c-><c- p>,</c->
-        bitrate <c- o>:</c-> <c- mi>10000</c-><c- p>,</c->
-        framerate <c- o>:</c-> <c- mf>29.97</c->
+    type<c- o>:</c-> <c- t>'record'</c-><c- p>,</c->
+    video<c- o>:</c-> <c- p>{</c->
+      contentType<c- o>:</c-> contentType<c- p>,</c->
+      width<c- o>:</c-> <c- mi>640</c-><c- p>,</c->
+      height<c- o>:</c-> <c- mi>480</c-><c- p>,</c->
+      bitrate<c- o>:</c-> <c- mi>10000</c-><c- p>,</c->
+      framerate<c- o>:</c-> <c- mf>29.97</c->
     <c- p>}</c->
   <c- p>};</c->
+
   navigator<c- p>.</c->mediaCapabilities<c- p>.</c->encodingInfo<c- p>(</c->configuration<c- p>)</c->
-      <c- p>.</c->then<c- p>((</c->result<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
-        console<c- p>.</c->log<c- p>(</c->result<c- p>.</c->contentType <c- o>+</c-> <c- t>' is:'</c->
-            <c- o>+</c-> <c- p>(</c->result<c- p>.</c->supported <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' supported,'</c->
-            <c- o>+</c-> <c- p>(</c->result<c- p>.</c->smooth <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' smooth and'</c->
-            <c- o>+</c-> <c- p>(</c->result<c- p>.</c->powerEfficient <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' power efficient'</c-><c- p>);</c->
-      <c- p>})</c->
-      <c- p>.</c-><c- k>catch</c-><c- p>((</c->err<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
-        console<c- p>.</c->error<c- p>(</c->err<c- p>,</c-> <c- t>' caused encodingInfo to throw'</c-><c- p>);</c->
-      <c- p>});</c->
+    <c- p>.</c->then<c- p>((</c->result<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c->contentType <c- o>+</c-> <c- t>' is:'</c->
+        <c- o>+</c-> <c- p>(</c->result<c- p>.</c->supported <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' supported,'</c->
+        <c- o>+</c-> <c- p>(</c->result<c- p>.</c->smooth <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' smooth and'</c->
+        <c- o>+</c-> <c- p>(</c->result<c- p>.</c->powerEfficient <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' power efficient'</c-><c- p>);</c->
+    <c- p>})</c->
+    <c- p>.</c-><c- k>catch</c-><c- p>((</c->err<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+      console<c- p>.</c->error<c- p>(</c->err<c- p>,</c-> <c- t>' caused encodingInfo to reject'</c-><c- p>);</c->
+    <c- p>});</c->
 <c- o>&lt;</c->/script>
 </pre>
       </div>
