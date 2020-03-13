@@ -1248,7 +1248,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   </section>
 
   <section>
-    <h3 id='example1'>Query recording capabilities with {{encodingInfo()}}</h3>
+    <h3 id='example2'>Query recording capabilities with {{encodingInfo()}}</h3>
 
       <div class="note">
         The following example can also be found in e.g.
