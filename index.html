@@ -1567,7 +1567,8 @@ based on the device’s display.</p>
     <li>
      <a href="#examples"><span class="secno">4</span> <span class="content">Examples</span></a>
      <ol class="toc">
-      <li><a href="#example1"><span class="secno">4.1</span> <span class="content">Query recording capabilities with <code class="idl"><span>encodingInfo()</span></code></span></a>
+      <li><a href="#example1"><span class="secno">4.1</span> <span class="content">Query playback capabilities with <code class="idl"><span>decodingInfo()</span></code></span></a>
+      <li><a href="#example2"><span class="secno">4.2</span> <span class="content">Query recording capabilities with <code class="idl"><span>encodingInfo()</span></code></span></a>
      </ol>
     <li>
      <a href="#index"><span class="secno"></span> <span class="content">Index</span></a>
@@ -2176,7 +2177,41 @@ based on the device’s display.</p>
     <section>
      <h2 class="heading settled" data-level="4" id="examples"><span class="secno">4. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
      <section>
-      <h3 class="heading settled" data-level="4.1" id="example1"><span class="secno">4.1. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example1"></a></h3>
+      <h3 class="heading settled" data-level="4.1" id="example1"><span class="secno">4.1. </span><span class="content">Query playback capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo②">decodingInfo()</a></code></span><a class="self-link" href="#example1"></a></h3>
+      <p> The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo③">decodingInfo()</a></code> to query
+        media playback capabilities when using Media Source Extensions <a data-link-type="biblio" href="#biblio-media-source">[media-source]</a>. </p>
+      <div class="example" id="example-b084ff72">
+       <a class="self-link" href="#example-b084ff72"></a> 
+<pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
+  <c- kr>const</c-> contentType <c- o>=</c-> <c- t>'video/mp4;codecs=avc1.640028'</c-><c- p>;</c->
+
+  <c- kr>const</c-> configuration <c- o>=</c-> <c- p>{</c->
+    type<c- o>:</c-> <c- t>'media-source'</c-><c- p>,</c->
+    video<c- o>:</c-> <c- p>{</c->
+      contentType<c- o>:</c-> contentType<c- p>,</c->
+      width<c- o>:</c-> <c- mi>640</c-><c- p>,</c->
+      height<c- o>:</c-> <c- mi>360</c-><c- p>,</c->
+      bitrate<c- o>:</c-> <c- mi>2000</c-><c- p>,</c->
+      framerate<c- o>:</c-> <c- mf>29.97</c->
+    <c- p>}</c->
+  <c- p>};</c->
+
+  navigator<c- p>.</c->mediaCapabilities<c- p>.</c->decodingInfo<c- p>(</c->configuration<c- p>)</c->
+    <c- p>.</c->then<c- p>((</c->result<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'Decoding of '</c-> <c- o>+</c-> contentType <c- o>+</c-> <c- t>' is'</c->
+        <c- o>+</c-> <c- p>(</c->result<c- p>.</c->supported <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' supported,'</c->
+        <c- o>+</c-> <c- p>(</c->result<c- p>.</c->smooth <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' smooth and'</c->
+        <c- o>+</c-> <c- p>(</c->result<c- p>.</c->powerEfficient <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' power efficient'</c-><c- p>);</c->
+    <c- p>})</c->
+    <c- p>.</c-><c- k>catch</c-><c- p>((</c->err<c- p>)</c-> <c- p>=></c-> <c- p>{</c->
+      console<c- p>.</c->error<c- p>(</c->err<c- p>,</c-> <c- t>' caused decodingInfo to reject'</c-><c- p>);</c->
+    <c- p>});</c->
+<c- o>&lt;</c->/script>
+</pre>
+      </div>
+     </section>
+     <section>
+      <h3 class="heading settled" data-level="4.2" id="example2"><span class="secno">4.2. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example2"></a></h3>
       <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0"> this codepen</a> with minimal modifications. </div>
       <div class="example" id="example-264e78d6">
        <a class="self-link" href="#example-264e78d6"></a> 
@@ -3433,13 +3468,14 @@ based on the device’s display.</p>
    <b><a href="#dom-mediacapabilities-decodinginfo">#dom-mediacapabilities-decodinginfo</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mediacapabilities-decodinginfo">2.5. Media Capabilities Interface</a> <a href="#ref-for-dom-mediacapabilities-decodinginfo①">(2)</a>
+    <li><a href="#ref-for-dom-mediacapabilities-decodinginfo②">4.1. Query playback capabilities with decodingInfo()</a> <a href="#ref-for-dom-mediacapabilities-decodinginfo③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mediacapabilities-encodinginfo">
    <b><a href="#dom-mediacapabilities-encodinginfo">#dom-mediacapabilities-encodinginfo</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-dom-mediacapabilities-encodinginfo">2.5. Media Capabilities Interface</a>
-    <li><a href="#ref-for-dom-mediacapabilities-encodinginfo①">4.1. Query recording capabilities with encodingInfo()</a>
+    <li><a href="#ref-for-dom-mediacapabilities-encodinginfo①">4.2. Query recording capabilities with encodingInfo()</a>
    </ul>
   </aside>
 <script>/* script-dfn-panel */
