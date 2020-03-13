@@ -1211,7 +1211,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   <section>
     <h3 id='example1'>Query playback capabilities with {{decodingInfo()}}</h3>
       <p>
-        The following example shows how to use {{decodingInfo}} to query
+        The following example shows how to use {{decodingInfo()}} to query
         media playback capabilities when using Media Source Extensions
         [[media-source]].
       </p>
