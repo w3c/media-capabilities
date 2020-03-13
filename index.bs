@@ -1209,7 +1209,46 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   <h2 id='examples'>Examples</h2>
 
   <section>
-    <h3 id='example1'>Query recording capabilities with {{encodingInfo()}}</h3>
+    <h3 id='example1'>Query playback capabilities with {{decodingInfo()}}</h3>
+      <p>
+        The following example shows how to use {{decodingInfo()}} to query
+        media playback capabilities when using Media Source Extensions
+        [[media-source]].
+      </p>
+
+      <div class="example" highlight="javascript">
+        <pre>
+          &lt;script>
+            const contentType = 'video/mp4;codecs=avc1.640028';
+
+            const configuration = {
+              type: 'media-source',
+              video: {
+                contentType: contentType,
+                width: 640,
+                height: 360,
+                bitrate: 2000,
+                framerate: 29.97
+              }
+            };
+
+            navigator.mediaCapabilities.decodingInfo(configuration)
+              .then((result) => {
+                console.log('Decoding of ' + contentType + ' is'
+                  + (result.supported ? '' : ' NOT') + ' supported,'
+                  + (result.smooth ? '' : ' NOT') + ' smooth and'
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+              })
+              .catch((err) => {
+                console.error(err, ' caused decodingInfo to reject');
+              });
+          &lt;/script>
+        </pre>
+      </div>
+  </section>
+
+  <section>
+    <h3 id='example2'>Query recording capabilities with {{encodingInfo()}}</h3>
 
       <div class="note">
         The following example can also be found in e.g.
