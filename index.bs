@@ -471,7 +471,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             </li>
             <li>
               <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>,
-              representing the dynamic metadata type defined by 
+              representing the dynamic metadata type defined by
               [[!SMPTE-ST-2094]].
             </li>
           </ul>
@@ -534,7 +534,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             </li>
             <li>
               <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
-              "Perceptual Quantizer" transfer function defined by 
+              "Perceptual Quantizer" transfer function defined by
               [[!SMPTE-ST-2084]].
             </li>
             <li>
@@ -811,10 +811,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             </li>
             <li>
               If the user agent is able to encode the media represented by
-              <var>configuration</var> at a pace that
-              allows encoding frames at the same pace as they are sent to 
-              the encoder, set <a for=MediaCapabilitiesInfo>smooth</a> to
-              <code>true</code>. Otherwise set it to <code>false</code>.
+              <var>configuration</var> at the indicated framerate, set
+              <a for=MediaCapabilitiesInfo>smooth</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>.
             </li>
             <li>
               If the user agent is able to encode the media represented by
@@ -889,9 +888,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             </li>
             <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> at a pace that allows a smooth
-              playback, set <a for=MediaCapabilitiesInfo>smooth</a> to 
-              <code>true</code>. Otherwise set it to <code>false</code>.
+              <var>configuration</var> at the indicated framerate
+              without dropping frames, set <a for=MediaCapabilitiesInfo>smooth</a>
+              to <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
             <li>
               If the user agent is able to decode the media represented by
