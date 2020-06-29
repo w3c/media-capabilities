@@ -1970,9 +1970,8 @@ based on the device’s display.</p>
               Unless stated otherwise, reading and writing apply to <var>info</var> for the next steps. 
         <li> Set <a data-link-type="dfn" href="#mediacapabilitiesencodinginfo-configuration" id="ref-for-mediacapabilitiesencodinginfo-configuration">configuration</a> to be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration④">MediaEncodingConfiguration</a></code>. For every property in <var>configuration</var> create a new property with the same name and value in <a data-link-type="dfn" href="#mediacapabilitiesencodinginfo-configuration" id="ref-for-mediacapabilitiesencodinginfo-configuration①">configuration</a>. 
         <li> If the user agent is able to encode the media represented by <var>configuration</var>, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-supported" id="ref-for-mediacapabilitiesinfo-supported①">supported</a> to <code>true</code>. Otherwise set it to <code>false</code>. 
-        <li> If the user agent is able to encode the media represented by <var>configuration</var> at a pace that
-              allows encoding frames at the same pace as they are sent to 
-              the encoder, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth">smooth</a> to <code>true</code>. Otherwise set it to <code>false</code>. 
+        <li> If the user agent is able to encode the media represented by <var>configuration</var> at the indicated framerate, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth">smooth</a> to <code>true</code>.
+              Otherwise set it to <code>false</code>. 
         <li> If the user agent is able to encode the media represented by <var>configuration</var> in a power
               efficient manner, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-powerefficient" id="ref-for-mediacapabilitiesinfo-powerefficient">powerEfficient</a> to <code>true</code>. Otherwise set it to <code>false</code>. 
               The user agent SHOULD NOT take into consideration the current 
@@ -2007,8 +2006,8 @@ based on the device’s display.</p>
                   by <var>configuration</var>, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-supported" id="ref-for-mediacapabilitiesinfo-supported③">supported</a> to <code>true</code>. 
           <li>Otherwise, set it to <code>false</code>.
          </ol>
-        <li> If the user agent is able to decode the media represented by <var>configuration</var> at a pace that allows a smooth
-              playback, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth①">smooth</a> to <code>true</code>. Otherwise set it to <code>false</code>. 
+        <li> If the user agent is able to decode the media represented by <var>configuration</var> at the indicated framerate
+              without dropping frames, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-smooth" id="ref-for-mediacapabilitiesinfo-smooth①">smooth</a> to <code>true</code>. Otherwise set it to <code>false</code>. 
         <li> If the user agent is able to decode the media represented by <var>configuration</var> in a power efficient
               manner, set <a data-link-type="dfn" href="#mediacapabilitiesinfo-powerefficient" id="ref-for-mediacapabilitiesinfo-powerefficient①">powerEfficient</a> to <code>true</code>. Otherwise set it to <code>false</code>. The
               user agent SHOULD NOT take into consideration the current 
