@@ -1065,7 +1065,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
         [NewObject] Promise&lt;MediaCapabilitiesDecodingInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
-        [NewObject] Promise&lt;MediaCapabilitiesInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
+        [NewObject] Promise&lt;MediaCapabilitiesEncodingInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
       };
     </pre>
 
