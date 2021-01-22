@@ -124,8 +124,8 @@ leak information between modes.
 **Does this specification have both "Security Considerations" and "Privacy
 Considerations" sections?**
 
-It has a combined section on Security and Privacy, mostly focused on Privacy.
-There are no known security impacts of the features in this specification.
+It has a [combined section on Security and Privacy](https://w3c.github.io/media-capabilities/#security-privacy-considerations), 
+mostly focused on Privacy. There are no known security impacts of the features in this specification.
 
 **Do features in your specification enable downgrading default security
 characteristics?**
