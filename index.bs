@@ -848,7 +848,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             <li>
               If the user agent is able to encode the media represented by
               <var>configuration</var>, set {{MediaCapabilitiesInfo/supported}}
-              <code>true</code>. Otherwise set it to <code>false</code>.
+              to <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
             <li>
               If the user agent is able to encode the media represented by
@@ -1226,17 +1226,6 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         these Web APIs to top-level browsing contexts. Yet another is to use a
         privacy budget that throttles and/or blocks calls to the API above a
         threshold.
-      </p>
-    </section>
-
-    <section>
-      <h3 id='display-fingerprinting'>Display and Fingerprinting</h3>
-
-      <p>
-        The information exposed by the display capabilities can already be
-        accessed via CSS for the most part. The specification also provides
-        default values when the user agent does not which to expose the feature
-        for privacy reasons.
       </p>
     </section>
   </section>
