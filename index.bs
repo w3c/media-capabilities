@@ -198,7 +198,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       agents having distinct pipelines for encrypted vs unencrypted media.
       Additionally, user agents may support several distinct encrypted media
       pipelines, which must be signalled by using different
-      {{MediaCapabilitiesKeySystemConfiguration/keySystem}} names.
+      {{MediaCapabilitiesKeySystemConfiguration/keySystem}} names or different
+      {{KeySystemTrackConfiguration/robustness}} levels.
     </dd>
   </dl>
 </section>
@@ -979,16 +980,18 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               such as enabling different decoding modules.
             </li>
             <li>
-              If <code>configuration.type</code> is set to {{MediaDecodingType/media-source}}:
+              If <code>configuration.type</code> is set to
+              {{MediaDecodingType/media-source}}:
               <ol>
                 <li>
                   Let <var>pipeline</var> be the <a>decoding pipeline</a>
                   described by <var>configuration</var>.
                 </li>
                 <li>
-                  If <var>pipeline</var> is able to support dynamic codec
-                  switching via {{SourceBuffer}} {{SourceBuffer/changeType()}},
-                  set {{MediaCapabilitiesDecodingInfo/codecSwitchingSupported}}
+                  If <var>pipeline</var> is able to support using
+                  {{SourceBuffer}} {{SourceBuffer/changeType()}} to switch
+                  between any and all of its supported codecs, set
+                  {{MediaCapabilitiesDecodingInfo/codecSwitchingSupported}}
                   to <code>true</code>. Otherwise, set it to <code>false</code>.
                 </li>
               </ol>
