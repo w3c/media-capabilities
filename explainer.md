@@ -2,7 +2,7 @@
 
 This is the explainer for the Media Capabilities API. The document explains the goals and non-goals of the API and in general helps understand the thought process behind the API. The API shape in the document is mostly for information and might not be final.
 
-This document is a bit more dense that some readers might want. A quick one-pager can be found in the [README.md](https://github.com/w3c/media-capabilities/blob/master/README.md) file.
+This document is a bit more dense that some readers might want. A quick one-pager can be found in the [README.md](https://github.com/w3c/media-capabilities/blob/main/README.md) file.
 
 # Objective
 
@@ -357,7 +357,7 @@ Unlike encrypted content, clear playbacks do not have an analog to the MediaKeyS
 
 ## HDCP support
 
-Now covered in a [separate repository](https://github.com/WICG/hdcp-detection/blob/master/explainer.md).
+Now covered in a [separate repository](https://github.com/WICG/hdcp-detection/blob/main/explainer.md).
 
 ## Audio channels/speakers configuration
 
@@ -365,7 +365,7 @@ This is already exposed by the Web Audio API [somehow](https://webaudio.github.i
 
 ## Spatial audio
 
-This API aims to enable spatial audio on the Web as increasingly more online content providers serve high-end media playback experiences; examples include [Dolby Atmos](https://en.wikipedia.org/wiki/Dolby_Atmos) and [DST:X](https://en.wikipedia.org/wiki/DTS_(sound_system)#DTS:X). Like [HDR](https://github.com/w3c/media-capabilities/blob/master/explainer.md#hdr), this is an example of web's growth and this API's extensibility.
+This API aims to enable spatial audio on the Web as increasingly more online content providers serve high-end media playback experiences; examples include [Dolby Atmos](https://en.wikipedia.org/wiki/Dolby_Atmos) and [DST:X](https://en.wikipedia.org/wiki/DTS_(sound_system)#DTS:X). Like [HDR](https://github.com/w3c/media-capabilities/blob/main/explainer.md#hdr), this is an example of web's growth and this API's extensibility.
 
 ### Spatial rendering
 
