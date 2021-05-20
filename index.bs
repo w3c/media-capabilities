@@ -4,7 +4,6 @@ Repository: w3c/media-capabilities
 Status: ED
 ED: https://w3c.github.io/media-capabilities/
 TR: https://www.w3.org/TR/media-capabilities/
-Previous Version: from biblio
 Shortname: media-capabilities
 Level: None
 Group: mediawg
