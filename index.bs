@@ -762,6 +762,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
+        RTCRtpCodecCapability webrtcCodec;
       };
     </pre>
 
@@ -783,7 +784,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       for='MediaCapabilitiesInfo'>supported</dfn>, <dfn dict-member
       for='MediaCapabilitiesInfo'>smooth</dfn>, <dfn dict-member
       for='MediaCapabilitiesInfo'>powerEfficient</dfn> fields which are
-      booleans.
+      booleans, and an associated optional <dfn dict-member
+      for='MediaCapabilitiesInfo'>webrtcCodec</dfn> of type
+      {{RTCRtpCodecCapability}}.
     </p>
 
     <p class='note'>
@@ -793,6 +796,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       configuration. It is worth noting that even when a device is not power
       constrained, high power usage has side effects such as increasing the
       temperature or the fans noise.
+    </p>
+
+    <p class='note'>
+      Authors can use {{MediaCapabilitiesInfo/webrtcCodec}} to set up their
+      preferred WebRTC codecs using the {{RTCRtpTransceiver/setCodecPreferences}} API.
     </p>
 
     <p>
@@ -868,6 +876,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               modules.
             </li>
             <li>
+              If the user agent is able to encode the media represented by
+              <var>configuration</var> and <var>configuration</var> has a type
+              of {{MediaEncodingType/webrtc}}, set {{MediaCapabilitiesInfo/webrtcCodec}}
+              to the {{RTCRtpCodecCapability}} object representing the supported
+              codec configuration.
+            </li>
+            <li>
               Return <var>info</var>.
             </li>
           </ol>
@@ -940,6 +955,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               power source in order to determine the decoding power
               efficiency unless the device's power source has side effects
               such as enabling different decoding modules.
+            </li>
+            <li>
+              If the user agent is able to decode the media represented by
+              <var>configuration</var> and <var>configuration</var> has a type
+              of {{MediaDecodingType/webrtc}}, set {{MediaCapabilitiesInfo/webrtcCodec}}
+              to the {{RTCRtpCodecCapability}} object representing the supported
+              codec configuration.
             </li>
             <li>
               Return <var>info</var>.
