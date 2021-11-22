@@ -762,7 +762,12 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        RTCRtpCodecCapability webrtcCodec;
+        WebRTCMediaCapabilitiesInfo webrtc;
+      };
+
+      dictionary WebRTCMediaCapabilitiesInfo {
+        RTCRtpCodecCapability audio;
+        RTCRtpCodecCapability video;
       };
     </pre>
 
@@ -785,8 +790,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       for='MediaCapabilitiesInfo'>smooth</dfn>, <dfn dict-member
       for='MediaCapabilitiesInfo'>powerEfficient</dfn> fields which are
       booleans, and an associated optional <dfn dict-member
-      for='MediaCapabilitiesInfo'>webrtcCodec</dfn> of type
-      {{RTCRtpCodecCapability}}.
+      for='MediaCapabilitiesInfo'>webrtc</dfn> of type
+      {{WebRTCMediaCapabilitiesInfo}}.
     </p>
 
     <p class='note'>
@@ -799,7 +804,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     </p>
 
     <p class='note'>
-      Authors can use {{MediaCapabilitiesInfo/webrtcCodec}} to set up their
+      Authors can use {{MediaCapabilitiesInfo/webrtc}} to set up their
       preferred WebRTC codecs using the {{RTCRtpTransceiver/setCodecPreferences}} API.
     </p>
 
@@ -878,9 +883,21 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             <li>
               If the user agent is able to encode the media represented by
               <var>configuration</var> and <var>configuration</var> has a type
-              of {{MediaEncodingType/webrtc}}, set {{MediaCapabilitiesInfo/webrtcCodec}}
-              to the {{RTCRtpCodecCapability}} object representing the supported
-              codec configuration.
+              of {{MediaEncodingType/webrtc}}, run the following substeps:
+              <ol>
+                <li>Let <var>webrtc</var> be a
+                {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
+                <li>If audio is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported audio configuration.</li>
+                <li>If video is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/video}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported video configuration.</li>
+                <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
+                to <var>webrtc</var>.</li>
+              </ol>
             </li>
             <li>
               Return <var>info</var>.
@@ -959,10 +976,21 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             <li>
               If the user agent is able to decode the media represented by
               <var>configuration</var> and <var>configuration</var> has a type
-              of {{MediaDecodingType/webrtc}}, set {{MediaCapabilitiesInfo/webrtcCodec}}
-              to the {{RTCRtpCodecCapability}} object representing the supported
-              codec configuration.
-            </li>
+              of {{MediaDecodingType/webrtc}}, run the following substeps:
+              <ol>
+                <li>Let <var>webrtc</var> be a
+                {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
+                <li>If audio is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported audio configuration.</li>
+                <li>If video is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/video}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported video configuration.</li>
+                <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
+                to <var>webrtc</var>.</li>
+              </ol>
             <li>
               Return <var>info</var>.
             </li>
