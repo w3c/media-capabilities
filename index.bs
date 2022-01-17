@@ -484,9 +484,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         If present, the <dfn for='VideoConfiguration' dict-member>spatialScalability</dfn>
         member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
-        dependencies. This is closely coupled to <dfn for='VideoConfiguration' dict-member>scalabilityMode</dfn>
-        in the sense that streams that are produced using certain scalability
-        modes can only be decoded if spatalScalability is supported. Spatial
+        dependencies. This is closely coupled to {{scalabilityMode}} in the
+        sense that streams that are produced using certain scalability modes
+        can only be decoded if spatalScalability is supported. Spatial
         scalability is only applicable to MediaDecodingConfiguration.
       </p>
     </section>
