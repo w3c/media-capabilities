@@ -477,9 +477,10 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <p>
         If present, the <dfn for='VideoConfiguration' dict-member>scalabilityMode</dfn>
         member represents the scalability mode as defined in [[webrtc-svc]]. If
-        absent, the default mode of "L1T1" (no scalability) is assumed.
-        scalabilityMode is only applicable to the {{MediaEncodingType}}
-        {{MediaEncodingType/webrtc}}.
+        absent, the implementer defined default mode for this {{contentType}} is
+        assumed (i.e., the mode you get if you don't specify one via
+        {{RTCRtpSender/setParameters()}}). scalabilityMode is only applicable
+        to the {{MediaEncodingType}} {{MediaEncodingType/webrtc}}.
       </p>
 
       <p>
