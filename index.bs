@@ -1272,10 +1272,82 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           &lt;/script>
         </pre>
       </div>
+
+      <p>
+        The following example shows how to use {{decodingInfo()}} to query
+        WebRTC receive capabilities [[webrtc]].
+      </p>
+
+      <div class="example" highlight="javascript">
+        <pre>
+          &lt;script>
+            const contentType = 'video/VP8';
+
+            const configuration = {
+              type: 'webrtc',
+              video: {
+                contentType: contentType,
+                width: 640,
+                height: 360,
+                bitrate: 2000,
+                framerate: 25
+              }
+            };
+
+            navigator.mediaCapabilities.decodingInfo(configuration)
+              .then((result) => {
+                console.log('Decoding of ' + contentType + ' is'
+                  + (result.supported ? '' : ' NOT') + ' supported,'
+                  + (result.smooth ? '' : ' NOT') + ' smooth and'
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+              })
+              .catch((err) => {
+                console.error(err, ' caused decodingInfo to reject');
+              });
+          &lt;/script>
+        </pre>
+      </div>
   </section>
 
   <section>
     <h3 id='example2'>Query recording capabilities with {{encodingInfo()}}</h3>
+
+      <div class="note">
+        The following example shows how to use {{encodingInfo()}} to query
+        WebRTC send capabilities [[webrtc]] including the optional field
+        {{scalabilityMode}}.
+      </div>
+
+      <div class="example" highlight="javascript">
+        <pre>
+          &lt;script>
+            const contentType = 'video/VP9';
+
+            const configuration = {
+              type: 'webrtc',
+              video: {
+                contentType: contentType,
+                width: 640,
+                height: 480,
+                bitrate: 10000,
+                framerate: 29.97,
+                scalabilityMode: "L3T3_KEY"
+              }
+            };
+
+            navigator.mediaCapabilities.encodingInfo(configuration)
+              .then((result) => {
+                console.log(contentType + ' is:'
+                  + (result.supported ? '' : ' NOT') + ' supported,'
+                  + (result.smooth ? '' : ' NOT') + ' smooth and'
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+              })
+              .catch((err) => {
+                console.error(err, ' caused encodingInfo to reject');
+              });
+          &lt;/script>
+        </pre>
+      </div>
 
       <div class="note">
         The following example can also be found in e.g.
