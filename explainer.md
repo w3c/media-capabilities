@@ -413,7 +413,7 @@ The API also supports the WebRTC usec case and makes it possible to determine bo
 navigator.mediaCapabilities.decodingInfo({
   type: 'webrtc',
   video: {
-    contentType: 'video/VP9; "profile-id=2"',
+    contentType: 'video/VP9; profile-id="2"',
     spatialScalability: false,
     height: 1080,
     width: 1920,
