@@ -380,6 +380,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           ColorGamut colorGamut;
           TransferFunction transferFunction;
           DOMString scalabilityMode;
+          boolean spatialScalability;
         };
       </pre>
 
@@ -475,9 +476,24 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
       <p>
         If present, the <dfn for='VideoConfiguration' dict-member>scalabilityMode</dfn>
-        member represents the scalability mode as defined in [[webrtc-svc]].
+        member represents the scalability mode as defined in [[webrtc-svc]]. If
+        absent, the implementer defined default mode for this {{contentType}} is
+        assumed (i.e., the mode you get if you don't specify one via
+        {{RTCRtpSender/setParameters()}}). scalabilityMode is only applicable
+        to the {{MediaEncodingType}} {{MediaEncodingType/webrtc}}.
       </p>
 
+      <p>
+        If present, the <dfn for='VideoConfiguration' dict-member>spatialScalability</dfn>
+        member represents the ability to do spatial prediction, that is,
+        using frames of a resolution different than the current resolution as
+        dependencies. If absent, spatialScalability will default to
+        <code>false</code>. spatialScalability is closely coupled to
+        {{scalabilityMode}} in the sense that streams encoded with modes using
+        spatial scalability (e.g. "L2T1") can only be decoded if
+        spatialScalability is supported. spatialScalability is only applicable
+        to {{MediaDecodingConfiguration}}.
+      </p>
     </section>
 
     <section>
