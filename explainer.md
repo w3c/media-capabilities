@@ -398,6 +398,60 @@ navigator.mediaCapabilities.decodingInfo({
 });
 ```
 
+## WebRTC
+
+The API also supports the WebRTC usec case and makes it possible to determine both send and receive capabilities by calling the methods `encodingInfo` and `decodingInfo`. This gives complementary information to what is otherwise received from the methods `RTCRtpSender.getCapabilities` and `RTCRtpReceiver.getCapabilities`. There are a couple of differences to the input to the API when the type `webrtc` is used:
+
+* The contentType should now be a valid media type according to what's defined for RTP. See the examples below and the specification for more details on this.
+* An optional field `scalabilityMode` can be used in the video configuration when calling `encodingInfo` to query if a specific scalability mode is supported. See [Scalable Video Coding (SVC) Extension for WebRTC](https://www.w3.org/TR/webrtc-svc/).
+* An optional field `spatialScalability` can be used in the video configuration when calling `decodingInfo` to query if the decoder can handle spatial scalability. A bit simplified this can be interpreted as any stream that is encoded with dependent spatial layers according to [Scalable Video Coding (SVC) Extension for WebRTC](https://www.w3.org/TR/webrtc-svc/).
+
+### Examples
+
+#### Decoding info
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
+  type: 'webrtc',
+  video: {
+    contentType: 'video/VP9; profile-id="2"',
+    spatialScalability: false,
+    height: 1080,
+    width: 1920,
+    framerate: 24,
+    bitrate: 2826848,
+  },
+  audio: {
+    contentType: 'audio/opus',
+  }
+}).then(result => {
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+});
+```
+
+#### Encoding info
+```JavaScript
+navigator.mediaCapabilities.encodingInfo({
+  type: 'webrtc',
+  video: {
+    contentType: 'video/VP9',
+    scalabilityMode: 'L3T3_KEY',
+    height: 720,
+    width: 1280,
+    framerate: 24,
+    bitrate: 1216848,
+  },
+  audio: {
+    contentType: 'audio/opus',
+  }
+}).then(result => {
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+});
+```
+
 # Privacy Considerations
 
 The Media Capabilities API will provide a lot of information to enable websites to optimise the user experience. None of this is sensitive information about the user. However, some of the data being exposed could be used to fingerprint users or track them across websites.
