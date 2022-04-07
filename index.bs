@@ -1274,7 +1274,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       </div>
 
       <p>
-        The following example shows how to use {{decodingInfo()}} to query
+        The following examples show how to use {{decodingInfo()}} to query
         WebRTC receive capabilities [[webrtc]].
       </p>
 
@@ -1307,6 +1307,37 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           &lt;/script>
         </pre>
       </div>
+
+      <div class="example" highlight="javascript">
+        <pre>
+          &lt;script>
+            const contentType = 'video/H264;level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f';
+
+            const configuration = {
+              type: 'webrtc',
+              video: {
+                contentType: contentType,
+                width: 640,
+                height: 360,
+                bitrate: 2000,
+                framerate: 25
+              }
+            };
+
+            navigator.mediaCapabilities.decodingInfo(configuration)
+              .then((result) => {
+                console.log('Decoding of ' + contentType + ' is'
+                  + (result.supported ? '' : ' NOT') + ' supported,'
+                  + (result.smooth ? '' : ' NOT') + ' smooth and'
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+              })
+              .catch((err) => {
+                console.error(err, ' caused decodingInfo to reject');
+              });
+          &lt;/script>
+        </pre>
+      </div>
+
   </section>
 
   <section>
