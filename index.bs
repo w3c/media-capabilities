@@ -408,7 +408,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           <li>
             If an optional member is specified for a {{MediaDecodingType}} or
             {{MediaEncodingType}} to which it's not applicable, return
-            <code>false</code> and abort these steps.
+            <code>false</code> and abort these steps. See applicability rules
+            in the member definitions below.
           <li>
             Return <code>true</code>.
           </li>
@@ -457,7 +458,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         metadata type, which the UA needs to be capable of interpreting for tone
         mapping the HDR content to a color volume and luminance of the output
         device. Valid inputs are defined by {{HdrMetadataType}}. hdrMetadataType is
-        only applicable to {{MediaDecodingConfiguration}} of the types {{media-source}}
+        only applicable to {{MediaDecodingConfiguration}} for types {{media-source}}
         and {{file}}.
       </p>
 
@@ -471,7 +472,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         attached output device does not support the specified color, the UA
         needs to be capable of mapping the specified color to a color supported
         by the output device. Valid inputs are defined by {{ColorGamut}}. colorGamut
-        is only applicable to {{MediaDecodingConfiguration}} of the types
+        is only applicable to {{MediaDecodingConfiguration}} for types
         {{media-source}} and {{file}}.
       </p>
 
@@ -483,7 +484,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         user agent, independent of the display, to map the source colors in the
         decoded media into the colors to be displayed. Valid inputs are defined
         by {{TransferFunction}}. transferFunction is only applicable to
-        {{MediaDecodingConfiguration}} of the types {{media-source}} and {{file}}.
+        {{MediaDecodingConfiguration}} for types {{media-source}} and {{file}}.
       </p>
 
       <p>
@@ -492,7 +493,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         absent, the implementer defined default mode for this {{contentType}} is
         assumed (i.e., the mode you get if you don't specify one via
         {{RTCRtpSender/setParameters()}}). scalabilityMode is only applicable
-        to {{MediaEncodingConfiguration}} of the type {{MediaEncodingType/webrtc}}.
+        to {{MediaEncodingConfiguration}} for type {{MediaEncodingType/webrtc}}.
       </p>
 
       <p>
@@ -504,7 +505,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         {{scalabilityMode}} in the sense that streams encoded with modes using
         spatial scalability (e.g. "L2T1") can only be decoded if
         spatialScalability is supported. spatialScalability is only applicable
-        to {{MediaDecodingConfiguration}}.
+        to {{MediaDecodingConfiguration}} for types {{media-source}}, {{file}},
+        and {{MediaDecodingType/webrtc}}.
       </p>
     </section>
 
@@ -651,8 +653,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <p>
         The <dfn for='AudioConfiguration' dict-member>channels</dfn> member
         represents the audio channels used by the audio track. channels is only
-        applicable to the decoding type {{MediaDecodingType/webrtc}} and the
-        encoding type {{MediaEncodingType/webrtc}}.
+        applicable to the decoding types {{media-source}}, {{file}}, and
+        {{MediaDecodingType/webrtc}} and the encoding type
+        {{MediaEncodingType/webrtc}}.
       </p>
 
       <p class='issue'>
@@ -672,8 +675,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         The <dfn for='AudioConfiguration' dict-member>samplerate</dfn>
         represents the samplerate of the audio track in. The samplerate is the
         number of samples of audio carried per second. samplerate is only
-        applicable to the decoding type {{MediaDecodingType/webrtc}} and the
-        encoding type {{MediaEncodingType/webrtc}}.
+        applicable to the decoding types {{media-source}}, {{file}}, and
+        {{MediaDecodingType/webrtc}} and the encoding type
+        {{MediaEncodingType/webrtc}}.
       </p>
 
       <p class='note'>
@@ -694,7 +698,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         {{MediaCapabilitiesInfo/supported}} if it can support spatial
         rendering *for the current audio output device* without failing back to a
         non-spatial mix of the stream. spatialRendering is only applicable to
-        {{MediaDecodingConfiguration}} of the types {{media-source}} and {{file}}.
+        {{MediaDecodingConfiguration}} for types {{media-source}} and {{file}}.
       </p>
     </section>
   </section>
