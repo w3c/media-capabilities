@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="5d282a4b59e6c4dcc91a5c2e49efab4b071be107" name="document-revision">
+  <meta content="55cf43a4e0c69818ee32039c3fa1830830935466" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -579,7 +579,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-04-07">7 April 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-04-19">19 April 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -771,6 +771,7 @@ based on the device’s display.</p>
        <li>
          If <code>keySystemConfiguration</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists③">exists</a>: 
         <ol>
+         <li> The <code>type</code> MUST be <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source">media-source</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file">file</a></code>. 
          <li> If <code>keySystemConfiguration.audio</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists④">exists</a>, <code>audio</code> MUST also <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑤">exist</a>. 
          <li> If <code>keySystemConfiguration.video</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑥">exists</a>, <code>video</code> MUST also <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑦">exist</a>. 
         </ol>
@@ -781,8 +782,8 @@ based on the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.2" id="mediadecodingtype"><span class="secno">2.1.2. </span><span class="content">MediaDecodingType</span><a class="self-link" href="#mediadecodingtype"></a></h4>
 <pre class="idl highlight def"><c- b>enum</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="enum" data-export id="enumdef-mediadecodingtype"><code><c- g>MediaDecodingType</c-></code></dfn> {
-  <a class="idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file"><c- s>"file"</c-></a>,
-  <a class="idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source"><c- s>"media-source"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file①"><c- s>"file"</c-></a>,
+  <a class="idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source①"><c- s>"media-source"</c-></a>,
   <a class="idl-code" data-link-type="enum-value" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc"><c- s>"webrtc"</c-></a>
 };
 </pre>
@@ -821,7 +822,7 @@ based on the device’s display.</p>
         type. A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-media-mime-type">valid media MIME type</dfn> is a string that is a <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#valid-mime-type" id="ref-for-valid-mime-type">valid
         MIME type</a> per <a data-link-type="biblio" href="#biblio-mimesniff">[mimesniff]</a>. </p>
       <p> Please note that the definition of MIME subtypes and parameters is
-        context dependent. For <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file①">file</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source①">media-source</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-record" id="ref-for-dom-mediaencodingtype-record①">record</a></code>, the
+        context dependent. For <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file②">file</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source②">media-source</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-record" id="ref-for-dom-mediaencodingtype-record①">record</a></code>, the
         MIME types are specified as defined for HTTP, whereas for <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc①">webrtc</a></code> the MIME types are specified as
         defined for RTP [[RFC4855, RFC6838]]. </p>
       <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-audio-mime-type">valid audio MIME type</dfn> is a string that is a <a data-link-type="dfn" href="#valid-media-mime-type" id="ref-for-valid-media-mime-type">valid media
@@ -870,6 +871,8 @@ based on the device’s display.</p>
             abort these steps. 
        <li> If <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-framerate" id="ref-for-dom-videoconfiguration-framerate①">framerate</a></code> is not finite or is not greater
             than 0, return <code>false</code> and abort these steps. 
+       <li> If an optional member is specified for a <code class="idl"><a data-link-type="idl" href="#enumdef-mediadecodingtype" id="ref-for-enumdef-mediadecodingtype①">MediaDecodingType</a></code> or <code class="idl"><a data-link-type="idl" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype①">MediaEncodingType</a></code> to which it’s not applicable, return <code>false</code> and abort these steps. See applicability rules
+            in the member definitions below. 
        <li> Return <code>true</code>. 
       </ol>
       <p></p>
@@ -898,7 +901,8 @@ based on the device’s display.</p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-hdrmetadatatype"><code>hdrMetadataType</code></dfn> member represents that the video track includes the specified HDR
         metadata type, which the UA needs to be capable of interpreting for tone
         mapping the HDR content to a color volume and luminance of the output
-        device. Valid inputs are defined by <code class="idl"><a data-link-type="idl" href="#enumdef-hdrmetadatatype" id="ref-for-enumdef-hdrmetadatatype①">HdrMetadataType</a></code>. </p>
+        device. Valid inputs are defined by <code class="idl"><a data-link-type="idl" href="#enumdef-hdrmetadatatype" id="ref-for-enumdef-hdrmetadatatype①">HdrMetadataType</a></code>. hdrMetadataType is
+        only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration④">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source③">media-source</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file③">file</a></code>. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-colorgamut"><code>colorGamut</code></dfn> member represents that the video track is delivered in the specified
         color gamut, which describes a set of colors in which the content is
         intended to be displayed. If the attached output device also supports
@@ -906,23 +910,25 @@ based on the device’s display.</p>
         to render the appropriate color, or something close enough. If the
         attached output device does not support the specified color, the UA
         needs to be capable of mapping the specified color to a color supported
-        by the output device. Valid inputs are defined by <code class="idl"><a data-link-type="idl" href="#enumdef-colorgamut" id="ref-for-enumdef-colorgamut①">ColorGamut</a></code>. </p>
+        by the output device. Valid inputs are defined by <code class="idl"><a data-link-type="idl" href="#enumdef-colorgamut" id="ref-for-enumdef-colorgamut①">ColorGamut</a></code>. colorGamut
+        is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑤">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source④">media-source</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file④">file</a></code>. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-transferfunction"><code>transferFunction</code></dfn> member represents that the video track requires the specified transfer
         function to be understood by the UA. Transfer function describes the
         electro-optical algorithm supported by the rendering capabilities of a
         user agent, independent of the display, to map the source colors in the
         decoded media into the colors to be displayed. Valid inputs are defined
-        by <code class="idl"><a data-link-type="idl" href="#enumdef-transferfunction" id="ref-for-enumdef-transferfunction①">TransferFunction</a></code>. </p>
+        by <code class="idl"><a data-link-type="idl" href="#enumdef-transferfunction" id="ref-for-enumdef-transferfunction①">TransferFunction</a></code>. transferFunction is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑥">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑤">media-source</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑤">file</a></code>. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-scalabilitymode"><code>scalabilityMode</code></dfn> member represents the scalability mode as defined in <a data-link-type="biblio" href="#biblio-webrtc-svc">[webrtc-svc]</a>. If
-        absent, the implementer defined default mode for this <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype">contentType</a></code> is
+        absent, the implementer defined default mode for this <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④">contentType</a></code> is
         assumed (i.e., the mode you get if you don’t specify one via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webrtc/#dom-rtcrtpsender-setparameters" id="ref-for-dom-rtcrtpsender-setparameters">setParameters()</a></code>). scalabilityMode is only applicable
-        to the <code class="idl"><a data-link-type="idl" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype①">MediaEncodingType</a></code> <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc①">webrtc</a></code>. </p>
+        to <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration②">MediaEncodingConfiguration</a></code> for type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc①">webrtc</a></code>. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-spatialscalability"><code>spatialScalability</code></dfn> member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
         dependencies. If absent, spatialScalability will default to <code>false</code>. spatialScalability is closely coupled to <code class="idl"><a data-link-type="idl">scalabilityMode</a></code> in the sense that streams encoded with modes using
         spatial scalability (e.g. "L2T1") can only be decoded if
         spatialScalability is supported. spatialScalability is only applicable
-        to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration④">MediaDecodingConfiguration</a></code>. </p>
+        to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑦">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑥">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑥">file</a></code>,
+        and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc②">webrtc</a></code>. </p>
      </section>
      <section>
       <h4 class="heading settled" data-level="2.1.6" id="hdrmetadatatype"><span class="secno">2.1.6. </span><span class="content">HdrMetadataType</span><a class="self-link" href="#hdrmetadatatype"></a></h4>
@@ -992,7 +998,7 @@ based on the device’s display.</p>
      <section>
       <h4 class="heading settled" data-level="2.1.9" id="audioconfiguration"><span class="secno">2.1.9. </span><span class="content">AudioConfiguration</span><a class="self-link" href="#audioconfiguration"></a></h4>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-audioconfiguration"><code><c- g>AudioConfiguration</c-></code></dfn> {
-  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype①"><c- g>contentType</c-></a>;
+  <c- b>required</c-> <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString②"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype"><c- g>contentType</c-></a>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString③"><c- b>DOMString</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="DOMString " href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels"><c- g>channels</c-></a>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long-long" id="ref-for-idl-unsigned-long-long①"><c- b>unsigned</c-> <c- b>long</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long long " href="#dom-audioconfiguration-bitrate" id="ref-for-dom-audioconfiguration-bitrate"><c- g>bitrate</c-></a>;
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-unsigned-long" id="ref-for-idl-unsigned-long②"><c- b>unsigned</c-> <c- b>long</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="unsigned long " href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate"><c- g>samplerate</c-></a>;
@@ -1003,30 +1009,32 @@ based on the device’s display.</p>
         represents the MIME type of the audio track. </p>
       <p> To check if a <code class="idl"><a data-link-type="idl" href="#dictdef-audioconfiguration" id="ref-for-dictdef-audioconfiguration①">AudioConfiguration</a></code> <var>configuration</var> is a <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-audio-configuration">valid audio configuration</dfn>, the following steps MUST be run: </p>
       <ol>
-       <li> If <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype②">contentType</a></code> is
+       <li> If <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype①">contentType</a></code> is
             not a <a data-link-type="dfn" href="#valid-audio-mime-type" id="ref-for-valid-audio-mime-type">valid audio MIME type</a>, return <code>false</code> and
             abort these steps. 
        <li> Return <code>true</code>. 
       </ol>
       <p></p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-channels"><code>channels</code></dfn> member
-        represents the audio channels used by the audio track. </p>
+        represents the audio channels used by the audio track. channels is only
+        applicable to the decoding types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑦">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑦">file</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc③">webrtc</a></code> and the encoding type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc②">webrtc</a></code>. </p>
       <p class="issue" id="issue-a7738173"><a class="self-link" href="#issue-a7738173"></a> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels①">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
         definition is a placeholder. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-bitrate"><code>bitrate</code></dfn> member
         represents the number of average bitrate of the audio track. The bitrate
         is the number of bits used to encode a second of the audio track. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-samplerate"><code>samplerate</code></dfn> represents the samplerate of the audio track in. The samplerate is the
-        number of samples of audio carried per second. </p>
+        number of samples of audio carried per second. samplerate is only
+        applicable to the decoding types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑧">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑧">file</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc④">webrtc</a></code> and the encoding type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc③">webrtc</a></code>. </p>
       <p class="note" role="note"> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate①">samplerate</a></code> is expressed in <code>Hz</code> (ie. number of samples of audio per second). Sometimes the samplerates
         value are expressed in <code>kHz</code> which represents the number of
         thousands of samples of audio per second.<br> 44100 <code>Hz</code> is equivalent to 44.1 <code>kHz</code>. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-spatialrendering"><code>spatialRendering</code></dfn> member indicates that the audio SHOULD be renderered spatially. The
-        details of spatial rendering SHOULD be inferred from the <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype③">contentType</a></code>. If it does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑨">exist</a>, the UA
+        details of spatial rendering SHOULD be inferred from the <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype②">contentType</a></code>. If it does not <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists⑨">exist</a>, the UA
         MUST presume spatialRendering is not required. When <code>true</code>,
         the user agent SHOULD only report this configuration as <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported">supported</a></code> if it can support spatial
         rendering *for the current audio output device* without failing back to a
-        non-spatial mix of the stream. </p>
+        non-spatial mix of the stream. spatialRendering is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑧">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑨">media-source</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑨">file</a></code>. </p>
      </section>
     </section>
     <section>
@@ -1081,11 +1089,11 @@ based on the device’s display.</p>
 </pre>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mediacapabilitiesdecodinginfo"><code><c- g>MediaCapabilitiesDecodingInfo</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo"><c- n>MediaCapabilitiesInfo</c-></a> {
   <c- b>required</c-> <a data-link-type="idl-name" href="https://www.w3.org/TR/encrypted-media/#mediakeysystemaccess-interface" id="ref-for-mediakeysystemaccess-interface"><c- n>MediaKeySystemAccess</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaKeySystemAccess " href="#dom-mediacapabilitiesdecodinginfo-keysystemaccess" id="ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess"><c- g>keySystemAccess</c-></a>;
-  <a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑤"><c- n>MediaDecodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaDecodingConfiguration " href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration"><c- g>configuration</c-></a>;
+  <a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑨"><c- n>MediaDecodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaDecodingConfiguration " href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration"><c- g>configuration</c-></a>;
 };
 </pre>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mediacapabilitiesencodinginfo"><code><c- g>MediaCapabilitiesEncodingInfo</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo①"><c- n>MediaCapabilitiesInfo</c-></a> {
-  <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration②"><c- n>MediaEncodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaEncodingConfiguration " href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration"><c- g>configuration</c-></a>;
+  <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration③"><c- n>MediaEncodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaEncodingConfiguration " href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration"><c- g>configuration</c-></a>;
 };
 </pre>
      <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo②">MediaCapabilitiesInfo</a></code> has associated <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-supported"><code>supported</code></dfn>, <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-smooth"><code>smooth</code></dfn>, <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-powerefficient"><code>powerEfficient</code></dfn> fields which are
@@ -1108,13 +1116,13 @@ based on the device’s display.</p>
       <h3 class="heading settled" data-level="2.3" id="info-algorithms"><span class="secno">2.3. </span><span class="content">Algorithms</span><a class="self-link" href="#info-algorithms"></a></h3>
       <section>
        <h4 class="heading settled" data-level="2.3.1" id="create-media-capabilities-encoding-info"><span class="secno">2.3.1. </span><span class="content"> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-mediacapabilitiesencodinginfo">Create a MediaCapabilitiesEncodingInfo</dfn> </span><a class="self-link" href="#create-media-capabilities-encoding-info"></a></h4>
-       <p> Given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration③">MediaEncodingConfiguration</a></code> <var>configuration</var>, this
+       <p> Given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration④">MediaEncodingConfiguration</a></code> <var>configuration</var>, this
           algorithm returns a <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo②">MediaCapabilitiesEncodingInfo</a></code>. The following
           steps are run: </p>
        <ol>
         <li> Let <var>info</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo③">MediaCapabilitiesEncodingInfo</a></code> instance. Unless stated otherwise, reading and writing apply to <var>info</var> for the next steps. 
         <li> Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration①">configuration</a></code> to be a
-              new <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration④">MediaEncodingConfiguration</a></code>. For every property in <var> configuration</var> create a new property with the same name and
+              new <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration⑤">MediaEncodingConfiguration</a></code>. For every property in <var> configuration</var> create a new property with the same name and
               value in <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration②">configuration</a></code>. 
         <li> If the user agent is able to encode the media represented by <var>configuration</var>, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported②">supported</a></code> to <code>true</code>. Otherwise set it to <code>false</code>. 
         <li> If the user agent is able to encode the media represented by <var>configuration</var> at the indicated framerate, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth①">smooth</a></code> to <code>true</code>. Otherwise
@@ -1131,12 +1139,12 @@ based on the device’s display.</p>
       </section>
       <section>
        <h4 class="heading settled" data-level="2.3.2" id="create-media-capabilities-decoding-info"><span class="secno">2.3.2. </span><span class="content"> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="create-a-mediacapabilitiesdecodinginfo">Create a MediaCapabilitiesDecodingInfo</dfn> </span><a class="self-link" href="#create-media-capabilities-decoding-info"></a></h4>
-       <p> Given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑥">MediaDecodingConfiguration</a></code> <var>configuration</var>, this
+       <p> Given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①⓪">MediaDecodingConfiguration</a></code> <var>configuration</var>, this
           algorithm returns a <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo③">MediaCapabilitiesDecodingInfo</a></code>. The following
           steps are run: </p>
        <ol>
         <li> Let <var>info</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo④">MediaCapabilitiesDecodingInfo</a></code> instance. Unless stated otherwise, reading and writing apply to <var>info</var> for the next steps. 
-        <li> Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration①">configuration</a></code> to be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑦">MediaDecodingConfiguration</a></code>. For every property in <var> configuration</var> create a new property with the same name and
+        <li> Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration①">configuration</a></code> to be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①①">MediaDecodingConfiguration</a></code>. For every property in <var> configuration</var> create a new property with the same name and
               value in <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration②">configuration</a></code>. 
         <li>
           If <code>configuration.keySystemConfiguration</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⓪">exists</a>: 
@@ -1167,7 +1175,7 @@ based on the device’s display.</p>
       </section>
       <section>
        <h4 class="heading settled" data-level="2.3.3" id="is-encrypted-decode-supported"><span class="secno">2.3.3. </span><span class="content"> <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="check-encrypted-decoding-support">Check Encrypted Decoding Support</dfn> </span><a class="self-link" href="#is-encrypted-decode-supported"></a></h4>
-       <p> Given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑧">MediaDecodingConfiguration</a></code> <var>config</var> where <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingconfiguration-keysystemconfiguration" id="ref-for-dom-mediadecodingconfiguration-keysystemconfiguration①">keySystemConfiguration</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①①">exists</a>, this algorithm returns a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#mediakeysystemaccess-interface" id="ref-for-mediakeysystemaccess-interface③">MediaKeySystemAccess</a></code> or <code>null</code> as appropriate. The
+       <p> Given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①②">MediaDecodingConfiguration</a></code> <var>config</var> where <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingconfiguration-keysystemconfiguration" id="ref-for-dom-mediadecodingconfiguration-keysystemconfiguration①">keySystemConfiguration</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①①">exists</a>, this algorithm returns a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#mediakeysystemaccess-interface" id="ref-for-mediakeysystemaccess-interface③">MediaKeySystemAccess</a></code> or <code>null</code> as appropriate. The
           following steps are run: </p>
        <ol>
         <li> If the <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitieskeysystemconfiguration-keysystem" id="ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem①">keySystem</a></code> member of <code>config.keySystemConfiguration</code> is not one of the <a data-link-type="dfn" href="https://www.w3.org/TR/encrypted-media/#key-system" id="ref-for-key-system">Key Systems</a> supported by the user agent, return <code>null</code>. String comparison is case-sensitive. 
@@ -1239,8 +1247,8 @@ based on the device’s display.</p>
       <h3 class="heading settled" data-level="2.5" id="media-capabilities-interface"><span class="secno">2.5. </span><span class="content">Media Capabilities Interface</span><a class="self-link" href="#media-capabilities-interface"></a></h3>
 <pre class="idl highlight def">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="mediacapabilities"><code><c- g>MediaCapabilities</c-></code></dfn> {
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo⑤"><c- n>MediaCapabilitiesDecodingInfo</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export data-lt="decodingInfo(configuration)" id="dom-mediacapabilities-decodinginfo"><code><c- g>decodingInfo</c-></code></dfn>(<a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑨"><c- n>MediaDecodingConfiguration</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilities/decodingInfo(configuration)" data-dfn-type="argument" data-export id="dom-mediacapabilities-decodinginfo-configuration-configuration"><code><c- g>configuration</c-></code><a class="self-link" href="#dom-mediacapabilities-decodinginfo-configuration-configuration"></a></dfn>);
-  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject①"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo④"><c- n>MediaCapabilitiesEncodingInfo</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export data-lt="encodingInfo(configuration)" id="dom-mediacapabilities-encodinginfo"><code><c- g>encodingInfo</c-></code></dfn>(<a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration⑤"><c- n>MediaEncodingConfiguration</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilities/encodingInfo(configuration)" data-dfn-type="argument" data-export id="dom-mediacapabilities-encodinginfo-configuration-configuration"><code><c- g>configuration</c-></code><a class="self-link" href="#dom-mediacapabilities-encodinginfo-configuration-configuration"></a></dfn>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo⑤"><c- n>MediaCapabilitiesDecodingInfo</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export data-lt="decodingInfo(configuration)" id="dom-mediacapabilities-decodinginfo"><code><c- g>decodingInfo</c-></code></dfn>(<a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①③"><c- n>MediaDecodingConfiguration</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilities/decodingInfo(configuration)" data-dfn-type="argument" data-export id="dom-mediacapabilities-decodinginfo-configuration-configuration"><code><c- g>configuration</c-></code><a class="self-link" href="#dom-mediacapabilities-decodinginfo-configuration-configuration"></a></dfn>);
+  [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject①"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise①"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo④"><c- n>MediaCapabilitiesEncodingInfo</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export data-lt="encodingInfo(configuration)" id="dom-mediacapabilities-encodinginfo"><code><c- g>encodingInfo</c-></code></dfn>(<a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration⑥"><c- n>MediaEncodingConfiguration</c-></a> <dfn class="idl-code" data-dfn-for="MediaCapabilities/encodingInfo(configuration)" data-dfn-type="argument" data-export id="dom-mediacapabilities-encodinginfo-configuration-configuration"><code><c- g>configuration</c-></code><a class="self-link" href="#dom-mediacapabilities-encodinginfo-configuration-configuration"></a></dfn>);
 };
 </pre>
       <p> The <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo">decodingInfo()</a></code> method method MUST run the following steps: </p>
@@ -2301,13 +2309,14 @@ based on the device’s display.</p>
    <ul>
     <li><a href="#ref-for-dictdef-mediadecodingconfiguration">2.1.1. MediaConfiguration</a> <a href="#ref-for-dictdef-mediadecodingconfiguration①">(2)</a> <a href="#ref-for-dictdef-mediadecodingconfiguration②">(3)</a>
     <li><a href="#ref-for-dictdef-mediadecodingconfiguration③">2.1.2. MediaDecodingType</a>
-    <li><a href="#ref-for-dictdef-mediadecodingconfiguration④">2.1.5. VideoConfiguration</a>
-    <li><a href="#ref-for-dictdef-mediadecodingconfiguration⑤">2.2. Media Capabilities Information</a>
-    <li><a href="#ref-for-dictdef-mediadecodingconfiguration⑥">2.3.2. 
-          Create a MediaCapabilitiesDecodingInfo </a> <a href="#ref-for-dictdef-mediadecodingconfiguration⑦">(2)</a>
-    <li><a href="#ref-for-dictdef-mediadecodingconfiguration⑧">2.3.3. 
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration④">2.1.5. VideoConfiguration</a> <a href="#ref-for-dictdef-mediadecodingconfiguration⑤">(2)</a> <a href="#ref-for-dictdef-mediadecodingconfiguration⑥">(3)</a> <a href="#ref-for-dictdef-mediadecodingconfiguration⑦">(4)</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration⑧">2.1.9. AudioConfiguration</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration⑨">2.2. Media Capabilities Information</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration①⓪">2.3.2. 
+          Create a MediaCapabilitiesDecodingInfo </a> <a href="#ref-for-dictdef-mediadecodingconfiguration①①">(2)</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration①②">2.3.3. 
           Check Encrypted Decoding Support </a>
-    <li><a href="#ref-for-dictdef-mediadecodingconfiguration⑨">2.5. Media Capabilities Interface</a>
+    <li><a href="#ref-for-dictdef-mediadecodingconfiguration①③">2.5. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mediadecodingconfiguration-keysystemconfiguration">
@@ -2324,10 +2333,11 @@ based on the device’s display.</p>
    <ul>
     <li><a href="#ref-for-dictdef-mediaencodingconfiguration">2.1.1. MediaConfiguration</a>
     <li><a href="#ref-for-dictdef-mediaencodingconfiguration①">2.1.3. MediaEncodingType</a>
-    <li><a href="#ref-for-dictdef-mediaencodingconfiguration②">2.2. Media Capabilities Information</a>
-    <li><a href="#ref-for-dictdef-mediaencodingconfiguration③">2.3.1. 
-          Create a MediaCapabilitiesEncodingInfo </a> <a href="#ref-for-dictdef-mediaencodingconfiguration④">(2)</a>
-    <li><a href="#ref-for-dictdef-mediaencodingconfiguration⑤">2.5. Media Capabilities Interface</a>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration②">2.1.5. VideoConfiguration</a>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration③">2.2. Media Capabilities Information</a>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration④">2.3.1. 
+          Create a MediaCapabilitiesEncodingInfo </a> <a href="#ref-for-dictdef-mediaencodingconfiguration⑤">(2)</a>
+    <li><a href="#ref-for-dictdef-mediaencodingconfiguration⑥">2.5. Media Capabilities Interface</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-mediaconfiguration">
@@ -2347,20 +2357,27 @@ based on the device’s display.</p>
    <b><a href="#enumdef-mediadecodingtype">#enumdef-mediadecodingtype</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-enumdef-mediadecodingtype">2.1.1. MediaConfiguration</a>
+    <li><a href="#ref-for-enumdef-mediadecodingtype①">2.1.5. VideoConfiguration</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mediadecodingtype-file">
    <b><a href="#dom-mediadecodingtype-file">#dom-mediadecodingtype-file</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediadecodingtype-file">2.1.2. MediaDecodingType</a>
-    <li><a href="#ref-for-dom-mediadecodingtype-file①">2.1.4. MIME types</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-file">2.1.1. MediaConfiguration</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-file①">2.1.2. MediaDecodingType</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-file②">2.1.4. MIME types</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-file③">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-mediadecodingtype-file④">(2)</a> <a href="#ref-for-dom-mediadecodingtype-file⑤">(3)</a> <a href="#ref-for-dom-mediadecodingtype-file⑥">(4)</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-file⑦">2.1.9. AudioConfiguration</a> <a href="#ref-for-dom-mediadecodingtype-file⑧">(2)</a> <a href="#ref-for-dom-mediadecodingtype-file⑨">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mediadecodingtype-media-source">
    <b><a href="#dom-mediadecodingtype-media-source">#dom-mediadecodingtype-media-source</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-mediadecodingtype-media-source">2.1.2. MediaDecodingType</a>
-    <li><a href="#ref-for-dom-mediadecodingtype-media-source①">2.1.4. MIME types</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-media-source">2.1.1. MediaConfiguration</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-media-source①">2.1.2. MediaDecodingType</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-media-source②">2.1.4. MIME types</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-media-source③">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-mediadecodingtype-media-source④">(2)</a> <a href="#ref-for-dom-mediadecodingtype-media-source⑤">(3)</a> <a href="#ref-for-dom-mediadecodingtype-media-source⑥">(4)</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-media-source⑦">2.1.9. AudioConfiguration</a> <a href="#ref-for-dom-mediadecodingtype-media-source⑧">(2)</a> <a href="#ref-for-dom-mediadecodingtype-media-source⑨">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-mediadecodingtype-webrtc">
@@ -2368,6 +2385,8 @@ based on the device’s display.</p>
    <ul>
     <li><a href="#ref-for-dom-mediadecodingtype-webrtc">2.1.2. MediaDecodingType</a>
     <li><a href="#ref-for-dom-mediadecodingtype-webrtc①">2.1.4. MIME types</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-webrtc②">2.1.5. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-mediadecodingtype-webrtc③">2.1.9. AudioConfiguration</a> <a href="#ref-for-dom-mediadecodingtype-webrtc④">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="enumdef-mediaencodingtype">
@@ -2389,6 +2408,7 @@ based on the device’s display.</p>
    <ul>
     <li><a href="#ref-for-dom-mediaencodingtype-webrtc">2.1.3. MediaEncodingType</a>
     <li><a href="#ref-for-dom-mediaencodingtype-webrtc①">2.1.5. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-mediaencodingtype-webrtc②">2.1.9. AudioConfiguration</a> <a href="#ref-for-dom-mediaencodingtype-webrtc③">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-media-mime-type">
@@ -2424,7 +2444,7 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-contenttype">
    <b><a href="#dom-videoconfiguration-contenttype">#dom-videoconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-contenttype">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-videoconfiguration-contenttype①">(2)</a> <a href="#ref-for-dom-videoconfiguration-contenttype②">(3)</a> <a href="#ref-for-dom-videoconfiguration-contenttype③">(4)</a>
+    <li><a href="#ref-for-dom-videoconfiguration-contenttype">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-videoconfiguration-contenttype①">(2)</a> <a href="#ref-for-dom-videoconfiguration-contenttype②">(3)</a> <a href="#ref-for-dom-videoconfiguration-contenttype③">(4)</a> <a href="#ref-for-dom-videoconfiguration-contenttype④">(5)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-video-configuration">
@@ -2578,8 +2598,7 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-audioconfiguration-contenttype">
    <b><a href="#dom-audioconfiguration-contenttype">#dom-audioconfiguration-contenttype</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-audioconfiguration-contenttype">2.1.5. VideoConfiguration</a>
-    <li><a href="#ref-for-dom-audioconfiguration-contenttype①">2.1.9. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-contenttype②">(2)</a> <a href="#ref-for-dom-audioconfiguration-contenttype③">(3)</a>
+    <li><a href="#ref-for-dom-audioconfiguration-contenttype">2.1.9. AudioConfiguration</a> <a href="#ref-for-dom-audioconfiguration-contenttype①">(2)</a> <a href="#ref-for-dom-audioconfiguration-contenttype②">(3)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="valid-audio-configuration">
