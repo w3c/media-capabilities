@@ -1384,7 +1384,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <div class="note">
         The following example shows how to use {{encodingInfo()}} to query
         WebRTC send capabilities [[webrtc]] including the optional field
-        {{scalabilityMode}}.
+        {{VideoConfiguration/scalabilityMode}}.
       </div>
 
       <div class="example" highlight="javascript">
