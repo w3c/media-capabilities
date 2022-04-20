@@ -490,10 +490,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <p>
         If present, the <dfn for='VideoConfiguration' dict-member>scalabilityMode</dfn>
         member represents the scalability mode as defined in [[webrtc-svc]]. If
-        absent, the implementer defined default mode for this {{contentType}} is
-        assumed (i.e., the mode you get if you don't specify one via
-        {{RTCRtpSender/setParameters()}}). scalabilityMode is only applicable
-        to {{MediaEncodingConfiguration}} for type {{MediaEncodingType/webrtc}}.
+        absent, the implementer defined default mode for this
+        {{VideoConfiguration/contentType}} is assumed (i.e., the mode you get if
+        you don't specify one via {{RTCRtpSender/setParameters()}}).
+        scalabilityMode is only applicable to {{MediaEncodingConfiguration}} for
+        type {{MediaEncodingType/webrtc}}.
       </p>
 
       <p>
@@ -502,11 +503,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         using frames of a resolution different than the current resolution as
         dependencies. If absent, spatialScalability will default to
         <code>false</code>. spatialScalability is closely coupled to
-        {{scalabilityMode}} in the sense that streams encoded with modes using
-        spatial scalability (e.g. "L2T1") can only be decoded if
-        spatialScalability is supported. spatialScalability is only applicable
-        to {{MediaDecodingConfiguration}} for types {{media-source}}, {{file}},
-        and {{MediaDecodingType/webrtc}}.
+        {{VideoConfiguration/scalabilityMode}} in the sense that streams encoded
+        with modes using spatial scalability (e.g. "L2T1") can only be decoded
+        if spatialScalability is supported. spatialScalability is only
+        applicable to {{MediaDecodingConfiguration}} for types {{media-source}},
+        {{file}}, and {{MediaDecodingType/webrtc}}.
       </p>
     </section>
 
