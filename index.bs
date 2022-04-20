@@ -328,9 +328,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <p>
         Please note that the definition of MIME subtypes and parameters is
         context dependent. For {{file}}, {{media-source}}, and {{record}}, the
-        MIME types are specified as defined for HTTP, whereas for
+        MIME types are specified as defined for [[#http|HTTP]], whereas for
         {{MediaDecodingType/webrtc}} the MIME types are specified as
-        defined for RTP [[RFC4855, RFC6838]].
+        defined for [[#rtp|RTP]].
       </p>
 
       <p>
@@ -361,9 +361,9 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
         <p>
           The MIME types used with RTP are defined in the specifications of the
-          corresponding RTP payload formats. The codec name is typically
-          specified as subtype and zero or more parameters may be present
-          depending on the codec.
+          corresponding RTP payload formats [[RFC4855]] [[RFC6838]]. The codec
+          name is typically specified as subtype and zero or more parameters
+          may be present depending on the codec.
         </p>
       </section>
     </section>
@@ -490,10 +490,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <p>
         If present, the <dfn for='VideoConfiguration' dict-member>scalabilityMode</dfn>
         member represents the scalability mode as defined in [[webrtc-svc]]. If
-        absent, the implementer defined default mode for this {{contentType}} is
-        assumed (i.e., the mode you get if you don't specify one via
-        {{RTCRtpSender/setParameters()}}). scalabilityMode is only applicable
-        to {{MediaEncodingConfiguration}} for type {{MediaEncodingType/webrtc}}.
+        absent, the implementer defined default mode for this
+        {{VideoConfiguration/contentType}} is assumed (i.e., the mode you get if
+        you don't specify one via {{RTCRtpSender/setParameters()}}).
+        scalabilityMode is only applicable to {{MediaEncodingConfiguration}} for
+        type {{MediaEncodingType/webrtc}}.
       </p>
 
       <p>
@@ -502,11 +503,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         using frames of a resolution different than the current resolution as
         dependencies. If absent, spatialScalability will default to
         <code>false</code>. spatialScalability is closely coupled to
-        {{scalabilityMode}} in the sense that streams encoded with modes using
-        spatial scalability (e.g. "L2T1") can only be decoded if
-        spatialScalability is supported. spatialScalability is only applicable
-        to {{MediaDecodingConfiguration}} for types {{media-source}}, {{file}},
-        and {{MediaDecodingType/webrtc}}.
+        {{VideoConfiguration/scalabilityMode}} in the sense that streams encoded
+        with modes using spatial scalability (e.g. "L2T1") can only be decoded
+        if spatialScalability is supported. spatialScalability is only
+        applicable to {{MediaDecodingConfiguration}} for types {{media-source}},
+        {{file}}, and {{MediaDecodingType/webrtc}}.
       </p>
     </section>
 
@@ -1383,7 +1384,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <div class="note">
         The following example shows how to use {{encodingInfo()}} to query
         WebRTC send capabilities [[webrtc]] including the optional field
-        {{scalabilityMode}}.
+        {{VideoConfiguration/scalabilityMode}}.
       </div>
 
       <div class="example" highlight="javascript">
