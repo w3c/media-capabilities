@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="55cf43a4e0c69818ee32039c3fa1830830935466" name="document-revision">
+  <meta content="929084542009559d1049ff85d04b2e9537f43748" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -579,7 +579,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-04-19">19 April 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-04-20">20 April 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -823,8 +823,8 @@ based on the device’s display.</p>
         MIME type</a> per <a data-link-type="biblio" href="#biblio-mimesniff">[mimesniff]</a>. </p>
       <p> Please note that the definition of MIME subtypes and parameters is
         context dependent. For <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file②">file</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source②">media-source</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-record" id="ref-for-dom-mediaencodingtype-record①">record</a></code>, the
-        MIME types are specified as defined for HTTP, whereas for <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc①">webrtc</a></code> the MIME types are specified as
-        defined for RTP [[RFC4855, RFC6838]]. </p>
+        MIME types are specified as defined for <a href="#http">HTTP</a>, whereas for <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc①">webrtc</a></code> the MIME types are specified as
+        defined for <a href="#rtp">RTP</a>. </p>
       <p> A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="valid-audio-mime-type">valid audio MIME type</dfn> is a string that is a <a data-link-type="dfn" href="#valid-media-mime-type" id="ref-for-valid-media-mime-type">valid media
         MIME type</a> and for which the <code>type</code> per <a data-link-type="biblio" href="#biblio-rfc7231">[RFC7231]</a> is
         either <code>audio</code> or <code>application</code>. </p>
@@ -841,9 +841,9 @@ based on the device’s display.</p>
       <section>
        <h5 class="heading settled" data-level="2.1.4.2" id="rtp"><span class="secno">2.1.4.2. </span><span class="content">RTP</span><a class="self-link" href="#rtp"></a></h5>
        <p> The MIME types used with RTP are defined in the specifications of the
-          corresponding RTP payload formats. The codec name is typically
-          specified as subtype and zero or more parameters may be present
-          depending on the codec. </p>
+          corresponding RTP payload formats <a data-link-type="biblio" href="#biblio-rfc4855">[RFC4855]</a> <a data-link-type="biblio" href="#biblio-rfc6838">[RFC6838]</a>. The codec
+          name is typically specified as subtype and zero or more parameters
+          may be present depending on the codec. </p>
       </section>
      </section>
      <section>
@@ -919,16 +919,16 @@ based on the device’s display.</p>
         decoded media into the colors to be displayed. Valid inputs are defined
         by <code class="idl"><a data-link-type="idl" href="#enumdef-transferfunction" id="ref-for-enumdef-transferfunction①">TransferFunction</a></code>. transferFunction is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑥">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑤">media-source</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑤">file</a></code>. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-scalabilitymode"><code>scalabilityMode</code></dfn> member represents the scalability mode as defined in <a data-link-type="biblio" href="#biblio-webrtc-svc">[webrtc-svc]</a>. If
-        absent, the implementer defined default mode for this <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④">contentType</a></code> is
-        assumed (i.e., the mode you get if you don’t specify one via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webrtc/#dom-rtcrtpsender-setparameters" id="ref-for-dom-rtcrtpsender-setparameters">setParameters()</a></code>). scalabilityMode is only applicable
-        to <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration②">MediaEncodingConfiguration</a></code> for type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc①">webrtc</a></code>. </p>
+        absent, the implementer defined default mode for this <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④">contentType</a></code> is assumed (i.e., the mode you get if
+        you don’t specify one via <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/webrtc/#dom-rtcrtpsender-setparameters" id="ref-for-dom-rtcrtpsender-setparameters">setParameters()</a></code>).
+        scalabilityMode is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration②">MediaEncodingConfiguration</a></code> for
+        type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc①">webrtc</a></code>. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-spatialscalability"><code>spatialScalability</code></dfn> member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
-        dependencies. If absent, spatialScalability will default to <code>false</code>. spatialScalability is closely coupled to <code class="idl"><a data-link-type="idl">scalabilityMode</a></code> in the sense that streams encoded with modes using
-        spatial scalability (e.g. "L2T1") can only be decoded if
-        spatialScalability is supported. spatialScalability is only applicable
-        to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑦">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑥">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑥">file</a></code>,
-        and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc②">webrtc</a></code>. </p>
+        dependencies. If absent, spatialScalability will default to <code>false</code>. spatialScalability is closely coupled to <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode①">scalabilityMode</a></code> in the sense that streams encoded
+        with modes using spatial scalability (e.g. "L2T1") can only be decoded
+        if spatialScalability is supported. spatialScalability is only
+        applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑦">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑥">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑥">file</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc②">webrtc</a></code>. </p>
      </section>
      <section>
       <h4 class="heading settled" data-level="2.1.6" id="hdrmetadatatype"><span class="secno">2.1.6. </span><span class="content">HdrMetadataType</span><a class="self-link" href="#hdrmetadatatype"></a></h4>
@@ -1421,7 +1421,7 @@ based on the device’s display.</p>
      <section>
       <h3 class="heading settled" data-level="4.2" id="example2"><span class="secno">4.2. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example2"></a></h3>
       <div class="note" role="note"> The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo②">encodingInfo()</a></code> to query
-        WebRTC send capabilities <a data-link-type="biblio" href="#biblio-webrtc">[webrtc]</a> including the optional field <code class="idl"><a data-link-type="idl">scalabilityMode</a></code>. </div>
+        WebRTC send capabilities <a data-link-type="biblio" href="#biblio-webrtc">[webrtc]</a> including the optional field <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code>. </div>
       <div class="example" id="example-60212754">
        <a class="self-link" href="#example-60212754"></a> 
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
@@ -2159,6 +2159,10 @@ based on the device’s display.</p>
    <dd>Mounir Lamouri. <a href="https://w3c.github.io/media-playback-quality/"><cite>Media Playback Quality</cite></a>. ED. URL: <a href="https://w3c.github.io/media-playback-quality/">https://w3c.github.io/media-playback-quality/</a>
    <dt id="biblio-mediastream-recording">[MEDIASTREAM-RECORDING]
    <dd>Miguel Casas-sanchez; James Barnett; Travis Leithead. <a href="https://www.w3.org/TR/mediastream-recording/"><cite>MediaStream Recording</cite></a>. 4 June 2021. WD. URL: <a href="https://www.w3.org/TR/mediastream-recording/">https://www.w3.org/TR/mediastream-recording/</a>
+   <dt id="biblio-rfc4855">[RFC4855]
+   <dd>S. Casner. <a href="https://www.rfc-editor.org/rfc/rfc4855"><cite>Media Type Registration of RTP Payload Formats</cite></a>. February 2007. Proposed Standard. URL: <a href="https://www.rfc-editor.org/rfc/rfc4855">https://www.rfc-editor.org/rfc/rfc4855</a>
+   <dt id="biblio-rfc6838">[RFC6838]
+   <dd>N. Freed; J. Klensin; T. Hansen. <a href="https://www.rfc-editor.org/rfc/rfc6838"><cite>Media Type Specifications and Registration Procedures</cite></a>. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>
    <dt id="biblio-rfc7231">[RFC7231]
    <dd>R. Fielding, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc7231.html"><cite>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content</cite></a>. June 2014. Proposed Standard. URL: <a href="https://httpwg.org/specs/rfc7231.html">https://httpwg.org/specs/rfc7231.html</a>
    <dt id="biblio-webrtc-svc">[WEBRTC-SVC]
@@ -2504,7 +2508,8 @@ based on the device’s display.</p>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-scalabilitymode">
    <b><a href="#dom-videoconfiguration-scalabilitymode">#dom-videoconfiguration-scalabilitymode</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-videoconfiguration-scalabilitymode">2.1.5. VideoConfiguration</a>
+    <li><a href="#ref-for-dom-videoconfiguration-scalabilitymode">2.1.5. VideoConfiguration</a> <a href="#ref-for-dom-videoconfiguration-scalabilitymode①">(2)</a>
+    <li><a href="#ref-for-dom-videoconfiguration-scalabilitymode②">4.2. Query recording capabilities with encodingInfo()</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-videoconfiguration-spatialscalability">
