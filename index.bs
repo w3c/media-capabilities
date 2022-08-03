@@ -55,10 +55,6 @@ spec: mediastream-recording; urlPrefix: https://www.w3.org/TR/mediastream-record
     type:interface
         text: MediaRecorder; url: mediarecorder
 
-spec: webrtc; urlPrefix: https://www.w3.org/TR/webrtc/#
-    type: interface
-        text: RTCPeerConnection; url: interface-definition
-
 spec: webrtc-svc; urlPrefix: https://www.w3.org/TR/webrtc-svc/#
     type: interface
         text: scalabilityMode; url: interface-definition
@@ -190,25 +186,25 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     <section>
       <h4 id='mediaconfiguration'>MediaConfiguration</h4>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         dictionary MediaConfiguration {
           VideoConfiguration video;
           AudioConfiguration audio;
         };
-      </pre>
+      </xmp>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         dictionary MediaDecodingConfiguration : MediaConfiguration {
           required MediaDecodingType type;
           MediaCapabilitiesKeySystemConfiguration keySystemConfiguration;
         };
-      </pre>
+      </xmp>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         dictionary MediaEncodingConfiguration : MediaConfiguration {
           required MediaEncodingType type;
         };
-      </pre>
+      </xmp>
 
       <p>
         The input to the decoding capabilities is represented by a
@@ -267,13 +263,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     <section>
       <h4 id='mediadecodingtype'>MediaDecodingType</h4>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         enum MediaDecodingType {
           "file",
           "media-source",
           "webrtc"
         };
-      </pre>
+      </xmp>
 
       <p>
         A {{MediaDecodingConfiguration}} has three types:
@@ -295,12 +291,12 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     <section>
       <h4 id='mediaencodingtype'>MediaEncodingType</h4>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         enum MediaEncodingType {
           "record",
           "webrtc"
         };
-      </pre>
+      </xmp>
 
       <p>
         A {{MediaEncodingConfiguration}} can have one of two types:
@@ -335,13 +331,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
       <p>
         A <dfn>valid audio MIME type</dfn> is a string that is a <a>valid media
-        MIME type</a> and for which the <code>type</code> per [[RFC7231]] is
+        MIME type</a> and for which the <code>type</code> per [[RFC9110]] is
         either <code>audio</code> or <code>application</code>.
       </p>
 
       <p>
         A <dfn>valid video MIME type</dfn> is a string that is a <a>valid media
-        MIME type</a> and for which the <code>type</code> per [[RFC7231]] is
+        MIME type</a> and for which the <code>type</code> per [[RFC9110]] is
         either <code>video</code> or <code>application</code>.
       </p>
 
@@ -371,7 +367,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     <section>
       <h4 id='videoconfiguration'>VideoConfiguration</h4>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         dictionary VideoConfiguration {
           required DOMString contentType;
           required unsigned long width;
@@ -385,7 +381,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           DOMString scalabilityMode;
           boolean spatialScalability;
         };
-      </pre>
+      </xmp>
 
       <p>
         The <dfn for='VideoConfiguration' dict-member>contentType</dfn> member
@@ -515,13 +511,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <h4 id='hdrmetadatatype'>HdrMetadataType</h4>
 
       <p>
-        <pre class='idl'>
+        <xmp class='idl'>
           enum HdrMetadataType {
             "smpteSt2086",
             "smpteSt2094-10",
             "smpteSt2094-40"
           };
-        </pre>
+        </xmp>
 
         <p>
           If present, {{HdrMetadataType}} describes the capability to interpret HDR metadata
@@ -555,13 +551,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <h4 id='colorgamut'>ColorGamut</h4>
 
       <p>
-        <pre class='idl'>
+        <xmp class='idl'>
           enum ColorGamut {
             "srgb",
             "p3",
             "rec2020"
           };
-        </pre>
+        </xmp>
 
         <p>
           The {{VideoConfiguration}} may contain one of the following types:
@@ -589,13 +585,13 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <h4 id='transferfunction'>TransferFunction</h4>
 
       <p>
-        <pre class='idl'>
+        <xmp class='idl'>
           enum TransferFunction {
             "srgb",
             "pq",
             "hlg"
           };
-        </pre>
+        </xmp>
 
         <p>
           The {{VideoConfiguration}} may contain one of the following types:
@@ -621,7 +617,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     <section>
       <h4 id='audioconfiguration'>AudioConfiguration</h4>
 
-      <pre class='idl'>
+      <xmp class='idl'>
         dictionary AudioConfiguration {
           required DOMString contentType;
           DOMString channels;
@@ -629,7 +625,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           unsigned long samplerate;
           boolean spatialRendering;
         };
-      </pre>
+      </xmp>
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>contentType</dfn> member
@@ -709,19 +705,17 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         MediaCapabilitiesKeySystemConfiguration
       </h4>
 
-      <pre class='idl'>
-        <xmp>
-          dictionary MediaCapabilitiesKeySystemConfiguration {
-            required DOMString keySystem;
-            DOMString initDataType = "";
-            MediaKeysRequirement distinctiveIdentifier = "optional";
-            MediaKeysRequirement persistentState = "optional";
-            sequence<DOMString> sessionTypes;
-            KeySystemTrackConfiguration audio;
-            KeySystemTrackConfiguration video;
-          };
-        </xmp>
-      </pre>
+      <xmp class='idl'>
+        dictionary MediaCapabilitiesKeySystemConfiguration {
+          required DOMString keySystem;
+          DOMString initDataType = "";
+          MediaKeysRequirement distinctiveIdentifier = "optional";
+          MediaKeysRequirement persistentState = "optional";
+          sequence<DOMString> sessionTypes;
+          KeySystemTrackConfiguration audio;
+          KeySystemTrackConfiguration video;
+        };
+      </xmp>
 
       <p class='note'>
         This dictionary refers to a number of types defined by
@@ -772,14 +766,12 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       KeySystemTrackConfiguration
     </h4>
 
-    <pre class='idl'>
-      <xmp>
-        dictionary KeySystemTrackConfiguration {
-          DOMString robustness = "";
-          DOMString? encryptionScheme = null;
-        };
-      </xmp>
-    </pre>
+    <xmp class='idl'>
+      dictionary KeySystemTrackConfiguration {
+        DOMString robustness = "";
+        DOMString? encryptionScheme = null;
+      };
+    </xmp>
 
     <p>
       The <dfn for='KeySystemTrackConfiguration' dict-member>robustness</dfn>
@@ -795,26 +787,26 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   <section>
     <h3 id='media-capabilities-info'>Media Capabilities Information</h3>
 
-    <pre class='idl'>
+    <xmp class='idl'>
       dictionary MediaCapabilitiesInfo {
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
       };
-    </pre>
+    </xmp>
 
-    <pre class='idl'>
+    <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
         required MediaKeySystemAccess keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
-    </pre>
+    </xmp>
 
-    <pre class='idl'>
+    <xmp class='idl'>
       dictionary MediaCapabilitiesEncodingInfo : MediaCapabilitiesInfo {
         MediaEncodingConfiguration configuration;
       };
-    </pre>
+    </xmp>
 
     <p>
       A {{MediaCapabilitiesInfo}} has associated <dfn dict-member
@@ -1120,30 +1112,31 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   <section>
     <h3 id='navigators-extensions'>Navigator and WorkerNavigator extension</h3>
 
-    <pre class='idl'>
+    <xmp class='idl'>
       [Exposed=Window]
       partial interface Navigator {
         [SameObject] readonly attribute MediaCapabilities mediaCapabilities;
       };
-    </pre>
-    <pre class='idl'>
+    </xmp>
+
+    <xmp class='idl'>
       [Exposed=Worker]
       partial interface WorkerNavigator {
         [SameObject] readonly attribute MediaCapabilities mediaCapabilities;
       };
-    </pre>
+    </xmp>
   </section>
 
   <section>
     <h3 id='media-capabilities-interface'>Media Capabilities Interface</h3>
 
-    <pre class='idl'>
+    <xmp class='idl'>
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
-        [NewObject] Promise&lt;MediaCapabilitiesDecodingInfo&gt; decodingInfo(MediaDecodingConfiguration configuration);
-        [NewObject] Promise&lt;MediaCapabilitiesEncodingInfo&gt; encodingInfo(MediaEncodingConfiguration configuration);
+        [NewObject] Promise<MediaCapabilitiesDecodingInfo> decodingInfo(MediaDecodingConfiguration configuration);
+        [NewObject] Promise<MediaCapabilitiesEncodingInfo> encodingInfo(MediaEncodingConfiguration configuration);
       };
-    </pre>
+    </xmp>
 
     <p>
       The {{decodingInfo()}} method method MUST run the following steps:
