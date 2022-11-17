@@ -6,9 +6,9 @@
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
+  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="5793c9b6da6f1a77e6c61ddcf4c7fe137a70429b" name="document-revision">
+  <meta content="8312135ba1abc46b8f6cd569d19eb430fb5ac95d" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -297,6 +297,14 @@ a.self-link:hover {
 .heading > a.self-link {
     font-size: 83%;
 }
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
 }
@@ -579,7 +587,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-08-03">3 August 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-11-17">17 November 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -592,6 +600,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <dd><a href="https://github.com/w3c/media-capabilities/issues/">GitHub</a>
       <dd><a href="#issues-index">Inline In Spec</a>
       <dt class="editor">Editors:
+      <dd class="editor p-author h-card vcard" data-editor-id="115886"><span class="p-name fn">Jean-Yves Avenard</span> (<a class="p-org org" href="https://www.apple.com/">Apple Inc.</a>)
+      <dd class="editor p-author h-card vcard" data-editor-id="139598"><span class="p-name fn">Will Cassella</span> (<a class="p-org org" href="https://www.google.com/">Google Inc.</a>)
+      <dt class="editor">Former Editors:
       <dd class="editor p-author h-card vcard" data-editor-id="45389"><span class="p-name fn">Mounir Lamouri</span> (<a class="p-org org" href="https://www.google.com/">Google Inc.</a>)
       <dd class="editor p-author h-card vcard" data-editor-id="114832"><span class="p-name fn">Chris Cunningham</span> (<a class="p-org org" href="https://www.google.com/">Google Inc.</a>)
       <dd class="editor p-author h-card vcard" data-editor-id="116349"><span class="p-name fn">Vi Nguyen</span> (<a class="p-org org" href="https://www.microsoft.com/">Microsoft Corporation</a>)
