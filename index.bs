@@ -125,6 +125,12 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         "publisher": "SMPTE",
         "date": "2016",
         "id": "SMPTE-ST-2094"
+    },
+    "ENCRYPTED-MEDIA-DRAFT": {
+        "href": "https://w3c.github.io/encrypted-media",
+        "title": "Encrypted Media Extensions",
+        "publisher": "W3C",
+        "date": "13 December 2019"
     }
 }
 </pre>
@@ -777,7 +783,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
     <p>
       The <dfn for='KeySystemTrackConfiguration' dict-member>encryptionScheme</dfn>
-      member represents an {{EME/encryptionScheme}}.
+      member represents an {{EME/encryptionScheme}} as described in [[!ENCRYPTED-MEDIA-DRAFT]].
     </p>
   </section>
 
