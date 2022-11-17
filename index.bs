@@ -7,8 +7,8 @@ TR: https://www.w3.org/TR/media-capabilities/
 Shortname: media-capabilities
 Level: None
 Group: mediawg
-Editor: Jean-Yves Avenard, w3cid xxx, Apple Inc. https://www.apple.com/
-Editor: Will Cassella, w3cid xxx, Google Inc. https://www.google.com/
+Editor: Jean-Yves Avenard, w3cid 115886, Apple Inc. https://www.apple.com/
+Editor: Will Cassella, w3cid 139598, Google Inc. https://www.google.com/
 
 Former Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://www.google.com/
 Former Editor: Chris Cunningham, w3cid 114832, Google Inc. https://www.google.com/
