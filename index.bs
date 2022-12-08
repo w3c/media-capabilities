@@ -32,46 +32,12 @@ spec: media-source; urlPrefix: https://www.w3.org/TR/media-source/
     type: method
         for: MediaSource; text: isTypeSupported(); url: #dom-mediasource-istypesupported
 
-spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
-    type: method
-        for: HTMLMediaElement; text: canPlayType(); url: #dom-navigator-canplaytype
-    type: dfn
-        text: rules for parsing floating-point number values
-    type: dfn;
-        text: origin; url:#concept-origin
-        text: global object; url:#global-object
-        text: relevant settings object; url:#relevant-settings-object
-
-spec: ECMAScript; urlPrefix: https://tc39.es/ecma262/#
-    type: interface
-        text: TypeError; url: sec-native-error-types-used-in-this-standard-typeerror
-
-spec: cssom-view; urlPrefix: https://drafts.csswg.org/cssom-view/#
-    type: interface
-        text: Screen; url: screen
-
-spec: mediaqueries-4; urlPrefix: https://drafts.csswg.org/mediaqueries-4/#
-    type: interface
-        text: color-gamut
-
 spec: mediastream-recording; urlPrefix: https://www.w3.org/TR/mediastream-recording/#
     type:interface
         text: MediaRecorder; url: mediarecorder
 
-spec: webrtc-svc; urlPrefix: https://www.w3.org/TR/webrtc-svc/#
-    type: interface
-        text: scalabilityMode; url: interface-definition
-
 spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     type: dfn; text: valid mime type; url: valid-mime-type
-
-spec: webidl; urlPrefix: https://heycam.github.io/webidl/#
-    type: dfn; text: SecurityError; url:securityerror
-    type: interface; text: DOMException; url:idl-DOMException
-    type: dfn; text: InvalidStateError; url:invalidstateerror
-
-spec: dom; urlPrefix: https://dom.spec.whatwg.org/#
-    type: dfn; text: Document; url:concept-document
 
 spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-media/#
     type: attribute
@@ -98,9 +64,6 @@ spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-medi
 spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypted-media/#
     type: attribute
         text: encryptionScheme; url: dom-mediakeysystemmediacapability-encryptionscheme
-
-spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
-    type: dfn; text: Is the environment settings object settings a secure context?; url: #settings-object
 </pre>
 
 <pre class='biblio'>
@@ -998,8 +961,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               <code>null</code>. String comparison is case-sensitive.
             </li>
             <li>
-              Let <var>origin</var> be the <a>origin</a> of the calling
-              context's <a>Document</a>.
+              Let <var>origin</var> be the [=/origin=] of the calling context's
+              <a>Document</a>.
             </li>
             <li>
               Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>
@@ -1154,16 +1117,14 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           run the following substeps:
           <ol>
             <li>
-              If the <a>global object</a> is of type {{WorkerGlobalScope}},
+              If the [=/global object=] is of type {{WorkerGlobalScope}},
               return a Promise rejected with a newly created {{DOMException}}
-              whose name is <a>InvalidStateError</a>.
+              whose name is {{InvalidStateError}}.
             </li>
             <li>
-              If the result of running <a>Is the environment settings object
-              settings a secure context?</a> [[!secure-contexts]] with the
-              <a>global object's</a> <a>relevant settings object</a> is not
-              "Secure", return a Promise rejected with a newly created
-              {{DOMException}} whose name is <a>SecurityError</a>.
+              If the [=/global object's=] <a>relevant settings object</a> is a
+              [=non-secure context=], return a Promise rejected with a newly
+              created {{DOMException}} whose name is {{SecurityError}}.
             </li>
           </ol>
         </li>
