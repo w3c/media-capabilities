@@ -151,20 +151,20 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
           efficient.
         </p>
         <p>
-          The intent of purposes of the decoding capabilities API is to provide
-          a powerful replacement to API such as
+          The intent of the decoding capabilities API is to provide
+          a powerful replacement to APIs such as
           {{MediaSource/isTypeSupported()}} or
-          {{HTMLMediaElement/canPlayType()}} which are vague and mostly help the
-          callers to know if something can not be decoded but not how well it
+          {{HTMLMediaElement/canPlayType()}} which are vague and mostly help
+          callers know if something cannot be decoded but not how well it
           should perform.
         </p>
       </li>
       <li>
         <p>
-          Better information about the display properties such as supported
-          color gamut or dynamic range abilities in order to pick the right
-          content for the display and avoid providing HDR content to an SDR
-          display.
+          Better information about the display properties, such as supported
+          color gamut or dynamic range abilities, in order to pick the right
+          content for the display and to, for example, avoid providing HDR
+          content to an SDR display.
         </p>
       </li>
       <li>
@@ -211,7 +211,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
       <p>
         The input to the decoding capabilities is represented by a
-        {{MediaDecodingConfiguration}} dictionary and the input of the encoding
+        {{MediaDecodingConfiguration}} dictionary and the input to the encoding
         capabilities by a {{MediaEncodingConfiguration}} dictionary.
       </p>
       <p>
@@ -278,7 +278,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         A {{MediaDecodingConfiguration}} has three types:
         <ul>
           <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
-          represent a configuration that is meant to be used for a plain file
+          represent a configuration that is meant to be used for plain file
           playback.</li>
           <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
           to represent a configuration that is meant to be used for playback of
@@ -306,7 +306,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         <ul>
           <li><dfn for='MediaEncodingType' enum-value>record</dfn> is used to
           represent a configuration for recording of media,
-          <span class="informative">e.g. using {{MediaRecorder}} as defined in
+          <span class="informative">e.g., using {{MediaRecorder}} as defined in
           [[mediastream-recording]]</span>.</li>
           <li><dfn for='MediaEncodingType' enum-value>webrtc</dfn> is used to
           represent a configuration that is meant to be transmitted using
@@ -667,14 +667,14 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>bitrate</dfn> member
-        represents the number of average bitrate of the audio track. The bitrate
+        represents the average bitrate of the audio track. The bitrate
         is the number of bits used to encode a second of the audio track.
       </p>
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>samplerate</dfn>
-        represents the samplerate of the audio track in. The samplerate is the
-        number of samples of audio carried per second. samplerate is only
+        member represents the samplerate of the audio track in. The samplerate
+        is the number of samples of audio carried per second. samplerate is only
         applicable to the decoding types {{media-source}}, {{file}}, and
         {{MediaDecodingType/webrtc}} and the encoding type
         {{MediaEncodingType/webrtc}}.
@@ -821,11 +821,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
     <p class='note'>
       Authors can use {{MediaCapabilitiesInfo/powerEfficient}} in concordance
-      with the Battery Status API [[battery-status]] in order to determine
+      with the Battery Status API [[battery-status]] to determine
       whether the media they would like to play is appropriate for the user
       configuration. It is worth noting that even when a device is not power
       constrained, high power usage has side effects such as increasing the
-      temperature or the fans noise.
+      temperature or fan noise.
     </p>
 
     <p>
@@ -1002,7 +1002,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               context's <a>Document</a>.
             </li>
             <li>
-              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>
+              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>.
             </li>
 
             <li>
@@ -1042,11 +1042,11 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
                     <ol>
                       <li>
                         Set the {{EME/robustness}} attribute to <code>
-                        config.keySystemConfiguration.audio.robustness</code>
+                        config.keySystemConfiguration.audio.robustness</code>.
                       </li>
                       <li>
                         Set the {{EME/encryptionScheme}} attribute to <code>
-                        config.keySystemConfiguration.audio.encryptionScheme</code>
+                        config.keySystemConfiguration.audio.encryptionScheme</code>.
                       </li>
                     </ol>
                   </li>
@@ -1070,7 +1070,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
                       </li>
                       <li>
                         Set the {{EME/encryptionScheme}} attribute to <code>
-                        config.keySystemConfiguration.video.encryptionScheme</code>
+                        config.keySystemConfiguration.video.encryptionScheme</code>.
                       </li>
                     </ol>
                   </li>
@@ -1106,7 +1106,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
                 </li>
               </ol>
             </li>
-            <li>Return <var>access</var></li>
+            <li>Return <var>access</var>.</li>
           </ol>
         </p>
       </section>
@@ -1220,7 +1220,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   <section>
     <p>
       This specification does not introduce any security-sensitive information
-      or APIs but is provides an easier access to some information that can be
+      or APIs but it provides easier access to some information that can be
       used to fingerprint users.
     </p>
 
@@ -1234,7 +1234,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
         already be discovered via experimentation with the exception that the
         API will likely provide more accurate and consistent information. This
         information is expected to have a high correlation with other
-        information already available to the web pages as a given class of
+        information already available to web pages as a given class of
         device is expected to have very similar decoding/encoding capabilities.
         In other words, high end devices from a certain year are expected to
         decode some type of videos while older devices may not. Therefore, it is
@@ -1243,8 +1243,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       </p>
 
       <p>
-        HDR detection is more nuanced. Adding colorGamut, transferFunction, and
-        hdrMetadataType has the potential to add significant entropy. However,
+        HDR detection is more nuanced. Adding {{colorGamut}}, {{transferFunction}}, and
+        {{hdrMetadataType}} has the potential to add significant entropy. However,
         for UAs whose decoders are implemented in software and therefore whose
         capabilities are fixed across devices, this feature adds no effective
         entropy. Additionally, for many cases, devices tend to fall into large
@@ -1255,7 +1255,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       <p>
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
-        capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
+        capabilities (i.e., decode up to 1080p VP9, etc.) instead of returning
         always yes or always no as the latter approach could considerably
         degrade the user's experience. Another mitigation could be to limit
         these Web APIs to top-level browsing contexts. Yet another is to use a
@@ -1415,7 +1415,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       </div>
 
       <div class="note">
-        The following example can also be found in e.g.
+        The following example can also be found in
         <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0">
         this codepen</a> with minimal modifications.
       </div>
