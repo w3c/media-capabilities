@@ -193,8 +193,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
   <dl>
     <dt><dfn>Decoding Pipeline</dfn></dt>
     <dd>
-      A configuration of inernal user agent components that implement media
-      decoding. For the purposes of this specification, we concieve of user
+      A configuration of internal user agent components that implement media
+      decoding. For the purposes of this specification, we conceive of user
       agents having distinct pipelines for encrypted vs unencrypted media.
       Additionally, user agents may support several distinct encrypted media
       pipelines, which must be signalled by using different
@@ -830,7 +830,8 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
       to determine whether the user agent supports codec switching via
       {{SourceBuffer/changeType()}} within the described
       <a>decoding pipeline</a>. Note that switching between
-      <a>decoding pipelines</a> is a separate quality of implementation issue as desribed by {{EME/setMediaKeys()}}.
+      <a>decoding pipelines</a> is a separate quality of implementation issue
+      as described by {{EME/setMediaKeys()}}.
     </p>
 
     <p>
