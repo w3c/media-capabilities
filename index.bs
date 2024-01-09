@@ -22,17 +22,11 @@ Abstract: based on the device's display.
 </pre>
 
 <pre class='anchors'>
-spec: media-source; urlPrefix: https://www.w3.org/TR/media-source/
+spec: media-source-2; urlPrefix: https://www.w3.org/TR/media-source-2/
     type: interface
         for: MediaSource; text: MediaSource; url: #mediasource
     type: method
         for: MediaSource; text: isTypeSupported(); url: #dom-mediasource-istypesupported
-
-spec: media-source-codec-switching; urlPrefix: https://rawgit.com/wicg/media-source/codec-switching/index.html
-    type: interface
-        for: SourceBuffer; text: SourceBuffer; url: #sourcebuffer
-    type: method
-        for: SourceBuffer; text: changeType(); url: #dom-sourcebuffer-changetype
 
 spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/;
     type: method
