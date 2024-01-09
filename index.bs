@@ -141,7 +141,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
   <p>
     This specification defines an API to query the user agent with regards
-    to the audio and video decoding and encoding abilities of the device,
+    to its audio and video decoding and encoding capabilities,
     based on information such as the codecs, profile, resolution, bitrates,
     etc., of the media. The API indicates if the configuration is supported
     and whether the playback should be smooth and power efficient.
