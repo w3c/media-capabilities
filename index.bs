@@ -147,17 +147,17 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     and whether the playback should be smooth and power efficient.
   </p>
   <p>
-    The intent of the decoding capabilities API is to provide a powerful
+    The intent of the decoding capabilities API is to provide a more capable
     replacement for APIs such as {{MediaSource/isTypeSupported()}} or
-    {{HTMLMediaElement/canPlayType()}} which are vague and mostly help
+    {{HTMLMediaElement/canPlayType()}}, which are vague and mostly help
     callers know if something cannot be decoded but not how well it
     should perform.
   </p>
   <p>
     This specification focuses on encoding and decoding capabilities.
     It is expected to be used with other web APIs that provide information about
-    the display properties, such as supported color gamut or dynamic range abilities,
-    to enable web applications to pick the right content for the display and to,
+    the display properties, such as supported color gamut or dynamic range capabilities,
+    which enable web applications to pick the right content for the display and to,
     for example, avoid providing HDR content to an SDR display.
   </p>
 </section>
