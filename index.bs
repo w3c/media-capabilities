@@ -1196,11 +1196,13 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         media paths are distinct, so that media may flow between peers without
         passing through a web site. It is therefore necessary for applications
         to negotiate communications parameters between peers, including the codecs
-        to be used to send and receive media.  Since WebRTC applications can
+        to be used to send and receive media.  A WebRTC peer can send media
+        received by dozens or even hundreds of receivers, and applications can
         rely on external services, including video conferencing servers,
-        transcoders or audio conferencing bridges, it is necessary for applications
-        to ensure that configuration is consistent across media senders and receivers,
-        rather than just allowing browsers to "pick the one they like best".
+        transcoders or audio conferencing bridges.  To enable communications at
+        scale, it is necessary for applications to ensure that configuration is
+        consistent across media senders and receivers, rather than just allowing
+        browsers to "pick the one they like best".
       </p>
   </section>
   <section>
