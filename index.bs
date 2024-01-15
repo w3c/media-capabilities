@@ -1197,9 +1197,10 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         passing through a web site. It is therefore necessary for applications
         to negotiate communications parameters between peers, including the codecs
         to be used to send and receive media.  Since WebRTC applications can
-        depend on video conferencing servers, transcoders or audio conferencing
-        bridges, application involvement in selecting media parameters is
-        critical, rather than allowing browsers to "pick the one they like best". 
+        rely on external services, including video conferencing servers,
+        transcoders or audio conferencing bridges, it is necessary for applications
+        to ensure that configuration is consistent across media senders and receivers,
+        rather than just allowing browsers to "pick the one they like best".
       </p>
   </section>
   <section>
