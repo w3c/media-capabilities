@@ -1185,7 +1185,24 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       used to fingerprint users.
     </p>
 
-    <section>
+  <section>
+      <h3 id='capabilities-model'>
+        Capabilities Model
+      </h3>
+      <p>
+        This specification supports {{MediaDecodingType}} values of {{file}},
+        {{media-source}} or {{webrtc}} as well as {{MediaEncodingType}}
+        values of {{record}} and {{webrtc}}. In [[webrtc]], signaling and
+        media paths are distinct, so that media may flow between peers without
+        passing through a web site. It is therefore necessary for applications
+        to negotiate communications parameters between peers, including the codecs
+        to be used to send and receive media.  Since WebRTC applications can
+        depend on video conferencing servers, transcoders or audio conferencing
+        bridges, application involvement in selecting media parameters is
+        critical, rather than allowing browsers to "pick the one they like best". 
+      </p>
+  </section>
+  <section>
       <h3 id='decoding-encoding-fingerprinting'>
         Decoding/Encoding and Fingerprinting
       </h3>
