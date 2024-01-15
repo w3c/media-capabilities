@@ -1195,11 +1195,12 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         values of {{record}} and {{webrtc}}. 
       </p>
       <p>
-        In [[webrtc]], signaling and media paths are distinct, so that media can
-        flow between peers without passing through a web site. To improve scalability,
-        applications can rely on external services, including video conferencing servers,
-        transcoders or audio conferencing bridges. Using these services, a WebRTC peer can
-        send media received by dozens or even hundreds of receivers.
+        In [[webrtc]], signaling and media paths are distinct, so that media
+        can flow between peers without passing through a web site. To improve
+        scalability, applications can rely on external services, including video
+        conferencing servers, transcoders or audio conferencing bridges. Using
+        these services, a WebRTC peer can send media received by dozens or even
+        hundreds of receivers.
      </p>
      <p>
         To make it possible for participants to send and receive media at scale,
