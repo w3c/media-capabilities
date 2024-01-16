@@ -1184,7 +1184,6 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       or APIs but is provides an easier access to some information that can be
       used to fingerprint users.
     </p>
-
   <section>
       <h3 id='capabilities-model'>
         Capabilities Model
@@ -1195,20 +1194,24 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         values of {{record}} and {{webrtc}}. 
       </p>
       <p>
-        In [[webrtc]], signaling and media paths are distinct, so that media
-        can flow between peers without passing through a web site. To improve
-        scalability, applications can rely on external services, including video
-        conferencing servers, transcoders or audio conferencing bridges. Using
-        these services, a WebRTC peer can send media received by dozens or even
-        hundreds of receivers.
+        In realtime communications as supported in [[webrtc]], media is
+        transported between peers. Although web sites can play a role in
+        relaying of signaling between peers, they are typically not involved
+        in media transport, encoding or decoding. For 1-1 calls, peers
+        typically directly negotiate media to be sent and received.
      </p>
      <p>
-        To make it possible for participants to send and receive media at scale,
-        it is necessary for applications to ensure that communication parameters
-        (including codecs) are consistent across senders and receivers. This 
-        requires negotiation between application peers, rather than just allowing
-        browsers to "pick the one they like best".
-      </p>
+        In a conferencing scenario, a WebRTC peer can send media for
+        reception by dozens or even hundreds of receivers.  To improve
+        scalability, applications make use of external servers, such as
+        selective forwarding units or conferencing bridges. These servers
+        negotiate media parameters with participants, ensuring consistency
+        across senders and receivers. This is vastly preferrable to 
+        allowing browsers to negotiate with each potential peer, which
+        would require N (N -1) negotiations, while ensuring interoperability
+        between peers, which would not be supported if browsers were allowed
+        to "pick the one they like best". 
+     </p>
   </section>
   <section>
       <h3 id='decoding-encoding-fingerprinting'>
