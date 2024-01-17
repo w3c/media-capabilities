@@ -1195,22 +1195,22 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       </p>
       <p>
         In realtime communications as supported in [[webrtc]], media is
-        transported between peers. Although web sites can play a role in
-        relaying of signaling between peers, they are typically not involved
-        in media transport, encoding or decoding. For 1-1 calls, peers
+        transported between peers. Although web sites are responsible for
+        relaying of signaling between user agents, they are typically not involved
+        in media transport, encoding or decoding. For 1-1 calls, user agents
         typically directly negotiate media to be sent and received.
      </p>
      <p>
-        In a conferencing scenario, a WebRTC peer can send media for
+        In a conferencing scenario, a user agent can send media for
         reception by dozens or even hundreds of receivers.  To improve
         scalability, applications make use of external servers, such as
         selective forwarding units or conferencing bridges. These servers
         negotiate media parameters with participants, ensuring consistency
-        across senders and receivers. This is vastly preferrable to 
-        allowing browsers to negotiate with each potential peer, which
-        would require N (N -1) negotiations, while ensuring interoperability
-        between peers, which would not be supported if browsers were allowed
-        to "pick the one they like best". 
+        across senders and receivers. This is more scalable than negotiation 
+        between user agents, which would require N (N -1) negotiations.
+        Since typically senders encode with a single codec, and conferencing
+        servers do not support transcoding, a user agent cannot simply
+        "pick the one they like best".
      </p>
   </section>
   <section>
