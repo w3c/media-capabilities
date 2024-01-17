@@ -1196,9 +1196,9 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       <p>
         In realtime communications as supported in [[webrtc]], media is
         transported between peers. Although web sites are responsible for
-        relaying of signaling between user agents, they are typically not involved
-        in media transport, encoding or decoding. For 1-1 calls, user agents
-        typically directly negotiate media to be sent and received.
+        relaying of signaling between user agents, they are typically not
+        involved in media transport, encoding or decoding. For 1-1 calls,
+        user agents negotiate media to be sent and received.
      </p>
      <p>
         In a conferencing scenario, a user agent can send media for
