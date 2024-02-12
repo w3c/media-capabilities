@@ -2,7 +2,7 @@
 
 This is the explainer for the Media Capabilities API. The document explains the goals and non-goals of the API and in general helps understand the thought process behind the API. The API shape in the document is mostly for information and might not be final.
 
-This document is a bit more dense that some readers might want. A quick one-pager can be found in the [README.md](https://github.com/WICG/media-capabilities/blob/master/README.md) file.
+This document is a bit more dense that some readers might want. A quick one-pager can be found in the [README.md](https://github.com/w3c/media-capabilities/blob/main/README.md) file.
 
 # Objective
 
@@ -99,12 +99,11 @@ This aim of this API is to help websites provide an optimal initial experience. 
 
 ## Encryption
 
-Playbacks using [Encrypted Media Extensions](
-s://w3c.github.io/encrypted-media/) (aka EME) employ specialized decoding and rendering code paths. This means different codec support and performance compared to clear playbacks. Hence, callers should describe a key system configuration as part of the `MediaDecodingConfiguration` dictionary.
+Playbacks using [Encrypted Media Extensions](https://w3c.github.io/encrypted-media/) (aka EME) employ specialized decoding and rendering code paths. This means different codec support and performance compared to clear playbacks. Hence, callers should describe a key system configuration as part of the `MediaDecodingConfiguration` dictionary.
 
 ```Javascript
 partial dictionary MediaDecodingConfiguration {
-    MediaCapabilitiesKeySystemConfiguration keySystemConfig;
+    MediaCapabilitiesKeySystemConfiguration keySystemConfiguration;
 };
 ```
 
@@ -126,7 +125,7 @@ This replicates the inputs provided to EME's [requestMediaKeySystemAccess](https
 
 Specifically, `rMKSA` takes a sequence of `MediaKeySystemConfigurations`, ordered by preference. Each entry may contain a sequence of initDataTypes and sequences of audio and video contentTypes with robustness. In the dictionary above, all of these sequences are reduced to single values. 
 
-This is a fundamental difference between the APIs. MediaCapabilities aims to describe the quality (smoothness and power efficiency) of support for a single pair of audio and video streams without making a decision for the caller. Callers should still order media configurations as they do with `rMKSA`, only now they walk the list themselves, calling MediaCapabiliites once for each option. These calls will return immediately with the promises resolving asynchronously.
+This is a fundamental difference between the APIs. MediaCapabilities aims to describe the quality (smoothness and power efficiency) of support for a single pair of audio and video streams without making a decision for the caller. Callers should still order media configurations as they do with `rMKSA`, only now they walk the list themselves, calling MediaCapabilities once for each option. These calls will return immediately with the promises resolving asynchronously.
 
 When a key system configuration is included in the `MediaDecodingConfiguration`, `mediaCapabilities.decodingInfo()` will return a promise containing the usual three booleans (`supported`, `smooth`, and `powerEfficient`) plus a `MediaKeySystemAccess` object whenever `supported = true`. The caller may use the `MediaKeySystemAccess` as they would in traditional EME to request media keys and setup encrypted media playback. This removes the need to call `rMKSA`.
 
@@ -167,7 +166,7 @@ const capabilitiesPromises = orderedMediaConfigs
 
 ### Permission prompts
 
-EME specifies that a handful of steps in `rMKSA` may request consent from the user. This consent is critical to knowing what encrypted media capabilities are available. Hence, MediaCapabilies will prompt in the same way as `rMKSA`. 
+EME specifies that a handful of steps in `rMKSA` may request consent from the user. This consent is critical to knowing what encrypted media capabilities are available. Hence, MediaCapabilities will prompt in the same way as `rMKSA`. 
 
 The spec will make clear that calling the API with a key system configuration may result in permission prompts. In practice, such prompts are rare. Currently only Chrome and Mozilla show EME prompts, and Mozilla limits theirs to once per browser profile. 
 
@@ -181,69 +180,70 @@ Media Capabilities should offer a means of surfacing when different MediaDecodin
 
 ## HDR
 
-HDR support in browsers is nonexistent. The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
+The API is intended to enable high end media playback on the Web as soon as it becomes more mainstream so the platform does not lag behind the curve. This is also a great example of including more formats into the web and keeping the API extensible.
+
+For HDR support detection, there are three main components whose capabilities need to be surfaced -- the decoder, renderer, and screen. The decoder takes in an encoded stream and produces a decoded stream understood by the renderer, which in turn maps the stream's signals to those the screen can properly output. Most of the time, the decoder and renderer are part of the UA while the screen represents the physical output monitor, whether this be a computer monitor or TV. To match this natural modularity between the UA and the screen, this API is compartmentalized into two parts:
+
+*   *MediaCapabilities.decodingInfo()*: handles the UA pieces, namely decoding and rendering. 
+*   TODO: various aspects of the screen are being discussed. 
 
 ### Screen capabilities
 
-Even if a device is able to decode HDR content, if the screen isn’t able to show this content appropriately, it might not be worth using HDR content for the website because of the higher bandwidth consumptions but also the rendering might be worse than a SDR optimised video.
+When the UA reports ability to decode HDR content, but the screen does not report ability to render HDR, it is not recommended to transmit HDR content because it wastes bandwidth and may result in actual rendering that is worse than SDR optimized video on some devices.
 
-The following data can be used to define whether a screen is HDR-worthy:
+The shape of this API is actively being discussed, specifically how the two-plane problem in TVs should be handled. Please refer to issue [#135](https://github.com/w3c/media-capabilities/issues/135).
 
-*   Colour gamut: HDR content requires a wider colour gamut than SDR content. Most screens use the sRGB colour gamut but p3 or BT.2020 are colour gamut that would usually be expected for HDR content.
-*   Colour/pixel depth: even if the screen has a wide colour gamut, the pixels need to be encoded in 30 bits (10 bits per colour component) instead of the usual 24 bits (8 bits per colour component). Otherwise, even if wider colour can be represented, precision would be lost.
-*   Brightness: because of darker blacks and brighter whites, a screen needs to have a large contrast ratio in order to be used for HDR content.
+***Work in progress***
 
-#### Colour gamut
+### Decode capabilities
 
-The colour gamut of the screen could be exposed on the *Screen* interface. It is already part of the work in progress [CSS Media Queries 4](https://drafts.csswg.org/mediaqueries-4/#color-gamut) but because various information will have to be read from the *Screen* object for HDR content, it would make sense to have all of them grouped together.
+HDR content has 3 properties that need to be understood by the decoder and renderer: color gamut, transfer function, and frame metadata if applicable. They can be used to determine whether a UA supports a particular HDR format.
 
-#### Colour/Pixel Depth
+*   Color gamut: HDR content requires a wider color gamut than SDR content. Most UAs support the sRGB color gamut but p3 or Rec. 2020 are color gamut that would usually be expected for HDR content.
+*   Transfer function: To map the wider color gamut of HDR content to the screen's signals, the UA needs to understand transfer functions like PQ and HLG.
+*   Frame metadata: Certain HDR content might also contain frame metadata. Metadata informs user agents of the required brightness for a given content or the transformation to apply for different values.
 
-It is already exposed on the *Screen* object but only for compatibility reasons. The [CSSOM View Module](https://www.w3.org/TR/cssom-view-1/#dom-screen-pixeldepth) should be updated or amended to make this information available.
+Sometimes, all of these are combined in buckets like [HDR10](https://en.wikipedia.org/wiki/HDR10), [HDR10+](https://en.wikipedia.org/wiki/High-dynamic-range_video#HDR10+) [Dolby Vision](https://en.wikipedia.org/wiki/Dolby_Vision) and [HLG](https://en.wikipedia.org/wiki/Hybrid_Log-Gamma). Below are the minimum requirements for frame metadata, color gamut, and transfer respectively for each of the buckets:
 
-#### Brightness
+*    HDR10: SMPTE-ST-2086 static metadata, Rec. 2020 color space, and PQ transfer function.
+*    HDR10+: SMPTE-ST-2094-40 dynamic metadata, Rec. 2020 color space, and PQ transfer function.
+*    Dolby Vision: SMPTE-ST-2094-10 dynamic metadata, Rec. 2020 color space, and PQ transfer function.
+*    HLG: No metadata, Rec. 2020 color space, and HLG transfer function.
 
-The minimum and maximum brightness should be exposed on the *Screen* object. In order to know the effective brightness, a website would need to know the brightness of the room which can be achieved with the [Ambient Light Sensor](https://w3c.github.io/ambient-light/).
+Color gamut, transfer function, and frame metadata -- as they they have to do with decoding and rendering -- are exposed individually on the *MediaCapabilities* interface as part of *VideoConfiguration*, which is queried with *MediaCapabilities.decodingInfo()*.
 
 #### Example
 
 ```JavaScript
-function canDisplayMyHDRStreams() {
-  // The conditions below are entirely made up :)
-  return window.screen.colorGamut == "rec2020" &&
-         window.screen.pixelDepth == "30" &&
-         window.screen.brightness.max > 500 &&
-         window.screen.brightness.min < 0.1;
-}
-```
-
-### Screen change
-
-The Web Platform only exposes the current screen associated to the website window. That means that a window changing screen will get its `window.screen` updated. A page can poll to find out about this but adding a *change* event to the *Screen* interface might be a more efficient way to expose this information.
-
-### Decode capabilities
-
-HDR videos have some information that need to be understood by the user agent in order to be rendered correctly. A website might want to check that the user agent will be able to interpret its HDR content before providing it.
-
-HDR content has 4 properties that need to be understood by the decoder: primaries, yuv-to-rgb conversion matrix, transfer function and range. In addition, certain HDR content might also contain frame metadata. Metadata informs user agents of the required brightness for a given content or the transformation to apply for different values. Sometimes, all of these are combined in buckets like [HDR10](https://en.wikipedia.org/wiki/HDR10), [Dolby Vision](https://en.wikipedia.org/wiki/Dolby_Vision) and [HLG](https://en.wikipedia.org/wiki/Hybrid_Log-Gamma).
-
-**Work in progress**
-
-At this point, it is unclear what should be exposed in this API: HDR frame metadata formats are not yet standardised, and it remains unclear if other properties should be exposed granularly or in buckets. The first iteration of this specification will not include HDR decoding capabilities until it receives implementer feedback. This is currently slated for $todo.
-
-At the moment, no operating system besides Android exposes HDR capabilities. Android exposes HDR capabilities using the buckets mentioned above. See [HdrCapabilities](https://developer.android.com/reference/android/view/Display.HdrCapabilities.html) interface and the [HDR Types](https://developer.android.com/reference/android/view/Display.HdrCapabilities.html#getSupportedHdrTypes()).
-
-Regardless of what is exposed, the HDR information will be part of an *hdr* sub-dictionary as part of the *video* information.
-
-```JavaScript
 navigator.mediaCapabilities.decodingInfo({
-  type: 'file',
-  video: { contentType: "video/webm; codecs=vp09.00.10.08", width: 1280, height: 720,
-           framerate: 24, bitrate: 123456,
-           hdr: { ... } },
-  audio: { contentType: "audio/webm; codecs=opus" },
+  video: { 
+    // Determine UA support for decoding and rendering HDR10.
+    hdrMetadataType: "smpteSt2086",
+    colorGamut: "rec2020",
+    transferFunction: "pq",
+    ...
+  }
+}).then(result => {
+  // Do things based on results. 
+  // Note: While some clients are able to map HDR content to SDR screens, check
+  // Screen capabilities to ensure high-fidelity playback.
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+  ...
 });
 ```
+
+### Fingerprinting
+
+While exposing HDR capabilities could add many bits of entropy for certain platforms, this API was designed with fingerprinting in mind and does its best to adhere to the Privacy Interest Group's suggested best practices:
+
+1. Avoid unnecessary or severe increases to fingerprinting surface, especially for passive fingerprinting.
+*   This API returns only a single boolean per set of input.
+2. Narrow the scope and availability of a feature with fingerprinting surface to what is functionally necessary.
+*   Various mitigations are suggested in the normative specification.
+3. Mark features that contribute to fingerprintability.
+*   The normative specification highlights fingerprinting concerns.
 
 ## <a name="transitions"></a>Transitioning between stream configurations
 
@@ -357,11 +357,100 @@ Unlike encrypted content, clear playbacks do not have an analog to the MediaKeyS
 
 ## HDCP support
 
-Now covered in a [separate repository](https://github.com/WICG/hdcp-detection/blob/master/explainer.md).
+Now covered in a [separate repository](https://github.com/WICG/hdcp-detection/blob/main/explainer.md).
 
 ## Audio channels/speakers configuration
 
 This is already exposed by the Web Audio API [somehow](https://webaudio.github.io/web-audio-api/#ChannelLayouts). If the Web Audio API is not sufficient, the Media Capabilities API might expose this information too. However, the Web Audio API exposes this information on the destination node which is better than what the Media Capabilities API would be able to do.
+
+## Spatial audio
+
+This API aims to enable spatial audio on the Web as increasingly more online content providers serve high-end media playback experiences; examples include [Dolby Atmos](https://en.wikipedia.org/wiki/Dolby_Atmos) and [DST:X](https://en.wikipedia.org/wiki/DTS_(sound_system)#DTS:X). Like [HDR](https://github.com/w3c/media-capabilities/blob/main/explainer.md#hdr), this is an example of web's growth and this API's extensibility.
+
+### Spatial rendering
+
+Spatial rendering describes the UA's ability to to render spatial audio to a given output device; it can be used in conjunction with the stream's mime type to determine support for a specific spatial audio format. 
+
+A Web API exposing spatial rendering is necessary for the following reasons:
+
+*   Because spatial audio is not a codec per se, a client's ability to decode a statial-compatible mime type does not necessitate support for rendering spatial audio.
+*   WebAudio's maxChannelCount API cannot be used to discern support for spatial audio, because formats like Dolby Atmos supports two-channel headphones in addition to N-channel speaker systems.
+*   Serving content with spatial audio to clients that can decode but not render it results in wasted bandwidth and potentially lower quality user experience.
+
+Spatial rendering is exposed as a boolean included in AudioConfiugration, which can be used to query *MediaCapabilities.decodingInfo()*.
+
+### Example
+
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
+  audio: {
+    // Determine support for Dolby Atmos by checking Dolby Digital Plus and spatial rendering.
+    contentType: "audio/mp4; codecs=ec-3",
+    spatialRendering: true,
+    ...
+  }
+}).then(result => {
+  // Do things based on results.
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+  ...
+});
+```
+
+## WebRTC
+
+The API also supports the WebRTC usec case and makes it possible to determine both send and receive capabilities by calling the methods `encodingInfo` and `decodingInfo`. This gives complementary information to what is otherwise received from the methods `RTCRtpSender.getCapabilities` and `RTCRtpReceiver.getCapabilities`. There are a couple of differences to the input to the API when the type `webrtc` is used:
+
+* The contentType should now be a valid media type according to what's defined for RTP. See the examples below and the specification for more details on this.
+* An optional field `scalabilityMode` can be used in the video configuration when calling `encodingInfo` to query if a specific scalability mode is supported. See [Scalable Video Coding (SVC) Extension for WebRTC](https://www.w3.org/TR/webrtc-svc/).
+* An optional field `spatialScalability` can be used in the video configuration when calling `decodingInfo` to query if the decoder can handle spatial scalability. A bit simplified this can be interpreted as any stream that is encoded with dependent spatial layers according to [Scalable Video Coding (SVC) Extension for WebRTC](https://www.w3.org/TR/webrtc-svc/).
+
+### Examples
+
+#### Decoding info
+```JavaScript
+navigator.mediaCapabilities.decodingInfo({
+  type: 'webrtc',
+  video: {
+    contentType: 'video/VP9; profile-id="2"',
+    spatialScalability: false,
+    height: 1080,
+    width: 1920,
+    framerate: 24,
+    bitrate: 2826848,
+  },
+  audio: {
+    contentType: 'audio/opus',
+  }
+}).then(result => {
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+});
+```
+
+#### Encoding info
+```JavaScript
+navigator.mediaCapabilities.encodingInfo({
+  type: 'webrtc',
+  video: {
+    contentType: 'video/VP9',
+    scalabilityMode: 'L3T3_KEY',
+    height: 720,
+    width: 1280,
+    framerate: 24,
+    bitrate: 1216848,
+  },
+  audio: {
+    contentType: 'audio/opus',
+  }
+}).then(result => {
+  console.log(result.supported);
+  console.log(result.smooth);
+  console.log(result.powerEfficient);
+});
+```
 
 # Privacy Considerations
 
