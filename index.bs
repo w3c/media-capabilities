@@ -1181,7 +1181,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
   <section>
     <p>
       This specification does not introduce any security-sensitive information
-      or APIs but is provides an easier access to some information that can be
+      or APIs but it provides easier access to some information that can be
       used to fingerprint users.
     </p>
 
