@@ -793,7 +793,6 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       NOT take the device's power source into consideration when determining
       encoding power efficiency unless the device's power source has side
       effects such as enabling different encoding modules.
-
     </p>
 
     <p>
