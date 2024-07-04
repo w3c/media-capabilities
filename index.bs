@@ -144,7 +144,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
     to its audio and video decoding and encoding capabilities,
     based on information such as the codecs, profile, resolution, bitrates,
     etc., of the media. The API indicates if the configuration is supported
-    and whether the playback should be smooth and power efficient.
+    and whether the playback is expected to be smooth and power efficient.
   </p>
   <p>
     The intent of the decoding capabilities API is to provide a more capable
