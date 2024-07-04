@@ -783,16 +783,17 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
     </p>
 
     <p>
-      Encoding or decoding is <dfn>power efficient</dfn> when the power draw is optimal. 
-      The definition of optimal power draw from encoding or decoding is left to the user agent but common 
-      implementation strategies would be to consider using hardware as optimal power draw. 
-      User agents SHOULD NOT mark as power efficient hardware encoding or decoding, as 
-      non hardware-accelerated codecs can be as efficient as accelerated ones (for example, with low resolution video).
-       The user agent SHOULD NOT
-              take into consideration the current power source in order to
-              determine the encoding power efficiency unless the device's power
-              source has side effects such as enabling different encoding
-              modules.
+      Encoding or decoding is considered <dfn>power efficient</dfn> when the
+      power draw is optimal. The definition of optimal power draw for encoding
+      or decoding is left to the user agent. However, a common implementation
+      strategy is to consider hardware usage as indicative of optimal power
+      draw. User agents SHOULD NOT mark hardware encoding or decoding as power
+      efficient by default, as non-hardware-accelerated codecs can be just as
+      efficient, particularly with low-resolution video. User agents SHOULD
+      NOT take the device's power source into consideration when determining
+      encoding power efficiency unless the device's power source has side
+      effects such as enabling different encoding modules.
+
     </p>
 
     <p>
