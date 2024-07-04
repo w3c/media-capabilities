@@ -782,13 +782,12 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       booleans.
     </p>
 
-    <p class='note'>
-      Authors can use {{MediaCapabilitiesInfo/powerEfficient}} in concordance
-      with the Battery Status API [[battery-status]] in order to determine
-      whether the media they would like to play is appropriate for the user
-      configuration. It is worth noting that even when a device is not power
-      constrained, high power usage has side effects such as increasing the
-      temperature or the fans noise.
+    <p>
+      Encoding or decoding is <dfn>power efficient</dfn> when the power draw is optimal or close to optimal. 
+      The definition of optimal power draw from encoding or decoding is left to the user agent but common 
+      implementation strategies would be to consider using hardware as optimal power draw. 
+      It is NOT RECOMMENDED that user agents mark as power efficient hardware encoding or decoding as 
+      non-accelerated codec be as efficient as to accelerated ones (for example, low resolution videos).
     </p>
 
     <p>
@@ -855,7 +854,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
             </li>
             <li>
               If the user agent is able to encode the media represented by
-              <var>configuration</var> in a power efficient manner, set
+              <var>configuration</var> in a [=power efficient=] manner, set
               {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
               Otherwise set it to <code>false</code>. The user agent SHOULD NOT
               take into consideration the current power source in order to
@@ -929,7 +928,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
             </li>
             <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> in a power efficient
+              <var>configuration</var> in a [=power efficient=]
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
               <code>true</code>. Otherwise set it to <code>false</code>. The
               user agent SHOULD NOT take into consideration the current
