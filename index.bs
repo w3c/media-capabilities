@@ -861,11 +861,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
               If the user agent is able to encode the media represented by
               <var>configuration</var> in a [=power efficient=] manner, set
               {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
-              Otherwise set it to <code>false</code>. The user agent SHOULD NOT
-              take into consideration the current power source in order to
-              determine the encoding power efficiency unless the device's power
-              source has side effects such as enabling different encoding
-              modules.
+              Otherwise set it to <code>false</code>.
             </li>
             <li>
               Return <var>info</var>.
@@ -935,11 +931,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
               If the user agent is able to decode the media represented by
               <var>configuration</var> in a [=power efficient=]
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
-              <code>true</code>. Otherwise set it to <code>false</code>. The
-              user agent SHOULD NOT take into consideration the current
-              power source in order to determine the decoding power
-              efficiency unless the device's power source has side effects
-              such as enabling different decoding modules.
+              <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
             <li>
               Return <var>info</var>.
