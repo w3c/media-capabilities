@@ -235,14 +235,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <section>
       <h4 id='mime-type'>MIME types</h4>
 
-      <p>
-        In the context of this specification, a MIME type is also called content
-        type. A <dfn>valid media MIME type</dfn> is a string that is a <a>valid
-        MIME type</a> per [[mimesniff]].
-      </p>
-
-      <p>
-        Please note that the definition of MIME subtypes and parameters is
+      <p class="note">
+        Definition of MIME subtypes and parameters is
         context dependent. For {{file}}, {{media-source}}, and {{record}}, the
         MIME types are specified as defined for [[#http|HTTP]], whereas for
         {{MediaDecodingType/webrtc}} the MIME types are specified as
@@ -250,15 +244,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
-        A <dfn>valid audio MIME type</dfn> is a string that is a <a>valid media
-        MIME type</a> and for which the <code>type</code> per [[RFC9110]] is
-        either <code>audio</code> or <code>application</code>.
+        A <dfn>valid audio MIME type</dfn> is a [=valid mime type string=] whose [=MIME type/type=] is either <code>audio</code> or <code>application</code>.
       </p>
 
       <p>
-        A <dfn>valid video MIME type</dfn> is a string that is a <a>valid media
-        MIME type</a> and for which the <code>type</code> per [[RFC9110]] is
-        either <code>video</code> or <code>application</code>.
+        A <dfn>valid video MIME type</dfn> is a [=valid mime type string=] whose [=MIME type/type=] is either <code>video</code> or <code>application</code>.
       </p>
 
       <section>
@@ -305,7 +295,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         The <dfn for='VideoConfiguration' dict-member>contentType</dfn> member
-        represents the MIME type of the video track.
+        represents the [=MIME type=] of the video track.
       </p>
 
       <p>
@@ -549,7 +539,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>contentType</dfn> member
-        represents the MIME type of the audio track.
+        represents the [=MIME type=] of the audio track.
       </p>
 
       <p>
