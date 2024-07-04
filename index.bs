@@ -788,6 +788,11 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       implementation strategies would be to consider using hardware as optimal power draw. 
       It is NOT RECOMMENDED that user agents mark as power efficient hardware encoding or decoding as 
       non-accelerated codec be as efficient as to accelerated ones (for example, low resolution videos).
+       The user agent SHOULD NOT
+              take into consideration the current power source in order to
+              determine the encoding power efficiency unless the device's power
+              source has side effects such as enabling different encoding
+              modules.
     </p>
 
     <p>
