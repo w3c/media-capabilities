@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 82ce88815, updated Thu Sep 7 16:33:55 2023 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="ea15e974458bb4cb32d6a36728f9ca84a0e76630" name="document-revision">
+  <meta content="9cb1295c051dc37d2e64dec77c4433967a57d5bd" name="document-revision">
 <style>/* Boilerplate: style-autolinks */
 .css.css, .property.property, .descriptor.descriptor {
     color: var(--a-normal-text);
@@ -648,7 +648,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-07-04">4 July 2024</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2024-07-11">11 July 2024</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1168,12 +1168,16 @@ based on the device’s display.</p>
 </pre>
      <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo②">MediaCapabilitiesInfo</a></code> has associated <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-supported"><code>supported</code></dfn>, <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-smooth"><code>smooth</code></dfn>, <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-powerefficient"><code>powerEfficient</code></dfn> fields which are
       booleans. </p>
-     <p class="note" role="note"> Authors can use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient①">powerEfficient</a></code> in concordance
-      with the Battery Status API <a data-link-type="biblio" href="#biblio-battery-status" title="Battery Status API">[battery-status]</a> in order to determine
-      whether the media they would like to play is appropriate for the user
-      configuration. It is worth noting that even when a device is not power
-      constrained, high power usage has side effects such as increasing the
-      temperature or the fans noise. </p>
+     <p> Encoding or decoding is considered <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="power-efficient">power efficient</dfn> when the
+      power draw is optimal. The definition of optimal power draw for encoding
+      or decoding is left to the user agent. However, a common implementation
+      strategy is to consider hardware usage as indicative of optimal power
+      draw. User agents SHOULD NOT mark hardware encoding or decoding as power
+      efficient by default, as non-hardware-accelerated codecs can be just as
+      efficient, particularly with low-resolution video. User agents SHOULD
+      NOT take the device’s power source into consideration when determining
+      encoding power efficiency unless the device’s power source has side
+      effects such as enabling different encoding modules. </p>
      <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo">MediaCapabilitiesDecodingInfo</a></code> has associated <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesDecodingInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesdecodinginfo-keysystemaccess"><code>keySystemAccess</code></dfn> which is a <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#mediakeysystemaccess-interface" id="ref-for-mediakeysystemaccess-interface">MediaKeySystemAccess</a></code> or <code>null</code> as
       appropriate. </p>
      <p class="note" role="note"> If the encrypted decoding configuration is supported, the
@@ -1197,12 +1201,8 @@ based on the device’s display.</p>
         <li> If the user agent is able to encode the media represented by <var>configuration</var>, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported②">supported</a></code> to <code>true</code>. Otherwise set it to <code>false</code>. 
         <li> If the user agent is able to encode the media represented by <var>configuration</var> at the indicated framerate, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth①">smooth</a></code> to <code>true</code>. Otherwise
               set it to <code>false</code>. 
-        <li> If the user agent is able to encode the media represented by <var>configuration</var> in a power efficient manner, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient②">powerEfficient</a></code> to <code>true</code>.
-              Otherwise set it to <code>false</code>. The user agent SHOULD NOT
-              take into consideration the current power source in order to
-              determine the encoding power efficiency unless the device’s power
-              source has side effects such as enabling different encoding
-              modules. 
+        <li> If the user agent is able to encode the media represented by <var>configuration</var> in a <a data-link-type="dfn" href="#power-efficient" id="ref-for-power-efficient">power efficient</a> manner, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient①">powerEfficient</a></code> to <code>true</code>.
+              Otherwise set it to <code>false</code>. 
         <li> Return <var>info</var>. 
        </ol>
        <p></p>
@@ -1233,12 +1233,7 @@ based on the device’s display.</p>
          </ol>
         <li> If the user agent is able to decode the media represented by <var>configuration</var> at the indicated framerate
               without dropping frames, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth②">smooth</a></code> to <code>true</code>. Otherwise set it to <code>false</code>. 
-        <li> If the user agent is able to decode the media represented by <var>configuration</var> in a power efficient
-              manner, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient③">powerEfficient</a></code> to <code>true</code>. Otherwise set it to <code>false</code>. The
-              user agent SHOULD NOT take into consideration the current
-              power source in order to determine the decoding power
-              efficiency unless the device’s power source has side effects
-              such as enabling different decoding modules. 
+        <li> If the user agent is able to decode the media represented by <var>configuration</var> in a <a data-link-type="dfn" href="#power-efficient" id="ref-for-power-efficient①">power efficient</a> manner, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient②">powerEfficient</a></code> to <code>true</code>. Otherwise set it to <code>false</code>. 
         <li> Return <var>info</var>. 
        </ol>
        <p></p>
@@ -1671,6 +1666,7 @@ based on the device’s display.</p>
    <li><a href="#dom-colorgamut-p3">"p3"</a><span>, in § 2.1.7</span>
    <li><a href="#dom-colorgamut-p3">p3</a><span>, in § 2.1.7</span>
    <li><a href="#dom-mediacapabilitieskeysystemconfiguration-persistentstate">persistentState</a><span>, in § 2.1.10</span>
+   <li><a href="#power-efficient">power efficient</a><span>, in § 2.2</span>
    <li><a href="#dom-mediacapabilitiesinfo-powerefficient">powerEfficient</a><span>, in § 2.2</span>
    <li><a href="#dom-transferfunction-pq">"pq"</a><span>, in § 2.1.8</span>
    <li><a href="#dom-transferfunction-pq">pq</a><span>, in § 2.1.8</span>
@@ -1864,8 +1860,6 @@ based on the device’s display.</p>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
-   <dt id="biblio-battery-status">[BATTERY-STATUS]
-   <dd>Anssi Kostiainen; Raphael Kubo da Costa. <a href="https://w3c.github.io/battery/"><cite>Battery Status API</cite></a>. URL: <a href="https://w3c.github.io/battery/">https://w3c.github.io/battery/</a>
    <dt id="biblio-media-playback-quality">[MEDIA-PLAYBACK-QUALITY]
    <dd>Mounir Lamouri. <a href="https://w3c.github.io/media-playback-quality/"><cite>Media Playback Quality</cite></a>. ED. URL: <a href="https://w3c.github.io/media-playback-quality/">https://w3c.github.io/media-playback-quality/</a>
    <dt id="biblio-mediastream-recording">[MEDIASTREAM-RECORDING]
@@ -2418,7 +2412,8 @@ window.dfnpanelData['dictdef-mediacapabilitiesdecodinginfo'] = {"dfnID": "dictde
 window.dfnpanelData['dictdef-mediacapabilitiesencodinginfo'] = {"dfnID": "dictdef-mediacapabilitiesencodinginfo", "url": "#dictdef-mediacapabilitiesencodinginfo", "dfnText": "MediaCapabilitiesEncodingInfo", "refSections": [{"refs": [{"id": "ref-for-dictdef-mediacapabilitiesencodinginfo"}, {"id": "ref-for-dictdef-mediacapabilitiesencodinginfo\u2460"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dictdef-mediacapabilitiesencodinginfo\u2461"}, {"id": "ref-for-dictdef-mediacapabilitiesencodinginfo\u2462"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}, {"refs": [{"id": "ref-for-dictdef-mediacapabilitiesencodinginfo\u2463"}], "title": "2.5. Media Capabilities Interface"}], "external": false};
 window.dfnpanelData['dom-mediacapabilitiesinfo-supported'] = {"dfnID": "dom-mediacapabilitiesinfo-supported", "url": "#dom-mediacapabilitiesinfo-supported", "dfnText": "supported", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-supported"}], "title": "2.1.9. AudioConfiguration"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-supported\u2460"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-supported\u2461"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-supported\u2462"}, {"id": "ref-for-dom-mediacapabilitiesinfo-supported\u2463"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
 window.dfnpanelData['dom-mediacapabilitiesinfo-smooth'] = {"dfnID": "dom-mediacapabilitiesinfo-smooth", "url": "#dom-mediacapabilitiesinfo-smooth", "dfnText": "smooth", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-smooth"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-smooth\u2460"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-smooth\u2461"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
-window.dfnpanelData['dom-mediacapabilitiesinfo-powerefficient'] = {"dfnID": "dom-mediacapabilitiesinfo-powerefficient", "url": "#dom-mediacapabilitiesinfo-powerefficient", "dfnText": "powerEfficient", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient"}, {"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient\u2460"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient\u2461"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient\u2462"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
+window.dfnpanelData['dom-mediacapabilitiesinfo-powerefficient'] = {"dfnID": "dom-mediacapabilitiesinfo-powerefficient", "url": "#dom-mediacapabilitiesinfo-powerefficient", "dfnText": "powerEfficient", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient\u2460"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesinfo-powerefficient\u2461"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
+window.dfnpanelData['power-efficient'] = {"dfnID": "power-efficient", "url": "#power-efficient", "dfnText": "power efficient", "refSections": [{"refs": [{"id": "ref-for-power-efficient"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}, {"refs": [{"id": "ref-for-power-efficient\u2460"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
 window.dfnpanelData['dom-mediacapabilitiesdecodinginfo-keysystemaccess'] = {"dfnID": "dom-mediacapabilitiesdecodinginfo-keysystemaccess", "url": "#dom-mediacapabilitiesdecodinginfo-keysystemaccess", "dfnText": "keySystemAccess", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess\u2460"}, {"id": "ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess\u2461"}, {"id": "ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess\u2462"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
 window.dfnpanelData['dom-mediacapabilitiesdecodinginfo-configuration'] = {"dfnID": "dom-mediacapabilitiesdecodinginfo-configuration", "url": "#dom-mediacapabilitiesdecodinginfo-configuration", "dfnText": "configuration", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesdecodinginfo-configuration"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesdecodinginfo-configuration\u2460"}, {"id": "ref-for-dom-mediacapabilitiesdecodinginfo-configuration\u2461"}], "title": "2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "}], "external": false};
 window.dfnpanelData['dom-mediacapabilitiesencodinginfo-configuration'] = {"dfnID": "dom-mediacapabilitiesencodinginfo-configuration", "url": "#dom-mediacapabilitiesencodinginfo-configuration", "dfnText": "configuration", "refSections": [{"refs": [{"id": "ref-for-dom-mediacapabilitiesencodinginfo-configuration"}], "title": "2.2. Media Capabilities Information"}, {"refs": [{"id": "ref-for-dom-mediacapabilitiesencodinginfo-configuration\u2460"}, {"id": "ref-for-dom-mediacapabilitiesencodinginfo-configuration\u2461"}], "title": "2.3.1. \n          Create a MediaCapabilitiesEncodingInfo\n        "}], "external": false};
