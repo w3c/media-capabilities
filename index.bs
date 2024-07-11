@@ -782,13 +782,17 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       booleans.
     </p>
 
-    <p class='note'>
-      Authors can use {{MediaCapabilitiesInfo/powerEfficient}} in concordance
-      with the Battery Status API [[battery-status]] in order to determine
-      whether the media they would like to play is appropriate for the user
-      configuration. It is worth noting that even when a device is not power
-      constrained, high power usage has side effects such as increasing the
-      temperature or the fans noise.
+    <p>
+      Encoding or decoding is considered <dfn>power efficient</dfn> when the
+      power draw is optimal. The definition of optimal power draw for encoding
+      or decoding is left to the user agent. However, a common implementation
+      strategy is to consider hardware usage as indicative of optimal power
+      draw. User agents SHOULD NOT mark hardware encoding or decoding as power
+      efficient by default, as non-hardware-accelerated codecs can be just as
+      efficient, particularly with low-resolution video. User agents SHOULD
+      NOT take the device's power source into consideration when determining
+      encoding power efficiency unless the device's power source has side
+      effects such as enabling different encoding modules.
     </p>
 
     <p>
@@ -855,13 +859,9 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
             </li>
             <li>
               If the user agent is able to encode the media represented by
-              <var>configuration</var> in a power efficient manner, set
+              <var>configuration</var> in a [=power efficient=] manner, set
               {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
-              Otherwise set it to <code>false</code>. The user agent SHOULD NOT
-              take into consideration the current power source in order to
-              determine the encoding power efficiency unless the device's power
-              source has side effects such as enabling different encoding
-              modules.
+              Otherwise set it to <code>false</code>.
             </li>
             <li>
               Return <var>info</var>.
@@ -929,13 +929,9 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
             </li>
             <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> in a power efficient
+              <var>configuration</var> in a [=power efficient=]
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
-              <code>true</code>. Otherwise set it to <code>false</code>. The
-              user agent SHOULD NOT take into consideration the current
-              power source in order to determine the decoding power
-              efficiency unless the device's power source has side effects
-              such as enabling different decoding modules.
+              <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
             <li>
               Return <var>info</var>.
