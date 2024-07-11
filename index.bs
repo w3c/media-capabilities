@@ -792,7 +792,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       efficient, particularly with low-resolution video. User agents SHOULD
       NOT take the device's power source into consideration when determining
       encoding power efficiency unless the device's power source has side
-      effects such as enabling different encoding modules.
+      effects such as enabling different encoding or decoding modules.
     </p>
 
     <p>
