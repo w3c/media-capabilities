@@ -726,7 +726,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
 
     <pre class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
-        required MediaKeySystemAccess keySystemAccess;
+        required MediaKeySystemAccess? keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
     </pre>
