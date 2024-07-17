@@ -233,50 +233,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     </section>
 
     <section>
-      <h4 id='mime-type'>MIME types</h4>
-
-      <p class="note">
-        Definition of MIME subtypes and parameters is
-        context dependent. For {{file}}, {{media-source}}, and {{record}}, the
-        MIME types are specified as defined for [[#http|HTTP]], whereas for
-        {{MediaDecodingType/webrtc}} the MIME types are specified as
-        defined for [[#rtp|RTP]].
-      </p>
-
-      <p>
-        A <dfn>valid audio MIME type</dfn> is a [=valid mime type string=] whose
-        [=MIME type/type=] is either <code>audio</code> or <code>application</code>.
-      </p>
-
-      <p>
-        A <dfn>valid video MIME type</dfn> is a [=valid mime type string=] whose
-        [=MIME type/type=] is either <code>video</code> or <code>application</code>.
-      </p>
-
-      <section>
-        <h5 id='http'>HTTP</h5>
-
-        <p>
-          If the MIME type does not imply a codec, the string MUST also have one
-          and only one parameter that is named <code>codecs</code> with a value
-          describing a single media codec. Otherwise, it MUST contain no
-          parameters.
-        </p>
-      </section>
-
-      <section>
-        <h5 id='rtp'>RTP</h5>
-
-        <p>
-          The MIME types used with RTP are defined in the specifications of the
-          corresponding RTP payload formats [[RFC4855]] [[RFC6838]]. The codec
-          name is typically specified as subtype and zero or more parameters
-          may be present depending on the codec.
-        </p>
-      </section>
-    </section>
-
-    <section>
       <h4 id='videoconfiguration'>VideoConfiguration</h4>
 
       <xmp class='idl'>
@@ -305,9 +261,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            If <var>configuration</var>'s {{VideoConfiguration/contentType}} is
-            not a <a>valid video MIME type</a>, return <code>false</code> and
-            abort these steps.
+            Let |result| be the result of running the <a>Check a MIME Type</a>
+            algorithm with |configuration|'s {{VideoConfiguration/contentType}},
+            the media type <code>video</code>,
+            and {{MediaDecodingType}} or {{MediaEncodingType}} |type|.
+          </li>
+          <li>
+            If |result| is <code>failure</code> or <code>unsupported</code>,
+            return <code>false</code> and abort these steps.
           </li>
           <li>
             If {{VideoConfiguration/framerate}} is not finite or is not greater
@@ -545,13 +506,18 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
-        To check if a {{AudioConfiguration}} <var>configuration</var> is a
+        To check if a {{AudioConfiguration}} |configuration| is a
         <dfn>valid audio configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            If <var>configuration</var>'s {{AudioConfiguration/contentType}} is
-            not a <a>valid audio MIME type</a>, return <code>false</code> and
-            abort these steps.
+            Let |result| be the result of running the <a>Check a MIME Type</a>
+            algorithm with |configuration|'s {{AudioConfiguration/contentType}},
+            the media type <code>audio</code>,
+            and {{MediaDecodingType}} or {{MediaEncodingType}} |type|.
+          </li>
+          <li>
+            If |result| is <code>failure</code> or <code>unsupported</code>,
+            return <code>false</code> and abort these steps.
           </li>
           <li>
             Return <code>true</code>.
@@ -886,6 +852,93 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </li>
           </ol>
         </p>
+      </section>
+
+      <section>
+        <h4 id='check-mime-type'>
+          <dfn>Check a MIME Type</dfn>
+        </h4>
+        <p>
+          Given a {{DOMString}} |contentType|, a media type |mediaType|, and either
+          a {{MediaDecodingType}} or {{MediaEncodingType}} |type|, this algorithm
+          returns whether the media format indicated by |contentType| is supported
+          by the user agent. The following steps are run:
+        </p>
+        <ol>
+          <li>
+            Let |mimeType| be the result of running <a>parse a
+            MIME type</a> with |contentType|.
+          </li>
+          <li>
+            If the value of |mimeType| is <code>failure</code>,
+            return <code>failure</code>.
+          </li>
+          <li>
+            If |type| is {{MediaDecodingType/file}}, {{MediaDecodingType/media-source}},
+            or {{MediaEncodingType/record}}:
+            <ol>
+              <li>
+                If |mediaType| is <code>audio</code> and |mimeType|'s [=MIME type/type=]
+                per [[RFC9110]] is neither <code>audio</code> nor <code>application</code>,
+                return <code>unsupported</code>.
+              </li>
+              <li>
+                If |mediaType| is <code>video</code> and |mimeType|'s [=MIME type/type=]
+                per [[RFC9110]] is neither <code>video</code> nor <code>application</code>,
+                return <code>unsupported</code>.
+              </li>
+              <li>
+                If the combined <code>type</code> and <code>subtype</code> members
+                of <var>parsedMime</var> imply a single media codec:
+                <ol>
+                  <li>
+                    If the <code>parameters</code> member of <var>parsedMime</var>
+                    is not empty, return <code>failure</code>.
+                  </li>
+                  <li>
+                    If |mimeType| indicates a codec that is supported by the user
+                    agent, return <code>supported</code>, otherwise return
+                    <code>unsupported</code>.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Otherwise:
+                <ol>
+                  <li>
+                    If the <code>parameters</code> member of |parsedMime|
+                    does not contain a single key named "codecs", return
+                    <code>unsupported</code>.
+                  </li>
+                  <li>
+                    If the value of <code>parsedMime.parameters["codecs"]</code>
+                    does not describe a single media codec, return
+                    <code>unsupported</code>.
+                  </li>
+                  <li>
+                    If |mimeType| indicates a codec that is supported by the user
+                    agent, return <code>supported</code>, otherwise return
+                    <code>unsupported</code>.
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li>
+            <p>
+              If |type| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) or
+              {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}),
+              and |mimeType| indicates a codec that is used with RTP as defined in the
+              specifications of the corresponding RTP payload formats [[RFC4855]]
+              [[RFC6838]], and supported by the user agent,
+              return <code>supported</code>, otherwise return <code>unsupported</code>.
+            </p>
+            <p class="note">
+              The codec name is typically specified as subtype and zero or more
+              parameters may be present depending on the codec.
+            </p>
+          </li>
+        </ol>
       </section>
 
       <section>
