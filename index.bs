@@ -864,7 +864,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           Check a MIME Type
         </h4>
         <p>
-          The <dfn id="check-a-mime-type">check a MIME Type</dfn> algorithm takes {{DOMString}} |contentType|, string |mediaType|, and either
+          The <dfn id="check-a-mime-type">check a MIME Type</dfn> algorithm takes {{DOMString}} |contentType|, string |media|, and either
           a {{MediaDecodingType}} or {{MediaEncodingType}} |encodeOrDecodeType|. It
           returns either failure, or a boolean that represents if the MIME type of |contentType| is [=supported by the user agent=]:
         </p>
@@ -895,14 +895,15 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 </p>
               </li>
             </ol>
+          </li>
           <li>
-            If |mediaType| is <code>audio</code> and |mimeType|'s [=MIME type/type=]
-            per [[RFC9110]] is neither <code>audio</code> nor <code>application</code>,
+            If |media| is <code>audio</code> and |mimeType|'s [=MIME type/type=]
+            is neither <code>audio</code> nor <code>application</code>,
             return <code>false</code>.
           </li>
           <li>
-            If |mediaType| is <code>video</code> and |mimeType|'s [=MIME type/type=]
-            per [[RFC9110]] is neither <code>video</code> nor <code>application</code>,
+            If |media| is <code>video</code> and |mimeType|'s [=MIME type/type=]
+            is neither <code>video</code> nor <code>application</code>,
             return <code>false</code>.
           </li>
           <li>
