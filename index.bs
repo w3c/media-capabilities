@@ -855,7 +855,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </section>
 
       <section>
-        <h4>
+        <h4 algorithm>
           Check a MIME Type
         </h4>
         <p>
@@ -863,7 +863,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           a {{MediaDecodingType}} or {{MediaEncodingType}} |encodeOrDecodeType|. It
           returns either failure, or a boolean that represents if the MIME type of |contentType| is [=supported by the user agent=]:
         </p>
-        <ol algorithm>
+        <ol>
           <li>
             Let |mimeType| be the result of running <a>parse a
             MIME type</a> with |contentType|.
@@ -873,8 +873,26 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             return <code>failure</code>.
           </li>
           <li>
-            If |type| is {{MediaDecodingType/file}}, {{MediaDecodingType/media-source}},
-            or {{MediaEncodingType/record}}:
+            If |encodingorDecodingType| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}})
+            or {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}):
+            <ol>
+              <li>
+                <p>
+                  If |type| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) or
+                  {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}),
+                  and |mimeType| indicates a codec that is used with RTP as defined in the
+                  specifications of the corresponding RTP payload formats [[RFC4855]]
+                  [[RFC6838]], and supported by the user agent,
+                  return <code>supported</code>, otherwise return <code>unsupported</code>.
+                </p>
+                <p class="note">
+                  The codec name is typically specified as subtype and zero or more
+                  parameters may be present depending on the codec.
+                </p>
+              </li>
+            </ol>
+          <li>
+            Otherwise:
             <ol>
               <li>
                 If |mediaType| is <code>audio</code> and |mimeType|'s [=MIME type/type=]
@@ -922,20 +940,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 </ol>
               </li>
             </ol>
-          </li>
-          <li>
-            <p>
-              If |type| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) or
-              {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}),
-              and |mimeType| indicates a codec that is used with RTP as defined in the
-              specifications of the corresponding RTP payload formats [[RFC4855]]
-              [[RFC6838]], and supported by the user agent,
-              return <code>supported</code>, otherwise return <code>unsupported</code>.
-            </p>
-            <p class="note">
-              The codec name is typically specified as subtype and zero or more
-              parameters may be present depending on the codec.
-            </p>
           </li>
         </ol>
       </section>
