@@ -861,9 +861,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <p>
           The <dfn id="check-a-mime-type">check a MIME Type</dfn> algorithm takes {{DOMString}} |contentType|, string |mediaType|, and either
           a {{MediaDecodingType}} or {{MediaEncodingType}} |encodeOrDecodeType|. It
-          returns a boolean that represents if the MIME type of |contentType| is [=supported by the user agent=]:
+          returns either failure, or a boolean that represents if the MIME type of |contentType| is [=supported by the user agent=]:
         </p>
-        <ol>
+        <ol algorithm>
           <li>
             Let |mimeType| be the result of running <a>parse a
             MIME type</a> with |contentType|.
