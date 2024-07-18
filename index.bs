@@ -103,43 +103,18 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
   <em>This section is non-normative</em>
 
   <p>
-    This specification relies on exposing the following sets of properties:
-    <ul>
-      <li>
-        <p>
-          An API to query the user agent with regards to the decoding and
-          encoding abilities of the device based on information such as the
-          codecs, profile, resolution, bitrates, etc. The API exposes
-          information such as whether the playback should be smooth and power
-          efficient.
-        </p>
-        <p>
-          The intent of purposes of the decoding capabilities API is to provide
-          a powerful replacement to API such as
-          {{MediaSource/isTypeSupported()}} or
-          {{HTMLMediaElement/canPlayType()}} which are vague and mostly help the
-          callers to know if something can not be decoded but not how well it
-          should perform.
-        </p>
-      </li>
-      <li>
-        <p>
-          Better information about the display properties such as supported
-          color gamut or dynamic range abilities in order to pick the right
-          content for the display and avoid providing HDR content to an SDR
-          display.
-        </p>
-      </li>
-      <li>
-        <p>
-          Real time feedback about the playback so an adaptative streaming can
-          alter the quality of the content based on actual user perceived
-          quality. Such information will allow websites to react to a pick of
-          CPU/GPU usage in real time. It is expected that this will be tackled
-          as part of the [[media-playback-quality]] specification.
-        </p>
-      </li>
-    </ul>
+    This specification defines an API to query the user agent with regards
+    to its audio and video decoding and encoding capabilities,
+    based on information such as the codecs, profile, resolution, bitrates,
+    etc., of the media. The API indicates if the configuration is supported
+    and whether the playback is expected to be smooth and/or power efficient.
+  </p>
+  <p>
+    This specification focuses on encoding and decoding capabilities.
+    It is expected to be used with other web APIs that provide information about
+    the display properties, such as supported color gamut or dynamic range capabilities,
+    which enable web applications to pick the right content for the display and to,
+    for example, avoid providing HDR content to an SDR display.
   </p>
 </section>
 
@@ -174,7 +149,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
 
       <p>
         The input to the decoding capabilities is represented by a
-        {{MediaDecodingConfiguration}} dictionary and the input of the encoding
+        {{MediaDecodingConfiguration}} dictionary and the input to the encoding
         capabilities by a {{MediaEncodingConfiguration}} dictionary.
       </p>
       <p>
@@ -241,7 +216,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         A {{MediaDecodingConfiguration}} has three types:
         <ul>
           <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
-          represent a configuration that is meant to be used for a plain file
+          represent a configuration that is meant to be used for plain file
           playback.</li>
           <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
           to represent a configuration that is meant to be used for playback of
@@ -269,7 +244,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         <ul>
           <li><dfn for='MediaEncodingType' enum-value>record</dfn> is used to
           represent a configuration for recording of media,
-          <span class="informative">e.g. using {{MediaRecorder}} as defined in
+          <span class="informative">e.g., using {{MediaRecorder}} as defined in
           [[mediastream-recording]]</span>.</li>
           <li><dfn for='MediaEncodingType' enum-value>webrtc</dfn> is used to
           represent a configuration that is meant to be transmitted using
@@ -630,14 +605,14 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>bitrate</dfn> member
-        represents the number of average bitrate of the audio track. The bitrate
+        represents the average bitrate of the audio track. The bitrate
         is the number of bits used to encode a second of the audio track.
       </p>
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>samplerate</dfn>
-        represents the samplerate of the audio track in. The samplerate is the
-        number of samples of audio carried per second. samplerate is only
+        member represents the sample rate of the audio track. The sample rate
+        is the number of samples of audio carried per second. samplerate is only
         applicable to the decoding types {{media-source}}, {{file}}, and
         {{MediaDecodingType/webrtc}} and the encoding type
         {{MediaEncodingType/webrtc}}.
@@ -961,7 +936,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
               <a>Document</a>.
             </li>
             <li>
-              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>
+              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>.
             </li>
 
             <li>
@@ -1001,11 +976,11 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
                     <ol>
                       <li>
                         Set the {{EME/robustness}} attribute to <code>
-                        config.keySystemConfiguration.audio.robustness</code>
+                        config.keySystemConfiguration.audio.robustness</code>.
                       </li>
                       <li>
                         Set the {{EME/encryptionScheme}} attribute to <code>
-                        config.keySystemConfiguration.audio.encryptionScheme</code>
+                        config.keySystemConfiguration.audio.encryptionScheme</code>.
                       </li>
                     </ol>
                   </li>
@@ -1029,7 +1004,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
                       </li>
                       <li>
                         Set the {{EME/encryptionScheme}} attribute to <code>
-                        config.keySystemConfiguration.video.encryptionScheme</code>
+                        config.keySystemConfiguration.video.encryptionScheme</code>.
                       </li>
                     </ol>
                   </li>
@@ -1065,7 +1040,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
                 </li>
               </ol>
             </li>
-            <li>Return <var>access</var></li>
+            <li>Return <var>access</var>.</li>
           </ol>
         </p>
       </section>
@@ -1191,7 +1166,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         already be discovered via experimentation with the exception that the
         API will likely provide more accurate and consistent information. This
         information is expected to have a high correlation with other
-        information already available to the web pages as a given class of
+        information already available to web pages as a given class of
         device is expected to have very similar decoding/encoding capabilities.
         In other words, high end devices from a certain year are expected to
         decode some type of videos while older devices may not. Therefore, it is
@@ -1200,8 +1175,8 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       </p>
 
       <p>
-        HDR detection is more nuanced. Adding colorGamut, transferFunction, and
-        hdrMetadataType has the potential to add significant entropy. However,
+        HDR detection is more nuanced. Adding {{colorGamut}}, {{transferFunction}}, and
+        {{hdrMetadataType}} has the potential to add significant entropy. However,
         for UAs whose decoders are implemented in software and therefore whose
         capabilities are fixed across devices, this feature adds no effective
         entropy. Additionally, for many cases, devices tend to fall into large
@@ -1212,7 +1187,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       <p>
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
-        capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
+        capabilities (i.e., decode up to 1080p VP9, etc.) instead of returning
         always yes or always no as the latter approach could considerably
         degrade the user's experience. Another mitigation could be to limit
         these Web APIs to top-level browsing contexts. Yet another is to use a
@@ -1372,7 +1347,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       </div>
 
       <div class="note">
-        The following example can also be found in e.g.
+        The following example can also be found in
         <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0">
         this codepen</a> with minimal modifications.
       </div>
