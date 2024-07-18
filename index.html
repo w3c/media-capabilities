@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version a1dabb26c, updated Mon Jun 17 15:00:44 2024 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="d91623a9c2deb7592d295582a89c487b81cf8c1b" name="revision">
+  <meta content="1d52c00b190ffca9b5106b08781f48a672483a11" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -823,31 +823,16 @@ based on the device’s display.</p>
    <section class="non-normative">
     <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
      <em>This section is non-normative</em> 
-    <p> This specification relies on exposing the following sets of properties: </p>
-    <ul>
-     <li>
-      <p> An API to query the user agent with regards to the decoding and
-          encoding abilities of the device based on information such as the
-          codecs, profile, resolution, bitrates, etc. The API exposes
-          information such as whether the playback should be smooth and power
-          efficient. </p>
-      <p> The intent of purposes of the decoding capabilities API is to provide
-          a powerful replacement to API such as <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/media-source/#dom-mediasource-istypesupported" id="ref-for-dom-mediasource-istypesupported">isTypeSupported()</a></code> or <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/media.html#dom-navigator-canplaytype" id="ref-for-dom-navigator-canplaytype">canPlayType()</a></code> which are vague and mostly help the
-          callers to know if something can not be decoded but not how well it
-          should perform. </p>
-     <li>
-      <p> Better information about the display properties such as supported
-          color gamut or dynamic range abilities in order to pick the right
-          content for the display and avoid providing HDR content to an SDR
-          display. </p>
-     <li>
-      <p> Real time feedback about the playback so an adaptative streaming can
-          alter the quality of the content based on actual user perceived
-          quality. Such information will allow websites to react to a pick of
-          CPU/GPU usage in real time. It is expected that this will be tackled
-          as part of the <a data-link-type="biblio" href="#biblio-media-playback-quality" title="Media Playback Quality">[media-playback-quality]</a> specification. </p>
-    </ul>
-    <p></p>
+    <p> This specification defines an API to query the user agent with regards
+    to its audio and video decoding and encoding capabilities,
+    based on information such as the codecs, profile, resolution, bitrates,
+    etc., of the media. The API indicates if the configuration is supported
+    and whether the playback is expected to be smooth and/or power efficient. </p>
+    <p> This specification focuses on encoding and decoding capabilities.
+    It is expected to be used with other web APIs that provide information about
+    the display properties, such as supported color gamut or dynamic range capabilities,
+    which enable web applications to pick the right content for the display and to,
+    for example, avoid providing HDR content to an SDR display. </p>
    </section>
    <section>
     <h2 class="heading settled" data-level="2" id="decoding-encoding-capabilities"><span class="secno">2. </span><span class="content">Decoding and Encoding Capabilities</span><a class="self-link" href="#decoding-encoding-capabilities"></a></h2>
@@ -869,7 +854,7 @@ based on the device’s display.</p>
   <c- b>required</c-> <a data-link-type="idl-name" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype"><c- n>MediaEncodingType</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaEncodingConfiguration" data-dfn-type="dict-member" data-export data-type="MediaEncodingType" id="dom-mediaencodingconfiguration-type"><code><c- g>type</c-></code></dfn>;
 };
 </pre>
-      <p> The input to the decoding capabilities is represented by a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration">MediaDecodingConfiguration</a></code> dictionary and the input of the encoding
+      <p> The input to the decoding capabilities is represented by a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration">MediaDecodingConfiguration</a></code> dictionary and the input to the encoding
         capabilities by a <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration">MediaEncodingConfiguration</a></code> dictionary. </p>
       <p> For a <code class="idl"><a data-link-type="idl" href="#dictdef-mediaconfiguration" id="ref-for-dictdef-mediaconfiguration②">MediaConfiguration</a></code> to be a <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="valid MediaConfiguration" data-noexport id="valid-mediaconfiguration">valid
         MediaConfiguration</dfn>, all of the following conditions MUST be true: </p>
@@ -908,7 +893,7 @@ based on the device’s display.</p>
       <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration③">MediaDecodingConfiguration</a></code> has three types: </p>
       <ul>
        <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingType" data-dfn-type="enum-value" data-export data-lt="&quot;file&quot;|file" id="dom-mediadecodingtype-file"><code>file</code></dfn> is used to
-          represent a configuration that is meant to be used for a plain file
+          represent a configuration that is meant to be used for plain file
           playback.
        <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaDecodingType" data-dfn-type="enum-value" data-export data-lt="&quot;media-source&quot;|media-source" id="dom-mediadecodingtype-media-source"><code>media-source</code></dfn> is used
           to represent a configuration that is meant to be used for playback of
@@ -928,7 +913,7 @@ based on the device’s display.</p>
       <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration①">MediaEncodingConfiguration</a></code> can have one of two types: </p>
       <ul>
        <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaEncodingType" data-dfn-type="enum-value" data-export data-lt="&quot;record&quot;|record" id="dom-mediaencodingtype-record"><code>record</code></dfn> is used to
-          represent a configuration for recording of media, <span class="informative">e.g. using <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/mediastream-recording/#mediarecorder" id="ref-for-mediarecorder">MediaRecorder</a></code> as defined in <a data-link-type="biblio" href="#biblio-mediastream-recording" title="MediaStream Recording">[mediastream-recording]</a></span>.
+          represent a configuration for recording of media, <span class="informative">e.g., using <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/mediastream-recording/#mediarecorder" id="ref-for-mediarecorder">MediaRecorder</a></code> as defined in <a data-link-type="biblio" href="#biblio-mediastream-recording" title="MediaStream Recording">[mediastream-recording]</a></span>.
        <li><dfn class="dfn-paneled idl-code" data-dfn-for="MediaEncodingType" data-dfn-type="enum-value" data-export data-lt="&quot;webrtc&quot;|webrtc" id="dom-mediaencodingtype-webrtc"><code>webrtc</code></dfn> is used to
           represent a configuration that is meant to be transmitted using <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection" id="ref-for-dom-rtcpeerconnection①">RTCPeerConnection</a></code> as defined in <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a>).
       </ul>
@@ -1139,10 +1124,10 @@ based on the device’s display.</p>
       <p class="issue" id="issue-a7738173"><a class="self-link" href="#issue-a7738173"></a> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-channels" id="ref-for-dom-audioconfiguration-channels①">channels</a></code> needs to be defined as a <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code> (number of channels) or as an <code>enum</code> value. The current
         definition is a placeholder. </p>
       <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-bitrate"><code>bitrate</code></dfn> member
-        represents the number of average bitrate of the audio track. The bitrate
+        represents the average bitrate of the audio track. The bitrate
         is the number of bits used to encode a second of the audio track. </p>
-      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-samplerate"><code>samplerate</code></dfn> represents the samplerate of the audio track in. The samplerate is the
-        number of samples of audio carried per second. samplerate is only
+      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="AudioConfiguration" data-dfn-type="dict-member" data-export id="dom-audioconfiguration-samplerate"><code>samplerate</code></dfn> member represents the sample rate of the audio track. The sample rate
+        is the number of samples of audio carried per second. samplerate is only
         applicable to the decoding types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑧">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑧">file</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc④">webrtc</a></code> and the encoding type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc③">webrtc</a></code>. </p>
       <p class="note" role="note"> The <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-samplerate" id="ref-for-dom-audioconfiguration-samplerate①">samplerate</a></code> is expressed in <code>Hz</code> (ie. number of samples of audio per second). Sometimes the samplerates
         value are expressed in <code>kHz</code> which represents the number of
@@ -1291,7 +1276,7 @@ based on the device’s display.</p>
        <ol>
         <li> If the <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitieskeysystemconfiguration-keysystem" id="ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem①">keySystem</a></code> member of <code>config.keySystemConfiguration</code> is not one of the <a data-link-type="dfn" href="https://www.w3.org/TR/encrypted-media/#key-system" id="ref-for-key-system">Key Systems</a> supported by the user agent, return <code>null</code>. String comparison is case-sensitive. 
         <li> Let <var>origin</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> of the calling context’s <a data-link-type="dfn" href="https://dom.spec.whatwg.org/#concept-document" id="ref-for-concept-document">Document</a>. 
-        <li> Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code> 
+        <li> Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>. 
         <li> Let <var>emeConfiguration</var> be a new <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#mediakeysystemconfiguration-dictionary" id="ref-for-mediakeysystemconfiguration-dictionary">MediaKeySystemConfiguration</a></code>, and initialize it as follows: 
         <ol>
          <li> Set the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemconfiguration-initdatatypes" id="ref-for-dom-mediakeysystemconfiguration-initdatatypes①">initDataTypes</a></code> attribute to a sequence containing <code>config.keySystemConfiguration.initDataType</code>. 
@@ -1307,8 +1292,8 @@ based on the device’s display.</p>
            <li>
              If <code>config.keySystemConfiguration.audio</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①③">exists</a>: 
             <ol>
-             <li> Set the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemmediacapability-robustness" id="ref-for-dom-mediakeysystemmediacapability-robustness①">robustness</a></code> attribute to <code> config.keySystemConfiguration.audio.robustness</code> 
-             <li> Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme①">encryptionScheme</a></code> attribute to <code> config.keySystemConfiguration.audio.encryptionScheme</code> 
+             <li> Set the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemmediacapability-robustness" id="ref-for-dom-mediakeysystemmediacapability-robustness①">robustness</a></code> attribute to <code> config.keySystemConfiguration.audio.robustness</code>. 
+             <li> Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme①">encryptionScheme</a></code> attribute to <code> config.keySystemConfiguration.audio.encryptionScheme</code>. 
             </ol>
           </ol>
          <li>
@@ -1320,7 +1305,7 @@ based on the device’s display.</p>
              If <code>config.keySystemConfiguration.video</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑤">exists</a>: 
             <ol>
              <li> Set the <code class="idl"><a data-link-type="idl" href="https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemmediacapability-robustness" id="ref-for-dom-mediakeysystemmediacapability-robustness②">robustness</a></code> attribute to <code> config.keySystemConfiguration.video.robustness</code>. 
-             <li> Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme②">encryptionScheme</a></code> attribute to <code> config.keySystemConfiguration.video.encryptionScheme</code> 
+             <li> Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme②">encryptionScheme</a></code> attribute to <code> config.keySystemConfiguration.video.encryptionScheme</code>. 
             </ol>
           </ol>
         </ol>
@@ -1335,7 +1320,7 @@ based on the device’s display.</p>
           <li> Let the <var>configuration</var> value be <var>supported configuration</var>. 
           <li> Let the <var>cdm implementation</var> value be <var>implementation</var>. 
          </ol>
-        <li>Return <var>access</var>
+        <li>Return <var>access</var>.
        </ol>
        <p></p>
       </section>
@@ -1407,14 +1392,13 @@ based on the device’s display.</p>
         already be discovered via experimentation with the exception that the
         API will likely provide more accurate and consistent information. This
         information is expected to have a high correlation with other
-        information already available to the web pages as a given class of
+        information already available to web pages as a given class of
         device is expected to have very similar decoding/encoding capabilities.
         In other words, high end devices from a certain year are expected to
         decode some type of videos while older devices may not. Therefore, it is
         expected that the entropy added with this API isn’t going to be
         significant. </p>
-       <p> HDR detection is more nuanced. Adding colorGamut, transferFunction, and
-        hdrMetadataType has the potential to add significant entropy. However,
+       <p> HDR detection is more nuanced. Adding <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-colorgamut" id="ref-for-dom-videoconfiguration-colorgamut①">colorGamut</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-transferfunction" id="ref-for-dom-videoconfiguration-transferfunction①">transferFunction</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-hdrmetadatatype" id="ref-for-dom-videoconfiguration-hdrmetadatatype①">hdrMetadataType</a></code> has the potential to add significant entropy. However,
         for UAs whose decoders are implemented in software and therefore whose
         capabilities are fixed across devices, this feature adds no effective
         entropy. Additionally, for many cases, devices tend to fall into large
@@ -1422,7 +1406,7 @@ based on the device’s display.</p>
         effective entropy. </p>
        <p> If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
-        capabilities (ie. decode up to 1080p VP9, etc.) instead of returning
+        capabilities (i.e., decode up to 1080p VP9, etc.) instead of returning
         always yes or always no as the latter approach could considerably
         degrade the user’s experience. Another mitigation could be to limit
         these Web APIs to top-level browsing contexts. Yet another is to use a
@@ -1561,7 +1545,7 @@ based on the device’s display.</p>
 <c- o>&lt;</c->/script>
 </pre>
       </div>
-      <div class="note" role="note"> The following example can also be found in e.g. <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0"> this codepen</a> with minimal modifications. </div>
+      <div class="note" role="note"> The following example can also be found in <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0"> this codepen</a> with minimal modifications. </div>
       <div class="example" id="example-264e78d6">
        <a class="self-link" href="#example-264e78d6"></a> 
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
@@ -1819,7 +1803,6 @@ based on the device’s display.</p>
      <li><span class="dfn-paneled" id="be0c27b2">Navigator</span>
      <li><span class="dfn-paneled" id="83c59a3a">WorkerGlobalScope</span>
      <li><span class="dfn-paneled" id="a4785085">WorkerNavigator</span>
-     <li><span class="dfn-paneled" id="a9b926ec">canPlayType(type)</span>
      <li><span class="dfn-paneled" id="4b6086d7">global object</span>
      <li><span class="dfn-paneled" id="a72449dd">in parallel</span>
      <li><span class="dfn-paneled" id="5155c2d3">non-secure context</span>
@@ -1835,7 +1818,6 @@ based on the device’s display.</p>
     <a data-link-type="biblio">[MEDIA-SOURCE]</a> defines the following terms:
     <ul>
      <li><span class="dfn-paneled" id="5dc5df37">MediaSource</span>
-     <li><span class="dfn-paneled" id="257ffead">isTypeSupported()</span>
     </ul>
    <li>
     <a data-link-type="biblio">[MEDIASTREAM-RECORDING]</a> defines the following terms:
@@ -1906,8 +1888,6 @@ based on the device’s display.</p>
   </dl>
   <h3 class="no-num no-ref heading settled" id="informative"><span class="content">Informative References</span><a class="self-link" href="#informative"></a></h3>
   <dl>
-   <dt id="biblio-media-playback-quality">[MEDIA-PLAYBACK-QUALITY]
-   <dd>Mounir Lamouri. <a href="https://w3c.github.io/media-playback-quality/"><cite>Media Playback Quality</cite></a>. ED. URL: <a href="https://w3c.github.io/media-playback-quality/">https://w3c.github.io/media-playback-quality/</a>
    <dt id="biblio-mediastream-recording">[MEDIASTREAM-RECORDING]
    <dd>Miguel Casas-sanchez. <a href="https://w3c.github.io/mediacapture-record/"><cite>MediaStream Recording</cite></a>. URL: <a href="https://w3c.github.io/mediacapture-record/">https://w3c.github.io/mediacapture-record/</a>
    <dt id="biblio-rfc4855">[RFC4855]
@@ -2240,7 +2220,6 @@ let dfnPanelData = {
 "086e3aff": {"dfnID":"086e3aff","dfnText":"origin","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-origin"}],"title":"2.3.3. \n          Check Encrypted Decoding Support\n        "}],"url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
 "1243a891": {"dfnID":"1243a891","dfnText":"exist","external":true,"refSections":[{"refs":[{"id":"ref-for-map-exists"},{"id":"ref-for-map-exists\u2460"},{"id":"ref-for-map-exists\u2461"},{"id":"ref-for-map-exists\u2462"},{"id":"ref-for-map-exists\u2463"},{"id":"ref-for-map-exists\u2464"},{"id":"ref-for-map-exists\u2465"},{"id":"ref-for-map-exists\u2466"},{"id":"ref-for-map-exists\u2467"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-map-exists\u2468"}],"title":"2.1.9. AudioConfiguration"},{"refs":[{"id":"ref-for-map-exists\u2460\u24ea"}],"title":"2.3.2. \n          Create a MediaCapabilitiesDecodingInfo\n        "},{"refs":[{"id":"ref-for-map-exists\u2460\u2460"},{"id":"ref-for-map-exists\u2460\u2461"},{"id":"ref-for-map-exists\u2460\u2462"},{"id":"ref-for-map-exists\u2460\u2463"},{"id":"ref-for-map-exists\u2460\u2464"}],"title":"2.3.3. \n          Check Encrypted Decoding Support\n        "},{"refs":[{"id":"ref-for-map-exists\u2460\u2465"}],"title":"2.5. Media Capabilities Interface"}],"url":"https://infra.spec.whatwg.org/#map-exists"},
 "18e4dfd1": {"dfnID":"18e4dfd1","dfnText":"MediaKeySystemAccess","external":true,"refSections":[{"refs":[{"id":"ref-for-mediakeysystemaccess-interface"},{"id":"ref-for-mediakeysystemaccess-interface\u2460"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-mediakeysystemaccess-interface\u2461"},{"id":"ref-for-mediakeysystemaccess-interface\u2462"}],"title":"2.3.3. \n          Check Encrypted Decoding Support\n        "}],"url":"https://www.w3.org/TR/encrypted-media/#mediakeysystemaccess-interface"},
-"257ffead": {"dfnID":"257ffead","dfnText":"isTypeSupported()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediasource-istypesupported"}],"title":"1. Introduction"}],"url":"https://www.w3.org/TR/media-source/#dom-mediasource-istypesupported"},
 "4b6086d7": {"dfnID":"4b6086d7","dfnText":"global object","external":true,"refSections":[{"refs":[{"id":"ref-for-global-object"},{"id":"ref-for-global-object\u2460"}],"title":"2.5. Media Capabilities Interface"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#global-object"},
 "5155c2d3": {"dfnID":"5155c2d3","dfnText":"non-secure context","external":true,"refSections":[{"refs":[{"id":"ref-for-non-secure-context"}],"title":"2.5. Media Capabilities Interface"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#non-secure-context"},
 "5372cca8": {"dfnID":"5372cca8","dfnText":"boolean","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-boolean"},{"id":"ref-for-idl-boolean\u2460"}],"title":"2.1.5. VideoConfiguration"},{"refs":[{"id":"ref-for-idl-boolean\u2461"}],"title":"2.1.9. AudioConfiguration"},{"refs":[{"id":"ref-for-idl-boolean\u2462"},{"id":"ref-for-idl-boolean\u2463"},{"id":"ref-for-idl-boolean\u2464"}],"title":"2.2. Media Capabilities Information"}],"url":"https://webidl.spec.whatwg.org/#idl-boolean"},
@@ -2268,7 +2247,6 @@ let dfnPanelData = {
 "a5c91173": {"dfnID":"a5c91173","dfnText":"SameObject","external":true,"refSections":[{"refs":[{"id":"ref-for-SameObject"},{"id":"ref-for-SameObject\u2460"}],"title":"2.4. Navigator and WorkerNavigator extension"}],"url":"https://webidl.spec.whatwg.org/#SameObject"},
 "a72449dd": {"dfnID":"a72449dd","dfnText":"in parallel","external":true,"refSections":[{"refs":[{"id":"ref-for-in-parallel"},{"id":"ref-for-in-parallel\u2460"}],"title":"2.5. Media Capabilities Interface"}],"url":"https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel"},
 "a973e0fe": {"dfnID":"a973e0fe","dfnText":"document","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-document"}],"title":"2.3.3. \n          Check Encrypted Decoding Support\n        "}],"url":"https://dom.spec.whatwg.org/#concept-document"},
-"a9b926ec": {"dfnID":"a9b926ec","dfnText":"canPlayType(type)","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-navigator-canplaytype"}],"title":"1. Introduction"}],"url":"https://html.spec.whatwg.org/multipage/media.html#dom-navigator-canplaytype"},
 "bdbd19d1": {"dfnID":"bdbd19d1","dfnText":"Promise","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-promise"},{"id":"ref-for-idl-promise\u2460"}],"title":"2.5. Media Capabilities Interface"}],"url":"https://webidl.spec.whatwg.org/#idl-promise"},
 "bdda6c24": {"dfnID":"bdda6c24","dfnText":"robustness","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediakeysystemmediacapability-robustness"}],"title":"2.1.11. \n      KeySystemTrackConfiguration\n    "},{"refs":[{"id":"ref-for-dom-mediakeysystemmediacapability-robustness\u2460"},{"id":"ref-for-dom-mediakeysystemmediacapability-robustness\u2461"}],"title":"2.3.3. \n          Check Encrypted Decoding Support\n        "}],"url":"https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemmediacapability-robustness"},
 "be0c27b2": {"dfnID":"be0c27b2","dfnText":"Navigator","external":true,"refSections":[{"refs":[{"id":"ref-for-navigator"}],"title":"2.4. Navigator and WorkerNavigator extension"}],"url":"https://html.spec.whatwg.org/multipage/system-state.html#navigator"},
@@ -2337,15 +2315,15 @@ let dfnPanelData = {
 "dom-transferfunction-pq": {"dfnID":"dom-transferfunction-pq","dfnText":"pq","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-transferfunction-pq"}],"title":"2.1.8. TransferFunction"}],"url":"#dom-transferfunction-pq"},
 "dom-transferfunction-srgb": {"dfnID":"dom-transferfunction-srgb","dfnText":"srgb","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-transferfunction-srgb"}],"title":"2.1.8. TransferFunction"}],"url":"#dom-transferfunction-srgb"},
 "dom-videoconfiguration-bitrate": {"dfnID":"dom-videoconfiguration-bitrate","dfnText":"bitrate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-bitrate"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-bitrate"},
-"dom-videoconfiguration-colorgamut": {"dfnID":"dom-videoconfiguration-colorgamut","dfnText":"colorGamut","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-colorgamut"},
+"dom-videoconfiguration-colorgamut": {"dfnID":"dom-videoconfiguration-colorgamut","dfnText":"colorGamut","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut"}],"title":"2.1.5. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2460"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-colorgamut"},
 "dom-videoconfiguration-contenttype": {"dfnID":"dom-videoconfiguration-contenttype","dfnText":"contentType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2460"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2461"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2462"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2463"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-contenttype"},
 "dom-videoconfiguration-framerate": {"dfnID":"dom-videoconfiguration-framerate","dfnText":"framerate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-framerate"},{"id":"ref-for-dom-videoconfiguration-framerate\u2460"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-framerate"},
 "dom-videoconfiguration-hasalphachannel": {"dfnID":"dom-videoconfiguration-hasalphachannel","dfnText":"hasAlphaChannel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hasalphachannel"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-hasalphachannel"},
-"dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
+"dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.5. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype\u2460"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
 "dom-videoconfiguration-height": {"dfnID":"dom-videoconfiguration-height","dfnText":"height","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-height"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-height"},
 "dom-videoconfiguration-scalabilitymode": {"dfnID":"dom-videoconfiguration-scalabilitymode","dfnText":"scalabilityMode","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2460"}],"title":"2.1.5. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2461"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-videoconfiguration-scalabilitymode"},
 "dom-videoconfiguration-spatialscalability": {"dfnID":"dom-videoconfiguration-spatialscalability","dfnText":"spatialScalability","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-spatialscalability"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-spatialscalability"},
-"dom-videoconfiguration-transferfunction": {"dfnID":"dom-videoconfiguration-transferfunction","dfnText":"transferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-transferfunction"},
+"dom-videoconfiguration-transferfunction": {"dfnID":"dom-videoconfiguration-transferfunction","dfnText":"transferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction"}],"title":"2.1.5. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2460"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-transferfunction"},
 "dom-videoconfiguration-width": {"dfnID":"dom-videoconfiguration-width","dfnText":"width","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-width"}],"title":"2.1.5. VideoConfiguration"}],"url":"#dom-videoconfiguration-width"},
 "dom-workernavigator-mediacapabilities": {"dfnID":"dom-workernavigator-mediacapabilities","dfnText":"mediaCapabilities","external":false,"refSections":[],"url":"#dom-workernavigator-mediacapabilities"},
 "e5b62304": {"dfnID":"e5b62304","dfnText":"keySystem","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediakeysystemaccess-keysystem"}],"title":"2.1.10. \n        MediaCapabilitiesKeySystemConfiguration\n      "},{"refs":[{"id":"ref-for-dom-mediakeysystemaccess-keysystem\u2460"}],"title":"2.3.3. \n          Check Encrypted Decoding Support\n        "}],"url":"https://www.w3.org/TR/encrypted-media/#dom-mediakeysystemaccess-keysystem"},
@@ -2835,7 +2813,6 @@ let refsData = {
 "https://dom.spec.whatwg.org/#concept-document": {"export":true,"for_":[],"level":"1","normative":true,"shortname":"dom","spec":"dom","status":"current","text":"document","type":"dfn","url":"https://dom.spec.whatwg.org/#concept-document"},
 "https://html.spec.whatwg.org/multipage/browsers.html#concept-origin": {"export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"origin","type":"dfn","url":"https://html.spec.whatwg.org/multipage/browsers.html#concept-origin"},
 "https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel": {"export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"in parallel","type":"dfn","url":"https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel"},
-"https://html.spec.whatwg.org/multipage/media.html#dom-navigator-canplaytype": {"export":true,"for_":["HTMLMediaElement"],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"canPlayType(type)","type":"method","url":"https://html.spec.whatwg.org/multipage/media.html#dom-navigator-canplaytype"},
 "https://html.spec.whatwg.org/multipage/system-state.html#navigator": {"export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"Navigator","type":"interface","url":"https://html.spec.whatwg.org/multipage/system-state.html#navigator"},
 "https://html.spec.whatwg.org/multipage/webappapis.html#global-object": {"export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"global object","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#global-object"},
 "https://html.spec.whatwg.org/multipage/webappapis.html#non-secure-context": {"export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"non-secure context","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#non-secure-context"},
@@ -2876,7 +2853,6 @@ let refsData = {
 "https://www.w3.org/TR/encrypted-media/#mediakeysystemconfiguration-dictionary": {"export":true,"for_":["EME"],"level":"","normative":true,"shortname":"encrypted-media","spec":"encrypted-media","status":"anchor-block","text":"MediaKeySystemConfiguration","type":"interface","url":"https://www.w3.org/TR/encrypted-media/#mediakeysystemconfiguration-dictionary"},
 "https://www.w3.org/TR/encrypted-media/#mediakeysystemmediacapability-dictionary": {"export":true,"for_":["EME"],"level":"","normative":true,"shortname":"encrypted-media","spec":"encrypted-media","status":"anchor-block","text":"MediaKeySystemMediaCapability","type":"interface","url":"https://www.w3.org/TR/encrypted-media/#mediakeysystemmediacapability-dictionary"},
 "https://www.w3.org/TR/encrypted-media/#navigator-extension:-requestmediakeysystemaccess()": {"export":true,"for_":["EME"],"level":"","normative":true,"shortname":"encrypted-media","spec":"encrypted-media","status":"anchor-block","text":"requestMediaKeySystemAccess()","type":"interface","url":"https://www.w3.org/TR/encrypted-media/#navigator-extension:-requestmediakeysystemaccess()"},
-"https://www.w3.org/TR/media-source/#dom-mediasource-istypesupported": {"export":true,"for_":["MediaSource"],"level":"","normative":true,"shortname":"media-source","spec":"media-source","status":"anchor-block","text":"isTypeSupported()","type":"method","url":"https://www.w3.org/TR/media-source/#dom-mediasource-istypesupported"},
 "https://www.w3.org/TR/media-source/#mediasource": {"export":true,"for_":["MediaSource"],"level":"","normative":true,"shortname":"media-source","spec":"media-source","status":"anchor-block","text":"MediaSource","type":"interface","url":"https://www.w3.org/TR/media-source/#mediasource"},
 "https://www.w3.org/TR/mediastream-recording/#mediarecorder": {"export":true,"for_":[],"level":"","normative":true,"shortname":"mediastream-recording","spec":"mediastream-recording","status":"anchor-block","text":"MediaRecorder","type":"interface","url":"https://www.w3.org/TR/mediastream-recording/#mediarecorder"},
 };
