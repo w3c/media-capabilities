@@ -878,9 +878,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <ol>
               <li>
                 <p>
-                  If |type| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) or
-                  {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}),
-                  and |mimeType| indicates a codec that is used with RTP as defined in the
+                  If |mimeType| indicates a codec that is used with RTP as defined in the
                   specifications of the corresponding RTP payload formats [[RFC4855]]
                   [[RFC6838]], and supported by the user agent,
                   return <code>supported</code>, otherwise return <code>unsupported</code>.
