@@ -611,7 +611,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>samplerate</dfn>
-        member represents the samplerate of the audio track in. The samplerate
+        member represents the sample rate of the audio track. The sample rate
         is the number of samples of audio carried per second. samplerate is only
         applicable to the decoding types {{media-source}}, {{file}}, and
         {{MediaDecodingType/webrtc}} and the encoding type
