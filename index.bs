@@ -107,14 +107,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
     to its audio and video decoding and encoding capabilities,
     based on information such as the codecs, profile, resolution, bitrates,
     etc., of the media. The API indicates if the configuration is supported
-    and whether the playback is expected to be smooth and power efficient.
-  </p>
-  <p>
-    The intent of the decoding capabilities API is to provide a more capable
-    replacement for APIs such as {{MediaSource/isTypeSupported()}} or
-    {{HTMLMediaElement/canPlayType()}}, which are vague and mostly help
-    callers know if something cannot be decoded but not how well it
-    performs.
+    and whether the playback is expected to be smooth and/or power efficient.
   </p>
   <p>
     This specification focuses on encoding and decoding capabilities.
