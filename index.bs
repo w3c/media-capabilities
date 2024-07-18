@@ -889,10 +889,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               </li>
               <li>
                 If the combined <code>type</code> and <code>subtype</code> members
-                of <var>parsedMime</var> imply a single media codec:
+                of |mimeType| imply a single media codec:
                 <ol>
                   <li>
-                    If the <code>parameters</code> member of <var>parsedMime</var>
+                    If the <code>parameters</code> member of |mimeType|
                     is not empty, return <code>failure</code>.
                   </li>
                   <li>
@@ -906,12 +906,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 Otherwise:
                 <ol>
                   <li>
-                    If the <code>parameters</code> member of |parsedMime|
+                    If the <code>parameters</code> member of |mimeType|
                     does not contain a single key named "codecs", return
                     <code>unsupported</code>.
                   </li>
                   <li>
-                    If the value of <code>parsedMime.parameters["codecs"]</code>
+                    If the value of <code>mimeType.parameters["codecs"]</code>
                     does not describe a single media codec, return
                     <code>unsupported</code>.
                   </li>
