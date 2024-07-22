@@ -266,7 +266,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            Let |result| be the result of running the <a>Check a MIME Type</a>
+            Let |result| be the result of running the [$Check a MIME Type$]
             algorithm with |configuration|'s {{VideoConfiguration/contentType}},
             the media type <code>video</code>,
             and {{MediaDecodingType}} or {{MediaEncodingType}} |type|.
@@ -515,7 +515,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <dfn>valid audio configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            Let |result| be the result of running the <a>Check a MIME Type</a>
+            Let |result| be the result of running the [$Check a MIME Type$]
             algorithm with |configuration|'s {{AudioConfiguration/contentType}},
             media <code>audio</code>,
             and {{MediaEncodingType}} or {{MediaDecodingType}} |encodingOrDecodingType|.
