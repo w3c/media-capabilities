@@ -517,8 +517,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           <li>
             Let |result| be the result of running the <a>Check a MIME Type</a>
             algorithm with |configuration|'s {{AudioConfiguration/contentType}},
-            the media type <code>audio</code>,
-            and {{MediaDecodingType}} or {{MediaEncodingType}} |type|.
+            media <code>audio</code>,
+            and {{MediaEncodingType}} or {{MediaDecodingType}} |encodingOrDecodingType|.
           </li>
           <li>
             If |result| is <code>failure</code> or <code>unsupported</code>,
@@ -864,9 +864,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           Check a MIME Type
         </h4>
         <p>
-          The <dfn id="check-a-mime-type">check a MIME Type</dfn> algorithm takes {{DOMString}} |contentType|, string |media|, and either
-          a {{MediaDecodingType}} or {{MediaEncodingType}} |encodeOrDecodeType|. It
-          returns either failure, or a boolean that represents if the MIME type of |contentType| is [=supported by the user agent=]:
+          The <dfn id="check-a-mime-type">check a MIME Type</dfn> algorithm takes a {{DOMString}} |contentType|, string |media|, and either
+          a {{MediaDecodingType}} or {{MediaEncodingType}} |encodingOrDecodingType|. It
+          returns either failure, or a boolean that represents if the MIME type of |contentType| is [=supported by the user agent=].
+          The following steps are run:
         </p>
         <ol>
           <li>
@@ -878,7 +879,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             return <code>failure</code>.
           </li>
           <li>
-            If |encodingorDecodingType| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}})
+            If |encodingOrDecodingType| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}})
             or {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}):
             <ol>
               <li>
