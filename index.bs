@@ -26,7 +26,7 @@ Abstract: based on the device's display.
 </pre>
 
 <pre class='anchors'>
-spec: media-source; urlPrefix: https://www.w3.org/TR/media-source/
+spec: media-source-2; urlPrefix: https://www.w3.org/TR/media-source-2/
     type: interface
         for: MediaSource; text: MediaSource; url: #mediasource
     type: method
@@ -60,6 +60,8 @@ spec: encrypted-media; for: EME; urlPrefix: https://www.w3.org/TR/encrypted-medi
         text: MediaKeysRequirement; url: dom-mediakeysrequirement
         text: audioCapabilities; url: dom-mediakeysystemconfiguration-audiocapabilities
         text: contentType; url: dom-mediakeysystemmediacapability-contenttype
+    type: method
+        text: setMediaKeys(); url: dom-htmlmediaelement-setmediakeys
 
 spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypted-media/#
     type: attribute
@@ -116,6 +118,22 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
     which enable web applications to pick the right content for the display and to,
     for example, avoid providing HDR content to an SDR display.
   </p>
+</section>
+
+<section>
+  <h2 id='definitions'>Definitions</h2>
+  <dl>
+    <dt><dfn>Decoding Pipeline</dfn></dt>
+    <dd>
+      A configuration of internal user agent components that implement media
+      decoding. For the purposes of this specification, we conceive of user
+      agents having distinct pipelines for encrypted vs unencrypted media.
+      Additionally, user agents may support several distinct encrypted media
+      pipelines, which must be signalled by using different
+      {{MediaCapabilitiesKeySystemConfiguration/keySystem}} names or different
+      {{KeySystemTrackConfiguration/robustness}} levels.
+    </dd>
+  </dl>
 </section>
 
 <section>
@@ -738,6 +756,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
+        required boolean codecSwitchingSupported;
         required MediaKeySystemAccess keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
@@ -768,6 +787,21 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
       NOT take the device's power source into consideration when determining
       encoding power efficiency unless the device's power source has side
       effects such as enabling different encoding or decoding modules.
+    </p>
+
+    <p>
+      A {{MediaCapabilitiesDecodingInfo}} has an associated
+      <dfn dict-member for='MediaCapabilitiesDecodingInfo'>
+      codecSwitchingSupported</dfn> which is a boolean.
+    </p>
+
+    <p class='note'>
+      Authors can use {{MediaCapabilitiesDecodingInfo/codecSwitchingSupported}}
+      to determine whether the user agent supports codec switching via
+      {{SourceBuffer/changeType()}} within the described
+      <a>decoding pipeline</a>. Note that switching between
+      <a>decoding pipelines</a> is a separate quality of implementation issue
+      as described by {{EME/setMediaKeys()}}.
     </p>
 
     <p>
@@ -907,6 +941,23 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
               <var>configuration</var> in a [=power efficient=]
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
               <code>true</code>. Otherwise set it to <code>false</code>.
+            </li>
+            <li>
+              If <code>configuration.type</code> is set to
+              {{MediaDecodingType/media-source}}:
+              <ol>
+                <li>
+                  Let <var>pipeline</var> be the <a>decoding pipeline</a>
+                  described by <var>configuration</var>.
+                </li>
+                <li>
+                  If <var>pipeline</var> is able to support using
+                  {{SourceBuffer}} {{SourceBuffer/changeType()}} to switch
+                  between any and all of its supported codecs, set
+                  {{MediaCapabilitiesDecodingInfo/codecSwitchingSupported}}
+                  to <code>true</code>. Otherwise, set it to <code>false</code>.
+                </li>
+              </ol>
             </li>
             <li>
               Return <var>info</var>.
