@@ -709,6 +709,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
+        WebRTCMediaCapabilitiesInfo webrtc;
+      };
+
+      dictionary WebRTCMediaCapabilitiesInfo {
+        RTCRtpCodecCapability audio;
+        RTCRtpCodecCapability video;
       };
     </xmp>
 
@@ -730,7 +736,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       for='MediaCapabilitiesInfo'>supported</dfn>, <dfn dict-member
       for='MediaCapabilitiesInfo'>smooth</dfn>, <dfn dict-member
       for='MediaCapabilitiesInfo'>powerEfficient</dfn> fields which are
-      booleans.
+      booleans, and an associated optional <dfn dict-member
+      for='MediaCapabilitiesInfo'>webrtc</dfn> of type
+      {{WebRTCMediaCapabilitiesInfo}}.
     </p>
 
     <p>
@@ -744,6 +752,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       NOT take the device's power source into consideration when determining
       encoding power efficiency unless the device's power source has side
       effects such as enabling different encoding or decoding modules.
+    </p>
+
+    <p class='note'>
+      Authors can use {{MediaCapabilitiesInfo/webrtc}} to set up their
+      preferred WebRTC codecs using the {{RTCRtpTransceiver/setCodecPreferences}} API.
     </p>
 
     <p>
@@ -815,6 +828,25 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               Otherwise set it to <code>false</code>.
             </li>
             <li>
+              If the user agent is able to encode the media represented by
+              <var>configuration</var> and <var>configuration</var> has a type
+              of {{MediaEncodingType/webrtc}}, run the following substeps:
+              <ol>
+                <li>Let <var>webrtc</var> be a
+                {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
+                <li>If audio is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported audio configuration.</li>
+                <li>If video is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/video}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported video configuration.</li>
+                <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
+                to <var>webrtc</var>.</li>
+              </ol>
+            </li>
+            <li>
               Return <var>info</var>.
             </li>
           </ol>
@@ -884,6 +916,24 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
               <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
+            <li>
+              If the user agent is able to decode the media represented by
+              <var>configuration</var> and <var>configuration</var> has a type
+              of {{MediaDecodingType/webrtc}}, run the following substeps:
+              <ol>
+                <li>Let <var>webrtc</var> be a
+                {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
+                <li>If audio is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported audio configuration.</li>
+                <li>If video is represented by <var>configuration</var>, set
+                <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/video}}
+                to a {{RTCRtpCodecCapability}} dictionary representing the
+                supported video configuration.</li>
+                <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
+                to <var>webrtc</var>.</li>
+              </ol>
             <li>
               Return <var>info</var>.
             </li>
