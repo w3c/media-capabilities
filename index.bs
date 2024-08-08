@@ -1099,8 +1099,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <xmp class='idl'>
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
-        [NewObject] Promise<MediaCapabilitiesDecodingInfo> decodingInfo(MediaDecodingConfiguration configuration);
-        [NewObject] Promise<MediaCapabilitiesEncodingInfo> encodingInfo(MediaEncodingConfiguration configuration);
+        [NewObject] Promise<MediaCapabilitiesDecodingInfo> decodingInfo(
+            MediaDecodingConfiguration configuration);
+        [NewObject] Promise<MediaCapabilitiesEncodingInfo> encodingInfo(
+            MediaEncodingConfiguration configuration);
       };
     </xmp>
 
