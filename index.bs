@@ -1050,7 +1050,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <li>
               Let <var>supported configuration</var> be the result of
               executing the [=Get Supported Configuration=]
-              algorithm on <var>implementation</var>,
+              algorithm [[ENCRYPTED-MEDIA]] on <var>implementation</var>,
               <var>emeConfiguration</var>, and <var>origin</var>.
             </li>
             <li>
