@@ -201,7 +201,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <ul>
           <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
           represent a configuration that is meant to be used for playback of
-          media sources other than {{MediaSource/MediaSource}} as defined in 
+          media sources other than {{MediaSource/MediaSource}} as defined in
           [[media-source]] and {{RTCPeerConnection}} as defined in [[webrtc]]. </li>
           <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
           to represent a configuration that is meant to be used for playback of
@@ -745,14 +745,16 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <section>
       <h3 id='info-algorithms'>Algorithms</h3>
 
-      <section>
+      <section algorithm>
         <h4 id='create-media-capabilities-encoding-info'>
-          <dfn>Create a MediaCapabilitiesEncodingInfo</dfn>
+          <dfn abstract-op noexport lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo">
+            Create a MediaCapabilitiesEncodingInfo
+          </dfn>
         </h4>
         <p>
-          Given a {{MediaEncodingConfiguration}} <var>configuration</var>, this
-          algorithm returns a {{MediaCapabilitiesEncodingInfo}}. The following
-          steps are run:
+          To [$create a MediaCapabilitiesEncodingInfo$], given a
+          {{MediaEncodingConfiguration}} <var>configuration</var>, run the
+          following steps. They return a {{MediaCapabilitiesEncodingInfo}}:
           <ol>
             <li>
               Let <var>info</var> be a new {{MediaCapabilitiesEncodingInfo}}
@@ -789,14 +791,16 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </p>
       </section>
 
-      <section>
+      <section algorithm>
         <h4 id='create-media-capabilities-decoding-info'>
-          <dfn>Create a MediaCapabilitiesDecodingInfo</dfn>
+          <dfn abstract-op noexport lt="Create a MediaCapabilitiesDecodingInfo|create a MediaCapabilitiesDecodingInfo">
+            Create a MediaCapabilitiesDecodingInfo
+          </dfn>
         </h4>
         <p>
-          Given a {{MediaDecodingConfiguration}} <var>configuration</var>, this
-          algorithm returns a {{MediaCapabilitiesDecodingInfo}}. The following
-          steps are run:
+          To [$create a MediaCapabilitiesDecodingInfo$], given a
+          {{MediaDecodingConfiguration}} |configuration|, perform the
+          following steps. They return a {{MediaCapabilitiesDecodingInfo}}:
           <ol>
             <li>
               Let <var>info</var> be a new {{MediaCapabilitiesDecodingInfo}}
@@ -805,8 +809,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </li>
             <li>
               Set {{MediaCapabilitiesDecodingInfo/configuration}} to be a new
-              {{MediaDecodingConfiguration}}. For every property in <var>
-              configuration</var> create a new property with the same name and
+              {{MediaDecodingConfiguration}}. For every property in
+              |configuration| create a new property with the same name and
               value in {{MediaCapabilitiesDecodingInfo/configuration}}.
             </li>
             <li>
@@ -814,8 +818,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <ol>
                 <li>
                   Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  to the result of running the <a>Check Encrypted Decoding
-                  Support</a> algorithm with <var>configuration</var>.
+                  to the result of running the [$Check Encrypted Decoding
+                  Support$] algorithm with |configuration|.
                 </li>
                 <li>
                   If {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
@@ -834,7 +838,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 </li>
                 <li>
                   If the user agent is able to decode the media represented
-                  by <var>configuration</var>, set
+                  by |configuration|, set
                   {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
                 </li>
                 <li>Otherwise, set it to <code>false</code>.</li>
@@ -842,13 +846,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </li>
             <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> at the indicated framerate
+              |configuration| at the indicated framerate
               without dropping frames, set {{MediaCapabilitiesInfo/smooth}}
               to <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
             <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> in a [=power efficient=]
+              |configuration| in a [=power efficient=]
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
               <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
@@ -944,15 +948,17 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </ol>
       </section>
 
-      <section>
+      <section algorithm>
         <h4 id='is-encrypted-decode-supported'>
-          <dfn>Check Encrypted Decoding Support</dfn>
+          <dfn abstract-op noexport lt="Check Encrypted Decoding Support|check encrypted decoding support">
+            Check Encrypted Decoding Support
+          </dfn>
         </h4>
         <p>
-          Given a {{MediaDecodingConfiguration}} <var>config</var> where
-          {{keySystemConfiguration}} [=map/exists=], this algorithm returns a
-          {{MediaKeySystemAccess}} or <code>null</code> as appropriate. The
-          following steps are run:
+          To [$check encrypted decoding support$], given a {{MediaDecodingConfiguration}}
+          |config| where {{keySystemConfiguration}} [=map/exists=], perform the
+          following steps. They return a {{MediaKeySystemAccess}} or <code>null</code>
+          as appropriate:
           <ol>
             <li>
               If the {{keySystem}} member of
@@ -965,7 +971,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <a>Document</a>.
             </li>
             <li>
-              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>.
+              Let <var>implementation</var> be the implementation of
+              <code>config.keySystemConfiguration.keySystem</code>.
             </li>
 
             <li>
@@ -990,7 +997,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <code>config.keySystemConfiguration.sessionTypes</code>.
               </li>
               <li>
-                If {{MediaConfiguration/audio}} [=map/exists=] in <var>config</var>, set the
+                If {{MediaConfiguration/audio}} [=map/exists=] in |config|, set the
                 {{MediaKeySystemConfiguration/audioCapabilities}} attribute to a sequence containing a
                 single {{MediaKeySystemMediaCapability}}, initialized as
                 follows:
@@ -1016,7 +1023,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 </ol>
               </li>
               <li>
-                If {{MediaConfiguration/video}} [=map/exists=] in <var>config</var>, set the
+                If {{MediaConfiguration/video}} [=map/exists=] in |config|, set the
                 videoCapabilities attribute to a sequence containing a single
                 {{MediaKeySystemMediaCapability}}, initialized as follows:
                 <ol>
@@ -1048,8 +1055,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </li>
             <li>
               If <var>supported configuration</var> is
-              <code>NotSupported</code>, return <code>null</code> and abort
-              these steps.
+              <code>NotSupported</code>, return <code>null</code>.
             </li>
             <li>
               Let <var>access</var> be a new {{MediaKeySystemAccess}}
@@ -1153,7 +1159,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           Run the following steps <a>in parallel</a>:
           <ol>
             <li>
-              Run the <a>Create a MediaCapabilitiesDecodingInfo</a> algorithm
+              Run the [$Create a MediaCapabilitiesDecodingInfo$] algorithm
               with <var>configuration</var>.
             </li>
             <li>
@@ -1192,7 +1198,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           Run the following steps <a>in parallel</a>:
             <ol>
               <li>
-                Run the <a>Create a MediaCapabilitiesEncodingInfo</a>
+                Run the [$Create a MediaCapabilitiesEncodingInfo$]
                 algorithm with <var>configuration</var>.
               </li>
               <li>
