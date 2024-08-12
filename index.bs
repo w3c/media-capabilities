@@ -1066,7 +1066,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   <code>emeConfiguration.keySystem</code>.
                 </li>
                 <li>
-                  Let the <var>configuration</var> value be
+                  Let the <var ignore=''>configuration</var> value be
                   <var>supported configuration</var>.
                 </li>
                 <li>
