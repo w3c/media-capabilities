@@ -873,8 +873,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           To [$check MIME type support$], given a {{DOMString}} |contentType|, a
           string |media|, and either a {{MediaEncodingType}} or
           {{MediaDecodingType}} |encodingOrDecodingType|, perform the following
-          steps. They return either failure or a boolean that indicates whether
-          the MIME type of |contentType| is [=supported by the user agent=]:
+          steps. They return either a boolean that indicates whether
+          the MIME type of |contentType| is [=supported by the user agent=], or
+          <code>failure</code> if |contentType| failed to be parsed:
         </p>
         <ol>
           <li>
@@ -890,17 +891,21 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             or {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}):
             <ol>
               <li>
-                If |mimeType| is not the list of RTP Payload Format Media Types in
-                [[IANA-RTP-PARAMETERS]], return <code>false</code>.
-              </li>
-              <li>
                 <p>
-                  Return whether |mimeType| is [=supported by the user agent=].
+                  If |mimeType| is not the list of RTP Payload Format Media Types in
+                  [[IANA-RTP-PARAMETERS]], return <code>false</code>.
                 </p>
                 <p class="note">
                   The codec name is typically specified as subtype and zero or more
                   parameters may be present depending on the codec.
                 </p>
+              </li>
+              <li>
+                If |mimeType| is not [=supported by the user agent=], return
+                <code>false</code>.
+              </li>
+              <li>
+                Return <code>true</code>.
               </li>
             </ol>
           </li>
@@ -923,7 +928,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 is not empty, return <code>failure</code>.
               </li>
               <li>
-                Return whether |mimeType| is [=supported by the user agent=].
+                If |mimeType| is not [=supported by the user agent=], return
+                <code>false</code>.
+              </li>
+              <li>
+                Return <code>true</code>.
               </li>
             </ol>
           </li>
@@ -941,7 +950,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <code>false</code>.
               </li>
               <li>
-                Return whether |mimeType| is [=supported by the user agent=].
+                If |mimeType| is not [=supported by the user agent=],
+                return <code>false</code>.
+              </li>
+              <li>
+                Return <code>true</code>.
               </li>
             </ol>
           </li>
