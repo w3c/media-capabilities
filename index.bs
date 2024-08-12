@@ -268,8 +268,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           <li>
             Let |result| be the result of running the [$Check a MIME Type$]
             algorithm with |configuration|'s {{VideoConfiguration/contentType}},
-            the media type <code>video</code>,
-            and {{MediaDecodingType}} or {{MediaEncodingType}} |type|.
+            the |media| <code>video</code>,
+            and {{MediaEncodingType}} or {{MediaDecodingType}} |encodingOrDecodingType|.
           </li>
           <li>
             If |result| is <code>failure</code> or <code>unsupported</code>,
@@ -517,7 +517,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           <li>
             Let |result| be the result of running the [$Check a MIME Type$]
             algorithm with |configuration|'s {{AudioConfiguration/contentType}},
-            media <code>audio</code>,
+            |media| <code>audio</code>,
             and {{MediaEncodingType}} or {{MediaDecodingType}} |encodingOrDecodingType|.
           </li>
           <li>
@@ -886,8 +886,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             return <code>failure</code>.
           </li>
           <li>
-            If |encodingOrDecodingType| is {{MediaDecodingType/webrtc}} ({{MediaDecodingType}})
-            or {{MediaEncodingType/webrtc}} ({{MediaEncodingType}}):
+            If |encodingOrDecodingType| is {{MediaEncodingType/webrtc}} ({{MediaEncodingType}})
+            or {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}):
             <ol>
               <li>
                 If |mimeType| is not the list of RTP Payload Format Media Types in
