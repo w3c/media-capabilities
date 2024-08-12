@@ -746,11 +746,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <h3 id='info-algorithms'>Algorithms</h3>
 
       <section algorithm>
-        <h4 id='create-media-capabilities-encoding-info'>
-          <dfn abstract-op noexport lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo">
-            Create a MediaCapabilitiesEncodingInfo
-          </dfn>
-        </h4>
+        <h4 id='create-media-capabilities-encoding-info'><dfn abstract-op noexport lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo">Create a MediaCapabilitiesEncodingInfo</dfn></h4>
         <p>
           To [$create a MediaCapabilitiesEncodingInfo$], given a
           {{MediaEncodingConfiguration}} <var>configuration</var>, run the
@@ -792,11 +788,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </section>
 
       <section algorithm>
-        <h4 id='create-media-capabilities-decoding-info'>
-          <dfn abstract-op noexport lt="Create a MediaCapabilitiesDecodingInfo|create a MediaCapabilitiesDecodingInfo">
-            Create a MediaCapabilitiesDecodingInfo
-          </dfn>
-        </h4>
+        <h4 id='create-media-capabilities-decoding-info'><dfn abstract-op noexport lt="Create a MediaCapabilitiesDecodingInfo|create a MediaCapabilitiesDecodingInfo">Create a MediaCapabilitiesDecodingInfo</dfn></h4>
         <p>
           To [$create a MediaCapabilitiesDecodingInfo$], given a
           {{MediaDecodingConfiguration}} |configuration|, perform the
@@ -864,11 +856,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </section>
 
       <section algorithm>
-        <h4 id="check-mime-type-support">
-          <dfn abstract-op noexport lt="Check MIME Type Support|check MIME type support">
-            Check MIME Type Support
-          </dfn>
-        </h4>
+        <h4 id="check-mime-type-support"><dfn abstract-op noexport lt="Check MIME Type Support|check MIME type support">Check MIME Type Support</dfn></h4>
         <p>
           To [$check MIME type support$], given a {{DOMString}} |contentType|, a
           string |media|, and either a {{MediaEncodingType}} or
@@ -962,11 +950,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </section>
 
       <section algorithm>
-        <h4 id='is-encrypted-decode-supported'>
-          <dfn abstract-op noexport lt="Check Encrypted Decoding Support|check encrypted decoding support">
-            Check Encrypted Decoding Support
-          </dfn>
-        </h4>
+        <h4 id='is-encrypted-decode-supported'><dfn abstract-op noexport lt="Check Encrypted Decoding Support|check encrypted decoding support">Check Encrypted Decoding Support</dfn></h4>
         <p>
           To [$check encrypted decoding support$], given a {{MediaDecodingConfiguration}}
           |config| where {{keySystemConfiguration}} [=map/exists=], perform the
