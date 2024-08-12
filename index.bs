@@ -266,7 +266,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            Let |result| be the result of running the [$Check a MIME Type$]
+            Let |result| be the result of running the [$Check MIME Type Support$]
             algorithm with |configuration|'s {{VideoConfiguration/contentType}},
             the |media| <code>video</code>,
             and {{MediaEncodingType}} or {{MediaDecodingType}} |encodingOrDecodingType|.
@@ -515,7 +515,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <dfn>valid audio configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            Let |result| be the result of running the [$Check a MIME Type$]
+            Let |result| be the result of running the [$Check MIME Type Support$]
             algorithm with |configuration|'s {{AudioConfiguration/contentType}},
             |media| <code>audio</code>,
             and {{MediaEncodingType}} or {{MediaDecodingType}} |encodingOrDecodingType|.
@@ -864,13 +864,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </section>
 
       <section algorithm>
-        <h4 id="check-mime-type">
-          <dfn abstract-op noexport lt="Check a MIME Type|check a MIME Type">
-            Check a MIME Type
+        <h4 id="check-mime-type-support">
+          <dfn abstract-op noexport lt="Check MIME Type Support|check MIME type support">
+            Check MIME Type Support
           </dfn>
         </h4>
         <p>
-          To [$check a MIME Type$], given a {{DOMString}} |contentType|, a
+          To [$check MIME type support$], given a {{DOMString}} |contentType|, a
           string |media|, and either a {{MediaEncodingType}} or
           {{MediaDecodingType}} |encodingOrDecodingType|, perform the following
           steps. They return either failure or a boolean that indicates whether
