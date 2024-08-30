@@ -8,6 +8,7 @@ Shortname: media-capabilities
 Level: None
 Group: mediawg
 Editor: Jean-Yves Avenard, w3cid 115886, Apple Inc. https://www.apple.com/
+Editor: Mark Foltz, w3cid 68454, Google Inc. https://www.google.com/, https://github.com/mfoltzgoogle
 
 Former Editor: Will Cassella, w3cid 139598, Google Inc. https://www.google.com/
 Former Editor: Mounir Lamouri, w3cid 45389, Google Inc. https://www.google.com/
