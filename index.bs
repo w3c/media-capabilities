@@ -976,7 +976,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             <li>
               If the user agent is able to decode the media represented by
               <var>configuration</var> and <var>configuration</var> has a type
-              of {{MediaDecodingType/webrtc}}, run the following substeps:
+              of {{MediaDecodingType/webrtc}}:
               <ol>
                 <li>Let <var>webrtc</var> be a
                 {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
