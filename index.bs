@@ -883,7 +883,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
             <li>
               If the user agent is able to encode the media represented by
               <var>configuration</var> and <var>configuration</var> has a type
-              of {{MediaEncodingType/webrtc}}, run the following substeps:
+              of {{MediaEncodingType/webrtc}}:
               <ol>
                 <li>Let <var>webrtc</var> be a
                 {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
