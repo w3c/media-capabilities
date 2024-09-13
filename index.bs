@@ -881,7 +881,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               modules.
             </li>
             <li>
-              If the user agent is able to encode the media represented by
+              If the user agent can encode the media represented by
               <var>configuration</var> and <var>configuration</var> has a type
               of {{MediaEncodingType/webrtc}}:
               <ol>
