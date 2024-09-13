@@ -885,7 +885,7 @@ spec: secure-contexts; urlPrefix: https://www.w3.org/TR/secure-contexts/
               <var>configuration</var> and <var>configuration</var> has a type
               of {{MediaEncodingType/webrtc}}:
               <ol>
-                <li>Let <var>webrtc</var> be a
+                <li>Let |webrtc| be a
                 {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
                 <li>If audio is represented by <var>configuration</var>, set
                 <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
