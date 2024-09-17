@@ -843,6 +843,29 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               value in {{MediaCapabilitiesDecodingInfo/configuration}}.
             </li>
             <li>
+              If <code>configuration.video</code> [=map/exists=]:
+              <ol>
+                <li>
+                  If <code>configuration.video.colorGamut</code> exists and is not
+                  valid for the <a>valid video MIME type</a> represented by
+                  <code>configuration.video.contentType</code>, set
+                  {{MediaCapabilitiesInfo/supported}} to <code>false</code>.
+                </li>
+                <li>
+                  If <code>configuration.video.transferFunction</code> exists and
+                  is not valid for the <a>valid video MIME type</a> represented by
+                  <code>configuration.video.contentType</code>, set
+                  {{MediaCapabilitiesInfo/supported}} to <code>false</code>.
+                </li>
+                <li>
+                  If {{MediaCapabilitiesInfo/supported}} is <code>false</code>, set
+                  {{MediaCapabilitiesInfo/smooth}} and
+                  {{MediaCapabilitiesInfo/powerEfficient}} to <code>false</code>, and
+                  return <var>info</var>.
+                </li>
+              </ol>
+            </li>
+            <li>
               If <code>configuration.keySystemConfiguration</code> [=map/exists=]:
               <ol>
                 <li>
