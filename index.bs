@@ -715,7 +715,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
-        required MediaKeySystemAccess keySystemAccess;
+        required MediaKeySystemAccess? keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
     </xmp>
@@ -956,9 +956,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                     [=map/exists=]:
                     <ol>
                       <li>
-                        If <code>config.keySystemConfiguration.audioRobustness</code>
+                        If <code>config.keySystemConfiguration.audio.robustness</code>
                         is present, set <var>robustness</var> to
-                        <code>config.keySystemConfiguration.audioRobustness</code>.
+                        <code>config.keySystemConfiguration.audio.robustness</code>.
                       </li>
                       <li>
                         Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <var>
@@ -968,7 +968,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                         Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
                         config.keySystemConfiguration.audio.encryptionScheme</code>.
                       </li>
-                    </ol>
+                    </ol>     
                   </li>
                 </ol>
               </li>
@@ -987,9 +987,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   </li>
                   <li>
                     If
-                    <code>config.keySystemConfiguration.videoRobustness</code>
+                    <code>config.keySystemConfiguration.video.robustness</code>
                     is present, set <var>robustness</var> to
-                    <code>config.keySystemConfiguration.videoRobustness</code>.
+                    <code>config.keySystemConfiguration.video.robustness</code>.
                   </li>
                   <li>
                     If <code>config.keySystemConfiguration.video</code> [=map/exists=]:
