@@ -26,6 +26,10 @@ Abstract: based on the device's display.
 !Version History: <a href='https://github.com/w3c/media-capabilities/commits'>https://github.com/w3c/media-capabilities/commits</a>
 </pre>
 
+<pre class='link-defaults'>
+spec:html; type:dfn; for:realm; text:global object
+</pre>
+
 <pre class='anchors'>
 spec: media-source; urlPrefix: https://www.w3.org/TR/media-source/
     type: interface
@@ -39,6 +43,10 @@ spec: mediastream-recording; urlPrefix: https://www.w3.org/TR/mediastream-record
 
 spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     type: dfn; text: valid mime type; url: valid-mime-type
+
+spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
+    type: dfn;
+        text: current realm; url: executable-code-and-execution-contexts.html#sec-code-realms
 </pre>
 
 <pre class='biblio'>
@@ -1052,8 +1060,24 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       };
     </xmp>
 
+  <section>
+    <h4 id='task-source'>Media Capabilities Task Source</h4>
     <p>
-      The {{decodingInfo()}} method method MUST run the following steps:
+      The [=task source=] for the tasks mentioned in this specification
+      is the <dfn>media capabilities task source</dfn>.
+    </p>
+
+    <p>
+      When an algorithm <dfn lt="queue a Media Capabilities task">queues
+      a Media Capabilities task</dfn> <var>T</var>, the user agent
+      MUST [=queue a global task=] <var>T</var> on the [=media capabilities
+      task source=] using the [=global object=] of the [=current realm=].
+    </p>
+  </section>
+  <section>
+    <h4 id='decodinginfo-method'>decodingInfo() Method</h4>
+    <p>
+      The {{decodingInfo()}} method MUST run the following steps:
       <ol>
         <li>
           If <var>configuration</var> is not a <a>valid
@@ -1077,15 +1101,23 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           </ol>
         </li>
         <li>
-          Let <var>p</var> be a new promise.
-        </li>
-        <li>
-          <a>In parallel</a>, run the <a>Create a
-          MediaCapabilitiesDecodingInfo</a> algorithm with
-          <var>configuration</var> and resolve <var>p</var> with its result.
+          Let <var>p</var> be a new Promise.
         </li>
         <li>
           Return <var>p</var>.
+        </li>
+        <li>
+          <a>In parallel</a>, run following steps:
+          <ol>
+            <li>
+              Run the <a>Create a MediaCapabilitiesDecodingInfo</a> algorithm
+              with <var>configuration</var>.
+            </li>
+            <li>
+              <a>Queue a Media Capabilities task</a> to resolve <var>p</var>
+              with its result.
+            </li>
+          </ol>
         </li>
       </ol>
     </p>
@@ -1096,7 +1128,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       calls should only be made when the author intends to create and use a
       {{MediaKeys}} object with the provided configuration.
     </p>
+    </section>
 
+    <section>
+    <h4 id='encodinginfo-method'>encodingInfo() Method</h4>
     <p>
       The {{encodingInfo()}} method MUST run the following steps:
       <ol>
@@ -1105,20 +1140,28 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           return a Promise rejected with a newly created {{TypeError}}.
         </li>
         <li>
-          Let <var>p</var> be a new promise.
-        </li>
-        <li>
-          <a>In parallel</a>, run the <a>Create a MediaCapabilitiesEncodingInfo</a>
-          algorithm with <var>configuration</var> and resolve <var>p</var>
-          with its result.
+          Let <var>p</var> be a new Promise.
         </li>
         <li>
           Return <var>p</var>.
         </li>
+        <li>
+          Run the following steps <a>in parallel</a>.
+            <ol>
+              <li>
+                Run the <a>Create a MediaCapabilitiesEncodingInfo</a>
+                algorithm with <var>configuration</var>.
+              </li>
+              <li>
+               <a>Queue a Media Capabilities task</a> to resolve <var>p</var> with
+               its result.
+             </li>
+           </ol>
+        </li>
       </ol>
     </p>
-
-  </section>
+    </section>
+  </Section>
 </section>
 
 <section class='non-normative'>
