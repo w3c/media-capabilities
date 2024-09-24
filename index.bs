@@ -986,14 +986,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                     string (<code>""</code>).
                   </li>
                   <li>
-                    If
-                    <code>config.keySystemConfiguration.video.robustness</code>
-                    is present, set <var>robustness</var> to
-                    <code>config.keySystemConfiguration.video.robustness</code>.
-                  </li>
-                  <li>
                     If <code>config.keySystemConfiguration.video</code> [=map/exists=]:
                     <ol>
+                      <li>
+                        If
+                        <code>config.keySystemConfiguration.video.robustness</code>
+                        is present, set <var>robustness</var> to
+                        <code>config.keySystemConfiguration.video.robustness</code>.
+                      </li>
                       <li>
                         Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <var>
                         robustness</var>.
