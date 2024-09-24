@@ -100,25 +100,22 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <h3 id='media-configurations'>Media Configurations</h3>
 
     <section>
-      <h4 id='mediaconfiguration'>MediaConfiguration</h4>
+      <h4 id='mediaconfiguration'>MediaDecodingConfiguration and MediaEncodingConfiguration</h4>
 
       <xmp class='idl'>
-        dictionary MediaConfiguration {
-          VideoConfiguration video;
-          AudioConfiguration audio;
-        };
-      </xmp>
-
-      <xmp class='idl'>
-        dictionary MediaDecodingConfiguration : MediaConfiguration {
+        dictionary MediaDecodingConfiguration {
           required MediaDecodingType type;
+          VideoDecodingConfiguration video;
+          AudioDecodingConfiguration audio;
           MediaCapabilitiesKeySystemConfiguration keySystemConfiguration;
         };
       </xmp>
 
       <xmp class='idl'>
-        dictionary MediaEncodingConfiguration : MediaConfiguration {
+        dictionary MediaEncodingConfiguration {
           required MediaEncodingType type;
+          VideoEncodingConfiguration video;
+          AudioEncodingConfiguration audio;
         };
       </xmp>
 
@@ -290,12 +287,22 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           required unsigned long height;
           required unsigned long long bitrate;
           required double framerate;
-          boolean hasAlphaChannel;
           HdrMetadataType hdrMetadataType;
           ColorGamut colorGamut;
           TransferFunction transferFunction;
           DOMString scalabilityMode;
           boolean spatialScalability;
+        };
+      </xmp>
+
+      <xmp class='idl'>
+        dictionary VideoEncodingConfiguration : VideoConfiguration {
+        };
+      </xmp>
+
+      <xmp class='idl'>
+        dictionary VideoDecodingConfiguration : VideoConfiguration {
+          boolean hasAlphaChannel;
         };
       </xmp>
 
@@ -354,7 +361,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
-        The <dfn for='VideoConfiguration' dict-member>hasAlphaChannel</dfn> member
+        The <dfn for='VideoDecodingConfiguration' dict-member>hasAlphaChannel</dfn> member
         represents whether the video track contains alpha channel information. If
         true, the encoded video stream can produce per-pixel alpha channel information
         when decoded. If false, the video stream cannot produce per-pixel alpha channel
@@ -539,6 +546,16 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           DOMString channels;
           unsigned long long bitrate;
           unsigned long samplerate;
+        };
+      </xmp>
+
+      <xmp class='idl'>
+        dictionary AudioEncodingConfiguration : AudioConfiguration {
+        };
+      </xmp>
+
+      <xmp class='idl'>
+        dictionary AudioDecodingConfiguration : AudioConfiguration {
           boolean spatialRendering;
         };
       </xmp>
@@ -602,7 +619,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
-        The <dfn for='AudioConfiguration' dict-member>spatialRendering</dfn>
+        The <dfn for='AudioDecodingConfiguration' dict-member>spatialRendering</dfn>
         member indicates that the audio SHOULD be rendered spatially. The
         details of spatial rendering SHOULD be inferred from the
         {{AudioConfiguration/contentType}}. If it does not [=map/exist=], the UA
