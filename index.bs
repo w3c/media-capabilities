@@ -1071,7 +1071,7 @@ spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
       When an algorithm <dfn lt="queue a Media Capabilities task">queues
       a Media Capabilities task</dfn> <var>T</var>, the user agent
       MUST [=queue a global task=] <var>T</var> on the [=media capabilities
-      task source=] using the [=global object=] of the [=current realm=].
+      task source=] using the [=global object=] of the [=current realm record=].
     </p>
   </section>
   <section>
