@@ -43,10 +43,6 @@ spec: mediastream-recording; urlPrefix: https://www.w3.org/TR/mediastream-record
 
 spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     type: dfn; text: valid mime type; url: valid-mime-type
-
-spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
-    type: dfn;
-        text: current realm; url: executable-code-and-execution-contexts.html#sec-code-realms
 </pre>
 
 <pre class='biblio'>
@@ -1071,7 +1067,7 @@ spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
       When an algorithm <dfn lt="queue a Media Capabilities task">queues
       a Media Capabilities task</dfn> <var>T</var>, the user agent
       MUST [=queue a global task=] <var>T</var> on the [=media capabilities
-      task source=] using the [=global object=] of the [=current realm record=].
+      task source=] using the [=global object=] of the [=the current realm record=].
     </p>
   </section>
   <section>
@@ -1104,10 +1100,7 @@ spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
           Let <var>p</var> be a new Promise.
         </li>
         <li>
-          Return <var>p</var>.
-        </li>
-        <li>
-          <a>In parallel</a>, run following steps:
+          Run the following steps <a>in parallel</a>:
           <ol>
             <li>
               Run the <a>Create a MediaCapabilitiesDecodingInfo</a> algorithm
@@ -1118,6 +1111,9 @@ spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
               with its result.
             </li>
           </ol>
+        </li>
+        <li>
+          Return <var>p</var>.
         </li>
       </ol>
     </p>
@@ -1143,10 +1139,7 @@ spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
           Let <var>p</var> be a new Promise.
         </li>
         <li>
-          Return <var>p</var>.
-        </li>
-        <li>
-          Run the following steps <a>in parallel</a>.
+          Run the following steps <a>in parallel</a>:
             <ol>
               <li>
                 Run the <a>Create a MediaCapabilitiesEncodingInfo</a>
@@ -1158,10 +1151,13 @@ spec: ecmascript; urlPrefix: https://tc39.es/ecma262/multipage/
              </li>
            </ol>
         </li>
+        <li>
+          Return <var>p</var>.
+        </li>
       </ol>
     </p>
     </section>
-  </Section>
+  </section>
 </section>
 
 <section class='non-normative'>
