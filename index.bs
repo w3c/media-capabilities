@@ -719,7 +719,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
-        required MediaKeySystemAccess keySystemAccess;
+        required MediaKeySystemAccess? keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
     </xmp>
