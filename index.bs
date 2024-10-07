@@ -195,15 +195,15 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         A {{MediaDecodingConfiguration}} has three types:
         <ul>
           <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
-          represent a configuration that is meant to be used for plain file
-          playback.</li>
+          represent a configuration that is meant to be used for playback of
+          media sources other than {{MediaSource/MediaSource}} as defined in 
+          [[media-source]] and {{RTCPeerConnection}} as defined in [[webrtc]]. </li>
           <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
           to represent a configuration that is meant to be used for playback of
-          a {{MediaSource/MediaSource}} as defined in the [[media-source]]
-          specification.</li>
+          a {{MediaSource/MediaSource}}. </li>
           <li><dfn for='MediaDecodingType' enum-value>webrtc</dfn> is used to
           represent a configuration that is meant to be received using
-          {{RTCPeerConnection}} as defined in [[webrtc]]</span>).</li>
+          {{RTCPeerConnection}}.</li>
         </ul>
       </p>
     </section>
