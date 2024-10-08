@@ -73,11 +73,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         "title": "Encrypted Media Extensions",
         "publisher": "W3C",
         "date": "13 December 2019"
-    },
-    "IANA-RTP-PARAMETERS": {
-      "href": "https://www.iana.org/assignments/rtp-parameters/rtp-parameters.xhtml",
-      "title": "RTP Payload Format Media Types",
-      "publisher": "IANA"
     }
 }
 </pre>
@@ -880,8 +875,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <ol>
               <li>
                 <p>
-                  If |mimeType| is not the list of RTP Payload Format Media Types in
-                  [[IANA-RTP-PARAMETERS]], return <code>false</code>.
+                  If |mimeType| is not one that is used with RTP, as defined in the
+                  specifications of the corresponding RTP payload formats
+                  [[IANA-MEDIA-TYPES]] [[RFC4855]] [[RFC6838]], return <code>false</code>.
                 </p>
                 <p class="note">
                   The codec name is typically specified as subtype and zero or more
