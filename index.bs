@@ -196,7 +196,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <ul>
           <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
           represent a configuration that is meant to be used for playback of
-          media sources other than {{MediaSource/MediaSource}} as defined in 
+          media sources other than {{MediaSource/MediaSource}} as defined in
           [[media-source]] and {{RTCPeerConnection}} as defined in [[webrtc]]. </li>
           <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
           to represent a configuration that is meant to be used for playback of
@@ -719,7 +719,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
-        required MediaKeySystemAccess keySystemAccess;
+        required MediaKeySystemAccess? keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
     </xmp>
@@ -948,16 +948,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 follows:
                 <ol>
                   <li>
-                    Set the {{MediaKeySystemMediaCapability/contentType}} attribute to
-                    <code>config.audio.contentType</code>.
-                  </li>
-                  <li>
                     If <code>config.keySystemConfiguration.audio</code>
                     [=map/exists=]:
                     <ol>
                       <li>
-                        Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
-                        config.keySystemConfiguration.audio.robustness</code>.
+                        If <code>config.keySystemConfiguration.audio.robustness</code>
+                        [=map/exists=] and is not <code>null</code>, set the
+                        {{MediaKeySystemMediaCapability/robustness}} attribute to
+                        <code>config.keySystemConfiguration.audio.robustness</code>.
                       </li>
                       <li>
                         Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
@@ -980,8 +978,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                     If <code>config.keySystemConfiguration.video</code> [=map/exists=]:
                     <ol>
                       <li>
-                        Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
-                        config.keySystemConfiguration.video.robustness</code>.
+                        If
+                        <code>config.keySystemConfiguration.video.robustness</code>
+                        [=map/exists=] and is not <code>null</code>, set the
+                        {{MediaKeySystemMediaCapability/robustness}} attribute to
+                        <code>config.keySystemConfiguration.video.robustness</code>.
                       </li>
                       <li>
                         Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
