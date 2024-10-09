@@ -948,6 +948,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 follows:
                 <ol>
                   <li>
+                    Set the {{MediaKeySystemMediaCapability/contentType}} attribute to
+                    <code>config.audio.contentType</code>.
+                  </li>
+                  <li>
                     If <code>config.keySystemConfiguration.audio</code>
                     [=map/exists=]:
                     <ol>
