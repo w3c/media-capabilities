@@ -856,8 +856,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           To [$check MIME type support$], given a {{DOMString}} |contentType|, a
           string |media|, and either a {{MediaEncodingType}} or
           {{MediaDecodingType}} |encodingOrDecodingType|, perform the following
-          steps. They return either a boolean that indicates whether
-          the MIME type of |contentType| is [=supported by the user agent=], or
+          steps. They return <code>supported</code> if
+          the MIME type of |contentType| is [=supported by the user agent=], <code>unsupported</code>
+          if |contentType| is not supported, or
           <code>failure</code> if |contentType| failed to be parsed:
         </p>
         <ol>
