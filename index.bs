@@ -261,18 +261,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            Let |mimeType| be the result of running [=parse a MIME type=]
-            with |configuration|'s {{VideoConfiguration/contentType}}.
-          </li>
-          <li>
-            If |mimeType| is <code>failure</code>, return <code>false</code> and
-            abort these steps.
-          </li>
-          <li>
-            Create an internal slot on |configuration|, \[[mimeType]], and set
-            its value to |mimeType|.
-          </li>
-          <li>
             If {{VideoConfiguration/framerate}} is not finite or is not greater
             than 0, return <code>false</code> and abort these steps.
           </li>
@@ -281,6 +269,24 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             {{MediaEncodingType}} to which it's not applicable, return
             <code>false</code> and abort these steps. See applicability rules
             in the member definitions below.
+          </li>
+          <li>
+            Let |mimeType| be the result of running [=parse a MIME type=]
+            with |configuration|'s {{VideoConfiguration/contentType}}.
+          </li>
+          <li>
+            If |mimeType| is <code>failure</code>, return <code>false</code> and
+            abort these steps.
+          </li>
+          <li>
+             If the type of |mimeType| per [[RFC9110]] is neither
+             <code>video</code> nor <code>application</code>, return
+             <code>false</code> and abort these steps.
+          </li>
+          <li>
+            Create an internal slot on |configuration|, \[[mimeType]], and set
+            its value to |mimeType|.
+          </li>
           <li>
             Return <code>true</code>.
           </li>
@@ -518,6 +524,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           <li>
             If |mimeType| is <code>failure</code>, return <code>false</code> and
             abort these steps.
+          </li>
+          <li>
+             If the type of |mimeType| per [[RFC9110]] is neither
+             <code>audio</code> nor <code>application</code>, return
+             <code>false</code> and abort these steps.
           </li>
           <li>
             Create an internal slot on |configuration|, \[[mimeType]], and set
@@ -781,8 +792,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <li>
               If either |videoMimeSupport| or |audioMimeSupport| is
               <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
-              to <code>false</code>, otherwise set
-              {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
+              to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+              to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+              to <code>false</code>, and return <var>info</var>.
+           <li>
+              Otherwise, set {{MediaCapabilitiesInfo/supported}} to
+              <code>true</code>.
             </li>
             <li>
               If the user agent is able to encode the media represented by
@@ -863,10 +878,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <li>
                   If either |videoMimeSupport| or |audioMimeSupport| is
                   <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
-                  to <code>false</code>, otherwise set
-                  {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
+                  to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+                  to <code>false</code>, and return <var>info</var>.
                 </li>
               </ol>
+            </li>
+            <li>
+              Set {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
             </li>
             <li>
               If the user agent is able to decode the media represented by
