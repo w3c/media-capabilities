@@ -783,7 +783,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               If {{MediaConfiguration/audio}} is present in |configuration|, let
               |audioMimeSupport| be the result of running [$Check MIME Type
               Support$] with {{AudioConfiguration/[[mimeType]]}},
-              the |media| video, and |configuration|'s
+              the |media| audio, and |configuration|'s
               {{MediaEncodingConfiguration/type}}, otherwise let |audioMimeSupport| be
               <code>undefined</code>.
             </li>
