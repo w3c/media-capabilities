@@ -275,16 +275,15 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             with |configuration|'s {{VideoConfiguration/contentType}}.
           </li>
           <li>
-            If |mimeType| is <code>failure</code>, return <code>false</code> and
-            abort these steps.
+            If |mimeType| is <code>failure</code>, return <code>false</code> and abort these steps.
           </li>
           <li>
-             If the type of |mimeType| per [[RFC9110]] is neither
-             <code>video</code> nor <code>application</code>, return
-             <code>false</code> and abort these steps.
+             If the type of |mimeType| per [[RFC9110]] is neither <code>video</code> nor
+             <code>application</code>, return <code>false</code> and abort these steps.
           </li>
           <li>
-            Create an internal slot on |configuration|, \[[mimeType]], and set
+            Create an internal slot on |configuration|,
+            <dfn attribute for=VideoConfiguration>\[[mimeType]]</dfn>, and set
             its value to |mimeType|.
           </li>
           <li>
@@ -522,16 +521,15 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             with |configuration|'s {{AudioConfiguration/contentType}}.
           </li>
           <li>
-            If |mimeType| is <code>failure</code>, return <code>false</code> and
-            abort these steps.
+            If |mimeType| is <code>failure</code>, return <code>false</code> and abort these steps.
           </li>
           <li>
-             If the type of |mimeType| per [[RFC9110]] is neither
-             <code>audio</code> nor <code>application</code>, return
-             <code>false</code> and abort these steps.
+             If the type of |mimeType| per [[RFC9110]] is neither <code>audio</code> nor
+             <code>application</code>, return <code>false</code> and abort these steps.
           </li>
           <li>
-            Create an internal slot on |configuration|, \[[mimeType]], and set
+            Create an internal slot on |configuration|,
+            <dfn attribute for=AudioConfiguration>\[[mimeType]]</dfn>, and set
             its value to |mimeType|.
           </li>
           <li>
@@ -774,20 +772,20 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               value in {{MediaCapabilitiesEncodingInfo/configuration}}.
             </li>
             <li>
-              If <code>configuration.video</code> [=map/exists=], let
-              |videoMimeSupport| be the result of running [$Check MIME Type
-              Support$] with <code>configuration.video.\[[mimeType]]</code>,
-              the |media| video, and |configuration|'s
-              {{MediaEncodingConfiguration/type}}, otherwise
+              If {{MediaConfiguration/video}} is present in
+              |configuration|, let |videoMimeSupport| be the result of running
+              [$Check MIME Type Support$] with
+              {{VideoConfiguration/[[mimeType]]}}, the |media| video, and
+              |configuration|'s {{MediaEncodingConfiguration/type}}, otherwise
               let |videoMimeSupport| be <code>undefined</code>.
             </li>
             <li>
-              If <code>configuration.audio</code> [=map/exists=], let
+              If {{MediaConfiguration/audio}} is present in |configuration|, let
               |audioMimeSupport| be the result of running [$Check MIME Type
-              Support$] with <code>configuration.video.\[[mimeType]]</code>,
+              Support$] with {{AudioConfiguration/[[mimeType]]}},
               the |media| video, and |configuration|'s
-              {{MediaEncodingConfiguration/type}}, otherwise
-              let |audioMimeSupport| be <code>undefined</code>.
+              {{MediaEncodingConfiguration/type}}, otherwise let |audioMimeSupport| be
+              <code>undefined</code>.
             </li>
             <li>
               If either |videoMimeSupport| or |audioMimeSupport| is
@@ -860,20 +858,19 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   to <code>null</code>.
                 </li>
                 <li>
-                  If <code>configuration.video</code> [=map/exists=], let
-                  |videoMimeSupport| be the result of running [$Check MIME Type
-                  Support$] with <code>configuration.video.\[[mimeType]]</code>,
+                  If {{MediaConfiguration/video}} is present in |configuration|,
+                  let |videoMimeSupport| be the result of running [$Check MIME Type
+                  Support$] with its {{VideoConfiguration/[[mimeType]]}},
                   the |media| video, and |configuration|'s
-                  {{MediaDecodingConfiguration/type}}, otherwise
-                  let |videoMimeSupport| be <code>undefined</code>.
+                  {{MediaDecodingConfiguration/type}}, otherwise let |videoMimeSupport|
+                  be <code>undefined</code>.
                 </li>
                 <li>
-                  If <code>configuration.audio</code> [=map/exists=], let
+                  If {{MediaConfiguration/audio}} is present in |configuration|, let
                   |audioMimeSupport| be the result of running [$Check MIME Type
-                  Support$] with <code>configuration.video.\[[mimeType]]</code>,
-                  the |media| video, and |configuration|'s
-                  {{MediaDecodingConfiguration/type}}, otherwise
-                  let |audioMimeSupport| be <code>undefined</code>.
+                  Support$] with its {{AudioConfiguration/[[mimeType]]}}, the |media|
+                  audio, and |configuration|'s {{MediaDecodingConfiguration/type}},
+                  otherwise let |audioMimeSupport| be <code>undefined</code>.
                 </li>
                 <li>
                   If either |videoMimeSupport| or |audioMimeSupport| is
@@ -916,7 +913,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           the MIME type is [=supported by the user agent=], <code>unsupported</code>
           if the MIME type is not supported:
         </p>
-        <ol>
+        <ol >
           <li>
             If |encodingOrDecodingType| is {{MediaEncodingType/webrtc}} ({{MediaEncodingType}})
             or {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}):
