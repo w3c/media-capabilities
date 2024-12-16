@@ -282,11 +282,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
              <code>application</code>, return <code>false</code> and abort these steps.
           </li>
           <li>
-            Create an internal slot on |configuration|,
-            <dfn attribute for=VideoConfiguration>\[[mimeType]]</dfn>, and set
-            its value to |mimeType|.
-          </li>
-          <li>
             Return <code>true</code>.
           </li>
         </ol>
@@ -528,11 +523,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
              <code>application</code>, return <code>false</code> and abort these steps.
           </li>
           <li>
-            Create an internal slot on |configuration|,
-            <dfn attribute for=AudioConfiguration>\[[mimeType]]</dfn>, and set
-            its value to |mimeType|.
-          </li>
-          <li>
             Return <code>true</code>.
           </li>
         </ol>
@@ -772,23 +762,46 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               value in {{MediaCapabilitiesEncodingInfo/configuration}}.
             </li>
             <li>
-              If {{MediaConfiguration/video}} is present in
-              |configuration|, let |videoMimeSupport| be the result of running
-              [$Check MIME Type Support$] with
-              {{VideoConfiguration/[[mimeType]]}}, the |media| video, and
-              |configuration|'s {{MediaEncodingConfiguration/type}}, otherwise
-              let |videoMimeSupport| be <code>undefined</code>.
+              Let |videoSupported| be <code>unknown</code>.
+            </li>
+            <li>If {{MediaConfiguration/video}} is present in
+              |configuration|, run the following steps:
+              <ol>
+                <li>
+                  Let |videoMimeType| be the result of running
+                  [=parse a MIME type=] with |configuration|'s
+                  {{VideoConfiguration/contentType}}.
+                </li>
+                <li>
+                  Set |videoSupported| to the result of running
+                  [$Check MIME Type Support$] with
+                  |videoMimeType|, the |media| video, and
+                  |configuration|'s {{MediaEncodingConfiguration/type}}.
+                </li>
+              </ol>
             </li>
             <li>
-              If {{MediaConfiguration/audio}} is present in |configuration|, let
-              |audioMimeSupport| be the result of running [$Check MIME Type
-              Support$] with {{AudioConfiguration/[[mimeType]]}},
-              the |media| audio, and |configuration|'s
-              {{MediaEncodingConfiguration/type}}, otherwise let |audioMimeSupport| be
-              <code>undefined</code>.
+              Let |audioSupported| be <code>unknown</code>.
             </li>
             <li>
-              If either |videoMimeSupport| or |audioMimeSupport| is
+              If {{MediaConfiguration/audio}} is present in |configuration|,
+              run the following steps:
+              <ol>
+                <li>
+                  Let |audioMimeType| be the result of running
+                  [=parse a MIME type=] with |configuration|'s
+                  {{AudioConfiguration/contentType}}.
+                </li>
+                <li>
+                  Set |audioSupported| to the result of running
+                  [$Check MIME Type Support$] with |audioMimeType|, the
+                  |media| audio, and |configuration|'s
+                  {{MediaEncodingConfiguration/type}}.
+                </li>
+              </ol>
+            </li>
+            <li>
+              If either |videoSupported| or |audioSupported| is
               <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
               to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
               to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
@@ -844,9 +857,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 </li>
                 <li>
                   If {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  is not <code>null</code> set
-                  {{MediaCapabilitiesInfo/supported}} to
-                  <code>true</code>. Otherwise set it to <code>false</code>.
+                  is <code>null</code>, set {{MediaCapabilitiesInfo/supported}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+                  to <code>false</code>, and return <var>info</var>.
+                </li>
+                <li>
+                  Otherwise, set {{MediaCapabilitiesInfo/supported}} to
+                  <code>true</code> and continue with step 6.
                 </li>
               </ol>
             </li>
@@ -858,22 +876,47 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   to <code>null</code>.
                 </li>
                 <li>
+                  Let |videoSupported| be <code>unknown</code>.
+                </li>
+                <li>
                   If {{MediaConfiguration/video}} is present in |configuration|,
-                  let |videoMimeSupport| be the result of running [$Check MIME Type
-                  Support$] with its {{VideoConfiguration/[[mimeType]]}},
-                  the |media| video, and |configuration|'s
-                  {{MediaDecodingConfiguration/type}}, otherwise let |videoMimeSupport|
-                  be <code>undefined</code>.
+                  run the following steps:
+                  <ol>
+                    <li>
+                      Let |videoMimeType| be the result of running
+                      [=parse a MIME type=] with |configuration|'s
+                      {{VideoConfiguration/contentType}}.
+                    </li>
+                    <li>
+                      Set |videoSupported| be the result of running
+                      [$Check MIME Type Support$] with |videoMimeType|, the
+                      |media| video, and |configuration|'s
+                      {{MediaDecodingConfiguration/type}}.
+                    </li>
+                  </ol>
                 </li>
                 <li>
-                  If {{MediaConfiguration/audio}} is present in |configuration|, let
-                  |audioMimeSupport| be the result of running [$Check MIME Type
-                  Support$] with its {{AudioConfiguration/[[mimeType]]}}, the |media|
-                  audio, and |configuration|'s {{MediaDecodingConfiguration/type}},
-                  otherwise let |audioMimeSupport| be <code>undefined</code>.
+                  Let |audioSupported| be <code>unknown</code>.
                 </li>
                 <li>
-                  If either |videoMimeSupport| or |audioMimeSupport| is
+                  If {{MediaConfiguration/audio}} is present in |configuration|,
+                  run the following steps:
+                  <ol>
+                    <li>
+                      Let |audioMimeType| be the result of running
+                      [=parse a MIME type=] with |configuration|'s
+                      {{AudioConfiguration/contentType}}.
+                    </li>
+                    <li>
+                      Set |audioSupported| to the result of running
+                      [$Check MIME Type Support$] with |audioMimeType|,
+                      the |media| audio, and |configuration|'s
+                      {{MediaDecodingConfiguration/type}}.
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  If either |videoSupported| or |audioSupported| is
                   <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
                   to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
                   to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
