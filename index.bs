@@ -940,7 +940,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <section algorithm>
         <h4 id='check-mime-type-validity'><dfn abstract-op noexport lt="Check MIME Type Validity|check MIME type validity">Check MIME Type Validity</dfn></h4>
         <p>
-          To [$check MIME type validity$] given a [=MIME type record=] |mimeType| and 
+          To [$check MIME type validity$] given a [=MIME type record=] |mimeType| and
           a string |media|, run the following steps:
         </p>
         <ol>
@@ -961,7 +961,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <li>
                 If the <code>parameters</code> member of |mimeType|
                 does not contain a single key named "codecs", return
-                false.
+                <code>false</code>.
+
+                Issue(235): Why does it matter if a single media codec is listed?
+                
               </li>
               <li>
                 If the value of <code>mimeType.parameters["codecs"]</code>
@@ -974,7 +977,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             Return <code>true</code>.
           </li>
         </ol>
-        
+
         Issue(238): Does this logic apply to <code>webrtc</code>?
 
       </section>
