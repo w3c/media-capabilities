@@ -134,46 +134,46 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <p>
         For a {{MediaConfiguration}} to be a <dfn>valid
         MediaConfiguration</dfn>, all of the following conditions MUST be true:
-        <ol>
-          <li>
-            <code>audio</code> and/or <code>video</code> MUST [=map/exist=].
-          </li>
-          <li>
-            <code>audio</code> MUST be a <a>valid audio configuration</a> if
-            it [=map/exists=].
-          </li>
-          <li>
-            <code>video</code> MUST be a <a>valid video configuration</a> if
-            it [=map/exists=].
-          </li>
-        </ol>
       </p>
+      <ol>
+        <li>
+          <code>audio</code> and/or <code>video</code> MUST [=map/exist=].
+        </li>
+        <li>
+          <code>audio</code> MUST be a <a>valid audio configuration</a> if
+          it [=map/exists=].
+        </li>
+        <li>
+          <code>video</code> MUST be a <a>valid video configuration</a> if
+          it [=map/exists=].
+        </li>
+      </ol>
       <p>
         For a {{MediaDecodingConfiguration}} to be a <dfn>valid
         MediaDecodingConfiguration</dfn>, all of the following conditions MUST
         be true:
-        <ol>
-          <li>
-            It MUST be a <a>valid MediaConfiguration</a>.
-          </li>
-          <li>
-            If <code>keySystemConfiguration</code> [=map/exists=]:
-            <ol>
-              <li>
-                The <code>type</code> MUST be {{media-source}} or {{file}}.
-              </li>
-              <li>
-                If <code>keySystemConfiguration.audio</code> [=map/exists=],
-                <code>audio</code> MUST also [=map/exist=].
-              </li>
-              <li>
-                If <code>keySystemConfiguration.video</code> [=map/exists=],
-                <code>video</code> MUST also [=map/exist=].
-              </li>
-            </ol>
-          </li>
-        </ol>
       </p>
+      <ol>
+        <li>
+          It MUST be a <a>valid MediaConfiguration</a>.
+        </li>
+        <li>
+          If <code>keySystemConfiguration</code> [=map/exists=]:
+          <ol>
+            <li>
+              The <code>type</code> MUST be {{media-source}} or {{file}}.
+            </li>
+            <li>
+              If <code>keySystemConfiguration.audio</code> [=map/exists=],
+              <code>audio</code> MUST also [=map/exist=].
+            </li>
+            <li>
+              If <code>keySystemConfiguration.video</code> [=map/exists=],
+              <code>video</code> MUST also [=map/exist=].
+            </li>
+          </ol>
+        </li>
+      </ol>
       <p>
         For a {{MediaDecodingConfiguration}} to describe [[!ENCRYPTED-MEDIA]], a
         {{keySystemConfiguration}} MUST [=map/exist=].
@@ -193,19 +193,19 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         A {{MediaDecodingConfiguration}} has three types:
-        <ul>
-          <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
-          represent a configuration that is meant to be used for playback of
-          media sources other than {{MediaSource/MediaSource}} as defined in
-          [[media-source]] and {{RTCPeerConnection}} as defined in [[webrtc]]. </li>
-          <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
-          to represent a configuration that is meant to be used for playback of
-          a {{MediaSource/MediaSource}}. </li>
-          <li><dfn for='MediaDecodingType' enum-value>webrtc</dfn> is used to
-          represent a configuration that is meant to be received using
-          {{RTCPeerConnection}}.</li>
-        </ul>
       </p>
+      <ul>
+        <li><dfn for='MediaDecodingType' enum-value>file</dfn> is used to
+        represent a configuration that is meant to be used for playback of
+        media sources other than {{MediaSource/MediaSource}} as defined in
+        [[media-source]] and {{RTCPeerConnection}} as defined in [[webrtc]]. </li>
+        <li><dfn for='MediaDecodingType' enum-value>media-source</dfn> is used
+        to represent a configuration that is meant to be used for playback of
+        a {{MediaSource/MediaSource}}. </li>
+        <li><dfn for='MediaDecodingType' enum-value>webrtc</dfn> is used to
+        represent a configuration that is meant to be received using
+        {{RTCPeerConnection}}.</li>
+      </ul>
     </section>
 
     <section>
@@ -220,16 +220,16 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         A {{MediaEncodingConfiguration}} can have one of two types:
-        <ul>
-          <li><dfn for='MediaEncodingType' enum-value>record</dfn> is used to
-          represent a configuration for recording of media,
-          <span class="informative">e.g., using {{MediaRecorder}} as defined in
-          [[mediastream-recording]]</span>.</li>
-          <li><dfn for='MediaEncodingType' enum-value>webrtc</dfn> is used to
-          represent a configuration that is meant to be transmitted using
-          {{RTCPeerConnection}} as defined in [[webrtc]]</span>).</li>
-        </ul>
       </p>
+      <ul>
+        <li><dfn for='MediaEncodingType' enum-value>record</dfn> is used to
+        represent a configuration for recording of media,
+        <span class="informative">e.g., using {{MediaRecorder}} as defined in
+        [[mediastream-recording]]</span>.</li>
+        <li><dfn for='MediaEncodingType' enum-value>webrtc</dfn> is used to
+        represent a configuration that is meant to be transmitted using
+        {{RTCPeerConnection}} as defined in [[webrtc]]).</li>
+      </ul>
     </section>
 
     <section>
@@ -259,30 +259,30 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <p>
         To check if a {{VideoConfiguration}} <var>configuration</var> is a
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
-        <ol>
-          <li>
-            If {{VideoConfiguration/framerate}} is not finite or is not greater
-            than 0, return <code>false</code> and abort these steps.
-          </li>
-          <li>
-            If an optional member is specified for a {{MediaDecodingType}} or
-            {{MediaEncodingType}} to which it's not applicable, return
-            <code>false</code> and abort these steps. See applicability rules
-            in the member definitions below.
-          </li>
-          <li>
-            Let |mimeType| be the result of running [=parse a MIME type=]
-            with |configuration|'s {{VideoConfiguration/contentType}}.
-          </li>
-          <li>
-            If |mimeType| is <code>failure</code>, return <code>false</code>.
-          </li>
-          <li>
-            Return the result of running [$check MIME type validity$] with
-            |mimeType| and <code>video</code>.
-          </li>
-        </ol>
       </p>
+      <ol>
+        <li>
+          If {{VideoConfiguration/framerate}} is not finite or is not greater
+          than 0, return <code>false</code> and abort these steps.
+        </li>
+        <li>
+          If an optional member is specified for a {{MediaDecodingType}} or
+          {{MediaEncodingType}} to which it's not applicable, return
+          <code>false</code> and abort these steps. See applicability rules
+          in the member definitions below.
+        </li>
+        <li>
+          Let |mimeType| be the result of running [=parse a MIME type=]
+          with |configuration|'s {{VideoConfiguration/contentType}}.
+        </li>
+        <li>
+          If |mimeType| is <code>failure</code>, return <code>false</code>.
+        </li>
+        <li>
+          Return the result of running [$check MIME type validity$] with
+          |mimeType| and <code>video</code>.
+        </li>
+      </ol>
 
       <p>
         The <dfn for='VideoConfiguration' dict-member>width</dfn> and
@@ -382,108 +382,102 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <section>
       <h4 id='hdrmetadatatype'>HdrMetadataType</h4>
 
+      <xmp class='idl'>
+        enum HdrMetadataType {
+          "smpteSt2086",
+          "smpteSt2094-10",
+          "smpteSt2094-40"
+        };
+      </xmp>
+
       <p>
-        <xmp class='idl'>
-          enum HdrMetadataType {
-            "smpteSt2086",
-            "smpteSt2094-10",
-            "smpteSt2094-40"
-          };
-        </xmp>
-
-        <p>
-          If present, {{HdrMetadataType}} describes the capability to interpret HDR metadata
-          of the specified type.
-        </p>
-
-        <p>
-          The {{VideoConfiguration}} may contain one of the following types:
-          <ul>
-            <li>
-              <dfn for='HdrMetadataType' enum-value>smpteSt2086</dfn>,
-              representing the static metadata type defined by
-              [[!SMPTE-ST-2086]].
-            </li>
-            <li>
-              <dfn for='HdrMetadataType' enum-value>smpteSt2094-10</dfn>,
-              representing the dynamic metadata type defined by
-              [[!SMPTE-ST-2094]].
-            </li>
-            <li>
-              <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>,
-              representing the dynamic metadata type defined by
-              [[!SMPTE-ST-2094]].
-            </li>
-          </ul>
-        </p>
+        If present, {{HdrMetadataType}} describes the capability to interpret HDR metadata
+        of the specified type.
       </p>
+
+      <p>
+        The {{VideoConfiguration}} may contain one of the following types:
+      </p>
+      <ul>
+        <li>
+          <dfn for='HdrMetadataType' enum-value>smpteSt2086</dfn>,
+          representing the static metadata type defined by
+          [[!SMPTE-ST-2086]].
+        </li>
+        <li>
+          <dfn for='HdrMetadataType' enum-value>smpteSt2094-10</dfn>,
+          representing the dynamic metadata type defined by
+          [[!SMPTE-ST-2094]].
+        </li>
+        <li>
+          <dfn for='HdrMetadataType' enum-value>smpteSt2094-40</dfn>,
+          representing the dynamic metadata type defined by
+          [[!SMPTE-ST-2094]].
+        </li>
+      </ul>
     </section>
 
     <section>
       <h4 id='colorgamut'>ColorGamut</h4>
 
-      <p>
-        <xmp class='idl'>
-          enum ColorGamut {
-            "srgb",
-            "p3",
-            "rec2020"
-          };
-        </xmp>
+      <xmp class='idl'>
+        enum ColorGamut {
+          "srgb",
+          "p3",
+          "rec2020"
+        };
+      </xmp>
 
-        <p>
-          The {{VideoConfiguration}} may contain one of the following types:
-          <ul>
-            <li>
-              <dfn for='ColorGamut' enum-value>srgb</dfn>, representing the
-              [[!sRGB]] color gamut.
-            </li>
-            <li>
-              <dfn for='ColorGamut' enum-value>p3</dfn>, representing the DCI
-              P3 Color Space color gamut. This color gamut includes the
-              {{ColorGamut/srgb}} gamut.
-            </li>
-            <li>
-              <dfn for='ColorGamut' enum-value>rec2020</dfn>, representing
-              the ITU-R Recommendation BT.2020 color gamut. This color gamut
-              includes the {{ColorGamut/p3}} gamut.
-            </li>
-          </ul>
-        </p>
+      <p>
+        The {{VideoConfiguration}} may contain one of the following types:
       </p>
+      <ul>
+        <li>
+          <dfn for='ColorGamut' enum-value>srgb</dfn>, representing the
+          [[!sRGB]] color gamut.
+        </li>
+        <li>
+          <dfn for='ColorGamut' enum-value>p3</dfn>, representing the DCI
+          P3 Color Space color gamut. This color gamut includes the
+          {{ColorGamut/srgb}} gamut.
+        </li>
+        <li>
+          <dfn for='ColorGamut' enum-value>rec2020</dfn>, representing
+          the ITU-R Recommendation BT.2020 color gamut. This color gamut
+          includes the {{ColorGamut/p3}} gamut.
+        </li>
+      </ul>
     </section>
 
     <section>
       <h4 id='transferfunction'>TransferFunction</h4>
 
-      <p>
-        <xmp class='idl'>
-          enum TransferFunction {
-            "srgb",
-            "pq",
-            "hlg"
-          };
-        </xmp>
+      <xmp class='idl'>
+        enum TransferFunction {
+          "srgb",
+          "pq",
+          "hlg"
+        };
+      </xmp>
 
-        <p>
-          The {{VideoConfiguration}} may contain one of the following types:
-          <ul>
-            <li>
-              <dfn for='TransferFunction' enum-value>srgb</dfn>, representing
-              the transfer function defined by [[!sRGB]].
-            </li>
-            <li>
-              <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
-              "Perceptual Quantizer" transfer function defined by
-              [[!SMPTE-ST-2084]].
-            </li>
-            <li>
-              <dfn for='TransferFunction' enum-value>hlg</dfn>, representing the
-              "Hybrid Log Gamma" transfer function defined by BT.2100.
-            </li>
-          </ul>
-        </p>
+      <p>
+        The {{VideoConfiguration}} may contain one of the following types:
       </p>
+      <ul>
+        <li>
+          <dfn for='TransferFunction' enum-value>srgb</dfn>, representing
+          the transfer function defined by [[!sRGB]].
+        </li>
+        <li>
+          <dfn for='TransferFunction' enum-value>pq</dfn>, representing the
+          "Perceptual Quantizer" transfer function defined by
+          [[!SMPTE-ST-2084]].
+        </li>
+        <li>
+          <dfn for='TransferFunction' enum-value>hlg</dfn>, representing the
+          "Hybrid Log Gamma" transfer function defined by BT.2100.
+        </li>
+      </ul>
     </section>
 
     <section>
@@ -507,20 +501,20 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <p>
         To check if a {{AudioConfiguration}} |configuration| is a
         <dfn>valid audio configuration</dfn>, the following steps MUST be run:
-        <ol>
-          <li>
-            Let |mimeType| be the result of running [=parse a MIME type=]
-            with |configuration|'s {{AudioConfiguration/contentType}}.
-          </li>
-          <li>
-            If |mimeType| is <code>failure</code>, return <code>false</code>.
-          </li>
-          <li>
-            Return the result of running [$check MIME type validity$] with
-            |mimeType| and <code>audio</code>.
-          </li>
-        </ol>
       </p>
+      <ol>
+        <li>
+          Let |mimeType| be the result of running [=parse a MIME type=]
+          with |configuration|'s {{AudioConfiguration/contentType}}.
+        </li>
+        <li>
+          If |mimeType| is <code>failure</code>, return <code>false</code>.
+        </li>
+        <li>
+          Return the result of running [$check MIME type validity$] with
+          |mimeType| and <code>audio</code>.
+        </li>
+      </ol>
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>channels</dfn> member
@@ -743,83 +737,83 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           To [$create a MediaCapabilitiesEncodingInfo$], given a
           {{MediaEncodingConfiguration}} <var>configuration</var>, run the
           following steps. They return a {{MediaCapabilitiesEncodingInfo}}:
-          <ol>
-            <li>
-              Let <var>info</var> be a new {{MediaCapabilitiesEncodingInfo}}
-              instance. Unless stated otherwise, reading and writing apply to
-              <var>info</var> for the next steps.
-            </li>
-            <li>
-              Set {{MediaCapabilitiesEncodingInfo/configuration}} to be a
-              new {{MediaEncodingConfiguration}}. For every property in <var>
-              configuration</var> create a new property with the same name and
-              value in {{MediaCapabilitiesEncodingInfo/configuration}}.
-            </li>
-            <li>
-              Let |videoSupported| be <code>unknown</code>.
-            </li>
-            <li>If {{MediaConfiguration/video}} is present in
-              |configuration|, run the following steps:
-              <ol>
-                <li>
-                  Let |videoMimeType| be the result of running
-                  [=parse a MIME type=] with |configuration|'s
-                  {{VideoConfiguration/contentType}}.
-                </li>
-                <li>
-                  Set |videoSupported| to the result of running
-                  [$check MIME type support$] with
-                  |videoMimeType| and
-                  |configuration|'s {{MediaEncodingConfiguration/type}}.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Let |audioSupported| be <code>unknown</code>.
-            </li>
-            <li>
-              If {{MediaConfiguration/audio}} is present in |configuration|,
-              run the following steps:
-              <ol>
-                <li>
-                  Let |audioMimeType| be the result of running
-                  [=parse a MIME type=] with |configuration|'s
-                  {{AudioConfiguration/contentType}}.
-                </li>
-                <li>
-                  Set |audioSupported| to the result of running
-                  [$check MIME type support$] with |audioMimeType| and
-                  |configuration|'s {{MediaEncodingConfiguration/type}}.
-                </li>
-              </ol>
-            </li>
-            <li>
-              If either |videoSupported| or |audioSupported| is
-              <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
-              to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
-              to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
-              to <code>false</code>, and return <var>info</var>.
-           <li>
-              Otherwise, set {{MediaCapabilitiesInfo/supported}} to
-              <code>true</code>.
-            </li>
-            <li>
-              If the user agent is able to encode the media represented by
-              <var>configuration</var> at the indicated framerate, set
-              {{MediaCapabilitiesInfo/smooth}} to <code>true</code>. Otherwise
-              set it to <code>false</code>.
-            </li>
-            <li>
-              If the user agent is able to encode the media represented by
-              <var>configuration</var> in a [=power efficient=] manner, set
-              {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
-              Otherwise set it to <code>false</code>.
-            </li>
-            <li>
-              Return <var>info</var>.
-            </li>
-          </ol>
         </p>
+        <ol>
+          <li>
+            Let <var>info</var> be a new {{MediaCapabilitiesEncodingInfo}}
+            instance. Unless stated otherwise, reading and writing apply to
+            <var>info</var> for the next steps.
+          </li>
+          <li>
+            Set {{MediaCapabilitiesEncodingInfo/configuration}} to be a
+            new {{MediaEncodingConfiguration}}. For every property in <var>
+            configuration</var> create a new property with the same name and
+            value in {{MediaCapabilitiesEncodingInfo/configuration}}.
+          </li>
+          <li>
+            Let |videoSupported| be <code>unknown</code>.
+          </li>
+          <li>If {{MediaConfiguration/video}} is present in
+            |configuration|, run the following steps:
+            <ol>
+              <li>
+                Let |videoMimeType| be the result of running
+                [=parse a MIME type=] with |configuration|'s
+                {{VideoConfiguration/contentType}}.
+              </li>
+              <li>
+                Set |videoSupported| to the result of running
+                [$check MIME type support$] with
+                |videoMimeType| and
+                |configuration|'s {{MediaEncodingConfiguration/type}}.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Let |audioSupported| be <code>unknown</code>.
+          </li>
+          <li>
+            If {{MediaConfiguration/audio}} is present in |configuration|,
+            run the following steps:
+            <ol>
+              <li>
+                Let |audioMimeType| be the result of running
+                [=parse a MIME type=] with |configuration|'s
+                {{AudioConfiguration/contentType}}.
+              </li>
+              <li>
+                Set |audioSupported| to the result of running
+                [$check MIME type support$] with |audioMimeType| and
+                |configuration|'s {{MediaEncodingConfiguration/type}}.
+              </li>
+            </ol>
+          </li>
+          <li>
+            If either |videoSupported| or |audioSupported| is
+            <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
+            to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+            to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+            to <code>false</code>, and return <var>info</var>.
+         <li>
+            Otherwise, set {{MediaCapabilitiesInfo/supported}} to
+            <code>true</code>.
+          </li>
+          <li>
+            If the user agent is able to encode the media represented by
+            <var>configuration</var> at the indicated framerate, set
+            {{MediaCapabilitiesInfo/smooth}} to <code>true</code>. Otherwise
+            set it to <code>false</code>.
+          </li>
+          <li>
+            If the user agent is able to encode the media represented by
+            <var>configuration</var> in a [=power efficient=] manner, set
+            {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
+            Otherwise set it to <code>false</code>.
+          </li>
+          <li>
+            Return <var>info</var>.
+          </li>
+        </ol>
       </section>
 
       <section algorithm>
@@ -828,113 +822,113 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           To [$create a MediaCapabilitiesDecodingInfo$], given a
           {{MediaDecodingConfiguration}} |configuration|, perform the
           following steps. They return a {{MediaCapabilitiesDecodingInfo}}:
-          <ol>
-            <li>
-              Let <var>info</var> be a new {{MediaCapabilitiesDecodingInfo}}
-              instance. Unless stated otherwise, reading and writing apply to
-              <var>info</var> for the next steps.
-            </li>
-            <li>
-              Set {{MediaCapabilitiesDecodingInfo/configuration}} to be a new
-              {{MediaDecodingConfiguration}}. For every property in
-              |configuration| create a new property with the same name and
-              value in {{MediaCapabilitiesDecodingInfo/configuration}}.
-            </li>
-            <li>
-              If <code>configuration.keySystemConfiguration</code> [=map/exists=]:
-              <ol>
-                <li>
-                  Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  to the result of running the [$Check Encrypted Decoding
-                  Support$] algorithm with |configuration|.
-                </li>
-                <li>
-                  If {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  is <code>null</code>, set {{MediaCapabilitiesInfo/supported}}
-                  to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
-                  to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
-                  to <code>false</code>, and return <var>info</var>.
-                </li>
-                <li>
-                  Otherwise, set {{MediaCapabilitiesInfo/supported}} to
-                  <code>true</code> and continue with step 6.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Otherwise, run the following steps:
-              <ol>
-                <li>
-                  Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  to <code>null</code>.
-                </li>
-                <li>
-                  Let |videoSupported| be <code>unknown</code>.
-                </li>
-                <li>
-                  If {{MediaConfiguration/video}} is present in |configuration|,
-                  run the following steps:
-                  <ol>
-                    <li>
-                      Let |videoMimeType| be the result of running
-                      [=parse a MIME type=] with |configuration|'s
-                      {{VideoConfiguration/contentType}}.
-                    </li>
-                    <li>
-                      Set |videoSupported| be the result of running
-                      [$check MIME type support$] with |videoMimeType| and
-                      |configuration|'s {{MediaDecodingConfiguration/type}}.
-                    </li>
-                  </ol>
-                </li>
-                <li>
-                  Let |audioSupported| be <code>unknown</code>.
-                </li>
-                <li>
-                  If {{MediaConfiguration/audio}} is present in |configuration|,
-                  run the following steps:
-                  <ol>
-                    <li>
-                      Let |audioMimeType| be the result of running
-                      [=parse a MIME type=] with |configuration|'s
-                      {{AudioConfiguration/contentType}}.
-                    </li>
-                    <li>
-                      Set |audioSupported| to the result of running
-                      [$check MIME type support$] with |audioMimeType| and
-                      |configuration|'s {{MediaDecodingConfiguration/type}}.
-                    </li>
-                  </ol>
-                </li>
-                <li>
-                  If either |videoSupported| or |audioSupported| is
-                  <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
-                  to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
-                  to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
-                  to <code>false</code>, and return <var>info</var>.
-                </li>
-              </ol>
-            </li>
-            <li>
-              Set {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
-            </li>
-            <li>
-              If the user agent is able to decode the media represented by
-              |configuration| at the indicated framerate
-              without dropping frames, set {{MediaCapabilitiesInfo/smooth}}
-              to <code>true</code>. Otherwise set it to <code>false</code>.
-            </li>
-            <li>
-              If the user agent is able to decode the media represented by
-              |configuration| in a [=power efficient=]
-              manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
-              <code>true</code>. Otherwise set it to <code>false</code>.
-            </li>
-            <li>
-              Return <var>info</var>.
-            </li>
-          </ol>
         </p>
+        <ol>
+          <li>
+            Let <var>info</var> be a new {{MediaCapabilitiesDecodingInfo}}
+            instance. Unless stated otherwise, reading and writing apply to
+            <var>info</var> for the next steps.
+          </li>
+          <li>
+            Set {{MediaCapabilitiesDecodingInfo/configuration}} to be a new
+            {{MediaDecodingConfiguration}}. For every property in
+            |configuration| create a new property with the same name and
+            value in {{MediaCapabilitiesDecodingInfo/configuration}}.
+          </li>
+          <li>
+            If <code>configuration.keySystemConfiguration</code> [=map/exists=]:
+            <ol>
+              <li>
+                Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
+                to the result of running the [$Check Encrypted Decoding
+                Support$] algorithm with |configuration|.
+              </li>
+              <li>
+                If {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
+                is <code>null</code>, set {{MediaCapabilitiesInfo/supported}}
+                to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+                to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+                to <code>false</code>, and return <var>info</var>.
+              </li>
+              <li>
+                Otherwise, set {{MediaCapabilitiesInfo/supported}} to
+                <code>true</code> and continue with step 6.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Otherwise, run the following steps:
+            <ol>
+              <li>
+                Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
+                to <code>null</code>.
+              </li>
+              <li>
+                Let |videoSupported| be <code>unknown</code>.
+              </li>
+              <li>
+                If {{MediaConfiguration/video}} is present in |configuration|,
+                run the following steps:
+                <ol>
+                  <li>
+                    Let |videoMimeType| be the result of running
+                    [=parse a MIME type=] with |configuration|'s
+                    {{VideoConfiguration/contentType}}.
+                  </li>
+                  <li>
+                    Set |videoSupported| be the result of running
+                    [$check MIME type support$] with |videoMimeType| and
+                    |configuration|'s {{MediaDecodingConfiguration/type}}.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                Let |audioSupported| be <code>unknown</code>.
+              </li>
+              <li>
+                If {{MediaConfiguration/audio}} is present in |configuration|,
+                run the following steps:
+                <ol>
+                  <li>
+                    Let |audioMimeType| be the result of running
+                    [=parse a MIME type=] with |configuration|'s
+                    {{AudioConfiguration/contentType}}.
+                  </li>
+                  <li>
+                    Set |audioSupported| to the result of running
+                    [$check MIME type support$] with |audioMimeType| and
+                    |configuration|'s {{MediaDecodingConfiguration/type}}.
+                  </li>
+                </ol>
+              </li>
+              <li>
+                If either |videoSupported| or |audioSupported| is
+                <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
+                to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+                to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+                to <code>false</code>, and return <var>info</var>.
+              </li>
+            </ol>
+          </li>
+          <li>
+            Set {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
+          </li>
+          <li>
+            If the user agent is able to decode the media represented by
+            |configuration| at the indicated framerate
+            without dropping frames, set {{MediaCapabilitiesInfo/smooth}}
+            to <code>true</code>. Otherwise set it to <code>false</code>.
+          </li>
+          <li>
+            If the user agent is able to decode the media represented by
+            |configuration| in a [=power efficient=]
+            manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
+            <code>true</code>. Otherwise set it to <code>false</code>.
+          </li>
+          <li>
+            Return <var>info</var>.
+          </li>
+        </ol>
       </section>
 
       <section algorithm>
@@ -1020,125 +1014,125 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           |config| where {{keySystemConfiguration}} [=map/exists=], perform the
           following steps. They return a {{MediaKeySystemAccess}} or <code>null</code>
           as appropriate:
+        </p>
+        <ol>
+          <li>
+            If the {{keySystem}} member of
+            <code>config.keySystemConfiguration</code> is not one of the
+            [=Key Systems=] supported by the user agent, return
+            <code>null</code>. String comparison is case-sensitive.
+          </li>
+          <li>
+            Let <var>origin</var> be the [=/origin=] of the calling context's
+            <a>Document</a>.
+          </li>
+          <li>
+            Let <var>implementation</var> be the implementation of
+            <code>config.keySystemConfiguration.keySystem</code>.
+          </li>
+
+          <li>
+            Let <var>emeConfiguration</var> be a new
+            {{MediaKeySystemConfiguration}}, and initialize it as follows:
+          </li>
           <ol>
             <li>
-              If the {{keySystem}} member of
-              <code>config.keySystemConfiguration</code> is not one of the
-              [=Key Systems=] supported by the user agent, return
-              <code>null</code>. String comparison is case-sensitive.
+              Set the {{MediaKeySystemConfiguration/initDataTypes}} attribute to a sequence containing
+              <code>config.keySystemConfiguration.initDataType</code>.
             </li>
             <li>
-              Let <var>origin</var> be the [=/origin=] of the calling context's
-              <a>Document</a>.
+              Set the {{MediaKeySystemConfiguration/distinctiveIdentifier}} attribute to
+              <code>config.keySystemConfiguration.distinctiveIdentifier</code>.
             </li>
             <li>
-              Let <var>implementation</var> be the implementation of
-              <code>config.keySystemConfiguration.keySystem</code>.
-            </li>
-
-            <li>
-              Let <var>emeConfiguration</var> be a new
-              {{MediaKeySystemConfiguration}}, and initialize it as follows:
-            </li>
-            <ol>
-              <li>
-                Set the {{MediaKeySystemConfiguration/initDataTypes}} attribute to a sequence containing
-                <code>config.keySystemConfiguration.initDataType</code>.
-              </li>
-              <li>
-                Set the {{MediaKeySystemConfiguration/distinctiveIdentifier}} attribute to
-                <code>config.keySystemConfiguration.distinctiveIdentifier</code>.
-              </li>
-              <li>
-                Set the {{MediaKeySystemConfiguration/persistentState}} attribute to
-                <code>config.keySystemConfiguration.peristentState</code>.
-              </li>
-              <li>
-                Set the {{MediaKeySystemConfiguration/sessionTypes}} attribute to
-                <code>config.keySystemConfiguration.sessionTypes</code>.
-              </li>
-              <li>
-                If {{MediaConfiguration/audio}} [=map/exists=] in |config|, set the
-                {{MediaKeySystemConfiguration/audioCapabilities}} attribute to a sequence containing a
-                single {{MediaKeySystemMediaCapability}}, initialized as
-                follows:
-                <ol>
-                  <li>
-                    Set the {{MediaKeySystemMediaCapability/contentType}} attribute to
-                    <code>config.audio.contentType</code>.
-                  </li>
-                  <li>
-                    If <code>config.keySystemConfiguration.audio</code>
-                    [=map/exists=]:
-                    <ol>
-                      <li>
-                        Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
-                        config.keySystemConfiguration.audio.robustness</code>.
-                      </li>
-                      <li>
-                        Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
-                        config.keySystemConfiguration.audio.encryptionScheme</code>.
-                      </li>
-                    </ol>
-                  </li>
-                </ol>
-              </li>
-              <li>
-                If {{MediaConfiguration/video}} [=map/exists=] in |config|, set the
-                videoCapabilities attribute to a sequence containing a single
-                {{MediaKeySystemMediaCapability}}, initialized as follows:
-                <ol>
-                  <li>
-                    Set the {{MediaKeySystemMediaCapability/contentType}} attribute to
-                    <code>config.video.contentType</code>.
-                  </li>
-                  <li>
-                    If <code>config.keySystemConfiguration.video</code> [=map/exists=]:
-                    <ol>
-                      <li>
-                        Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
-                        config.keySystemConfiguration.video.robustness</code>.
-                      </li>
-                      <li>
-                        Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
-                        config.keySystemConfiguration.video.encryptionScheme</code>.
-                      </li>
-                    </ol>
-                  </li>
-                </ol>
-              </li>
-            </ol>
-            <li>
-              Let <var>supported configuration</var> be the result of
-              executing the [=Get Supported Configuration=]
-              algorithm [[ENCRYPTED-MEDIA]] on <var>implementation</var>,
-              <var>emeConfiguration</var>, and <var>origin</var>.
+              Set the {{MediaKeySystemConfiguration/persistentState}} attribute to
+              <code>config.keySystemConfiguration.peristentState</code>.
             </li>
             <li>
-              If <var>supported configuration</var> is
-              <code>NotSupported</code>, return <code>null</code>.
+              Set the {{MediaKeySystemConfiguration/sessionTypes}} attribute to
+              <code>config.keySystemConfiguration.sessionTypes</code>.
             </li>
             <li>
-              Let <var>access</var> be a new {{MediaKeySystemAccess}}
-              object, and initialize it as follows:
+              If {{MediaConfiguration/audio}} [=map/exists=] in |config|, set the
+              {{MediaKeySystemConfiguration/audioCapabilities}} attribute to a sequence containing a
+              single {{MediaKeySystemMediaCapability}}, initialized as
+              follows:
               <ol>
                 <li>
-                  Set the {{MediaKeySystemAccess/keySystem}} attribute to
-                  <code>emeConfiguration.keySystem</code>.
+                  Set the {{MediaKeySystemMediaCapability/contentType}} attribute to
+                  <code>config.audio.contentType</code>.
                 </li>
                 <li>
-                  Let the <var ignore=''>configuration</var> value be
-                  <var>supported configuration</var>.
-                </li>
-                <li>
-                  Let the <var ignore=''>cdm implementation</var> value be
-                  <var>implementation</var>.
+                  If <code>config.keySystemConfiguration.audio</code>
+                  [=map/exists=]:
+                  <ol>
+                    <li>
+                      Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
+                      config.keySystemConfiguration.audio.robustness</code>.
+                    </li>
+                    <li>
+                      Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
+                      config.keySystemConfiguration.audio.encryptionScheme</code>.
+                    </li>
+                  </ol>
                 </li>
               </ol>
             </li>
-            <li>Return <var>access</var>.</li>
+            <li>
+              If {{MediaConfiguration/video}} [=map/exists=] in |config|, set the
+              videoCapabilities attribute to a sequence containing a single
+              {{MediaKeySystemMediaCapability}}, initialized as follows:
+              <ol>
+                <li>
+                  Set the {{MediaKeySystemMediaCapability/contentType}} attribute to
+                  <code>config.video.contentType</code>.
+                </li>
+                <li>
+                  If <code>config.keySystemConfiguration.video</code> [=map/exists=]:
+                  <ol>
+                    <li>
+                      Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
+                      config.keySystemConfiguration.video.robustness</code>.
+                    </li>
+                    <li>
+                      Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
+                      config.keySystemConfiguration.video.encryptionScheme</code>.
+                    </li>
+                  </ol>
+                </li>
+              </ol>
+            </li>
           </ol>
-        </p>
+          <li>
+            Let <var>supported configuration</var> be the result of
+            executing the [=Get Supported Configuration=]
+            algorithm [[ENCRYPTED-MEDIA]] on <var>implementation</var>,
+            <var>emeConfiguration</var>, and <var>origin</var>.
+          </li>
+          <li>
+            If <var>supported configuration</var> is
+            <code>NotSupported</code>, return <code>null</code>.
+          </li>
+          <li>
+            Let <var>access</var> be a new {{MediaKeySystemAccess}}
+            object, and initialize it as follows:
+            <ol>
+              <li>
+                Set the {{MediaKeySystemAccess/keySystem}} attribute to
+                <code>emeConfiguration.keySystem</code>.
+              </li>
+              <li>
+                Let the <var ignore=''>configuration</var> value be
+                <var>supported configuration</var>.
+              </li>
+              <li>
+                Let the <var ignore=''>cdm implementation</var> value be
+                <var>implementation</var>.
+              </li>
+            </ol>
+          </li>
+          <li>Return <var>access</var>.</li>
+        </ol>
       </section>
   </section>
 
@@ -1191,49 +1185,49 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <h4 id='decodinginfo-method'>decodingInfo() Method</h4>
     <p>
       The {{decodingInfo()}} method MUST run the following steps:
-      <ol>
-        <li>
-          If <var>configuration</var> is not a <a>valid
-          MediaDecodingConfiguration</a>, return a Promise rejected with a
-          newly created {{TypeError}}.
-        </li>
-        <li>
-          If <code>configuration.keySystemConfiguration</code> [=map/exists=],
-          run the following substeps:
-          <ol>
-            <li>
-              If the [=/global object=] is of type {{WorkerGlobalScope}},
-              return a Promise rejected with a newly created {{DOMException}}
-              whose name is {{InvalidStateError}}.
-            </li>
-            <li>
-              If the [=/global object's=] <a>relevant settings object</a> is a
-              [=non-secure context=], return a Promise rejected with a newly
-              created {{DOMException}} whose name is {{SecurityError}}.
-            </li>
-          </ol>
-        </li>
-        <li>
-          Let <var>p</var> be a new Promise.
-        </li>
-        <li>
-          Run the following steps <a>in parallel</a>:
-          <ol>
-            <li>
-              Run the [$Create a MediaCapabilitiesDecodingInfo$] algorithm
-              with <var>configuration</var>.
-            </li>
-            <li>
-              <a>Queue a Media Capabilities task</a> to resolve <var>p</var>
-              with its result.
-            </li>
-          </ol>
-        </li>
-        <li>
-          Return <var>p</var>.
-        </li>
-      </ol>
     </p>
+    <ol>
+      <li>
+        If <var>configuration</var> is not a <a>valid
+        MediaDecodingConfiguration</a>, return a Promise rejected with a
+        newly created {{TypeError}}.
+      </li>
+      <li>
+        If <code>configuration.keySystemConfiguration</code> [=map/exists=],
+        run the following substeps:
+        <ol>
+          <li>
+            If the [=/global object=] is of type {{WorkerGlobalScope}},
+            return a Promise rejected with a newly created {{DOMException}}
+            whose name is {{InvalidStateError}}.
+          </li>
+          <li>
+            If the [=/global object's=] <a>relevant settings object</a> is a
+            [=non-secure context=], return a Promise rejected with a newly
+            created {{DOMException}} whose name is {{SecurityError}}.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Let <var>p</var> be a new Promise.
+      </li>
+      <li>
+        Run the following steps <a>in parallel</a>:
+        <ol>
+          <li>
+            Run the [$Create a MediaCapabilitiesDecodingInfo$] algorithm
+            with <var>configuration</var>.
+          </li>
+          <li>
+            <a>Queue a Media Capabilities task</a> to resolve <var>p</var>
+            with its result.
+          </li>
+        </ol>
+      </li>
+      <li>
+        Return <var>p</var>.
+      </li>
+    </ol>
 
     <p class='note'>
       Note, calling {{decodingInfo()}} with a {{keySystemConfiguration}} present
@@ -1247,32 +1241,32 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <h4 id='encodinginfo-method'>encodingInfo() Method</h4>
     <p>
       The {{encodingInfo()}} method MUST run the following steps:
-      <ol>
-        <li>
-          If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
-          return a Promise rejected with a newly created {{TypeError}}.
-        </li>
-        <li>
-          Let <var>p</var> be a new Promise.
-        </li>
-        <li>
-          Run the following steps <a>in parallel</a>:
-            <ol>
-              <li>
-                Run the [$Create a MediaCapabilitiesEncodingInfo$]
-                algorithm with <var>configuration</var>.
-              </li>
-              <li>
-               <a>Queue a Media Capabilities task</a> to resolve <var>p</var> with
-               its result.
-             </li>
-           </ol>
-        </li>
-        <li>
-          Return <var>p</var>.
-        </li>
-      </ol>
     </p>
+    <ol>
+      <li>
+        If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
+        return a Promise rejected with a newly created {{TypeError}}.
+      </li>
+      <li>
+        Let <var>p</var> be a new Promise.
+      </li>
+      <li>
+        Run the following steps <a>in parallel</a>:
+          <ol>
+            <li>
+              Run the [$Create a MediaCapabilitiesEncodingInfo$]
+              algorithm with <var>configuration</var>.
+            </li>
+            <li>
+             <a>Queue a Media Capabilities task</a> to resolve <var>p</var> with
+             its result.
+           </li>
+         </ol>
+      </li>
+      <li>
+        Return <var>p</var>.
+      </li>
+    </ol>
     </section>
   </section>
 </section>
