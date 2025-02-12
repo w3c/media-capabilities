@@ -233,58 +233,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     </section>
 
     <section>
-      <h4 id='mime-type'>MIME types</h4>
-
-      <p>
-        In the context of this specification, a MIME type is also called content
-        type. A <dfn>valid media MIME type</dfn> is a string that is a <a>valid
-        MIME type</a> per [[mimesniff]].
-      </p>
-
-      <p>
-        Please note that the definition of MIME subtypes and parameters is
-        context dependent. For {{file}}, {{media-source}}, and {{record}}, the
-        MIME types are specified as defined for [[#http|HTTP]], whereas for
-        {{MediaDecodingType/webrtc}} the MIME types are specified as
-        defined for [[#rtp|RTP]].
-      </p>
-
-      <p>
-        A <dfn>valid audio MIME type</dfn> is a string that is a <a>valid media
-        MIME type</a> and for which the <code>type</code> per [[RFC9110]] is
-        either <code>audio</code> or <code>application</code>.
-      </p>
-
-      <p>
-        A <dfn>valid video MIME type</dfn> is a string that is a <a>valid media
-        MIME type</a> and for which the <code>type</code> per [[RFC9110]] is
-        either <code>video</code> or <code>application</code>.
-      </p>
-
-      <section>
-        <h5 id='http'>HTTP</h5>
-
-        <p>
-          If the MIME type does not imply a codec, the string MUST also have one
-          and only one parameter that is named <code>codecs</code> with a value
-          describing a single media codec. Otherwise, it MUST contain no
-          parameters.
-        </p>
-      </section>
-
-      <section>
-        <h5 id='rtp'>RTP</h5>
-
-        <p>
-          The MIME types used with RTP are defined in the specifications of the
-          corresponding RTP payload formats [[RFC4855]] [[RFC6838]]. The codec
-          name is typically specified as subtype and zero or more parameters
-          may be present depending on the codec.
-        </p>
-      </section>
-    </section>
-
-    <section>
       <h4 id='videoconfiguration'>VideoConfiguration</h4>
 
       <xmp class='idl'>
@@ -305,18 +253,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         The <dfn for='VideoConfiguration' dict-member>contentType</dfn> member
-        represents the MIME type of the video track.
+        represents the [=MIME type=] of the video track.
       </p>
 
       <p>
         To check if a {{VideoConfiguration}} <var>configuration</var> is a
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
         <ol>
-          <li>
-            If <var>configuration</var>'s {{VideoConfiguration/contentType}} is
-            not a <a>valid video MIME type</a>, return <code>false</code> and
-            abort these steps.
-          </li>
           <li>
             If {{VideoConfiguration/framerate}} is not finite or is not greater
             than 0, return <code>false</code> and abort these steps.
@@ -326,8 +269,17 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             {{MediaEncodingType}} to which it's not applicable, return
             <code>false</code> and abort these steps. See applicability rules
             in the member definitions below.
+          </li>
           <li>
-            Return <code>true</code>.
+            Let |mimeType| be the result of running [=parse a MIME type=]
+            with |configuration|'s {{VideoConfiguration/contentType}}.
+          </li>
+          <li>
+            If |mimeType| is <code>failure</code>, return <code>false</code>.
+          </li>
+          <li>
+            Return the result of running [$check MIME type validity$] with
+            |mimeType| and <code>video</code>.
           </li>
         </ol>
       </p>
@@ -549,20 +501,23 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>contentType</dfn> member
-        represents the MIME type of the audio track.
+        represents the [=MIME type=] of the audio track.
       </p>
 
       <p>
-        To check if a {{AudioConfiguration}} <var>configuration</var> is a
+        To check if a {{AudioConfiguration}} |configuration| is a
         <dfn>valid audio configuration</dfn>, the following steps MUST be run:
         <ol>
           <li>
-            If <var>configuration</var>'s {{AudioConfiguration/contentType}} is
-            not a <a>valid audio MIME type</a>, return <code>false</code> and
-            abort these steps.
+            Let |mimeType| be the result of running [=parse a MIME type=]
+            with |configuration|'s {{AudioConfiguration/contentType}}.
           </li>
           <li>
-            Return <code>true</code>.
+            If |mimeType| is <code>failure</code>, return <code>false</code>.
+          </li>
+          <li>
+            Return the result of running [$check MIME type validity$] with
+            |mimeType| and <code>audio</code>.
           </li>
         </ol>
       </p>
@@ -782,14 +737,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <section>
       <h3 id='info-algorithms'>Algorithms</h3>
 
-      <section>
-        <h4 id='create-media-capabilities-encoding-info'>
-          <dfn>Create a MediaCapabilitiesEncodingInfo</dfn>
-        </h4>
+      <section algorithm>
+        <h4 id='create-media-capabilities-encoding-info'><dfn abstract-op noexport lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo">Create a MediaCapabilitiesEncodingInfo</dfn></h4>
         <p>
-          Given a {{MediaEncodingConfiguration}} <var>configuration</var>, this
-          algorithm returns a {{MediaCapabilitiesEncodingInfo}}. The following
-          steps are run:
+          To [$create a MediaCapabilitiesEncodingInfo$], given a
+          {{MediaEncodingConfiguration}} <var>configuration</var>, run the
+          following steps. They return a {{MediaCapabilitiesEncodingInfo}}:
           <ol>
             <li>
               Let <var>info</var> be a new {{MediaCapabilitiesEncodingInfo}}
@@ -803,9 +756,52 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               value in {{MediaCapabilitiesEncodingInfo/configuration}}.
             </li>
             <li>
-              If the user agent is able to encode the media represented by
-              <var>configuration</var>, set {{MediaCapabilitiesInfo/supported}}
-              to <code>true</code>. Otherwise set it to <code>false</code>.
+              Let |videoSupported| be <code>unknown</code>.
+            </li>
+            <li>If {{MediaConfiguration/video}} is present in
+              |configuration|, run the following steps:
+              <ol>
+                <li>
+                  Let |videoMimeType| be the result of running
+                  [=parse a MIME type=] with |configuration|'s
+                  {{VideoConfiguration/contentType}}.
+                </li>
+                <li>
+                  Set |videoSupported| to the result of running
+                  [$check MIME type support$] with
+                  |videoMimeType| and
+                  |configuration|'s {{MediaEncodingConfiguration/type}}.
+                </li>
+              </ol>
+            </li>
+            <li>
+              Let |audioSupported| be <code>unknown</code>.
+            </li>
+            <li>
+              If {{MediaConfiguration/audio}} is present in |configuration|,
+              run the following steps:
+              <ol>
+                <li>
+                  Let |audioMimeType| be the result of running
+                  [=parse a MIME type=] with |configuration|'s
+                  {{AudioConfiguration/contentType}}.
+                </li>
+                <li>
+                  Set |audioSupported| to the result of running
+                  [$check MIME type support$] with |audioMimeType| and
+                  |configuration|'s {{MediaEncodingConfiguration/type}}.
+                </li>
+              </ol>
+            </li>
+            <li>
+              If either |videoSupported| or |audioSupported| is
+              <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
+              to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+              to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+              to <code>false</code>, and return <var>info</var>.
+           <li>
+              Otherwise, set {{MediaCapabilitiesInfo/supported}} to
+              <code>true</code>.
             </li>
             <li>
               If the user agent is able to encode the media represented by
@@ -826,14 +822,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </p>
       </section>
 
-      <section>
-        <h4 id='create-media-capabilities-decoding-info'>
-          <dfn>Create a MediaCapabilitiesDecodingInfo</dfn>
-        </h4>
+      <section algorithm>
+        <h4 id='create-media-capabilities-decoding-info'><dfn abstract-op noexport lt="Create a MediaCapabilitiesDecodingInfo|create a MediaCapabilitiesDecodingInfo">Create a MediaCapabilitiesDecodingInfo</dfn></h4>
         <p>
-          Given a {{MediaDecodingConfiguration}} <var>configuration</var>, this
-          algorithm returns a {{MediaCapabilitiesDecodingInfo}}. The following
-          steps are run:
+          To [$create a MediaCapabilitiesDecodingInfo$], given a
+          {{MediaDecodingConfiguration}} |configuration|, perform the
+          following steps. They return a {{MediaCapabilitiesDecodingInfo}}:
           <ol>
             <li>
               Let <var>info</var> be a new {{MediaCapabilitiesDecodingInfo}}
@@ -842,8 +836,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </li>
             <li>
               Set {{MediaCapabilitiesDecodingInfo/configuration}} to be a new
-              {{MediaDecodingConfiguration}}. For every property in <var>
-              configuration</var> create a new property with the same name and
+              {{MediaDecodingConfiguration}}. For every property in
+              |configuration| create a new property with the same name and
               value in {{MediaCapabilitiesDecodingInfo/configuration}}.
             </li>
             <li>
@@ -851,14 +845,19 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <ol>
                 <li>
                   Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  to the result of running the <a>Check Encrypted Decoding
-                  Support</a> algorithm with <var>configuration</var>.
+                  to the result of running the [$Check Encrypted Decoding
+                  Support$] algorithm with |configuration|.
                 </li>
                 <li>
                   If {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
-                  is not <code>null</code> set
-                  {{MediaCapabilitiesInfo/supported}} to
-                  <code>true</code>. Otherwise set it to <code>false</code>.
+                  is <code>null</code>, set {{MediaCapabilitiesInfo/supported}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+                  to <code>false</code>, and return <var>info</var>.
+                </li>
+                <li>
+                  Otherwise, set {{MediaCapabilitiesInfo/supported}} to
+                  <code>true</code> and continue with step 6.
                 </li>
               </ol>
             </li>
@@ -870,22 +869,64 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   to <code>null</code>.
                 </li>
                 <li>
-                  If the user agent is able to decode the media represented
-                  by <var>configuration</var>, set
-                  {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
+                  Let |videoSupported| be <code>unknown</code>.
                 </li>
-                <li>Otherwise, set it to <code>false</code>.</li>
+                <li>
+                  If {{MediaConfiguration/video}} is present in |configuration|,
+                  run the following steps:
+                  <ol>
+                    <li>
+                      Let |videoMimeType| be the result of running
+                      [=parse a MIME type=] with |configuration|'s
+                      {{VideoConfiguration/contentType}}.
+                    </li>
+                    <li>
+                      Set |videoSupported| be the result of running
+                      [$check MIME type support$] with |videoMimeType| and
+                      |configuration|'s {{MediaDecodingConfiguration/type}}.
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  Let |audioSupported| be <code>unknown</code>.
+                </li>
+                <li>
+                  If {{MediaConfiguration/audio}} is present in |configuration|,
+                  run the following steps:
+                  <ol>
+                    <li>
+                      Let |audioMimeType| be the result of running
+                      [=parse a MIME type=] with |configuration|'s
+                      {{AudioConfiguration/contentType}}.
+                    </li>
+                    <li>
+                      Set |audioSupported| to the result of running
+                      [$check MIME type support$] with |audioMimeType| and
+                      |configuration|'s {{MediaDecodingConfiguration/type}}.
+                    </li>
+                  </ol>
+                </li>
+                <li>
+                  If either |videoSupported| or |audioSupported| is
+                  <code>unsupported</code>, set {{MediaCapabilitiesInfo/supported}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/smooth}}
+                  to <code>false</code>, {{MediaCapabilitiesInfo/powerEfficient}}
+                  to <code>false</code>, and return <var>info</var>.
+                </li>
               </ol>
             </li>
             <li>
+              Set {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
+            </li>
+            <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> at the indicated framerate
+              |configuration| at the indicated framerate
               without dropping frames, set {{MediaCapabilitiesInfo/smooth}}
               to <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
             <li>
               If the user agent is able to decode the media represented by
-              <var>configuration</var> in a [=power efficient=]
+              |configuration| in a [=power efficient=]
               manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
               <code>true</code>. Otherwise set it to <code>false</code>.
             </li>
@@ -896,15 +937,89 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </p>
       </section>
 
-      <section>
-        <h4 id='is-encrypted-decode-supported'>
-          <dfn>Check Encrypted Decoding Support</dfn>
-        </h4>
+      <section algorithm>
+        <h4 id='check-mime-type-validity'><dfn abstract-op noexport lt="Check MIME Type Validity|check MIME type validity">Check MIME Type Validity</dfn></h4>
         <p>
-          Given a {{MediaDecodingConfiguration}} <var>config</var> where
-          {{keySystemConfiguration}} [=map/exists=], this algorithm returns a
-          {{MediaKeySystemAccess}} or <code>null</code> as appropriate. The
-          following steps are run:
+          To [$check MIME type validity$] given a [=MIME type record=] |mimeType| and
+          a string |media|, run the following steps:
+        </p>
+        <ol>
+          <li>
+             If the type of |mimeType| per [[RFC9110]] is neither |media| nor
+             <code>application</code>, return <code>false</code>.
+          </li>
+          <li>
+            If the combined <code>type</code> and <code>subtype</code> members
+            of |mimeType| allow a single media codec and the
+            <code>parameters</code> member of |mimeType| is not empty,
+            return <code>false</code>.
+          </li>
+          <li>
+            If the combined <code>type</code> and <code>subtype</code> members
+            of |mimeType| allow multiple media codecs, run the following steps:
+            <ol>
+              <li>
+                If the <code>parameters</code> member of |mimeType|
+                does not contain a single key named "codecs", return
+                <code>false</code>.
+
+                Issue(235): Why does it matter if a single media codec is listed?
+                
+              </li>
+              <li>
+                If the value of <code>mimeType.parameters["codecs"]</code>
+                does not describe a single media codec, return
+                <code>false</code>.
+              </li>
+             </ol>
+          </li>
+          <li>
+            Return <code>true</code>.
+          </li>
+        </ol>
+
+        Issue(238): Does this logic apply to <code>webrtc</code>?
+
+      </section>
+
+      <section algorithm>
+        <h4 id="check-mime-type-support"><dfn abstract-op noexport lt="Check MIME Type Support|check MIME type support">Check MIME Type Support</dfn></h4>
+        <p>
+          To [$check MIME type support$], given a [=MIME type record=] |mimeType|
+          and either a {{MediaEncodingType}} or {{MediaDecodingType}}
+          |encodingOrDecodingType|, perform the following
+          steps. They return <code>supported</code> if
+          the MIME type is [=supported by the user agent=], <code>unsupported</code>
+          if the MIME type is not supported:
+        </p>
+        <ol>
+          <li>
+            If |encodingOrDecodingType| is {{MediaEncodingType/webrtc}} ({{MediaEncodingType}})
+            or {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) and |mimeType| is not one
+            that is used with RTP (as defined in the specifications of the corresponding RTP
+            payload formats [[IANA-MEDIA-TYPES]] [[RFC6838]]), return <code>unsupported</code>.
+            <p class="note">
+              The codec name is typically specified as subtype and zero or more
+              parameters may be present depending on the codec.
+            </p>
+          </li>
+          <li>
+            If |mimeType| is not [=supported by the user agent=], return
+            <code>unsupported</code>.
+          </li>
+          <li>
+            Return <code>supported</code>.
+          </li>
+        </ol>
+      </section>
+
+      <section algorithm>
+        <h4 id='is-encrypted-decode-supported'><dfn abstract-op noexport lt="Check Encrypted Decoding Support|check encrypted decoding support">Check Encrypted Decoding Support</dfn></h4>
+        <p>
+          To [$check encrypted decoding support$], given a {{MediaDecodingConfiguration}}
+          |config| where {{keySystemConfiguration}} [=map/exists=], perform the
+          following steps. They return a {{MediaKeySystemAccess}} or <code>null</code>
+          as appropriate:
           <ol>
             <li>
               If the {{keySystem}} member of
@@ -917,7 +1032,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <a>Document</a>.
             </li>
             <li>
-              Let <var>implementation</var> be the implementation of <code>config.keySystemConfiguration.keySystem</code>.
+              Let <var>implementation</var> be the implementation of
+              <code>config.keySystemConfiguration.keySystem</code>.
             </li>
 
             <li>
@@ -942,7 +1058,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <code>config.keySystemConfiguration.sessionTypes</code>.
               </li>
               <li>
-                If {{MediaConfiguration/audio}} [=map/exists=] in <var>config</var>, set the
+                If {{MediaConfiguration/audio}} [=map/exists=] in |config|, set the
                 {{MediaKeySystemConfiguration/audioCapabilities}} attribute to a sequence containing a
                 single {{MediaKeySystemMediaCapability}}, initialized as
                 follows:
@@ -970,7 +1086,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 </ol>
               </li>
               <li>
-                If {{MediaConfiguration/video}} [=map/exists=] in <var>config</var>, set the
+                If {{MediaConfiguration/video}} [=map/exists=] in |config|, set the
                 videoCapabilities attribute to a sequence containing a single
                 {{MediaKeySystemMediaCapability}}, initialized as follows:
                 <ol>
@@ -1000,13 +1116,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <li>
               Let <var>supported configuration</var> be the result of
               executing the [=Get Supported Configuration=]
-              algorithm on <var>implementation</var>,
+              algorithm [[ENCRYPTED-MEDIA]] on <var>implementation</var>,
               <var>emeConfiguration</var>, and <var>origin</var>.
             </li>
             <li>
               If <var>supported configuration</var> is
-              <code>NotSupported</code>, return <code>null</code> and abort
-              these steps.
+              <code>NotSupported</code>, return <code>null</code>.
             </li>
             <li>
               Let <var>access</var> be a new {{MediaKeySystemAccess}}
@@ -1017,7 +1132,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   <code>emeConfiguration.keySystem</code>.
                 </li>
                 <li>
-                  Let the <var>configuration</var> value be
+                  Let the <var ignore=''>configuration</var> value be
                   <var>supported configuration</var>.
                 </li>
                 <li>
@@ -1056,8 +1171,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <xmp class='idl'>
       [Exposed=(Window, Worker)]
       interface MediaCapabilities {
-        [NewObject] Promise<MediaCapabilitiesDecodingInfo> decodingInfo(MediaDecodingConfiguration configuration);
-        [NewObject] Promise<MediaCapabilitiesEncodingInfo> encodingInfo(MediaEncodingConfiguration configuration);
+        [NewObject] Promise<MediaCapabilitiesDecodingInfo> decodingInfo(
+            MediaDecodingConfiguration configuration);
+        [NewObject] Promise<MediaCapabilitiesEncodingInfo> encodingInfo(
+            MediaEncodingConfiguration configuration);
       };
     </xmp>
 
@@ -1108,7 +1225,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           Run the following steps <a>in parallel</a>:
           <ol>
             <li>
-              Run the <a>Create a MediaCapabilitiesDecodingInfo</a> algorithm
+              Run the [$Create a MediaCapabilitiesDecodingInfo$] algorithm
               with <var>configuration</var>.
             </li>
             <li>
@@ -1147,7 +1264,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           Run the following steps <a>in parallel</a>:
             <ol>
               <li>
-                Run the <a>Create a MediaCapabilitiesEncodingInfo</a>
+                Run the [$Create a MediaCapabilitiesEncodingInfo$]
                 algorithm with <var>configuration</var>.
               </li>
               <li>
