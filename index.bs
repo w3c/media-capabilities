@@ -668,7 +668,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
-        required MediaKeySystemAccess keySystemAccess;
+        required MediaKeySystemAccess? keySystemAccess;
         MediaDecodingConfiguration configuration;
       };
     </xmp>
@@ -1067,9 +1067,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   [=map/exists=]:
                   <ol>
                     <li>
-                      Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
-                      config.keySystemConfiguration.audio.robustness</code>.
-                    </li>
+                      If <code>config.keySystemConfiguration.audio.robustness</code>
+                      [=map/exists=] and is not <code>null</code>, set the
+                      {{MediaKeySystemMediaCapability/robustness}} attribute to
+                      <code>config.keySystemConfiguration.audio.robustness</code>.                                        </li>
                     <li>
                       Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
                       config.keySystemConfiguration.audio.encryptionScheme</code>.
@@ -1091,8 +1092,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   If <code>config.keySystemConfiguration.video</code> [=map/exists=]:
                   <ol>
                     <li>
-                      Set the {{MediaKeySystemMediaCapability/robustness}} attribute to <code>
-                      config.keySystemConfiguration.video.robustness</code>.
+                      If <code>config.keySystemConfiguration.video.robustness</code>
+                      [=map/exists=] and is not <code>null</code>, set the
+                      {{MediaKeySystemMediaCapability/robustness}} attribute to
+                      <code>config.keySystemConfiguration.video.robustness</code>.
                     </li>
                     <li>
                       Set the {{MediaKeySystemMediaCapability/encryptionScheme}} attribute to <code>
