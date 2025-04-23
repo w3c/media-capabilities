@@ -5,9 +5,9 @@
   <title>Media Capabilities</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 97a1608be, updated Mon Feb 3 16:09:34 2025 -0800" name="generator">
+  <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="ab50f7c83d728f96e6c4cdf72a0b5c1f88df8762" name="revision">
+  <meta content="f5a99e601417052680c12bf028867efdeb2e890d" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -738,7 +738,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-02-14">14 February 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-23">23 April 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -780,7 +780,7 @@ based on the device’s display.</p>
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports index</a> at https://www.w3.org/TR/.</em> </p>
+   <p> <em>This section describes the status of this document at the time of its publication. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the latest revision of this technical report can be found in the <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> standards and drafts index</a> at https://www.w3.org/TR/.</em> </p>
    <p> Feedback and comments on this specification are welcome. <a href="https://github.com/w3c/media-capabilities/issues">GitHub Issues</a> are preferred for discussion on this specification. Alternatively, you can send comments to the Media Working Group’s mailing-list, <a href="mailto:public-media-wg@w3.org">public-media-wg@w3.org</a> (<a href="https://lists.w3.org/Archives/Public/public-media-wg/">archives</a>).
   This draft highlights some of the pending issues that are still to be discussed in the working group.
   No decision has been taken on the outcome of these issues including whether they are valid. </p>
@@ -1036,9 +1036,11 @@ based on the device’s display.</p>
         you don’t specify one via <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webrtc-pc/#dom-rtcrtpsender-setparameters" id="ref-for-dom-rtcrtpsender-setparameters">setParameters()</a></code>).
         scalabilityMode is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration②">MediaEncodingConfiguration</a></code> for
         type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc①">webrtc</a></code>. </p>
+      <p> If the <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode①">scalabilityMode</a></code> indicates that there are multiple spatial layers,
+        the <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-width" id="ref-for-dom-videoconfiguration-width①">width</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-height" id="ref-for-dom-videoconfiguration-height①">height</a></code> values in <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration②">VideoConfiguration</a></code> correspond to the largest spatial layer that is encoded. </p>
       <p> If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-spatialscalability"><code>spatialScalability</code></dfn> member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
-        dependencies. If absent, spatialScalability will default to <code>false</code>. spatialScalability is closely coupled to <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode①">scalabilityMode</a></code> in the sense that streams encoded
+        dependencies. If absent, spatialScalability will default to <code>false</code>. spatialScalability is closely coupled to <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code> in the sense that streams encoded
         with modes using spatial scalability (e.g. "L2T1") can only be decoded
         if spatialScalability is supported. spatialScalability is only
         applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑦">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑤">media-source</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑤">file</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc①">webrtc</a></code>. </p>
@@ -1053,7 +1055,7 @@ based on the device’s display.</p>
 </pre>
       <p> If present, <code class="idl"><a data-link-type="idl" href="#enumdef-hdrmetadatatype" id="ref-for-enumdef-hdrmetadatatype②">HdrMetadataType</a></code> describes the capability to interpret HDR metadata
         of the specified type. </p>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration②">VideoConfiguration</a></code> may contain one of the following types: </p>
+      <p> The <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration③">VideoConfiguration</a></code> may contain one of the following types: </p>
       <ul>
        <li> <dfn class="dfn-paneled idl-code" data-dfn-for="HdrMetadataType" data-dfn-type="enum-value" data-export data-lt="&quot;smpteSt2086&quot;|smpteSt2086" id="dom-hdrmetadatatype-smptest2086"><code>smpteSt2086</code></dfn>,
           representing the static metadata type defined by <a data-link-type="biblio" href="#biblio-smpte-st-2086" title="Mastering Display Color Volume Metadata Supporting High Luminance and Wide Color Gamut Images">[SMPTE-ST-2086]</a>. 
@@ -1071,7 +1073,7 @@ based on the device’s display.</p>
   <a class="idl-code" data-link-type="enum-value" href="#dom-colorgamut-rec2020" id="ref-for-dom-colorgamut-rec2020"><c- s>"rec2020"</c-></a>
 };
 </pre>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration③">VideoConfiguration</a></code> may contain one of the following types: </p>
+      <p> The <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration④">VideoConfiguration</a></code> may contain one of the following types: </p>
       <ul>
        <li> <dfn class="dfn-paneled idl-code" data-dfn-for="ColorGamut" data-dfn-type="enum-value" data-export data-lt="&quot;srgb&quot;|srgb" id="dom-colorgamut-srgb"><code>srgb</code></dfn>, representing the <a data-link-type="biblio" href="#biblio-srgb" title="Multimedia systems and equipment - Colour measurement and management - Part 2-1: Colour management - Default RGB colour space - sRGB">[sRGB]</a> color gamut. 
        <li> <dfn class="dfn-paneled idl-code" data-dfn-for="ColorGamut" data-dfn-type="enum-value" data-export data-lt="&quot;p3&quot;|p3" id="dom-colorgamut-p3"><code>p3</code></dfn>, representing the DCI
@@ -1089,7 +1091,7 @@ based on the device’s display.</p>
   <a class="idl-code" data-link-type="enum-value" href="#dom-transferfunction-hlg" id="ref-for-dom-transferfunction-hlg"><c- s>"hlg"</c-></a>
 };
 </pre>
-      <p> The <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration④">VideoConfiguration</a></code> may contain one of the following types: </p>
+      <p> The <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration⑤">VideoConfiguration</a></code> may contain one of the following types: </p>
       <ul>
        <li> <dfn class="dfn-paneled idl-code" data-dfn-for="TransferFunction" data-dfn-type="enum-value" data-export data-lt="&quot;srgb&quot;|srgb" id="dom-transferfunction-srgb"><code>srgb</code></dfn>, representing
           the transfer function defined by <a data-link-type="biblio" href="#biblio-srgb" title="Multimedia systems and equipment - Colour measurement and management - Part 2-1: Colour management - Default RGB colour space - sRGB">[sRGB]</a>. 
@@ -1167,7 +1169,7 @@ based on the device’s display.</p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-audio"><code>audio</code></dfn> member
         represents a <code class="idl"><a data-link-type="idl" href="#dictdef-keysystemtrackconfiguration" id="ref-for-dictdef-keysystemtrackconfiguration②">KeySystemTrackConfiguration</a></code> associated with the <code class="idl"><a data-link-type="idl" href="#dictdef-audioconfiguration" id="ref-for-dictdef-audioconfiguration②">AudioConfiguration</a></code>. </p>
      <p> The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-video"><code>video</code></dfn> member
-        represents a <code class="idl"><a data-link-type="idl" href="#dictdef-keysystemtrackconfiguration" id="ref-for-dictdef-keysystemtrackconfiguration③">KeySystemTrackConfiguration</a></code> associated with the <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration⑤">VideoConfiguration</a></code>. </p>
+        represents a <code class="idl"><a data-link-type="idl" href="#dictdef-keysystemtrackconfiguration" id="ref-for-dictdef-keysystemtrackconfiguration③">KeySystemTrackConfiguration</a></code> associated with the <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration⑥">VideoConfiguration</a></code>. </p>
     </section>
     <section>
      <h4 class="heading settled" data-level="2.1.10" id="keysystemtrackconfiguration"><span class="secno">2.1.10. </span><span class="content"> KeySystemTrackConfiguration </span><a class="self-link" href="#keysystemtrackconfiguration"></a></h4>
@@ -1603,7 +1605,7 @@ based on the device’s display.</p>
      <section>
       <h3 class="heading settled" data-level="4.2" id="example2"><span class="secno">4.2. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example2"></a></h3>
       <div class="note" role="note"> The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo②">encodingInfo()</a></code> to query
-        WebRTC send capabilities <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a> including the optional field <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code>. </div>
+        WebRTC send capabilities <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a> including the optional field <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode③">scalabilityMode</a></code>. </div>
       <div class="example" id="example-60212754">
        <a class="self-link" href="#example-60212754"></a> 
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
@@ -2388,7 +2390,7 @@ let dfnPanelData = {
 "dictdef-mediaconfiguration": {"dfnID":"dictdef-mediaconfiguration","dfnText":"MediaConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediaconfiguration"},{"id":"ref-for-dictdef-mediaconfiguration\u2460"},{"id":"ref-for-dictdef-mediaconfiguration\u2461"}],"title":"2.1.1. MediaConfiguration"}],"url":"#dictdef-mediaconfiguration"},
 "dictdef-mediadecodingconfiguration": {"dfnID":"dictdef-mediadecodingconfiguration","dfnText":"MediaDecodingConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2461"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2462"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2463"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2464"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2465"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2466"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2467"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2468"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u24ea"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u2461"}],"title":"2.3.5. Check Encrypted Decoding Support"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u2462"}],"title":"2.5. Media Capabilities Interface"}],"url":"#dictdef-mediadecodingconfiguration"},
 "dictdef-mediaencodingconfiguration": {"dfnID":"dictdef-mediaencodingconfiguration","dfnText":"MediaEncodingConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2460"}],"title":"2.1.3. MediaEncodingType"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2462"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2463"},{"id":"ref-for-dictdef-mediaencodingconfiguration\u2464"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2465"}],"title":"2.5. Media Capabilities Interface"}],"url":"#dictdef-mediaencodingconfiguration"},
-"dictdef-videoconfiguration": {"dfnID":"dictdef-videoconfiguration","dfnText":"VideoConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-videoconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2461"}],"title":"2.1.5. HdrMetadataType"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2462"}],"title":"2.1.6. ColorGamut"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2463"}],"title":"2.1.7. TransferFunction"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2464"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dictdef-videoconfiguration"},
+"dictdef-videoconfiguration": {"dfnID":"dictdef-videoconfiguration","dfnText":"VideoConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-videoconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2460"},{"id":"ref-for-dictdef-videoconfiguration\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2462"}],"title":"2.1.5. HdrMetadataType"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2463"}],"title":"2.1.6. ColorGamut"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2464"}],"title":"2.1.7. TransferFunction"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2465"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dictdef-videoconfiguration"},
 "dom-audioconfiguration-bitrate": {"dfnID":"dom-audioconfiguration-bitrate","dfnText":"bitrate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-audioconfiguration-bitrate"}],"title":"2.1.8. AudioConfiguration"}],"url":"#dom-audioconfiguration-bitrate"},
 "dom-audioconfiguration-channels": {"dfnID":"dom-audioconfiguration-channels","dfnText":"channels","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-audioconfiguration-channels"},{"id":"ref-for-dom-audioconfiguration-channels\u2460"}],"title":"2.1.8. AudioConfiguration"}],"url":"#dom-audioconfiguration-channels"},
 "dom-audioconfiguration-contenttype": {"dfnID":"dom-audioconfiguration-contenttype","dfnText":"contentType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-audioconfiguration-contenttype"},{"id":"ref-for-dom-audioconfiguration-contenttype\u2460"},{"id":"ref-for-dom-audioconfiguration-contenttype\u2461"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-audioconfiguration-contenttype\u2462"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-audioconfiguration-contenttype\u2463"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-audioconfiguration-contenttype"},
@@ -2439,11 +2441,11 @@ let dfnPanelData = {
 "dom-videoconfiguration-framerate": {"dfnID":"dom-videoconfiguration-framerate","dfnText":"framerate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-framerate"},{"id":"ref-for-dom-videoconfiguration-framerate\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-framerate"},
 "dom-videoconfiguration-hasalphachannel": {"dfnID":"dom-videoconfiguration-hasalphachannel","dfnText":"hasAlphaChannel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hasalphachannel"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-hasalphachannel"},
 "dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype\u2460"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
-"dom-videoconfiguration-height": {"dfnID":"dom-videoconfiguration-height","dfnText":"height","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-height"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-height"},
-"dom-videoconfiguration-scalabilitymode": {"dfnID":"dom-videoconfiguration-scalabilitymode","dfnText":"scalabilityMode","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2461"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-videoconfiguration-scalabilitymode"},
+"dom-videoconfiguration-height": {"dfnID":"dom-videoconfiguration-height","dfnText":"height","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-height"},{"id":"ref-for-dom-videoconfiguration-height\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-height"},
+"dom-videoconfiguration-scalabilitymode": {"dfnID":"dom-videoconfiguration-scalabilitymode","dfnText":"scalabilityMode","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2460"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2462"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-videoconfiguration-scalabilitymode"},
 "dom-videoconfiguration-spatialscalability": {"dfnID":"dom-videoconfiguration-spatialscalability","dfnText":"spatialScalability","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-spatialscalability"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-spatialscalability"},
 "dom-videoconfiguration-transferfunction": {"dfnID":"dom-videoconfiguration-transferfunction","dfnText":"transferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2460"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-transferfunction"},
-"dom-videoconfiguration-width": {"dfnID":"dom-videoconfiguration-width","dfnText":"width","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-width"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-width"},
+"dom-videoconfiguration-width": {"dfnID":"dom-videoconfiguration-width","dfnText":"width","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-width"},{"id":"ref-for-dom-videoconfiguration-width\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-width"},
 "dom-workernavigator-mediacapabilities": {"dfnID":"dom-workernavigator-mediacapabilities","dfnText":"mediaCapabilities","external":false,"refSections":[],"url":"#dom-workernavigator-mediacapabilities"},
 "e14cb0ba": {"dfnID":"e14cb0ba","dfnText":"MediaKeysRequirement","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediakeysrequirement"},{"id":"ref-for-dom-mediakeysrequirement\u2460"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"https://w3c.github.io/encrypted-media/#dom-mediakeysrequirement"},
 "e5f8eccd": {"dfnID":"e5f8eccd","dfnText":"initDataTypes","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediakeysystemconfiguration-initdatatypes"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "},{"refs":[{"id":"ref-for-dom-mediakeysystemconfiguration-initdatatypes\u2460"}],"title":"2.3.5. Check Encrypted Decoding Support"}],"url":"https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-initdatatypes"},
@@ -3064,7 +3066,12 @@ function hideRefHint(refHint) {
 function showRefHint(link) {
     if(link.classList.contains("dfn-link")) return;
     const url = link.getAttribute("href");
-    const ref = refsData[url];
+    const refHintKey = link.getAttribute("data-refhint-key");
+    let key = url;
+    if(refHintKey) {
+        key = refHintKey + "_" + url;
+    }
+    const ref = refsData[key];
     if(!ref) return;
 
     hideAllRefHints(); // Only display one at this time.
