@@ -366,6 +366,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
+        If the {{scalabilityMode}} indicates that there are multiple spatial layers,
+        the {{width}} and {{height}} values in {{VideoConfiguration}}
+        correspond to the largest spatial layer that is encoded.
+      </p>
+
+      <p>
         If present, the <dfn for='VideoConfiguration' dict-member>spatialScalability</dfn>
         member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
