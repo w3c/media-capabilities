@@ -28,7 +28,6 @@ Abstract: based on the device's display.
 
 <pre class='link-defaults'>
 spec:html; type:dfn; for:realm; text:global object
-spec:dom; type:dfn; for:/; text:document
 </pre>
 
 <pre class='anchors'>
@@ -771,9 +770,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <li>
                 Set |videoSupported| to the result of running
                 [$check MIME type support$] with
-                |videoMimeType|,
-                |configuration|'s {{MediaEncodingConfiguration/type}},
-                and <code>undefined</code> for |colorGamut| and |transferFunction|.
+                |videoMimeType| |configuration|'s
+                {{MediaEncodingConfiguration/type}}.
               </li>
             </ol>
           </li>
@@ -791,9 +789,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               </li>
               <li>
                 Set |audioSupported| to the result of running
-                [$check MIME type support$] with |audioMimeType|,
-                |configuration|'s {{MediaEncodingConfiguration/type}},
-                and <code>undefined</code> for |colorGamut| and |transferFunction|.
+                [$check MIME type support$] with |audioMimeType|
+                |configuration|'s {{MediaEncodingConfiguration/type}}.
               </li>
             </ol>
           </li>
@@ -907,10 +904,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   </li>
                   <li>
                     Set |audioSupported| to the result of running
-                    [$check MIME type support$] with |audioMimeType|,
-                    |configuration|'s {{MediaDecodingConfiguration/type}},
-                    and <code>undefined</code> for <code>colorGamut</code>
-                    and <code>transferFunction</code>.
+                    [$check MIME type support$] with |audioMimeType|
+                    |configuration|'s {{MediaDecodingConfiguration/type}}.
                   </li>
                 </ol>
               </li>
@@ -1013,12 +1008,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </p>
           </li>
           <li>
-            If |colorGamut| is not <code>undefined</code> and is not valid for
-            |mimeType|, return <code>unsupported</code>.
+            If |colorGamut| is present and is not valid for |mimeType|, return
+            <code>unsupported</code>.
           </li>
           <li>
-            If |transferFunction| is not <code>undefined</code> and is not valid
-            for |mimeType|, return <code>unsupported</code>.
+            If |transferFunction| is present and is not valid for |mimeType|, return
+            <code>unsupported</code>.
           </li>
           <li>
             If |mimeType| is not [=supported by the user agent=], return
@@ -1047,7 +1042,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           </li>
           <li>
             Let <var>origin</var> be the [=/origin=] of the calling context's
-            <a>Document</a>.
+            {{/Document}}.
           </li>
           <li>
             Let <var>implementation</var> be the implementation of
