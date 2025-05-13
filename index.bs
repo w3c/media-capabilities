@@ -675,13 +675,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
         required MediaKeySystemAccess? keySystemAccess;
-        MediaDecodingConfiguration configuration;
+        required MediaDecodingConfiguration configuration;
       };
     </xmp>
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesEncodingInfo : MediaCapabilitiesInfo {
-        MediaEncodingConfiguration configuration;
+        required MediaEncodingConfiguration configuration;
       };
     </xmp>
 
