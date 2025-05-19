@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version b25686b9f, updated Fri Mar 14 14:15:20 2025 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="f5a99e601417052680c12bf028867efdeb2e890d" name="revision">
+  <meta content="091cc30c4fb23a2b8dd410b23405f910b6f2f40c" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -738,7 +738,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-04-23">23 April 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2025-05-19">19 May 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1192,11 +1192,11 @@ based on the device’s display.</p>
 </pre>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mediacapabilitiesdecodinginfo"><code><c- g>MediaCapabilitiesDecodingInfo</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo"><c- n>MediaCapabilitiesInfo</c-></a> {
   <c- b>required</c-> <a data-link-type="idl-name" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess" id="ref-for-dom-mediakeysystemaccess"><c- n>MediaKeySystemAccess</c-></a>? <a class="idl-code" data-link-type="dict-member" data-type="MediaKeySystemAccess?" href="#dom-mediacapabilitiesdecodinginfo-keysystemaccess" id="ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess"><c- g>keySystemAccess</c-></a>;
-  <a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑨"><c- n>MediaDecodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaDecodingConfiguration" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration"><c- g>configuration</c-></a>;
+  <c- b>required</c-> <a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑨"><c- n>MediaDecodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaDecodingConfiguration" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration"><c- g>configuration</c-></a>;
 };
 </pre>
 <pre class="idl highlight def"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mediacapabilitiesencodinginfo"><code><c- g>MediaCapabilitiesEncodingInfo</c-></code></dfn> : <a data-link-type="idl-name" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo①"><c- n>MediaCapabilitiesInfo</c-></a> {
-  <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration③"><c- n>MediaEncodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaEncodingConfiguration" href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration"><c- g>configuration</c-></a>;
+  <c- b>required</c-> <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration③"><c- n>MediaEncodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaEncodingConfiguration" href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration"><c- g>configuration</c-></a>;
 };
 </pre>
      <p> A <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesinfo" id="ref-for-dictdef-mediacapabilitiesinfo②">MediaCapabilitiesInfo</a></code> has associated <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-supported"><code>supported</code></dfn>, <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-smooth"><code>smooth</code></dfn>, <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesInfo" data-dfn-type="dict-member" data-export id="dom-mediacapabilitiesinfo-powerefficient"><code>powerEfficient</code></dfn> fields which are
@@ -2095,11 +2095,11 @@ based on the device’s display.</p>
 
 <c- b>dictionary</c-> <a href="#dictdef-mediacapabilitiesdecodinginfo"><code><c- g>MediaCapabilitiesDecodingInfo</c-></code></a> : <a data-link-type="idl-name" href="#dictdef-mediacapabilitiesinfo"><c- n>MediaCapabilitiesInfo</c-></a> {
   <c- b>required</c-> <a data-link-type="idl-name" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess"><c- n>MediaKeySystemAccess</c-></a>? <a class="idl-code" data-link-type="dict-member" data-type="MediaKeySystemAccess?" href="#dom-mediacapabilitiesdecodinginfo-keysystemaccess"><c- g>keySystemAccess</c-></a>;
-  <a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration"><c- n>MediaDecodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaDecodingConfiguration" href="#dom-mediacapabilitiesdecodinginfo-configuration"><c- g>configuration</c-></a>;
+  <c- b>required</c-> <a data-link-type="idl-name" href="#dictdef-mediadecodingconfiguration"><c- n>MediaDecodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaDecodingConfiguration" href="#dom-mediacapabilitiesdecodinginfo-configuration"><c- g>configuration</c-></a>;
 };
 
 <c- b>dictionary</c-> <a href="#dictdef-mediacapabilitiesencodinginfo"><code><c- g>MediaCapabilitiesEncodingInfo</c-></code></a> : <a data-link-type="idl-name" href="#dictdef-mediacapabilitiesinfo"><c- n>MediaCapabilitiesInfo</c-></a> {
-  <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration"><c- n>MediaEncodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaEncodingConfiguration" href="#dom-mediacapabilitiesencodinginfo-configuration"><c- g>configuration</c-></a>;
+  <c- b>required</c-> <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration"><c- n>MediaEncodingConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="MediaEncodingConfiguration" href="#dom-mediacapabilitiesencodinginfo-configuration"><c- g>configuration</c-></a>;
 };
 
 [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
