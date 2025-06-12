@@ -26,7 +26,7 @@ This includes `video-dynamic-range`. On televisions, this value may be `"high"` 
 
 On desktop and mobile devices, values for video-* features will generally match their non-prefixed counterparts.
 
-The sizing video-* prefixed features are still under discussion, see CSS issues [#4471](https://github.com/w3c/csswg-drafts/issues/4471), [#4678](https://github.com/w3c/csswg-drafts/pull/4678), [#5044](https://github.com/w3c/csswg-drafts/issues/5044), and [#6891](https://github.com/w3c/csswg-drafts/issues/6891). Rather than add `video-width`, `video-height`, and `video-resolution` media queries, the current proposal is to expose a `deviceVideoPixelRatio` property.
+The sizing video-* prefixed features are still under discussion, see CSS issues [#4678](https://github.com/w3c/csswg-drafts/pull/4678), [#5044](https://github.com/w3c/csswg-drafts/issues/5044), and [#6891](https://github.com/w3c/csswg-drafts/issues/6891). Rather than add `video-width`, `video-height`, and `video-resolution` media queries, the current proposal is to expose a `deviceVideoPixelRatio` property.
 
 # MediaCapabilities: does the UA support decoding/rendering my brand of HDR video?
 
