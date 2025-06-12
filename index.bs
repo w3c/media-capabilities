@@ -463,7 +463,7 @@ spec: encrypted-media-draft; for: EME; urlPrefix: https://w3c.github.io/encrypte
         If present, the <dfn for='VideoConfiguration' dict-member>spatialScalability</dfn>
         member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
-        dependencies. If absent, spatialScalability defaults to
+        dependencies. If absent, {{VideoConfiguration/spatialScalability}} defaults to
         <code>false</code>. If {{VideoConfiguration/spatialScalability}} is set to <code>true</code>,
         the decoder can decode any {{VideoConfiguration/scalabilityMode}} 
         that the encoder can encode for the configured codec.  If {{VideoConfiguration/spatialScalability}}
