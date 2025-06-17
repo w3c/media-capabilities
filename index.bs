@@ -675,13 +675,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     <xmp class='idl'>
       dictionary MediaCapabilitiesDecodingInfo : MediaCapabilitiesInfo {
         required MediaKeySystemAccess? keySystemAccess;
-        MediaDecodingConfiguration configuration;
+        required MediaDecodingConfiguration configuration;
       };
     </xmp>
 
     <xmp class='idl'>
       dictionary MediaCapabilitiesEncodingInfo : MediaCapabilitiesInfo {
-        MediaEncodingConfiguration configuration;
+        required MediaEncodingConfiguration configuration;
       };
     </xmp>
 
@@ -1335,7 +1335,15 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         categories, within which capabilities are similar thus minimizing
         effective entropy.
       </p>
-
+      <p>
+        An alternative design approach in which sites expose the available media
+        formats and browsers evaluate these against capabilities, returning only
+        the chosen format was considered. However, this would not in fact offer
+        a privacy benefit since sites could use the API repeatedly to obtain the
+        complete capability set. Stringent rate limiting of the API could interfere
+        with normal site behaviors such as speculative preparation across multiple
+        playback items.
+      </p>
       <p>
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
@@ -1344,8 +1352,11 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         degrade the user's experience. Another mitigation could be to limit
         these Web APIs to top-level browsing contexts. Yet another is to use a
         privacy budget that throttles and/or blocks calls to the API above a
-        threshold.
+        threshold. Additionally, browsers may consider whether a site goes on
+        to make use of the capabilities it detects and apply more stringent
+        controls to sites that are observed not to do so.
       </p>
+
     </section>
   </section>
 </section>
