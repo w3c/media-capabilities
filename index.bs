@@ -1015,6 +1015,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             If |transferFunction| is present and is not valid for |mimeType|, return
             <code>unsupported</code>.
           </li>
+            <p class="note">
+              User agents should refer to the video codec specification for the codec named by
+              |mimeType| to determine valid values for |colorGamut| and |transferFunction|.
+            </p>
           <li>
             If |mimeType| is not [=supported by the user agent=], return
             <code>unsupported</code>.
@@ -1023,10 +1027,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             Return <code>supported</code>.
           </li>
         </ol>
-        <p class="note">
-          User agents should refer to the video codec specification for the codec named by |mimeType| to
-          determine valid values for |colorGamut| and |transferFunction|.
-        </p>
       </section>
 
       <section algorithm>
