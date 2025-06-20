@@ -770,8 +770,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               <li>
                 Set |videoSupported| to the result of running
                 [$check MIME type support$] with
-                |videoMimeType| and
-                |configuration|'s {{MediaEncodingConfiguration/type}}.
+                |videoMimeType| |configuration|'s
+                {{MediaEncodingConfiguration/type}}.
               </li>
             </ol>
           </li>
@@ -789,7 +789,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               </li>
               <li>
                 Set |audioSupported| to the result of running
-                [$check MIME type support$] with |audioMimeType| and
+                [$check MIME type support$] with |audioMimeType|
                 |configuration|'s {{MediaEncodingConfiguration/type}}.
               </li>
             </ol>
@@ -883,8 +883,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   </li>
                   <li>
                     Set |videoSupported| be the result of running
-                    [$check MIME type support$] with |videoMimeType| and
-                    |configuration|'s {{MediaDecodingConfiguration/type}}.
+                    [$check MIME type support$] with |videoMimeType|,
+                    |configuration|'s {{MediaDecodingConfiguration/type}},
+                    |configuration|'s {{VideoConfiguration/colorGamut}},
+                    and |configuration|'s {{VideoConfiguration/transferFunction}}.
                   </li>
                 </ol>
               </li>
@@ -902,7 +904,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                   </li>
                   <li>
                     Set |audioSupported| to the result of running
-                    [$check MIME type support$] with |audioMimeType| and
+                    [$check MIME type support$] with |audioMimeType|
                     |configuration|'s {{MediaDecodingConfiguration/type}}.
                   </li>
                 </ol>
@@ -964,7 +966,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <code>false</code>.
 
                 Issue(235): Why does it matter if a single media codec is listed?
-                
+
               </li>
               <li>
                 If the value of <code>mimeType.parameters["codecs"]</code>
@@ -985,12 +987,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <section algorithm>
         <h4 id="check-mime-type-support"><dfn abstract-op noexport lt="Check MIME Type Support|check MIME type support">Check MIME Type Support</dfn></h4>
         <p>
-          To [$check MIME type support$], given a [=MIME type record=] |mimeType|
-          and either a {{MediaEncodingType}} or {{MediaDecodingType}}
-          |encodingOrDecodingType|, perform the following
-          steps. They return <code>supported</code> if
-          the MIME type is [=supported by the user agent=], <code>unsupported</code>
-          if the MIME type is not supported:
+          To [$check MIME type support$], given a [=MIME type record=] |mimeType|,
+          a {{MediaEncodingType}} or {{MediaDecodingType}}
+          |encodingOrDecodingType|, an optional |colorGamut| from
+          {{VideoConfiguration/colorGamut}}, and an optional |transferFunction|
+          from {{VideoConfiguration/transferFunction}}, perform the following
+          steps. They return <code>supported</code> if the MIME type is
+          [=supported by the user agent=], <code>unsupported</code> if the MIME type
+          is not supported:
         </p>
         <ol>
           <li>
@@ -1003,6 +1007,20 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
               parameters may be present depending on the codec.
             </p>
           </li>
+          <li>
+            If |colorGamut| is present and is not valid for |mimeType|, return
+            <code>unsupported</code>.
+          </li>
+          <li>
+            If |transferFunction| is present and is not valid for |mimeType|, return
+            <code>unsupported</code>.
+          </li>
+            <p class="note">
+              User agents should refer to the video codec specification for the codec named by
+              |mimeType| to determine valid values for |colorGamut| and |transferFunction|.
+
+              Issue(245): How do we ensure interop in validation steps here?
+            </p>
           <li>
             If |mimeType| is not [=supported by the user agent=], return
             <code>unsupported</code>.
@@ -1030,7 +1048,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           </li>
           <li>
             Let <var>origin</var> be the [=/origin=] of the calling context's
-            <a>Document</a>.
+            {{/Document}}.
           </li>
           <li>
             Let <var>implementation</var> be the implementation of
