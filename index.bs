@@ -1018,6 +1018,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <p class="note">
               User agents should refer to the video codec specification for the codec named by
               |mimeType| to determine valid values for |colorGamut| and |transferFunction|.
+
+              Issue(245): How do we ensure interop in validation steps here?
             </p>
           <li>
             If |mimeType| is not [=supported by the user agent=], return
