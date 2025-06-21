@@ -60,7 +60,7 @@ navigator.mediaCapabilities.decodingInfo(hdrConfig).then(function(info) {
 
 # Implementations
 
-As of 2020/21, here's the unofficial status of user agent implementations for the above:
-* CSS dynamic-range is implemented by Safari. Not yet started by Chrome (ETA early 2021), nor Firefox
-* CSS video-* features are not yet implemented anywhere.
-* MediaCapabilities HDR inputs are implemented by Safari. Chrome's implementation is work-in-progress. Not yet started in Firefox.
+As of June 2025, here's the unofficial status of user agent implementations for the above:
+* CSS `dynamic-range` is [implemented](https://caniuse.com/mdn-css_at-rules_media_dynamic-range) by Safari, Chrome, Edge and Firefox.
+* CSS `video-dynamic-range` is [implemented](https://caniuse.com/mdn-css_at-rules_media_video-dynamic-range) in Firefox, has experimental support in Chrome and Edge, and is not supported in Safari.
+* MediaCapabilities HDR properties are [implemented](https://chromestatus.com/feature/6640863931269120) by Safari and Chrome.  Not yet started in Firefox.
