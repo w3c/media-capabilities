@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 275834c42, updated Wed Jun 11 14:18:15 2025 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="7fa1de1a050b925b9d9e3479b233e1af1c13270d" name="revision">
+  <meta content="71963bf852808f4583c36b69d3376f95f54442cd" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -742,7 +742,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-06-20">20 June 2025</time></p>
+    <time class="dt-updated" datetime="2025-06-22">22 June 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1162,11 +1162,13 @@ based on the device’s display.</p>
         If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-spatialscalability"><code>spatialScalability</code></dfn>
         member represents the ability to do spatial prediction, that is,
         using frames of a resolution different than the current resolution as
-        dependencies. If absent, spatialScalability will default to
-        <code>false</code>. spatialScalability is closely coupled to
-        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code> in the sense that streams encoded
-        with modes using spatial scalability (e.g. "L2T1") can only be decoded
-        if spatialScalability is supported. spatialScalability is only
+        dependencies. If absent, <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability①">spatialScalability</a></code> defaults to
+        <code>false</code>. If <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability②">spatialScalability</a></code> is set to <code>true</code>,
+        the decoder can decode any <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code> 
+        that the encoder can encode for the configured codec. If <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability③">spatialScalability</a></code>
+        is set to <code>false</code>, the decoder cannot decode spatial scalability
+        modes, but can decode all other <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode③">scalabilityMode</a></code> values
+        that the encoder can encode for the configured codec. <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability④">spatialScalability</a></code> is only
         applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑦">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑤">media-source</a></code>,
         <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑤">file</a></code>, and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc①">webrtc</a></code>.
       </p>
@@ -2195,7 +2197,7 @@ based on the device’s display.</p>
       <div class="note" role="note">
         The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo②">encodingInfo()</a></code> to query
         WebRTC send capabilities <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a> including the optional field
-        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode③">scalabilityMode</a></code>.
+        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode④">scalabilityMode</a></code>.
       </div>
       <div class="example" id="example-60212754">
        <a class="self-link" href="#example-60212754"></a>
@@ -3057,8 +3059,8 @@ let dfnPanelData = {
 "dom-videoconfiguration-hasalphachannel": {"dfnID":"dom-videoconfiguration-hasalphachannel","dfnText":"hasAlphaChannel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hasalphachannel"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-hasalphachannel"},
 "dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype\u2460"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
 "dom-videoconfiguration-height": {"dfnID":"dom-videoconfiguration-height","dfnText":"height","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-height"},{"id":"ref-for-dom-videoconfiguration-height\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-height"},
-"dom-videoconfiguration-scalabilitymode": {"dfnID":"dom-videoconfiguration-scalabilitymode","dfnText":"scalabilityMode","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2460"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2462"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-videoconfiguration-scalabilitymode"},
-"dom-videoconfiguration-spatialscalability": {"dfnID":"dom-videoconfiguration-spatialscalability","dfnText":"spatialScalability","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-spatialscalability"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-spatialscalability"},
+"dom-videoconfiguration-scalabilitymode": {"dfnID":"dom-videoconfiguration-scalabilitymode","dfnText":"scalabilityMode","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2460"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2461"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2462"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2463"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-videoconfiguration-scalabilitymode"},
+"dom-videoconfiguration-spatialscalability": {"dfnID":"dom-videoconfiguration-spatialscalability","dfnText":"spatialScalability","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-spatialscalability"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2460"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2461"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2462"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2463"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-spatialscalability"},
 "dom-videoconfiguration-transferfunction": {"dfnID":"dom-videoconfiguration-transferfunction","dfnText":"transferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2461"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2462"}],"title":"3.1. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-transferfunction"},
 "dom-videoconfiguration-width": {"dfnID":"dom-videoconfiguration-width","dfnText":"width","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-width"},{"id":"ref-for-dom-videoconfiguration-width\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-width"},
 "dom-workernavigator-mediacapabilities": {"dfnID":"dom-workernavigator-mediacapabilities","dfnText":"mediaCapabilities","external":false,"refSections":[],"url":"#dom-workernavigator-mediacapabilities"},
