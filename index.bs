@@ -1311,8 +1311,38 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       or APIs but it provides easier access to some information that can be
       used to fingerprint users.
     </p>
-
-    <section>
+  <section>
+      <h3 id='capabilities-model'>
+        Capabilities Model
+      </h3>
+      <p>
+        This specification supports {{MediaDecodingType}} values of {{file}},
+        {{media-source}} or {{MediaDecodingType/webrtc}} as well as
+        {{MediaEncodingType}} values of {{record}} and
+        {{MediaDecodingType/webrtc}}.
+      </p>
+      <p>
+        In realtime communications supported by [[webrtc]], media is
+        transported between peers. Although sites are responsible for
+        exchanging the information necessary to negotiate media parameters
+        common to both user agents, they are typically not involved in
+        media transport, encoding, or decoding.  For 1-1 calls, user agents
+        negotiate the media to be sent and received.
+     </p>
+     <p>
+        In a conferencing scenario, a user agent can send media for
+        reception by dozens or even hundreds of receivers.  To improve
+        scalability, applications make use of external servers, such as
+        selective forwarding units or conferencing bridges. These servers
+        negotiate media parameters with participants, ensuring consistency
+        across senders and receivers. This is more scalable than negotiation 
+        between user agents, which would require N * (N -1) negotiations.
+        Typically senders encode with a single codec, and conferencing
+        servers do not support transcoding, so a user agent cannot simply
+        "pick the one they like best".
+     </p>
+  </section>
+  <section>
       <h3 id='decoding-encoding-fingerprinting'>
         Decoding/Encoding and Fingerprinting
       </h3>
