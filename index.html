@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 3f621ba99, updated Mon Jul 28 15:38:36 2025 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="e951632f5579de738e4b045a3cdeaa9439e59aa1" name="revision">
+  <meta content="b9d2f30c00c534ac44179f546bc60f421ce78070" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -742,7 +742,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="p-name no-ref" id="title">Media Capabilities</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2025-08-21">21 August 2025</time></p>
+    <time class="dt-updated" datetime="2025-08-25">25 August 2025</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1090,15 +1090,12 @@ based on the device’s display.</p>
         encoded video frames.
       </p>
       <p>
-        The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-bitrate"><code>bitrate</code></dfn> member
-        represents the average bitrate of the video track given in units of bits
-        per second. In the case of a video stream encoded at a constant bit rate
-        (CBR) this value should be accurate over a short term window. For the
-        case of variable bit rate (VBR) encoding, this value should be usable to
-        allocate any necessary buffering and throughput capability to
-        provide for the un-interrupted decoding of the video stream over the
-        long-term based on the indicated <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype②">contentType</a></code>.
-      </p>
+        The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-bitrate"><code>bitrate</code></dfn> member represents
+        the bitrate of the video track given in units of bits per second.  In
+        the case of a video stream encoded at a constant bit rate (<abbr title="constant bit rate">CBR</abbr>) this shall represent the average
+        bitrate of the video track.  For the case of variable bit rate (<abbr title="variable bit rate">VBR</abbr>) encoding, this value shall
+        represent the maximum bitrate of the video track.
+     </p>
       <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-framerate"><code>framerate</code></dfn> member
         represents the framerate of the video track. The framerate is the number
@@ -1112,7 +1109,7 @@ based on the device’s display.</p>
         when decoded. If false, the video stream cannot produce per-pixel alpha channel
         information when decoded. If undefined, the UA should determine whether the
         video stream encodes alpha channel information based on the indicated
-        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype③">contentType</a></code>, if possible. Otherwise, the UA should
+        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype②">contentType</a></code>, if possible. Otherwise, the UA should
         presume that the video stream cannot produce alpha channel information.
       </p>
       <p>
@@ -1151,7 +1148,7 @@ based on the device’s display.</p>
         If present, the <dfn class="dfn-paneled idl-code" data-dfn-for="VideoConfiguration" data-dfn-type="dict-member" data-export id="dom-videoconfiguration-scalabilitymode"><code>scalabilityMode</code></dfn>
         member represents the scalability mode as defined in <a data-link-type="biblio" href="#biblio-webrtc-svc" title="Scalable Video Coding (SVC) Extension for WebRTC">[webrtc-svc]</a>. If
         absent, the implementer defined default mode for this
-        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④">contentType</a></code> is assumed (i.e., the mode you get if
+        <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype③">contentType</a></code> is assumed (i.e., the mode you get if
         you don’t specify one via <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/webrtc-pc/#dom-rtcrtpsender-setparameters" id="ref-for-dom-rtcrtpsender-setparameters">setParameters()</a></code>).
         scalabilityMode is only applicable to <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration②">MediaEncodingConfiguration</a></code> for
         type <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc①">webrtc</a></code>.
@@ -1505,7 +1502,7 @@ based on the device’s display.</p>
           <li>
                 Let <var>videoMimeType</var> be the result of running
                 <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#parse-a-mime-type" id="ref-for-parse-a-mime-type②">parse a MIME type</a> with <var>configuration</var>’s
-                <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype⑤">contentType</a></code>.
+                <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④">contentType</a></code>.
               
           <li>
                 Set <var>videoSupported</var> to the result of running
@@ -1623,7 +1620,7 @@ based on the device’s display.</p>
             <li>
                     Let <var>videoMimeType</var> be the result of running
                     <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#parse-a-mime-type" id="ref-for-parse-a-mime-type④">parse a MIME type</a> with <var>configuration</var>’s
-                    <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype⑥">contentType</a></code>.
+                    <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype⑤">contentType</a></code>.
                   
             <li>
                     Set <var>videoSupported</var> be the result of running
@@ -3088,7 +3085,7 @@ let dfnPanelData = {
 "dom-transferfunction-srgb": {"dfnID":"dom-transferfunction-srgb","dfnText":"srgb","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-transferfunction-srgb"}],"title":"2.1.7. TransferFunction"}],"url":"#dom-transferfunction-srgb"},
 "dom-videoconfiguration-bitrate": {"dfnID":"dom-videoconfiguration-bitrate","dfnText":"bitrate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-bitrate"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-bitrate"},
 "dom-videoconfiguration-colorgamut": {"dfnID":"dom-videoconfiguration-colorgamut","dfnText":"colorGamut","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2461"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2462"}],"title":"3.2. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-colorgamut"},
-"dom-videoconfiguration-contenttype": {"dfnID":"dom-videoconfiguration-contenttype","dfnText":"contentType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2460"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2461"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2462"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2463"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype\u2464"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype\u2465"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-videoconfiguration-contenttype"},
+"dom-videoconfiguration-contenttype": {"dfnID":"dom-videoconfiguration-contenttype","dfnText":"contentType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2460"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2461"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2462"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype\u2463"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype\u2464"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-videoconfiguration-contenttype"},
 "dom-videoconfiguration-framerate": {"dfnID":"dom-videoconfiguration-framerate","dfnText":"framerate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-framerate"},{"id":"ref-for-dom-videoconfiguration-framerate\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-framerate"},
 "dom-videoconfiguration-hasalphachannel": {"dfnID":"dom-videoconfiguration-hasalphachannel","dfnText":"hasAlphaChannel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hasalphachannel"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-hasalphachannel"},
 "dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype\u2460"}],"title":"3.2. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
