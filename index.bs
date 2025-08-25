@@ -292,13 +292,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
-        The <dfn for='VideoConfiguration' dict-member>bitrate</dfn> member
-        represents the bitrate of the video track given in units of bits per second.
-        In the case of a video stream encoded at a constant bit rate (CBR)
-        this shall represent the average bitrate of the video track.
-        For the case of variable bit rate (VBR) encoding, this value shall
+        The <dfn for='VideoConfiguration' dict-member>bitrate</dfn> member represents
+        the bitrate of the video track given in units of bits per second.  In
+        the case of a video stream encoded at a constant bit rate (<abbr
+        title="constant bit rate">CBR</abbr>) this shall represent the average
+        bitrate of the video track.  For the case of variable bit rate (<abbr
+        title="variable bit rate">VBR</abbr>) encoding, this value shall
         represent the maximum bitrate of the video track.
-      </p>
+     </p>
 
       <p>
         The <dfn for='VideoConfiguration' dict-member>framerate</dfn> member
