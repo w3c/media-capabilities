@@ -376,7 +376,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         using frames of a resolution different than the current resolution as
         dependencies. If absent, {{VideoConfiguration/spatialScalability}} defaults to
         <code>false</code>. If {{VideoConfiguration/spatialScalability}} is set to <code>true</code>,
-        the decoder can decode any {{VideoConfiguration/scalabilityMode}} 
+        the decoder can decode any {{VideoConfiguration/scalabilityMode}}
         that the encoder can encode for the configured codec. If {{VideoConfiguration/spatialScalability}}
         is set to <code>false</code>, the decoder cannot decode spatial scalability
         modes, but can decode all other {{VideoConfiguration/scalabilityMode}} values
@@ -819,32 +819,32 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <code>true</code>.
           </li>
           <li>
-            If the user agent is able to encode the media represented by
+            If the user agent can encode the media represented by
             <var>configuration</var> at the indicated framerate, set
             {{MediaCapabilitiesInfo/smooth}} to <code>true</code>. Otherwise
             set it to <code>false</code>.
           </li>
           <li>
-            If the user agent is able to encode the media represented by
+            If the user agent can encode the media represented by
             <var>configuration</var> in a [=power efficient=] manner, set
             {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
             Otherwise set it to <code>false</code>.
           </li>
           <li>
             If the user agent can encode the media represented by
-            <var>configuration</var> and <var>configuration</var> has a type
-            of {{MediaEncodingType/webrtc}}:
+            <var>configuration</var> and <var>configuration</var> has a
+            {{MediaEncodingConfiguration/type}} of {{MediaEncodingType/webrtc}}:
             <ol>
               <li>Let |webrtc| be a
               {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
-              <li>If audio is represented by <var>configuration</var>, set
-              <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
-              to a {{RTCRtpCodec}} dictionary representing the
-              supported audio configuration.</li>
-              <li>If video is represented by <var>configuration</var>, set
-              <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/video}}
-              to a {{RTCRtpCodec}} dictionary representing the
-              supported video configuration.</li>
+              <li>If {{MediaConfiguration/audio}} is represented by
+              <var>configuration</var>, set <var>webrtc</var>'s
+              {{WebRTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}} dictionary
+              representing the supported audio configuration.</li>
+              <li>If {{MediaConfiguration/video}} is represented by
+              <var>configuration</var>, set <var>webrtc</var>'s
+              {{WebRTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}} dictionary
+              representing the supported video configuration.</li>
               <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
               to <var>webrtc</var>.</li>
             </ol>
@@ -955,32 +955,32 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             Set {{MediaCapabilitiesInfo/supported}} to <code>true</code>.
           </li>
           <li>
-            If the user agent is able to decode the media represented by
+            If the user agent can decode the media represented by
             |configuration| at the indicated framerate
             without dropping frames, set {{MediaCapabilitiesInfo/smooth}}
             to <code>true</code>. Otherwise set it to <code>false</code>.
           </li>
           <li>
-            If the user agent is able to decode the media represented by
+            If the user agent can decode the media represented by
             |configuration| in a [=power efficient=]
             manner, set {{MediaCapabilitiesInfo/powerEfficient}} to
             <code>true</code>. Otherwise set it to <code>false</code>.
           </li>
           <li>
-            If the user agent is able to decode the media represented by
-            <var>configuration</var> and <var>configuration</var> has a type
-            of {{MediaDecodingType/webrtc}}:
+            If the user agent can decode the media represented by
+            <var>configuration</var> and <var>configuration</var> has a
+            {{MediaDecodingConfiguration/type}} of {{MediaDecodingType/webrtc}}:
             <ol>
               <li>Let <var>webrtc</var> be a
               {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
-              <li>If audio is represented by <var>configuration</var>, set
-              <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/audio}}
-              to a {{RTCRtpCodec}} dictionary representing the
-              supported audio configuration.</li>
-              <li>If video is represented by <var>configuration</var>, set
-              <var>webrtc</var>'s {{WebRTCMediaCapabilitiesInfo/video}}
-              to a {{RTCRtpCodec}} dictionary representing the
-              supported video configuration.</li>
+              <li>If {{MediaConfiguration/audio}} is represented by
+              <var>configuration</var>, set <var>webrtc</var>'s
+              {{WebRTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}}
+              dictionary representing the supported audio configuration.</li>
+              <li>If {{MediaConfiguration/video}} is represented by
+              <var>configuration</var>, set <var>webrtc</var>'s
+              {{WebRTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}}
+              dictionary representing the supported video configuration.</li>
               <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
               to <var>webrtc</var>.</li>
             </ol>
@@ -1272,8 +1272,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         newly created {{TypeError}}.
       </li>
       <li>
-        If <code>configuration.keySystemConfiguration</code> [=map/exists=],
-        run the following substeps:
+        If <code>configuration.keySystemConfiguration</code> [=map/exists=]:
         <ol>
           <li>
             If the [=/global object=] is of type {{WorkerGlobalScope}},
@@ -1385,7 +1384,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         scalability, applications make use of external servers, such as
         selective forwarding units or conferencing bridges. These servers
         negotiate media parameters with participants, ensuring consistency
-        across senders and receivers. This is more scalable than negotiation 
+        across senders and receivers. This is more scalable than negotiation
         between user agents, which would require N * (N -1) negotiations.
         Typically senders encode with a single codec, and conferencing
         servers do not support transcoding, so a user agent cannot simply
