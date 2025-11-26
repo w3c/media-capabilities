@@ -305,7 +305,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         The <dfn for='VideoConfiguration' dict-member>framerate</dfn> member
         represents the framerate of the video track. The framerate is the number
         of frames used in one second (frames per second). It is represented as a
-        double.
+        double.  In the case of a video stream with a variable framerate, this
+        represents the maximum framerate of the stream.
       </p>
 
       <p>
