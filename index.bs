@@ -1532,19 +1532,19 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
   
   navigator.mediaCapabilities.decodingInfo(encryptedMediaConfig).then(result => {
     if (!result.supported) {
-      log('Argh! This encrypted media configuration is not supported.');
+      console.log('Argh! This encrypted media configuration is not supported.');
       return;
     }
   
     if (!result.keySystemAccess) {
-      log('Argh! Encrypted media support is not available.')
+      console.log('Argh! Encrypted media support is not available.')
       return;
     }
   
-    log('This encrypted media configuration is supported.\n' +
-        'Playback should be' +
-        (result.smooth ? '' : ' NOT') + ' smooth and' +
-        (result.powerEfficient ? '' : ' NOT') + ' power efficient.');
+    console.log('This encrypted media configuration is supported.\n' +
+                'Playback should be' +
+                (result.smooth ? '' : ' NOT') + ' smooth and' +
+                (result.powerEfficient ? '' : ' NOT') + ' power efficient.');
   });          
   &lt;/script>
         </pre>
