@@ -532,12 +532,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         {{MediaEncodingType/webrtc}}.
       </p>
 
-      <p class='issue'>
-        The {{AudioConfiguration/channels}} needs to be defined as a
-        <code>double</code> (2.1, 4.1, 5.1, ...), an <code>unsigned short</code>
-        (number of channels) or as an <code>enum</code> value. The current
-        definition is a placeholder.
-      </p>
+      <p class='advisement'> {{AudioConfiguration/channels}} is currently not
+        widely implemented and it may be removed at a future date.  </p>
 
       <p>
         The <dfn for='AudioConfiguration' dict-member>bitrate</dfn> member
