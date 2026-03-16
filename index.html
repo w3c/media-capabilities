@@ -5,9 +5,9 @@
   <title>Media Capabilities</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version 3c53a5b02, updated Thu Nov 27 17:03:30 2025 +0000" name="generator">
+  <meta content="Bikeshed version 0ef803fdf, updated Tue Jan 6 11:59:39 2026 -0800" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="fb4356139ca0d121c2f86826102f16d2c34450a8" name="revision">
+  <meta content="9d29fdbe19a1444932c5989cf52ee7741b296587" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -742,7 +742,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">Media Capabilities</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-02-10">10 February 2026</time></p>
+    <time class="dt-updated" datetime="2026-03-16">16 March 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1339,9 +1339,8 @@ based on the device’s display.</p>
         <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration⑧">MediaDecodingConfiguration</a></code> for types <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑧">media-source</a></code> and <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑧">file</a></code>.
       </p>
      </section>
-    </section>
-    <section>
-     <h4 class="heading settled" data-level="2.1.9" id="mediacapabilitieskeysystemconfiguration"><span class="secno">2.1.9. </span><span class="content">
+     <section>
+      <h4 class="heading settled" data-level="2.1.9" id="mediacapabilitieskeysystemconfiguration"><span class="secno">2.1.9. </span><span class="content">
         MediaCapabilitiesKeySystemConfiguration
       </span><a class="self-link" href="#mediacapabilitieskeysystemconfiguration"></a></h4>
 <pre class="def highlight idl"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-mediacapabilitieskeysystemconfiguration"><code><c- g>MediaCapabilitiesKeySystemConfiguration</c-></code></dfn> {
@@ -1354,7 +1353,7 @@ based on the device’s display.</p>
   <a data-link-type="idl-name" href="#dictdef-keysystemtrackconfiguration" id="ref-for-dictdef-keysystemtrackconfiguration①"><c- n>KeySystemTrackConfiguration</c-></a> <a class="idl-code" data-link-type="dict-member" data-type="KeySystemTrackConfiguration" href="#dom-mediacapabilitieskeysystemconfiguration-video" id="ref-for-dom-mediacapabilitieskeysystemconfiguration-video"><c- g>video</c-></a>;
 };
 </pre>
-     <p class="note" role="note">
+      <p class="note" role="note">
         This dictionary refers to a number of types defined by
         <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a> (EME). Sequences of EME types are
         flattened to a single value whenever the intent of the sequence was to
@@ -1362,42 +1361,42 @@ based on the device’s display.</p>
         With MediaCapabilities, callers provide the sequence across multiple
         calls, ultimately letting the caller choose which configuration to use.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-keysystem"><code>keySystem</code></dfn>
         member represents a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess-keysystem" id="ref-for-dom-mediakeysystemaccess-keysystem">keySystem</a></code> name as described in
         <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-initdatatype"><code>initDataType</code></dfn>
         member represents a single value from the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-initdatatypes" id="ref-for-dom-mediakeysystemconfiguration-initdatatypes">initDataTypes</a></code> sequence
         described in <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier"><code>distinctiveIdentifier</code></dfn>
         member represents a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-distinctiveidentifier" id="ref-for-dom-mediakeysystemconfiguration-distinctiveidentifier">distinctiveIdentifier</a></code> requirement as
         described in <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-persistentstate"><code>persistentState</code></dfn>
         member represents a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-persistentstate" id="ref-for-dom-mediakeysystemconfiguration-persistentstate">persistentState</a></code> requirement as described in
         <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-sessiontypes"><code>sessionTypes</code></dfn>
         member represents a sequence of required <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-sessiontypes" id="ref-for-dom-mediakeysystemconfiguration-sessiontypes">sessionTypes</a></code> as
         described in <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-audio"><code>audio</code></dfn> member
         represents a <code class="idl"><a data-link-type="idl" href="#dictdef-keysystemtrackconfiguration" id="ref-for-dictdef-keysystemtrackconfiguration②">KeySystemTrackConfiguration</a></code> associated with the <code class="idl"><a data-link-type="idl" href="#dictdef-audioconfiguration" id="ref-for-dictdef-audioconfiguration②">AudioConfiguration</a></code>.
       </p>
-     <p>
+      <p>
         The <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilitiesKeySystemConfiguration" data-dfn-type="dict-member" data-export id="dom-mediacapabilitieskeysystemconfiguration-video"><code>video</code></dfn> member
         represents a <code class="idl"><a data-link-type="idl" href="#dictdef-keysystemtrackconfiguration" id="ref-for-dictdef-keysystemtrackconfiguration③">KeySystemTrackConfiguration</a></code> associated with the <code class="idl"><a data-link-type="idl" href="#dictdef-videoconfiguration" id="ref-for-dictdef-videoconfiguration⑥">VideoConfiguration</a></code>.
       </p>
-    </section>
-    <section>
-     <h4 class="heading settled" data-level="2.1.10" id="keysystemtrackconfiguration"><span class="secno">2.1.10. </span><span class="content">
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="2.1.10" id="keysystemtrackconfiguration"><span class="secno">2.1.10. </span><span class="content">
       KeySystemTrackConfiguration
     </span><a class="self-link" href="#keysystemtrackconfiguration"></a></h4>
 <pre class="def highlight idl"><c- b>dictionary</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="dictionary" data-export id="dictdef-keysystemtrackconfiguration"><code><c- g>KeySystemTrackConfiguration</c-></code></dfn> {
@@ -1405,16 +1404,17 @@ based on the device’s display.</p>
   <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-DOMString" id="ref-for-idl-DOMString⑧"><c- b>DOMString</c-></a>? <a class="idl-code" data-default="null" data-link-type="dict-member" data-type="DOMString?" href="#dom-keysystemtrackconfiguration-encryptionscheme" id="ref-for-dom-keysystemtrackconfiguration-encryptionscheme"><c- g>encryptionScheme</c-></a> = <c- b>null</c->;
 };
 </pre>
-     <p>
+      <p>
       The <dfn class="dfn-paneled idl-code" data-dfn-for="KeySystemTrackConfiguration" data-dfn-type="dict-member" data-export id="dom-keysystemtrackconfiguration-robustness"><code>robustness</code></dfn>
       member represents a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-robustness" id="ref-for-dom-mediakeysystemmediacapability-robustness">robustness</a></code> level
       as described in <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
     </p>
-     <p>
+      <p>
       The <dfn class="dfn-paneled idl-code" data-dfn-for="KeySystemTrackConfiguration" data-dfn-type="dict-member" data-export id="dom-keysystemtrackconfiguration-encryptionscheme"><code>encryptionScheme</code></dfn>
       member represents an <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme">encryptionScheme</a></code>
       as described in <a data-link-type="biblio" href="#biblio-encrypted-media-draft" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA-DRAFT]</a>.
     </p>
+     </section>
     </section>
     <section>
      <h3 class="heading settled" data-level="2.2" id="media-capabilities-info"><span class="secno">2.2. </span><span class="content">Media Capabilities Information</span><a class="self-link" href="#media-capabilities-info"></a></h3>
@@ -1471,260 +1471,261 @@ based on the device’s display.</p>
       is the encoding configuration properties used to generate the
       <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo①">MediaCapabilitiesEncodingInfo</a></code>.
     </p>
-     <section>
-      <h3 class="heading settled" data-level="2.3" id="info-algorithms"><span class="secno">2.3. </span><span class="content">Algorithms</span><a class="self-link" href="#info-algorithms"></a></h3>
-      <section class="algorithm" data-algorithm="Create a MediaCapabilitiesEncodingInfo">
-       <h4 class="heading settled" data-level="2.3.1" id="create-media-capabilities-encoding-info"><span class="secno">2.3.1. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo" data-noexport id="abstract-opdef-create-a-mediacapabilitiesencodinginfo">Create a MediaCapabilitiesEncodingInfo</dfn></span><a class="self-link" href="#create-media-capabilities-encoding-info"></a></h4>
-       <p>
+    </section>
+    <section>
+     <h3 class="heading settled" data-level="2.3" id="info-algorithms"><span class="secno">2.3. </span><span class="content">Algorithms</span><a class="self-link" href="#info-algorithms"></a></h3>
+     <section class="algorithm" data-algorithm="Create a MediaCapabilitiesEncodingInfo">
+      <h4 class="heading settled" data-level="2.3.1" id="create-media-capabilities-encoding-info"><span class="secno">2.3.1. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo" data-noexport id="abstract-opdef-create-a-mediacapabilitiesencodinginfo">Create a MediaCapabilitiesEncodingInfo</dfn></span><a class="self-link" href="#create-media-capabilities-encoding-info"></a></h4>
+      <p>
           To <a data-link-type="abstract-op" href="#abstract-opdef-create-a-mediacapabilitiesencodinginfo" id="ref-for-abstract-opdef-create-a-mediacapabilitiesencodinginfo">create a MediaCapabilitiesEncodingInfo</a>, given a
           <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration④">MediaEncodingConfiguration</a></code> <var>configuration</var>, run the
           following steps. They return a <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo②">MediaCapabilitiesEncodingInfo</a></code>:
         </p>
-       <ol>
-        <li>
+      <ol>
+       <li>
             Let <var>info</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesencodinginfo" id="ref-for-dictdef-mediacapabilitiesencodinginfo③">MediaCapabilitiesEncodingInfo</a></code>
             instance. Unless stated otherwise, reading and writing apply to
             <var>info</var> for the next steps.
           
-        <li>
+       <li>
             Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration①">configuration</a></code> to be a
             new <code class="idl"><a data-link-type="idl" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration⑤">MediaEncodingConfiguration</a></code>. For every property in <var>
             configuration</var> create a new property with the same name and
             value in <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesencodinginfo-configuration" id="ref-for-dom-mediacapabilitiesencodinginfo-configuration②">configuration</a></code>.
           
-        <li>
+       <li>
             Let <var>videoSupported</var> be <code>unknown</code>.
           
-        <li>
-         If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-video" id="ref-for-dom-mediaconfiguration-video">video</a></code> is present in
+       <li>
+        If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-video" id="ref-for-dom-mediaconfiguration-video">video</a></code> is present in
             <var>configuration</var>, run the following steps:
             
-         <ol>
-          <li>
+        <ol>
+         <li>
                 Let <var>videoMimeType</var> be the result of running
                 <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#parse-a-mime-type" id="ref-for-parse-a-mime-type②">parse a MIME type</a> with <var>configuration</var>’s
                 <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype④">contentType</a></code>.
               
-          <li>
+         <li>
                 Set <var>videoSupported</var> to the result of running
                 <a data-link-type="abstract-op" href="#abstract-opdef-check-mime-type-support" id="ref-for-abstract-opdef-check-mime-type-support">check MIME type support</a> with
                 <var>videoMimeType</var> <var>configuration</var>’s
                 <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingconfiguration-type" id="ref-for-dom-mediaencodingconfiguration-type">type</a></code>.
               
-         </ol>
-        <li>
+        </ol>
+       <li>
             Let <var>audioSupported</var> be <code>unknown</code>.
           
-        <li>
-         
+       <li>
+        
             If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-audio" id="ref-for-dom-mediaconfiguration-audio">audio</a></code> is present in <var>configuration</var>,
             run the following steps:
             
-         <ol>
-          <li>
+        <ol>
+         <li>
                 Let <var>audioMimeType</var> be the result of running
                 <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#parse-a-mime-type" id="ref-for-parse-a-mime-type③">parse a MIME type</a> with <var>configuration</var>’s
                 <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype③">contentType</a></code>.
               
-          <li>
+         <li>
                 Set <var>audioSupported</var> to the result of running
                 <a data-link-type="abstract-op" href="#abstract-opdef-check-mime-type-support" id="ref-for-abstract-opdef-check-mime-type-support①">check MIME type support</a> with <var>audioMimeType</var>
                 <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingconfiguration-type" id="ref-for-dom-mediaencodingconfiguration-type①">type</a></code>.
               
-         </ol>
-        <li>
+        </ol>
+       <li>
             If either <var>videoSupported</var> or <var>audioSupported</var> is
             <code>unsupported</code>, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported②">supported</a></code>
             to <code>false</code>, <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth①">smooth</a></code>
             to <code>false</code>, <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient①">powerEfficient</a></code>
             to <code>false</code>, and return <var>info</var>.
          
-        <li>
+       <li>
             Otherwise, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported③">supported</a></code> to
             <code>true</code>.
           
-        <li>
+       <li>
             If the user agent is able to encode the media represented by
             <var>configuration</var> at the indicated framerate, set
             <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth②">smooth</a></code> to <code>true</code>. Otherwise
             set it to <code>false</code>.
           
-        <li>
+       <li>
             If the user agent is able to encode the media represented by
             <var>configuration</var> in a <a data-link-type="dfn" href="#power-efficient" id="ref-for-power-efficient">power efficient</a> manner, set
             <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient②">powerEfficient</a></code> to <code>true</code>.
             Otherwise set it to <code>false</code>.
           
-        <li>
+       <li>
             Return <var>info</var>.
           
-       </ol>
-      </section>
-      <section class="algorithm" data-algorithm="Create a MediaCapabilitiesDecodingInfo">
-       <h4 class="heading settled" data-level="2.3.2" id="create-media-capabilities-decoding-info"><span class="secno">2.3.2. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Create a MediaCapabilitiesDecodingInfo|create a MediaCapabilitiesDecodingInfo" data-noexport id="abstract-opdef-create-a-mediacapabilitiesdecodinginfo">Create a MediaCapabilitiesDecodingInfo</dfn></span><a class="self-link" href="#create-media-capabilities-decoding-info"></a></h4>
-       <p>
+      </ol>
+     </section>
+     <section class="algorithm" data-algorithm="Create a MediaCapabilitiesDecodingInfo">
+      <h4 class="heading settled" data-level="2.3.2" id="create-media-capabilities-decoding-info"><span class="secno">2.3.2. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Create a MediaCapabilitiesDecodingInfo|create a MediaCapabilitiesDecodingInfo" data-noexport id="abstract-opdef-create-a-mediacapabilitiesdecodinginfo">Create a MediaCapabilitiesDecodingInfo</dfn></span><a class="self-link" href="#create-media-capabilities-decoding-info"></a></h4>
+      <p>
           To <a data-link-type="abstract-op" href="#abstract-opdef-create-a-mediacapabilitiesdecodinginfo" id="ref-for-abstract-opdef-create-a-mediacapabilitiesdecodinginfo">create a MediaCapabilitiesDecodingInfo</a>, given a
           <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①⓪">MediaDecodingConfiguration</a></code> <var>configuration</var>, perform the
           following steps. They return a <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo③">MediaCapabilitiesDecodingInfo</a></code>:
         </p>
-       <ol>
-        <li>
+      <ol>
+       <li>
             Let <var>info</var> be a new <code class="idl"><a data-link-type="idl" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo④">MediaCapabilitiesDecodingInfo</a></code>
             instance. Unless stated otherwise, reading and writing apply to
             <var>info</var> for the next steps.
           
-        <li>
+       <li>
             Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration①">configuration</a></code> to be a new
             <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①①">MediaDecodingConfiguration</a></code>. For every property in
             <var>configuration</var> create a new property with the same name and
             value in <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-configuration" id="ref-for-dom-mediacapabilitiesdecodinginfo-configuration②">configuration</a></code>.
           
-        <li>
-         
+       <li>
+        
             If <code>configuration.keySystemConfiguration</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⓪">exists</a>:
             
-         <ol>
-          <li>
+        <ol>
+         <li>
                 Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-keysystemaccess" id="ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess①">keySystemAccess</a></code>
                 to the result of running the <a data-link-type="abstract-op" href="#abstract-opdef-check-encrypted-decoding-support" id="ref-for-abstract-opdef-check-encrypted-decoding-support">Check Encrypted Decoding Support</a> algorithm with <var>configuration</var>.
               
-          <li>
+         <li>
                 If <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-keysystemaccess" id="ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess②">keySystemAccess</a></code>
                 is <code>null</code>, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported④">supported</a></code>
                 to <code>false</code>, <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth③">smooth</a></code>
                 to <code>false</code>, <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient③">powerEfficient</a></code>
                 to <code>false</code>, and return <var>info</var>.
               
-          <li>
+         <li>
                 Otherwise, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported⑤">supported</a></code> to
                 <code>true</code> and continue with step 6.
               
-         </ol>
-        <li>
-         
+        </ol>
+       <li>
+        
             Otherwise, run the following steps:
             
-         <ol>
-          <li>
+        <ol>
+         <li>
                 Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesdecodinginfo-keysystemaccess" id="ref-for-dom-mediacapabilitiesdecodinginfo-keysystemaccess③">keySystemAccess</a></code>
                 to <code>null</code>.
               
-          <li>
+         <li>
                 Let <var>videoSupported</var> be <code>unknown</code>.
               
-          <li>
-           
+         <li>
+          
                 If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-video" id="ref-for-dom-mediaconfiguration-video①">video</a></code> is present in <var>configuration</var>,
                 run the following steps:
                 
-           <ol>
-            <li>
+          <ol>
+           <li>
                     Let <var>videoMimeType</var> be the result of running
                     <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#parse-a-mime-type" id="ref-for-parse-a-mime-type④">parse a MIME type</a> with <var>configuration</var>’s
                     <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-contenttype" id="ref-for-dom-videoconfiguration-contenttype⑤">contentType</a></code>.
                   
-            <li>
+           <li>
                     Set <var>videoSupported</var> be the result of running
                     <a data-link-type="abstract-op" href="#abstract-opdef-check-mime-type-support" id="ref-for-abstract-opdef-check-mime-type-support②">check MIME type support</a> with <var>videoMimeType</var>,
                     <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingconfiguration-type" id="ref-for-dom-mediadecodingconfiguration-type">type</a></code>,
                     <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-colorgamut" id="ref-for-dom-videoconfiguration-colorgamut①">colorGamut</a></code>,
                     and <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-transferfunction" id="ref-for-dom-videoconfiguration-transferfunction①">transferFunction</a></code>.
                   
-           </ol>
-          <li>
+          </ol>
+         <li>
                 Let <var>audioSupported</var> be <code>unknown</code>.
               
-          <li>
-           
+         <li>
+          
                 If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-audio" id="ref-for-dom-mediaconfiguration-audio①">audio</a></code> is present in <var>configuration</var>,
                 run the following steps:
                 
-           <ol>
-            <li>
+          <ol>
+           <li>
                     Let <var>audioMimeType</var> be the result of running
                     <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#parse-a-mime-type" id="ref-for-parse-a-mime-type⑤">parse a MIME type</a> with <var>configuration</var>’s
                     <code class="idl"><a data-link-type="idl" href="#dom-audioconfiguration-contenttype" id="ref-for-dom-audioconfiguration-contenttype④">contentType</a></code>.
                   
-            <li>
+           <li>
                     Set <var>audioSupported</var> to the result of running
                     <a data-link-type="abstract-op" href="#abstract-opdef-check-mime-type-support" id="ref-for-abstract-opdef-check-mime-type-support③">check MIME type support</a> with <var>audioMimeType</var>
                     <var>configuration</var>’s <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingconfiguration-type" id="ref-for-dom-mediadecodingconfiguration-type①">type</a></code>.
                   
-           </ol>
-          <li>
+          </ol>
+         <li>
                 If either <var>videoSupported</var> or <var>audioSupported</var> is
                 <code>unsupported</code>, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported⑥">supported</a></code>
                 to <code>false</code>, <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth④">smooth</a></code>
                 to <code>false</code>, <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient④">powerEfficient</a></code>
                 to <code>false</code>, and return <var>info</var>.
               
-         </ol>
-        <li>
+        </ol>
+       <li>
             Set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-supported" id="ref-for-dom-mediacapabilitiesinfo-supported⑦">supported</a></code> to <code>true</code>.
           
-        <li>
+       <li>
             If the user agent is able to decode the media represented by
             <var>configuration</var> at the indicated framerate
             without dropping frames, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-smooth" id="ref-for-dom-mediacapabilitiesinfo-smooth⑤">smooth</a></code>
             to <code>true</code>. Otherwise set it to <code>false</code>.
           
-        <li>
+       <li>
             If the user agent is able to decode the media represented by
             <var>configuration</var> in a <a data-link-type="dfn" href="#power-efficient" id="ref-for-power-efficient①">power efficient</a>
             manner, set <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitiesinfo-powerefficient" id="ref-for-dom-mediacapabilitiesinfo-powerefficient⑤">powerEfficient</a></code> to
             <code>true</code>. Otherwise set it to <code>false</code>.
           
-        <li>
+       <li>
             Return <var>info</var>.
           
-       </ol>
-      </section>
-      <section class="algorithm" data-algorithm="Check MIME Type Validity">
-       <h4 class="heading settled" data-level="2.3.3" id="check-mime-type-validity"><span class="secno">2.3.3. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Check MIME Type Validity|check MIME type validity" data-noexport id="abstract-opdef-check-mime-type-validity">Check MIME Type Validity</dfn></span><a class="self-link" href="#check-mime-type-validity"></a></h4>
-       <p>
+      </ol>
+     </section>
+     <section class="algorithm" data-algorithm="Check MIME Type Validity">
+      <h4 class="heading settled" data-level="2.3.3" id="check-mime-type-validity"><span class="secno">2.3.3. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Check MIME Type Validity|check MIME type validity" data-noexport id="abstract-opdef-check-mime-type-validity">Check MIME Type Validity</dfn></span><a class="self-link" href="#check-mime-type-validity"></a></h4>
+      <p>
           To <a data-link-type="abstract-op" href="#abstract-opdef-check-mime-type-validity" id="ref-for-abstract-opdef-check-mime-type-validity②">check MIME type validity</a> given a <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#mime-type" id="ref-for-mime-type②">MIME type record</a> <var>mimeType</var> and
           a string <var>media</var>, run the following steps:
         </p>
-       <ol>
-        <li>
+      <ol>
+       <li>
              If the type of <var>mimeType</var> per <a data-link-type="biblio" href="#biblio-rfc9110" title="HTTP Semantics">[RFC9110]</a> is neither <var>media</var> nor
              <code>application</code>, return <code>false</code>.
           
-        <li>
+       <li>
             If the combined <code>type</code> and <code>subtype</code> members
             of <var>mimeType</var> allow a single media codec and the
             <code>parameters</code> member of <var>mimeType</var> is not empty,
             return <code>false</code>.
           
-        <li>
-         
+       <li>
+        
             If the combined <code>type</code> and <code>subtype</code> members
             of <var>mimeType</var> allow multiple media codecs, run the following steps:
             
-         <ol>
-          <li>
-           
+        <ol>
+         <li>
+          
                 If the <code>parameters</code> member of <var>mimeType</var>
                 does not contain a single key named "codecs", return
                 <code>false</code>.
 
 
-           <p class="issue" id="issue-b19b1a35"><a class="self-link" href="#issue-b19b1a35"></a> Why does it matter if a single media codec is listed? <a href="https://github.com/w3c/media-capabilities/issues/235">[Issue #235]</a></p>
-          <li>
+          <p class="issue" id="issue-b19b1a35"><a class="self-link" href="#issue-b19b1a35"></a> Why does it matter if a single media codec is listed? <a href="https://github.com/w3c/media-capabilities/issues/235">[Issue #235]</a></p>
+         <li>
                 If the value of <code>mimeType.parameters["codecs"]</code>
                 does not describe a single media codec, return
                 <code>false</code>.
               
-         </ol>
-        <li>
+        </ol>
+       <li>
             Return <code>true</code>.
           
-       </ol>
-       <p class="issue" id="issue-2ac980d5"><a class="self-link" href="#issue-2ac980d5"></a> Does this logic apply to <code>webrtc</code>? <a href="https://github.com/w3c/media-capabilities/issues/238">[Issue #238]</a></p>
-      </section>
-      <section class="algorithm" data-algorithm="Check MIME Type Support">
-       <h4 class="heading settled" data-level="2.3.4" id="check-mime-type-support"><span class="secno">2.3.4. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Check MIME Type Support|check MIME type support" data-noexport id="abstract-opdef-check-mime-type-support">Check MIME Type Support</dfn></span><a class="self-link" href="#check-mime-type-support"></a></h4>
-       <p>
+      </ol>
+      <p class="issue" id="issue-2ac980d5"><a class="self-link" href="#issue-2ac980d5"></a> Does this logic apply to <code>webrtc</code>? <a href="https://github.com/w3c/media-capabilities/issues/238">[Issue #238]</a></p>
+     </section>
+     <section class="algorithm" data-algorithm="Check MIME Type Support">
+      <h4 class="heading settled" data-level="2.3.4" id="check-mime-type-support"><span class="secno">2.3.4. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Check MIME Type Support|check MIME type support" data-noexport id="abstract-opdef-check-mime-type-support">Check MIME Type Support</dfn></span><a class="self-link" href="#check-mime-type-support"></a></h4>
+      <p>
           To <a data-link-type="abstract-op" href="#abstract-opdef-check-mime-type-support" id="ref-for-abstract-opdef-check-mime-type-support④">check MIME type support</a>, given a <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#mime-type" id="ref-for-mime-type③">MIME type record</a> <var>mimeType</var>,
           a <code class="idl"><a data-link-type="idl" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype②">MediaEncodingType</a></code> or <code class="idl"><a data-link-type="idl" href="#enumdef-mediadecodingtype" id="ref-for-enumdef-mediadecodingtype②">MediaDecodingType</a></code>
           <var>encodingOrDecodingType</var>, an optional <var>colorGamut</var> from
@@ -1734,179 +1735,178 @@ based on the device’s display.</p>
           <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#supported-by-the-user-agent" id="ref-for-supported-by-the-user-agent">supported by the user agent</a>, <code>unsupported</code> if the MIME type
           is not supported:
         </p>
-       <ol>
-        <li>
-         
+      <ol>
+       <li>
+        
             If <var>encodingOrDecodingType</var> is <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc④">webrtc</a></code> (<code class="idl"><a data-link-type="idl" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype③">MediaEncodingType</a></code>)
             or <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc④">webrtc</a></code> (<code class="idl"><a data-link-type="idl" href="#enumdef-mediadecodingtype" id="ref-for-enumdef-mediadecodingtype③">MediaDecodingType</a></code>) and <var>mimeType</var> is not one
             that is used with RTP (as defined in the specifications of the corresponding RTP
             payload formats <a data-link-type="biblio" href="#biblio-iana-media-types" title="Media Types">[IANA-MEDIA-TYPES]</a> <a data-link-type="biblio" href="#biblio-rfc6838" title="Media Type Specifications and Registration Procedures">[RFC6838]</a>), return <code>unsupported</code>.
             
-         <p class="note" role="note">
+        <p class="note" role="note">
               The codec name is typically specified as subtype and zero or more
               parameters may be present depending on the codec.
             </p>
-        <li>
+       <li>
             If <var>colorGamut</var> is present and is not valid for <var>mimeType</var>, return
             <code>unsupported</code>.
           
-        <li>
+       <li>
             If <var>transferFunction</var> is present and is not valid for <var>mimeType</var>, return
             <code>unsupported</code>.
           
-        <p class="note" role="note">
+       <p class="note" role="note">
               User agents should refer to the video codec specification for the codec named by
               <var>mimeType</var> to determine valid values for <var>colorGamut</var> and <var>transferFunction</var>.
 
 </p>
-        <p class="issue" id="issue-2b9e7d5d"><a class="self-link" href="#issue-2b9e7d5d"></a> How do we ensure interop in validation steps here? <a href="https://github.com/w3c/media-capabilities/issues/245">[Issue #245]</a></p>
-        <p></p>
-        <li>
+       <p class="issue" id="issue-2b9e7d5d"><a class="self-link" href="#issue-2b9e7d5d"></a> How do we ensure interop in validation steps here? <a href="https://github.com/w3c/media-capabilities/issues/245">[Issue #245]</a></p>
+       <li>
             If <var>mimeType</var> is not <a data-link-type="dfn" href="https://mimesniff.spec.whatwg.org/#supported-by-the-user-agent" id="ref-for-supported-by-the-user-agent①">supported by the user agent</a>, return
             <code>unsupported</code>.
           
-        <li>
+       <li>
             Return <code>supported</code>.
           
-       </ol>
-      </section>
-      <section class="algorithm" data-algorithm="Check Encrypted Decoding Support">
-       <h4 class="heading settled" data-level="2.3.5" id="is-encrypted-decode-supported"><span class="secno">2.3.5. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Check Encrypted Decoding Support|check encrypted decoding support" data-noexport id="abstract-opdef-check-encrypted-decoding-support">Check Encrypted Decoding Support</dfn></span><a class="self-link" href="#is-encrypted-decode-supported"></a></h4>
-       <p>
+      </ol>
+     </section>
+     <section class="algorithm" data-algorithm="Check Encrypted Decoding Support">
+      <h4 class="heading settled" data-level="2.3.5" id="is-encrypted-decode-supported"><span class="secno">2.3.5. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="abstract-op" data-lt="Check Encrypted Decoding Support|check encrypted decoding support" data-noexport id="abstract-opdef-check-encrypted-decoding-support">Check Encrypted Decoding Support</dfn></span><a class="self-link" href="#is-encrypted-decode-supported"></a></h4>
+      <p>
           To <a data-link-type="abstract-op" href="#abstract-opdef-check-encrypted-decoding-support" id="ref-for-abstract-opdef-check-encrypted-decoding-support①">check encrypted decoding support</a>, given a <code class="idl"><a data-link-type="idl" href="#dictdef-mediadecodingconfiguration" id="ref-for-dictdef-mediadecodingconfiguration①②">MediaDecodingConfiguration</a></code>
           <var>config</var> where <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingconfiguration-keysystemconfiguration" id="ref-for-dom-mediadecodingconfiguration-keysystemconfiguration①">keySystemConfiguration</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①①">exists</a>, perform the
           following steps. They return a <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess" id="ref-for-dom-mediakeysystemaccess③">MediaKeySystemAccess</a></code> or <code>null</code>
           as appropriate:
         </p>
-       <ol>
-        <li>
+      <ol>
+       <li>
             If the <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilitieskeysystemconfiguration-keysystem" id="ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem①">keySystem</a></code> member of
             <code>config.keySystemConfiguration</code> is not one of the
             <a data-link-type="dfn" href="https://w3c.github.io/encrypted-media/#dfn-key-system" id="ref-for-dfn-key-system">Key Systems</a> supported by the user agent, return
             <code>null</code>. String comparison is case-sensitive.
           
-        <li>
+       <li>
             Let <var>origin</var> be the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/browsers.html#concept-origin" id="ref-for-concept-origin">origin</a> of the calling context’s
             <code class="idl"><a data-link-type="idl" href="https://dom.spec.whatwg.org/#document" id="ref-for-document">Document</a></code>.
           
-        <li>
+       <li>
             Let <var>implementation</var> be the implementation of
             <code>config.keySystemConfiguration.keySystem</code>.
           
-        <li>
+       <li>
             Let <var>emeConfiguration</var> be a new
             <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration" id="ref-for-dom-mediakeysystemconfiguration">MediaKeySystemConfiguration</a></code>, and initialize it as follows:
           
-        <ol>
-         <li>
+       <ol>
+        <li>
               Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-initdatatypes" id="ref-for-dom-mediakeysystemconfiguration-initdatatypes①">initDataTypes</a></code> attribute to a sequence containing
               <code>config.keySystemConfiguration.initDataType</code>.
             
-         <li>
+        <li>
               Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-distinctiveidentifier" id="ref-for-dom-mediakeysystemconfiguration-distinctiveidentifier①">distinctiveIdentifier</a></code> attribute to
               <code>config.keySystemConfiguration.distinctiveIdentifier</code>.
             
-         <li>
+        <li>
               Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-persistentstate" id="ref-for-dom-mediakeysystemconfiguration-persistentstate①">persistentState</a></code> attribute to
               <code>config.keySystemConfiguration.peristentState</code>.
             
-         <li>
+        <li>
               Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-sessiontypes" id="ref-for-dom-mediakeysystemconfiguration-sessiontypes①">sessionTypes</a></code> attribute to
               <code>config.keySystemConfiguration.sessionTypes</code>.
             
-         <li>
-          
+        <li>
+         
               If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-audio" id="ref-for-dom-mediaconfiguration-audio②">audio</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①②">exists</a> in <var>config</var>, set the
               <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-audiocapabilities" id="ref-for-dom-mediakeysystemconfiguration-audiocapabilities">audioCapabilities</a></code> attribute to a sequence containing a
               single <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability" id="ref-for-dom-mediakeysystemmediacapability">MediaKeySystemMediaCapability</a></code>, initialized as
               follows:
               
-          <ol>
-           <li>
+         <ol>
+          <li>
                   Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-contenttype" id="ref-for-dom-mediakeysystemmediacapability-contenttype">contentType</a></code> attribute to
                   <code>config.audio.contentType</code>.
                 
-           <li>
-            
+          <li>
+           
                   If <code>config.keySystemConfiguration.audio</code>
                   <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①③">exists</a>:
                   
-            <ol>
-             <li>
+           <ol>
+            <li>
                       If <code>config.keySystemConfiguration.audio.robustness</code>
                       <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①④">exists</a> and is not <code>null</code>, set the
                       <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-robustness" id="ref-for-dom-mediakeysystemmediacapability-robustness①">robustness</a></code> attribute to
                       <code>config.keySystemConfiguration.audio.robustness</code>.                                        
-             <li>
+            <li>
                       Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme①">encryptionScheme</a></code> attribute to <code>
                       config.keySystemConfiguration.audio.encryptionScheme</code>.
                     
-            </ol>
-          </ol>
-         <li>
-          
+           </ol>
+         </ol>
+        <li>
+         
               If <code class="idl"><a data-link-type="idl" href="#dom-mediaconfiguration-video" id="ref-for-dom-mediaconfiguration-video②">video</a></code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑤">exists</a> in <var>config</var>, set the
               videoCapabilities attribute to a sequence containing a single
               <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability" id="ref-for-dom-mediakeysystemmediacapability①">MediaKeySystemMediaCapability</a></code>, initialized as follows:
               
-          <ol>
-           <li>
+         <ol>
+          <li>
                   Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-contenttype" id="ref-for-dom-mediakeysystemmediacapability-contenttype①">contentType</a></code> attribute to
                   <code>config.video.contentType</code>.
                 
-           <li>
-            
+          <li>
+           
                   If <code>config.keySystemConfiguration.video</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑥">exists</a>:
                   
-            <ol>
-             <li>
+           <ol>
+            <li>
                       If <code>config.keySystemConfiguration.video.robustness</code>
                       <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑦">exists</a> and is not <code>null</code>, set the
                       <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-robustness" id="ref-for-dom-mediakeysystemmediacapability-robustness②">robustness</a></code> attribute to
                       <code>config.keySystemConfiguration.video.robustness</code>.
                     
-             <li>
+            <li>
                       Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemmediacapability-encryptionscheme" id="ref-for-dom-mediakeysystemmediacapability-encryptionscheme②">encryptionScheme</a></code> attribute to <code>
                       config.keySystemConfiguration.video.encryptionScheme</code>.
                     
-            </ol>
-          </ol>
-        </ol>
-        <li>
+           </ol>
+         </ol>
+       </ol>
+       <li>
             Let <var>supported configuration</var> be the result of
             executing the <a data-link-type="dfn" href="https://w3c.github.io/encrypted-media/#dfn-get-supported-configuration" id="ref-for-dfn-get-supported-configuration">Get Supported Configuration</a>
             algorithm <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a> on <var>implementation</var>,
             <var>emeConfiguration</var>, and <var>origin</var>.
           
-        <li>
+       <li>
             If <var>supported configuration</var> is
             <code>NotSupported</code>, return <code>null</code>.
           
-        <li>
-         
+       <li>
+        
             Let <var>access</var> be a new <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess" id="ref-for-dom-mediakeysystemaccess④">MediaKeySystemAccess</a></code>
             object, and initialize it as follows:
             
-         <ol>
-          <li>
+        <ol>
+         <li>
                 Set the <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeysystemaccess-keysystem" id="ref-for-dom-mediakeysystemaccess-keysystem①">keySystem</a></code> attribute to
                 <code>emeConfiguration.keySystem</code>.
               
-          <li>
+         <li>
                 Let the <var>configuration</var> value be
                 <var>supported configuration</var>.
               
-          <li>
+         <li>
                 Let the <var>cdm implementation</var> value be
                 <var>implementation</var>.
               
-         </ol>
-        <li>Return <var>access</var>.
-       </ol>
-      </section>
+        </ol>
+       <li>Return <var>access</var>.
+      </ol>
      </section>
-     <section>
-      <h3 class="heading settled" data-level="2.4" id="navigators-extensions"><span class="secno">2.4. </span><span class="content">Navigator and WorkerNavigator extension</span><a class="self-link" href="#navigators-extensions"></a></h3>
+    </section>
+    <section>
+     <h3 class="heading settled" data-level="2.4" id="navigators-extensions"><span class="secno">2.4. </span><span class="content">Navigator and WorkerNavigator extension</span><a class="self-link" href="#navigators-extensions"></a></h3>
 <pre class="def highlight idl">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->]
 <c- b>partial</c-> <c- b>interface</c-> <a class="idl-code" data-link-type="interface" href="https://html.spec.whatwg.org/multipage/system-state.html#navigator" id="ref-for-navigator"><c- g>Navigator</c-></a> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#mediacapabilities" id="ref-for-mediacapabilities"><c- n>MediaCapabilities</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export data-readonly data-type="MediaCapabilities" id="dom-navigator-mediacapabilities"><code><c- g>mediaCapabilities</c-></code></dfn>;
@@ -1917,9 +1917,9 @@ based on the device’s display.</p>
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#SameObject" id="ref-for-SameObject①"><c- g>SameObject</c-></a>] <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#mediacapabilities" id="ref-for-mediacapabilities①"><c- n>MediaCapabilities</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="WorkerNavigator" data-dfn-type="attribute" data-export data-readonly data-type="MediaCapabilities" id="dom-workernavigator-mediacapabilities"><code><c- g>mediaCapabilities</c-></code></dfn>;
 };
 </pre>
-     </section>
-     <section>
-      <h3 class="heading settled" data-level="2.5" id="media-capabilities-interface"><span class="secno">2.5. </span><span class="content">Media Capabilities Interface</span><a class="self-link" href="#media-capabilities-interface"></a></h3>
+    </section>
+    <section>
+     <h3 class="heading settled" data-level="2.5" id="media-capabilities-interface"><span class="secno">2.5. </span><span class="content">Media Capabilities Interface</span><a class="self-link" href="#media-capabilities-interface"></a></h3>
 <pre class="def highlight idl">[<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#Exposed" id="ref-for-Exposed②"><c- g>Exposed</c-></a>=(<c- n>Window</c->, <c- n>Worker</c->)]
 <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="mediacapabilities"><code><c- g>MediaCapabilities</c-></code></dfn> {
   [<a class="idl-code" data-link-type="extended-attribute" href="https://webidl.spec.whatwg.org/#NewObject" id="ref-for-NewObject"><c- g>NewObject</c-></a>] <a class="idl-code" data-link-type="interface" href="https://webidl.spec.whatwg.org/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="idl-name" href="#dictdef-mediacapabilitiesdecodinginfo" id="ref-for-dictdef-mediacapabilitiesdecodinginfo⑤"><c- n>MediaCapabilitiesDecodingInfo</c-></a>> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities" data-dfn-type="method" data-export data-lt="decodingInfo(configuration)" id="dom-mediacapabilities-decodinginfo"><code><c- g>decodingInfo</c-></code></dfn>(
@@ -1928,129 +1928,129 @@ based on the device’s display.</p>
       <a data-link-type="idl-name" href="#dictdef-mediaencodingconfiguration" id="ref-for-dictdef-mediaencodingconfiguration⑥"><c- n>MediaEncodingConfiguration</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="MediaCapabilities/encodingInfo(configuration)" data-dfn-type="argument" data-export id="dom-mediacapabilities-encodinginfo-configuration-configuration"><code><c- g>configuration</c-></code></dfn>);
 };
 </pre>
-      <section>
-       <h4 class="heading settled" data-level="2.5.1" id="task-source"><span class="secno">2.5.1. </span><span class="content">Media Capabilities Task Source</span><a class="self-link" href="#task-source"></a></h4>
-       <p>
+     <section>
+      <h4 class="heading settled" data-level="2.5.1" id="task-source"><span class="secno">2.5.1. </span><span class="content">Media Capabilities Task Source</span><a class="self-link" href="#task-source"></a></h4>
+      <p>
       The <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#task-source" id="ref-for-task-source">task source</a> for the tasks mentioned in this specification
       is the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="media-capabilities-task-source">media capabilities task source</dfn>.
     </p>
-       <p>
+      <p>
       When an algorithm <dfn class="dfn-paneled" data-dfn-type="dfn" data-lt="queue a Media Capabilities task" data-noexport id="queue-a-media-capabilities-task">queues
       a Media Capabilities task</dfn> <var>T</var>, the user agent
       MUST <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task" id="ref-for-queue-a-global-task">queue a global task</a> <var>T</var> on the <a data-link-type="dfn" href="#media-capabilities-task-source" id="ref-for-media-capabilities-task-source">media capabilities task source</a> using the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#concept-realm-global" id="ref-for-concept-realm-global">global object</a> of the <a data-link-type="dfn" href="https://tc39.es/ecma262/multipage/executable-code-and-execution-contexts.html#current-realm" id="ref-for-current-realm">the current realm record</a>.
     </p>
-      </section>
-      <section>
-       <h4 class="heading settled" data-level="2.5.2" id="decodinginfo-method"><span class="secno">2.5.2. </span><span class="content">decodingInfo() Method</span><a class="self-link" href="#decodinginfo-method"></a></h4>
-       <p>
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="2.5.2" id="decodinginfo-method"><span class="secno">2.5.2. </span><span class="content">decodingInfo() Method</span><a class="self-link" href="#decodinginfo-method"></a></h4>
+      <p>
       The <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo">decodingInfo()</a></code> method MUST run the following steps:
     </p>
-       <ol>
-        <li>
+      <ol>
+       <li>
         If <var>configuration</var> is not a <a data-link-type="dfn" href="#valid-mediadecodingconfiguration" id="ref-for-valid-mediadecodingconfiguration">valid
         MediaDecodingConfiguration</a>, return a Promise rejected with a
         newly created <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror">TypeError</a></code>.
       
-        <li>
-         
+       <li>
+        
         If <code>configuration.keySystemConfiguration</code> <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#map-exists" id="ref-for-map-exists①⑧">exists</a>,
         run the following substeps:
         
-         <ol>
-          <li>
+        <ol>
+         <li>
             If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object" id="ref-for-global-object">global object</a> is of type <code class="idl"><a data-link-type="idl" href="https://html.spec.whatwg.org/multipage/workers.html#workerglobalscope" id="ref-for-workerglobalscope">WorkerGlobalScope</a></code>,
             return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException">DOMException</a></code>
             whose name is <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#invalidstateerror" id="ref-for-invalidstateerror">InvalidStateError</a></code>.
           
-          <li>
+         <li>
             If the <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#global-object" id="ref-for-global-object①">global object’s</a> <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#relevant-settings-object" id="ref-for-relevant-settings-object">relevant settings object</a> is a
             <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/webappapis.html#non-secure-context" id="ref-for-non-secure-context">non-secure context</a>, return a Promise rejected with a newly
             created <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#idl-DOMException" id="ref-for-idl-DOMException①">DOMException</a></code> whose name is <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#securityerror" id="ref-for-securityerror">SecurityError</a></code>.
           
-         </ol>
-        <li>
+        </ol>
+       <li>
         Let <var>p</var> be a new Promise.
       
-        <li>
-         
+       <li>
+        
         Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel">in parallel</a>:
         
-         <ol>
-          <li>
+        <ol>
+         <li>
             Run the <a data-link-type="abstract-op" href="#abstract-opdef-create-a-mediacapabilitiesdecodinginfo" id="ref-for-abstract-opdef-create-a-mediacapabilitiesdecodinginfo①">Create a MediaCapabilitiesDecodingInfo</a> algorithm
             with <var>configuration</var>.
           
-          <li>
+         <li>
             <a data-link-type="dfn" href="#queue-a-media-capabilities-task" id="ref-for-queue-a-media-capabilities-task">Queue a Media Capabilities task</a> to resolve <var>p</var>
             with its result.
           
-         </ol>
-        <li>
+        </ol>
+       <li>
         Return <var>p</var>.
       
-       </ol>
-       <p class="note" role="note">
+      </ol>
+      <p class="note" role="note">
       Note, calling <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo①">decodingInfo()</a></code> with a <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingconfiguration-keysystemconfiguration" id="ref-for-dom-mediadecodingconfiguration-keysystemconfiguration②">keySystemConfiguration</a></code> present
       may have user-visible effects, including requests for user consent. Such
       calls should only be made when the author intends to create and use a
       <code class="idl"><a data-link-type="idl" href="https://w3c.github.io/encrypted-media/#dom-mediakeys" id="ref-for-dom-mediakeys①">MediaKeys</a></code> object with the provided configuration.
     </p>
-      </section>
-      <section>
-       <h4 class="heading settled" data-level="2.5.3" id="encodinginfo-method"><span class="secno">2.5.3. </span><span class="content">encodingInfo() Method</span><a class="self-link" href="#encodinginfo-method"></a></h4>
-       <p>
+     </section>
+     <section>
+      <h4 class="heading settled" data-level="2.5.3" id="encodinginfo-method"><span class="secno">2.5.3. </span><span class="content">encodingInfo() Method</span><a class="self-link" href="#encodinginfo-method"></a></h4>
+      <p>
       The <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo">encodingInfo()</a></code> method MUST run the following steps:
     </p>
-       <ol>
-        <li>
+      <ol>
+       <li>
         If <var>configuration</var> is not a <a data-link-type="dfn" href="#valid-mediaconfiguration" id="ref-for-valid-mediaconfiguration①">valid MediaConfiguration</a>,
         return a Promise rejected with a newly created <code class="idl"><a data-link-type="idl" href="https://webidl.spec.whatwg.org/#exceptiondef-typeerror" id="ref-for-exceptiondef-typeerror①">TypeError</a></code>.
       
-        <li>
+       <li>
         Let <var>p</var> be a new Promise.
       
-        <li>
-         
+       <li>
+        
         Run the following steps <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel①">in parallel</a>:
           
-         <ol>
-          <li>
+        <ol>
+         <li>
               Run the <a data-link-type="abstract-op" href="#abstract-opdef-create-a-mediacapabilitiesencodinginfo" id="ref-for-abstract-opdef-create-a-mediacapabilitiesencodinginfo①">Create a MediaCapabilitiesEncodingInfo</a>
               algorithm with <var>configuration</var>.
             
-          <li>
+         <li>
              <a data-link-type="dfn" href="#queue-a-media-capabilities-task" id="ref-for-queue-a-media-capabilities-task①">Queue a Media Capabilities task</a> to resolve <var>p</var> with
              its result.
            
-         </ol>
-        <li>
+        </ol>
+       <li>
         Return <var>p</var>.
       
-       </ol>
-      </section>
+      </ol>
      </section>
     </section>
-    <section class="non-normative">
-     <h2 class="heading settled" data-level="3" id="security-privacy-considerations"><span class="secno">3. </span><span class="content">
+   </section>
+   <section class="non-normative">
+    <h2 class="heading settled" data-level="3" id="security-privacy-considerations"><span class="secno">3. </span><span class="content">
     Security and Privacy Considerations
   </span><a class="self-link" href="#security-privacy-considerations"></a></h2>
-     <section>
-      <p>
+    <section>
+     <p>
       This specification does not introduce any security-sensitive information
       or APIs but it provides easier access to some information that can be
       used to fingerprint users.
     </p>
-      <section>
-       <h3 class="heading settled" data-level="3.1" id="capabilities-model"><span class="secno">3.1. </span><span class="content">
+     <section>
+      <h3 class="heading settled" data-level="3.1" id="capabilities-model"><span class="secno">3.1. </span><span class="content">
         Capabilities Model
       </span><a class="self-link" href="#capabilities-model"></a></h3>
-       <p>
+      <p>
         This specification supports <code class="idl"><a data-link-type="idl" href="#enumdef-mediadecodingtype" id="ref-for-enumdef-mediadecodingtype④">MediaDecodingType</a></code> values of <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-file" id="ref-for-dom-mediadecodingtype-file⑨">file</a></code>,
         <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-media-source" id="ref-for-dom-mediadecodingtype-media-source⑨">media-source</a></code> or <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc⑤">webrtc</a></code> as well as
         <code class="idl"><a data-link-type="idl" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype④">MediaEncodingType</a></code> values of <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-record" id="ref-for-dom-mediaencodingtype-record①">record</a></code> and
         <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc⑥">webrtc</a></code>.
       </p>
-       <p>
+      <p>
         In realtime communications supported by <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a>, media is
         transported between peers. Although sites are responsible for
         exchanging the information necessary to negotiate media parameters
@@ -2058,7 +2058,7 @@ based on the device’s display.</p>
         media transport, encoding, or decoding.  For 1-1 calls, user agents
         negotiate the media to be sent and received.
      </p>
-       <p>
+      <p>
         In a conferencing scenario, a user agent can send media for
         reception by dozens or even hundreds of receivers.  To improve
         scalability, applications make use of external servers, such as
@@ -2070,12 +2070,12 @@ based on the device’s display.</p>
         servers do not support transcoding, so a user agent cannot simply
         "pick the one they like best".
      </p>
-      </section>
-      <section>
-       <h3 class="heading settled" data-level="3.2" id="decoding-encoding-fingerprinting"><span class="secno">3.2. </span><span class="content">
+     </section>
+     <section>
+      <h3 class="heading settled" data-level="3.2" id="decoding-encoding-fingerprinting"><span class="secno">3.2. </span><span class="content">
         Decoding/Encoding and Fingerprinting
       </span><a class="self-link" href="#decoding-encoding-fingerprinting"></a></h3>
-       <p>
+      <p>
         The information exposed by the decoding/encoding capabilities can
         already be discovered via experimentation with the exception that the
         API will likely provide more accurate and consistent information. This
@@ -2087,7 +2087,7 @@ based on the device’s display.</p>
         expected that the entropy added with this API isn’t going to be
         significant.
       </p>
-       <p>
+      <p>
         HDR detection is more nuanced. Adding <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-colorgamut" id="ref-for-dom-videoconfiguration-colorgamut③">colorGamut</a></code>, <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-transferfunction" id="ref-for-dom-videoconfiguration-transferfunction③">transferFunction</a></code>, and
         <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-hdrmetadatatype" id="ref-for-dom-videoconfiguration-hdrmetadatatype①">hdrMetadataType</a></code> has the potential to add significant entropy. However,
         for UAs whose decoders are implemented in software and therefore whose
@@ -2096,7 +2096,7 @@ based on the device’s display.</p>
         categories, within which capabilities are similar thus minimizing
         effective entropy.
       </p>
-       <p>
+      <p>
         An alternative design approach in which sites expose the available media
         formats and browsers evaluate these against capabilities, returning only
         the chosen format was considered. However, this would not in fact offer
@@ -2105,7 +2105,7 @@ based on the device’s display.</p>
         with normal site behaviors such as speculative preparation across multiple
         playback items.
       </p>
-       <p>
+      <p>
         If an implementation wishes to implement a fingerprint-proof version of
         this specification, it would be recommended to fake a given set of
         capabilities (i.e., decode up to 1080p VP9, etc.) instead of returning
@@ -2117,20 +2117,20 @@ based on the device’s display.</p>
         to make use of the capabilities it detects and apply more stringent
         controls to sites that are observed not to do so.
       </p>
-      </section>
      </section>
     </section>
+   </section>
+   <section>
+    <h2 class="heading settled" data-level="4" id="examples"><span class="secno">4. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
     <section>
-     <h2 class="heading settled" data-level="4" id="examples"><span class="secno">4. </span><span class="content">Examples</span><a class="self-link" href="#examples"></a></h2>
-     <section>
-      <h3 class="heading settled" data-level="4.1" id="example1"><span class="secno">4.1. </span><span class="content">Query playback capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo②">decodingInfo()</a></code></span><a class="self-link" href="#example1"></a></h3>
-      <p>
+     <h3 class="heading settled" data-level="4.1" id="example1"><span class="secno">4.1. </span><span class="content">Query playback capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo②">decodingInfo()</a></code></span><a class="self-link" href="#example1"></a></h3>
+     <p>
         The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo③">decodingInfo()</a></code> to query
         media playback capabilities when using Media Source Extensions
         <a data-link-type="biblio" href="#biblio-media-source" title="Media Source Extensions™">[media-source]</a>.
       </p>
-      <div class="example" id="example-b084ff72">
-       <a class="self-link" href="#example-b084ff72"></a>
+     <div class="example" id="example-b084ff72">
+      <a class="self-link" href="#example-b084ff72"></a>
         
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
   <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/mp4;codecs=avc1.640028'</c-><c- p>;</c->
@@ -2158,13 +2158,13 @@ based on the device’s display.</p>
     <c- p>});</c->
 <c- o>&lt;</c->/script>
 </pre>
-      </div>
-      <p>
+     </div>
+     <p>
         The following examples show how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo④">decodingInfo()</a></code> to query
         WebRTC receive capabilities <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a>.
       </p>
-      <div class="example" id="example-8dd1b9ff">
-       <a class="self-link" href="#example-8dd1b9ff"></a>
+     <div class="example" id="example-8dd1b9ff">
+      <a class="self-link" href="#example-8dd1b9ff"></a>
         
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
   <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/VP8'</c-><c- p>;</c->
@@ -2192,9 +2192,9 @@ based on the device’s display.</p>
     <c- p>});</c->
 <c- o>&lt;</c->/script>
 </pre>
-      </div>
-      <div class="example" id="example-08fadce2">
-       <a class="self-link" href="#example-08fadce2"></a>
+     </div>
+     <div class="example" id="example-08fadce2">
+      <a class="self-link" href="#example-08fadce2"></a>
         
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
   <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/H264;level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f'</c-><c- p>;</c->
@@ -2222,17 +2222,17 @@ based on the device’s display.</p>
     <c- p>});</c->
 <c- o>&lt;</c->/script>
 </pre>
-      </div>
-     </section>
-     <section>
-      <h3 class="heading settled" data-level="4.2" id="example2"><span class="secno">4.2. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example2"></a></h3>
-      <div class="note" role="note">
+     </div>
+    </section>
+    <section>
+     <h3 class="heading settled" data-level="4.2" id="example2"><span class="secno">4.2. </span><span class="content">Query recording capabilities with <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo①">encodingInfo()</a></code></span><a class="self-link" href="#example2"></a></h3>
+     <div class="note" role="note">
         The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-encodinginfo" id="ref-for-dom-mediacapabilities-encodinginfo②">encodingInfo()</a></code> to query
         WebRTC send capabilities <a data-link-type="biblio" href="#biblio-webrtc" title="WebRTC: Real-Time Communication in Browsers">[webrtc]</a> including the optional field
         <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode④">scalabilityMode</a></code>.
       </div>
-      <div class="example" id="example-60212754">
-       <a class="self-link" href="#example-60212754"></a>
+     <div class="example" id="example-60212754">
+      <a class="self-link" href="#example-60212754"></a>
         
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
   <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/VP9'</c-><c- p>;</c->
@@ -2261,14 +2261,14 @@ based on the device’s display.</p>
     <c- p>});</c->
 <c- o>&lt;</c->/script>
 </pre>
-      </div>
-      <div class="note" role="note">
+     </div>
+     <div class="note" role="note">
         The following example can also be found in
         <a href="https://codepen.io/miguelao/pen/bWNwej/left?editors=0010#0">
         this codepen</a> with minimal modifications.
       </div>
-      <div class="example" id="example-264e78d6">
-       <a class="self-link" href="#example-264e78d6"></a>
+     <div class="example" id="example-264e78d6">
+      <a class="self-link" href="#example-264e78d6"></a>
         
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
   <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/webm;codecs=vp8'</c-><c- p>;</c->
@@ -2296,8 +2296,7 @@ based on the device’s display.</p>
     <c- p>});</c->
 <c- o>&lt;</c->/script>
 </pre>
-      </div>
-     </section>
+     </div>
     </section>
    </section>
   </main>
@@ -3030,8 +3029,8 @@ let dfnPanelData = {
 "cd139dd2": {"dfnID":"cd139dd2","dfnText":"distinctiveIdentifier","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediakeysystemconfiguration-distinctiveidentifier"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "},{"refs":[{"id":"ref-for-dom-mediakeysystemconfiguration-distinctiveidentifier\u2460"}],"title":"2.3.5. Check Encrypted Decoding Support"}],"url":"https://w3c.github.io/encrypted-media/#dom-mediakeysystemconfiguration-distinctiveidentifier"},
 "d72dabca": {"dfnID":"d72dabca","dfnText":"parse a MIME type","external":true,"refSections":[{"refs":[{"id":"ref-for-parse-a-mime-type"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-parse-a-mime-type\u2460"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-parse-a-mime-type\u2461"},{"id":"ref-for-parse-a-mime-type\u2462"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-parse-a-mime-type\u2463"},{"id":"ref-for-parse-a-mime-type\u2464"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"https://mimesniff.spec.whatwg.org/#parse-a-mime-type"},
 "dca2de17": {"dfnID":"dca2de17","dfnText":"DOMException","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMException"},{"id":"ref-for-idl-DOMException\u2460"}],"title":"2.5.2. decodingInfo() Method"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMException"},
-"dictdef-audioconfiguration": {"dfnID":"dictdef-audioconfiguration","dfnText":"AudioConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-audioconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-audioconfiguration\u2460"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dictdef-audioconfiguration\u2461"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dictdef-audioconfiguration"},
-"dictdef-keysystemtrackconfiguration": {"dfnID":"dictdef-keysystemtrackconfiguration","dfnText":"KeySystemTrackConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-keysystemtrackconfiguration"},{"id":"ref-for-dictdef-keysystemtrackconfiguration\u2460"},{"id":"ref-for-dictdef-keysystemtrackconfiguration\u2461"},{"id":"ref-for-dictdef-keysystemtrackconfiguration\u2462"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dictdef-keysystemtrackconfiguration"},
+"dictdef-audioconfiguration": {"dfnID":"dictdef-audioconfiguration","dfnText":"AudioConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-audioconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-audioconfiguration\u2460"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dictdef-audioconfiguration\u2461"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dictdef-audioconfiguration"},
+"dictdef-keysystemtrackconfiguration": {"dfnID":"dictdef-keysystemtrackconfiguration","dfnText":"KeySystemTrackConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-keysystemtrackconfiguration"},{"id":"ref-for-dictdef-keysystemtrackconfiguration\u2460"},{"id":"ref-for-dictdef-keysystemtrackconfiguration\u2461"},{"id":"ref-for-dictdef-keysystemtrackconfiguration\u2462"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dictdef-keysystemtrackconfiguration"},
 "dictdef-mediacapabilitiesdecodinginfo": {"dfnID":"dictdef-mediacapabilitiesdecodinginfo","dfnText":"MediaCapabilitiesDecodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesdecodinginfo"},{"id":"ref-for-dictdef-mediacapabilitiesdecodinginfo\u2460"},{"id":"ref-for-dictdef-mediacapabilitiesdecodinginfo\u2461"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesdecodinginfo\u2462"},{"id":"ref-for-dictdef-mediacapabilitiesdecodinginfo\u2463"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesdecodinginfo\u2464"}],"title":"2.5. Media Capabilities Interface"}],"url":"#dictdef-mediacapabilitiesdecodinginfo"},
 "dictdef-mediacapabilitiesencodinginfo": {"dfnID":"dictdef-mediacapabilitiesencodinginfo","dfnText":"MediaCapabilitiesEncodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesencodinginfo"},{"id":"ref-for-dictdef-mediacapabilitiesencodinginfo\u2460"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesencodinginfo\u2461"},{"id":"ref-for-dictdef-mediacapabilitiesencodinginfo\u2462"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesencodinginfo\u2463"}],"title":"2.5. Media Capabilities Interface"}],"url":"#dictdef-mediacapabilitiesencodinginfo"},
 "dictdef-mediacapabilitiesinfo": {"dfnID":"dictdef-mediacapabilitiesinfo","dfnText":"MediaCapabilitiesInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediacapabilitiesinfo"},{"id":"ref-for-dictdef-mediacapabilitiesinfo\u2460"},{"id":"ref-for-dictdef-mediacapabilitiesinfo\u2461"},{"id":"ref-for-dictdef-mediacapabilitiesinfo\u2462"}],"title":"2.2. Media Capabilities Information"}],"url":"#dictdef-mediacapabilitiesinfo"},
@@ -3039,7 +3038,7 @@ let dfnPanelData = {
 "dictdef-mediaconfiguration": {"dfnID":"dictdef-mediaconfiguration","dfnText":"MediaConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediaconfiguration"},{"id":"ref-for-dictdef-mediaconfiguration\u2460"},{"id":"ref-for-dictdef-mediaconfiguration\u2461"}],"title":"2.1.1. MediaConfiguration"}],"url":"#dictdef-mediaconfiguration"},
 "dictdef-mediadecodingconfiguration": {"dfnID":"dictdef-mediadecodingconfiguration","dfnText":"MediaDecodingConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2461"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2462"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2463"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2464"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2465"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2466"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2467"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2468"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u24ea"},{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u2461"}],"title":"2.3.5. Check Encrypted Decoding Support"},{"refs":[{"id":"ref-for-dictdef-mediadecodingconfiguration\u2460\u2462"}],"title":"2.5. Media Capabilities Interface"}],"url":"#dictdef-mediadecodingconfiguration"},
 "dictdef-mediaencodingconfiguration": {"dfnID":"dictdef-mediaencodingconfiguration","dfnText":"MediaEncodingConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2460"}],"title":"2.1.3. MediaEncodingType"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2462"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2463"},{"id":"ref-for-dictdef-mediaencodingconfiguration\u2464"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dictdef-mediaencodingconfiguration\u2465"}],"title":"2.5. Media Capabilities Interface"}],"url":"#dictdef-mediaencodingconfiguration"},
-"dictdef-videoconfiguration": {"dfnID":"dictdef-videoconfiguration","dfnText":"VideoConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-videoconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2460"},{"id":"ref-for-dictdef-videoconfiguration\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2462"}],"title":"2.1.5. HdrMetadataType"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2463"}],"title":"2.1.6. ColorGamut"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2464"}],"title":"2.1.7. TransferFunction"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2465"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dictdef-videoconfiguration"},
+"dictdef-videoconfiguration": {"dfnID":"dictdef-videoconfiguration","dfnText":"VideoConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dictdef-videoconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2460"},{"id":"ref-for-dictdef-videoconfiguration\u2461"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2462"}],"title":"2.1.5. HdrMetadataType"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2463"}],"title":"2.1.6. ColorGamut"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2464"}],"title":"2.1.7. TransferFunction"},{"refs":[{"id":"ref-for-dictdef-videoconfiguration\u2465"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dictdef-videoconfiguration"},
 "dom-audioconfiguration-bitrate": {"dfnID":"dom-audioconfiguration-bitrate","dfnText":"bitrate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-audioconfiguration-bitrate"}],"title":"2.1.8. AudioConfiguration"}],"url":"#dom-audioconfiguration-bitrate"},
 "dom-audioconfiguration-channels": {"dfnID":"dom-audioconfiguration-channels","dfnText":"channels","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-audioconfiguration-channels"},{"id":"ref-for-dom-audioconfiguration-channels\u2460"}],"title":"2.1.8. AudioConfiguration"}],"url":"#dom-audioconfiguration-channels"},
 "dom-audioconfiguration-contenttype": {"dfnID":"dom-audioconfiguration-contenttype","dfnText":"contentType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-audioconfiguration-contenttype"},{"id":"ref-for-dom-audioconfiguration-contenttype\u2460"},{"id":"ref-for-dom-audioconfiguration-contenttype\u2461"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-audioconfiguration-contenttype\u2462"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-audioconfiguration-contenttype\u2463"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-audioconfiguration-contenttype"},
@@ -3051,8 +3050,8 @@ let dfnPanelData = {
 "dom-hdrmetadatatype-smptest2086": {"dfnID":"dom-hdrmetadatatype-smptest2086","dfnText":"smpteSt2086","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-hdrmetadatatype-smptest2086"}],"title":"2.1.5. HdrMetadataType"}],"url":"#dom-hdrmetadatatype-smptest2086"},
 "dom-hdrmetadatatype-smptest2094-10": {"dfnID":"dom-hdrmetadatatype-smptest2094-10","dfnText":"smpteSt2094-10","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-hdrmetadatatype-smptest2094-10"}],"title":"2.1.5. HdrMetadataType"}],"url":"#dom-hdrmetadatatype-smptest2094-10"},
 "dom-hdrmetadatatype-smptest2094-40": {"dfnID":"dom-hdrmetadatatype-smptest2094-40","dfnText":"smpteSt2094-40","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-hdrmetadatatype-smptest2094-40"}],"title":"2.1.5. HdrMetadataType"}],"url":"#dom-hdrmetadatatype-smptest2094-40"},
-"dom-keysystemtrackconfiguration-encryptionscheme": {"dfnID":"dom-keysystemtrackconfiguration-encryptionscheme","dfnText":"encryptionScheme","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-keysystemtrackconfiguration-encryptionscheme"}],"title":"2.1.10. \n      KeySystemTrackConfiguration\n    "}],"url":"#dom-keysystemtrackconfiguration-encryptionscheme"},
-"dom-keysystemtrackconfiguration-robustness": {"dfnID":"dom-keysystemtrackconfiguration-robustness","dfnText":"robustness","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-keysystemtrackconfiguration-robustness"}],"title":"2.1.10. \n      KeySystemTrackConfiguration\n    "}],"url":"#dom-keysystemtrackconfiguration-robustness"},
+"dom-keysystemtrackconfiguration-encryptionscheme": {"dfnID":"dom-keysystemtrackconfiguration-encryptionscheme","dfnText":"encryptionScheme","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-keysystemtrackconfiguration-encryptionscheme"}],"title":"2.1.10. KeySystemTrackConfiguration"}],"url":"#dom-keysystemtrackconfiguration-encryptionscheme"},
+"dom-keysystemtrackconfiguration-robustness": {"dfnID":"dom-keysystemtrackconfiguration-robustness","dfnText":"robustness","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-keysystemtrackconfiguration-robustness"}],"title":"2.1.10. KeySystemTrackConfiguration"}],"url":"#dom-keysystemtrackconfiguration-robustness"},
 "dom-mediacapabilities-decodinginfo": {"dfnID":"dom-mediacapabilities-decodinginfo","dfnText":"decodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilities-decodinginfo"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2460"}],"title":"2.5.2. decodingInfo() Method"},{"refs":[{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2461"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2462"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2463"}],"title":"4.1. Query playback capabilities with decodingInfo()"}],"url":"#dom-mediacapabilities-decodinginfo"},
 "dom-mediacapabilities-decodinginfo-configuration-configuration": {"dfnID":"dom-mediacapabilities-decodinginfo-configuration-configuration","dfnText":"configuration","external":false,"refSections":[],"url":"#dom-mediacapabilities-decodinginfo-configuration-configuration"},
 "dom-mediacapabilities-encodinginfo": {"dfnID":"dom-mediacapabilities-encodinginfo","dfnText":"encodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilities-encodinginfo"}],"title":"2.5.3. encodingInfo() Method"},{"refs":[{"id":"ref-for-dom-mediacapabilities-encodinginfo\u2460"},{"id":"ref-for-dom-mediacapabilities-encodinginfo\u2461"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-mediacapabilities-encodinginfo"},
@@ -3063,37 +3062,37 @@ let dfnPanelData = {
 "dom-mediacapabilitiesinfo-powerefficient": {"dfnID":"dom-mediacapabilitiesinfo-powerefficient","dfnText":"powerEfficient","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-powerefficient"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-powerefficient\u2460"},{"id":"ref-for-dom-mediacapabilitiesinfo-powerefficient\u2461"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-powerefficient\u2462"},{"id":"ref-for-dom-mediacapabilitiesinfo-powerefficient\u2463"},{"id":"ref-for-dom-mediacapabilitiesinfo-powerefficient\u2464"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-mediacapabilitiesinfo-powerefficient"},
 "dom-mediacapabilitiesinfo-smooth": {"dfnID":"dom-mediacapabilitiesinfo-smooth","dfnText":"smooth","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-smooth"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-smooth\u2460"},{"id":"ref-for-dom-mediacapabilitiesinfo-smooth\u2461"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-smooth\u2462"},{"id":"ref-for-dom-mediacapabilitiesinfo-smooth\u2463"},{"id":"ref-for-dom-mediacapabilitiesinfo-smooth\u2464"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-mediacapabilitiesinfo-smooth"},
 "dom-mediacapabilitiesinfo-supported": {"dfnID":"dom-mediacapabilitiesinfo-supported","dfnText":"supported","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-supported"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2460"}],"title":"2.2. Media Capabilities Information"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2461"},{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2462"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2463"},{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2464"},{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2465"},{"id":"ref-for-dom-mediacapabilitiesinfo-supported\u2466"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-mediacapabilitiesinfo-supported"},
-"dom-mediacapabilitieskeysystemconfiguration-audio": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-audio","dfnText":"audio","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-audio"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dom-mediacapabilitieskeysystemconfiguration-audio"},
-"dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier","dfnText":"distinctiveIdentifier","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier"},
-"dom-mediacapabilitieskeysystemconfiguration-initdatatype": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-initdatatype","dfnText":"initDataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-initdatatype"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dom-mediacapabilitieskeysystemconfiguration-initdatatype"},
-"dom-mediacapabilitieskeysystemconfiguration-keysystem": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-keysystem","dfnText":"keySystem","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "},{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem\u2460"}],"title":"2.3.5. Check Encrypted Decoding Support"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-keysystem"},
-"dom-mediacapabilitieskeysystemconfiguration-persistentstate": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-persistentstate","dfnText":"persistentState","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-persistentstate"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dom-mediacapabilitieskeysystemconfiguration-persistentstate"},
-"dom-mediacapabilitieskeysystemconfiguration-sessiontypes": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-sessiontypes","dfnText":"sessionTypes","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-sessiontypes"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dom-mediacapabilitieskeysystemconfiguration-sessiontypes"},
-"dom-mediacapabilitieskeysystemconfiguration-video": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-video","dfnText":"video","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-video"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"#dom-mediacapabilitieskeysystemconfiguration-video"},
+"dom-mediacapabilitieskeysystemconfiguration-audio": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-audio","dfnText":"audio","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-audio"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-audio"},
+"dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier","dfnText":"distinctiveIdentifier","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-distinctiveidentifier"},
+"dom-mediacapabilitieskeysystemconfiguration-initdatatype": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-initdatatype","dfnText":"initDataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-initdatatype"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-initdatatype"},
+"dom-mediacapabilitieskeysystemconfiguration-keysystem": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-keysystem","dfnText":"keySystem","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"},{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-keysystem\u2460"}],"title":"2.3.5. Check Encrypted Decoding Support"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-keysystem"},
+"dom-mediacapabilitieskeysystemconfiguration-persistentstate": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-persistentstate","dfnText":"persistentState","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-persistentstate"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-persistentstate"},
+"dom-mediacapabilitieskeysystemconfiguration-sessiontypes": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-sessiontypes","dfnText":"sessionTypes","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-sessiontypes"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-sessiontypes"},
+"dom-mediacapabilitieskeysystemconfiguration-video": {"dfnID":"dom-mediacapabilitieskeysystemconfiguration-video","dfnText":"video","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilitieskeysystemconfiguration-video"}],"title":"2.1.9. MediaCapabilitiesKeySystemConfiguration"}],"url":"#dom-mediacapabilitieskeysystemconfiguration-video"},
 "dom-mediaconfiguration-audio": {"dfnID":"dom-mediaconfiguration-audio","dfnText":"audio","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediaconfiguration-audio"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-mediaconfiguration-audio\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-mediaconfiguration-audio\u2461"}],"title":"2.3.5. Check Encrypted Decoding Support"}],"url":"#dom-mediaconfiguration-audio"},
 "dom-mediaconfiguration-video": {"dfnID":"dom-mediaconfiguration-video","dfnText":"video","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediaconfiguration-video"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-mediaconfiguration-video\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-mediaconfiguration-video\u2461"}],"title":"2.3.5. Check Encrypted Decoding Support"}],"url":"#dom-mediaconfiguration-video"},
 "dom-mediadecodingconfiguration-keysystemconfiguration": {"dfnID":"dom-mediadecodingconfiguration-keysystemconfiguration","dfnText":"keySystemConfiguration","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingconfiguration-keysystemconfiguration"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingconfiguration-keysystemconfiguration\u2460"}],"title":"2.3.5. Check Encrypted Decoding Support"},{"refs":[{"id":"ref-for-dom-mediadecodingconfiguration-keysystemconfiguration\u2461"}],"title":"2.5.2. decodingInfo() Method"}],"url":"#dom-mediadecodingconfiguration-keysystemconfiguration"},
 "dom-mediadecodingconfiguration-type": {"dfnID":"dom-mediadecodingconfiguration-type","dfnText":"type","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingconfiguration-type"},{"id":"ref-for-dom-mediadecodingconfiguration-type\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-mediadecodingconfiguration-type"},
-"dom-mediadecodingtype-file": {"dfnID":"dom-mediadecodingtype-file","dfnText":"file","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingtype-file"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2460"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2461"},{"id":"ref-for-dom-mediadecodingtype-file\u2462"},{"id":"ref-for-dom-mediadecodingtype-file\u2463"},{"id":"ref-for-dom-mediadecodingtype-file\u2464"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2465"},{"id":"ref-for-dom-mediadecodingtype-file\u2466"},{"id":"ref-for-dom-mediadecodingtype-file\u2467"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2468"}],"title":"3.1. \n        Capabilities Model\n      "}],"url":"#dom-mediadecodingtype-file"},
-"dom-mediadecodingtype-media-source": {"dfnID":"dom-mediadecodingtype-media-source","dfnText":"media-source","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2460"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2461"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2462"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2463"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2464"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2465"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2466"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2467"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2468"}],"title":"3.1. \n        Capabilities Model\n      "}],"url":"#dom-mediadecodingtype-media-source"},
-"dom-mediadecodingtype-webrtc": {"dfnID":"dom-mediadecodingtype-webrtc","dfnText":"webrtc","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2461"},{"id":"ref-for-dom-mediadecodingtype-webrtc\u2462"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2463"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2464"},{"id":"ref-for-dom-mediadecodingtype-webrtc\u2465"}],"title":"3.1. \n        Capabilities Model\n      "}],"url":"#dom-mediadecodingtype-webrtc"},
+"dom-mediadecodingtype-file": {"dfnID":"dom-mediadecodingtype-file","dfnText":"file","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingtype-file"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2460"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2461"},{"id":"ref-for-dom-mediadecodingtype-file\u2462"},{"id":"ref-for-dom-mediadecodingtype-file\u2463"},{"id":"ref-for-dom-mediadecodingtype-file\u2464"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2465"},{"id":"ref-for-dom-mediadecodingtype-file\u2466"},{"id":"ref-for-dom-mediadecodingtype-file\u2467"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-file\u2468"}],"title":"3.1. Capabilities Model"}],"url":"#dom-mediadecodingtype-file"},
+"dom-mediadecodingtype-media-source": {"dfnID":"dom-mediadecodingtype-media-source","dfnText":"media-source","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2460"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2461"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2462"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2463"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2464"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2465"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2466"},{"id":"ref-for-dom-mediadecodingtype-media-source\u2467"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-media-source\u2468"}],"title":"3.1. Capabilities Model"}],"url":"#dom-mediadecodingtype-media-source"},
+"dom-mediadecodingtype-webrtc": {"dfnID":"dom-mediadecodingtype-webrtc","dfnText":"webrtc","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc"}],"title":"2.1.2. MediaDecodingType"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2461"},{"id":"ref-for-dom-mediadecodingtype-webrtc\u2462"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2463"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-mediadecodingtype-webrtc\u2464"},{"id":"ref-for-dom-mediadecodingtype-webrtc\u2465"}],"title":"3.1. Capabilities Model"}],"url":"#dom-mediadecodingtype-webrtc"},
 "dom-mediaencodingconfiguration-type": {"dfnID":"dom-mediaencodingconfiguration-type","dfnText":"type","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediaencodingconfiguration-type"},{"id":"ref-for-dom-mediaencodingconfiguration-type\u2460"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"}],"url":"#dom-mediaencodingconfiguration-type"},
-"dom-mediaencodingtype-record": {"dfnID":"dom-mediaencodingtype-record","dfnText":"record","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediaencodingtype-record"}],"title":"2.1.3. MediaEncodingType"},{"refs":[{"id":"ref-for-dom-mediaencodingtype-record\u2460"}],"title":"3.1. \n        Capabilities Model\n      "}],"url":"#dom-mediaencodingtype-record"},
+"dom-mediaencodingtype-record": {"dfnID":"dom-mediaencodingtype-record","dfnText":"record","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediaencodingtype-record"}],"title":"2.1.3. MediaEncodingType"},{"refs":[{"id":"ref-for-dom-mediaencodingtype-record\u2460"}],"title":"3.1. Capabilities Model"}],"url":"#dom-mediaencodingtype-record"},
 "dom-mediaencodingtype-webrtc": {"dfnID":"dom-mediaencodingtype-webrtc","dfnText":"webrtc","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediaencodingtype-webrtc"}],"title":"2.1.3. MediaEncodingType"},{"refs":[{"id":"ref-for-dom-mediaencodingtype-webrtc\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-mediaencodingtype-webrtc\u2461"},{"id":"ref-for-dom-mediaencodingtype-webrtc\u2462"}],"title":"2.1.8. AudioConfiguration"},{"refs":[{"id":"ref-for-dom-mediaencodingtype-webrtc\u2463"}],"title":"2.3.4. Check MIME Type Support"}],"url":"#dom-mediaencodingtype-webrtc"},
 "dom-navigator-mediacapabilities": {"dfnID":"dom-navigator-mediacapabilities","dfnText":"mediaCapabilities","external":false,"refSections":[],"url":"#dom-navigator-mediacapabilities"},
 "dom-transferfunction-hlg": {"dfnID":"dom-transferfunction-hlg","dfnText":"hlg","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-transferfunction-hlg"}],"title":"2.1.7. TransferFunction"}],"url":"#dom-transferfunction-hlg"},
 "dom-transferfunction-pq": {"dfnID":"dom-transferfunction-pq","dfnText":"pq","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-transferfunction-pq"}],"title":"2.1.7. TransferFunction"}],"url":"#dom-transferfunction-pq"},
 "dom-transferfunction-srgb": {"dfnID":"dom-transferfunction-srgb","dfnText":"srgb","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-transferfunction-srgb"}],"title":"2.1.7. TransferFunction"}],"url":"#dom-transferfunction-srgb"},
 "dom-videoconfiguration-bitrate": {"dfnID":"dom-videoconfiguration-bitrate","dfnText":"bitrate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-bitrate"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-bitrate"},
-"dom-videoconfiguration-colorgamut": {"dfnID":"dom-videoconfiguration-colorgamut","dfnText":"colorGamut","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2461"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2462"}],"title":"3.2. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-colorgamut"},
+"dom-videoconfiguration-colorgamut": {"dfnID":"dom-videoconfiguration-colorgamut","dfnText":"colorGamut","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2461"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-videoconfiguration-colorgamut\u2462"}],"title":"3.2. Decoding/Encoding and Fingerprinting"}],"url":"#dom-videoconfiguration-colorgamut"},
 "dom-videoconfiguration-contenttype": {"dfnID":"dom-videoconfiguration-contenttype","dfnText":"contentType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2460"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2461"},{"id":"ref-for-dom-videoconfiguration-contenttype\u2462"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype\u2463"}],"title":"2.3.1. Create a MediaCapabilitiesEncodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-contenttype\u2464"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"}],"url":"#dom-videoconfiguration-contenttype"},
 "dom-videoconfiguration-framerate": {"dfnID":"dom-videoconfiguration-framerate","dfnText":"framerate","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-framerate"},{"id":"ref-for-dom-videoconfiguration-framerate\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-framerate"},
 "dom-videoconfiguration-hasalphachannel": {"dfnID":"dom-videoconfiguration-hasalphachannel","dfnText":"hasAlphaChannel","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hasalphachannel"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-hasalphachannel"},
-"dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype\u2460"}],"title":"3.2. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
+"dom-videoconfiguration-hdrmetadatatype": {"dfnID":"dom-videoconfiguration-hdrmetadatatype","dfnText":"hdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-hdrmetadatatype\u2460"}],"title":"3.2. Decoding/Encoding and Fingerprinting"}],"url":"#dom-videoconfiguration-hdrmetadatatype"},
 "dom-videoconfiguration-height": {"dfnID":"dom-videoconfiguration-height","dfnText":"height","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-height"},{"id":"ref-for-dom-videoconfiguration-height\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-height"},
 "dom-videoconfiguration-scalabilitymode": {"dfnID":"dom-videoconfiguration-scalabilitymode","dfnText":"scalabilityMode","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2460"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2461"},{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2462"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-scalabilitymode\u2463"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-videoconfiguration-scalabilitymode"},
 "dom-videoconfiguration-spatialscalability": {"dfnID":"dom-videoconfiguration-spatialscalability","dfnText":"spatialScalability","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-spatialscalability"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2460"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2461"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2462"},{"id":"ref-for-dom-videoconfiguration-spatialscalability\u2463"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-spatialscalability"},
-"dom-videoconfiguration-transferfunction": {"dfnID":"dom-videoconfiguration-transferfunction","dfnText":"transferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2461"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2462"}],"title":"3.2. \n        Decoding/Encoding and Fingerprinting\n      "}],"url":"#dom-videoconfiguration-transferfunction"},
+"dom-videoconfiguration-transferfunction": {"dfnID":"dom-videoconfiguration-transferfunction","dfnText":"transferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2460"}],"title":"2.3.2. Create a MediaCapabilitiesDecodingInfo"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2461"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-dom-videoconfiguration-transferfunction\u2462"}],"title":"3.2. Decoding/Encoding and Fingerprinting"}],"url":"#dom-videoconfiguration-transferfunction"},
 "dom-videoconfiguration-width": {"dfnID":"dom-videoconfiguration-width","dfnText":"width","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-videoconfiguration-width"},{"id":"ref-for-dom-videoconfiguration-width\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#dom-videoconfiguration-width"},
 "dom-workernavigator-mediacapabilities": {"dfnID":"dom-workernavigator-mediacapabilities","dfnText":"mediaCapabilities","external":false,"refSections":[],"url":"#dom-workernavigator-mediacapabilities"},
 "e14cb0ba": {"dfnID":"e14cb0ba","dfnText":"MediaKeysRequirement","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-mediakeysrequirement"},{"id":"ref-for-dom-mediakeysrequirement\u2460"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"https://w3c.github.io/encrypted-media/#dom-mediakeysrequirement"},
@@ -3101,8 +3100,8 @@ let dfnPanelData = {
 "e97a9688": {"dfnID":"e97a9688","dfnText":"unsigned long","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-unsigned-long"},{"id":"ref-for-idl-unsigned-long\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-idl-unsigned-long\u2461"}],"title":"2.1.8. AudioConfiguration"}],"url":"https://webidl.spec.whatwg.org/#idl-unsigned-long"},
 "enumdef-colorgamut": {"dfnID":"enumdef-colorgamut","dfnText":"ColorGamut","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-colorgamut"},{"id":"ref-for-enumdef-colorgamut\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#enumdef-colorgamut"},
 "enumdef-hdrmetadatatype": {"dfnID":"enumdef-hdrmetadatatype","dfnText":"HdrMetadataType","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-hdrmetadatatype"},{"id":"ref-for-enumdef-hdrmetadatatype\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-enumdef-hdrmetadatatype\u2461"}],"title":"2.1.5. HdrMetadataType"}],"url":"#enumdef-hdrmetadatatype"},
-"enumdef-mediadecodingtype": {"dfnID":"enumdef-mediadecodingtype","dfnText":"MediaDecodingType","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-mediadecodingtype"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediadecodingtype\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediadecodingtype\u2461"},{"id":"ref-for-enumdef-mediadecodingtype\u2462"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-enumdef-mediadecodingtype\u2463"}],"title":"3.1. \n        Capabilities Model\n      "}],"url":"#enumdef-mediadecodingtype"},
-"enumdef-mediaencodingtype": {"dfnID":"enumdef-mediaencodingtype","dfnText":"MediaEncodingType","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-mediaencodingtype"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediaencodingtype\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediaencodingtype\u2461"},{"id":"ref-for-enumdef-mediaencodingtype\u2462"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-enumdef-mediaencodingtype\u2463"}],"title":"3.1. \n        Capabilities Model\n      "}],"url":"#enumdef-mediaencodingtype"},
+"enumdef-mediadecodingtype": {"dfnID":"enumdef-mediadecodingtype","dfnText":"MediaDecodingType","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-mediadecodingtype"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediadecodingtype\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediadecodingtype\u2461"},{"id":"ref-for-enumdef-mediadecodingtype\u2462"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-enumdef-mediadecodingtype\u2463"}],"title":"3.1. Capabilities Model"}],"url":"#enumdef-mediadecodingtype"},
+"enumdef-mediaencodingtype": {"dfnID":"enumdef-mediaencodingtype","dfnText":"MediaEncodingType","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-mediaencodingtype"}],"title":"2.1.1. MediaConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediaencodingtype\u2460"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-enumdef-mediaencodingtype\u2461"},{"id":"ref-for-enumdef-mediaencodingtype\u2462"}],"title":"2.3.4. Check MIME Type Support"},{"refs":[{"id":"ref-for-enumdef-mediaencodingtype\u2463"}],"title":"3.1. Capabilities Model"}],"url":"#enumdef-mediaencodingtype"},
 "enumdef-transferfunction": {"dfnID":"enumdef-transferfunction","dfnText":"TransferFunction","external":false,"refSections":[{"refs":[{"id":"ref-for-enumdef-transferfunction"},{"id":"ref-for-enumdef-transferfunction\u2460"}],"title":"2.1.4. VideoConfiguration"}],"url":"#enumdef-transferfunction"},
 "f14b47b8": {"dfnID":"f14b47b8","dfnText":"unsigned long long","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-unsigned-long-long"}],"title":"2.1.4. VideoConfiguration"},{"refs":[{"id":"ref-for-idl-unsigned-long-long\u2460"}],"title":"2.1.8. AudioConfiguration"}],"url":"https://webidl.spec.whatwg.org/#idl-unsigned-long-long"},
 "fa431459": {"dfnID":"fa431459","dfnText":"requestMediaKeySystemAccess()","external":true,"refSections":[{"refs":[{"id":"ref-for-dom-navigator-requestmediakeysystemaccess"}],"title":"2.1.9. \n        MediaCapabilitiesKeySystemConfiguration\n      "}],"url":"https://w3c.github.io/encrypted-media/#dom-navigator-requestmediakeysystemaccess"},
