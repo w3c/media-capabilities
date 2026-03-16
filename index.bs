@@ -575,7 +575,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         {{MediaDecodingConfiguration}} for types {{media-source}} and {{file}}.
       </p>
     </section>
-  </section>
 
   <section>
       <h4 id='mediacapabilitieskeysystemconfiguration'>
@@ -662,6 +661,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       as described in [[!ENCRYPTED-MEDIA-DRAFT]].
     </p>
   </section>
+  </section>
 
   <section>
     <h3 id='media-capabilities-info'>Media Capabilities Information</h3>
@@ -735,6 +735,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       is the encoding configuration properties used to generate the
       {{MediaCapabilitiesEncodingInfo}}.
     </p>
+  </section>
 
     <section>
       <h3 id='info-algorithms'>Algorithms</h3>
