@@ -7,7 +7,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <meta content="Bikeshed version 0ef803fdf, updated Tue Jan 6 11:59:39 2026 -0800" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="9d29fdbe19a1444932c5989cf52ee7741b296587" name="revision">
+  <meta content="d2c11b7b11f6e5bfcbf493f9c88ccfe77454e5e4" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -742,7 +742,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">Media Capabilities</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-03-16">16 March 2026</time></p>
+    <time class="dt-updated" datetime="2026-03-17">17 March 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -2193,11 +2193,12 @@ based on the device’s display.</p>
 <c- o>&lt;</c->/script>
 </pre>
      </div>
-     <div class="example" id="example-08fadce2">
-      <a class="self-link" href="#example-08fadce2"></a>
+     <div class="example" id="example-0a98bae1">
+      <a class="self-link" href="#example-0a98bae1"></a>
         
 <pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
-  <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/H264;level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f'</c-><c- p>;</c->
+  <c- a>const</c-> contentType <c- o>=</c-> <c- t>'video/H264;level-asymmetry-allowed=1;'</c->
+    <c- o>+</c-> <c- t>'packetization-mode=1;profile-level-id=42e01f'</c-><c- p>;</c->
 
   <c- a>const</c-> configuration <c- o>=</c-> <c- p>{</c->
     type<c- o>:</c-> <c- t>'webrtc'</c-><c- p>,</c->
@@ -2221,6 +2222,55 @@ based on the device’s display.</p>
       console<c- p>.</c->error<c- p>(</c->err<c- p>,</c-> <c- t>' caused decodingInfo to reject'</c-><c- p>);</c->
     <c- p>});</c->
 <c- o>&lt;</c->/script>
+</pre>
+     </div>
+     <p>
+        The following example shows how to use <code class="idl"><a data-link-type="idl" href="#dom-mediacapabilities-decodinginfo" id="ref-for-dom-mediacapabilities-decodinginfo⑤">decodingInfo()</a></code> to query
+        media playback capabilities when using Encrypted Media Extensions
+        <a data-link-type="biblio" href="#biblio-encrypted-media" title="Encrypted Media Extensions">[ENCRYPTED-MEDIA]</a>.
+      </p>
+     <div class="example" id="example-9ade9ec2">
+      <a class="self-link" href="#example-9ade9ec2"></a>
+        
+<pre class="highlight"><c- o>&lt;</c->script<c- o>></c->
+  <c- a>const</c-> encryptedMediaConfig <c- o>=</c-> <c- p>{</c->
+    type<c- o>:</c-> <c- t>'media-source'</c-><c- p>,</c-> <c- c1>// or 'file'</c->
+    audio<c- o>:</c-> <c- p>{</c->
+      contentType<c- o>:</c-> <c- t>'audio/webm; codecs=opus'</c-><c- p>,</c->
+      channels<c- o>:</c-> <c- t>'2'</c-><c- p>,</c-> <c- c1>// audio channels used by the track</c->
+      bitrate<c- o>:</c-> <c- mf>132266</c-><c- p>,</c-> <c- c1>// number of bits used to encode a second of audio</c->
+      samplerate<c- o>:</c-> <c- mf>48000</c-> <c- c1>// number of samples of audio carried per second</c->
+    <c- p>},</c->
+    video<c- o>:</c-> <c- p>{</c->
+      contentType<c- o>:</c-> <c- t>'video/webm; codecs="vp09.00.10.08"'</c-><c- p>,</c->
+      width<c- o>:</c-> <c- mf>1920</c-><c- p>,</c->
+      height<c- o>:</c-> <c- mf>1080</c-><c- p>,</c->
+      bitrate<c- o>:</c-> <c- mf>2646242</c-><c- p>,</c-> <c- c1>// number of bits used to encode a second of video</c->
+      framerate<c- o>:</c-> <c- mf>25</c-> <c- c1>// number of frames used in one second</c->
+    <c- p>},</c->
+    keySystemConfiguration<c- o>:</c-> <c- p>{</c->
+      keySystem<c- o>:</c-> <c- t>'com.widevine.alpha'</c-><c- p>,</c->
+      videoRobustness<c- o>:</c-> <c- t>'SW_SECURE_DECODE'</c-> <c- c1>// Widevine L3</c->
+    <c- p>}</c->
+  <c- p>};</c->
+
+  navigator<c- p>.</c->mediaCapabilities<c- p>.</c->decodingInfo<c- p>(</c->encryptedMediaConfig<c- p>).</c->then<c- p>(</c->result <c- p>=></c-> <c- p>{</c->
+    <c- k>if</c-> <c- p>(</c-><c- o>!</c->result<c- p>.</c->supported<c- p>)</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'Argh! This encrypted media configuration is not supported.'</c-><c- p>);</c->
+      <c- k>return</c-><c- p>;</c->
+    <c- p>}</c->
+
+    <c- k>if</c-> <c- p>(</c-><c- o>!</c->result<c- p>.</c->keySystemAccess<c- p>)</c-> <c- p>{</c->
+      console<c- p>.</c->log<c- p>(</c-><c- t>'Argh! Encrypted media support is not available.'</c-><c- p>)</c->
+      <c- k>return</c-><c- p>;</c->
+    <c- p>}</c->
+
+    console<c- p>.</c->log<c- p>(</c-><c- t>'This encrypted media configuration is supported.\n'</c-> <c- o>+</c->
+                <c- t>'Playback should be'</c-> <c- o>+</c->
+                <c- p>(</c->result<c- p>.</c->smooth <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' smooth and'</c-> <c- o>+</c->
+                <c- p>(</c->result<c- p>.</c->powerEfficient <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' power efficient.'</c-><c- p>);</c->
+  <c- p>});</c->          
+  <c- o>&lt;</c->/script>
 </pre>
      </div>
     </section>
@@ -3052,7 +3102,7 @@ let dfnPanelData = {
 "dom-hdrmetadatatype-smptest2094-40": {"dfnID":"dom-hdrmetadatatype-smptest2094-40","dfnText":"smpteSt2094-40","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-hdrmetadatatype-smptest2094-40"}],"title":"2.1.5. HdrMetadataType"}],"url":"#dom-hdrmetadatatype-smptest2094-40"},
 "dom-keysystemtrackconfiguration-encryptionscheme": {"dfnID":"dom-keysystemtrackconfiguration-encryptionscheme","dfnText":"encryptionScheme","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-keysystemtrackconfiguration-encryptionscheme"}],"title":"2.1.10. KeySystemTrackConfiguration"}],"url":"#dom-keysystemtrackconfiguration-encryptionscheme"},
 "dom-keysystemtrackconfiguration-robustness": {"dfnID":"dom-keysystemtrackconfiguration-robustness","dfnText":"robustness","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-keysystemtrackconfiguration-robustness"}],"title":"2.1.10. KeySystemTrackConfiguration"}],"url":"#dom-keysystemtrackconfiguration-robustness"},
-"dom-mediacapabilities-decodinginfo": {"dfnID":"dom-mediacapabilities-decodinginfo","dfnText":"decodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilities-decodinginfo"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2460"}],"title":"2.5.2. decodingInfo() Method"},{"refs":[{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2461"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2462"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2463"}],"title":"4.1. Query playback capabilities with decodingInfo()"}],"url":"#dom-mediacapabilities-decodinginfo"},
+"dom-mediacapabilities-decodinginfo": {"dfnID":"dom-mediacapabilities-decodinginfo","dfnText":"decodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilities-decodinginfo"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2460"}],"title":"2.5.2. decodingInfo() Method"},{"refs":[{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2461"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2462"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2463"},{"id":"ref-for-dom-mediacapabilities-decodinginfo\u2464"}],"title":"4.1. Query playback capabilities with decodingInfo()"}],"url":"#dom-mediacapabilities-decodinginfo"},
 "dom-mediacapabilities-decodinginfo-configuration-configuration": {"dfnID":"dom-mediacapabilities-decodinginfo-configuration-configuration","dfnText":"configuration","external":false,"refSections":[],"url":"#dom-mediacapabilities-decodinginfo-configuration-configuration"},
 "dom-mediacapabilities-encodinginfo": {"dfnID":"dom-mediacapabilities-encodinginfo","dfnText":"encodingInfo","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-mediacapabilities-encodinginfo"}],"title":"2.5.3. encodingInfo() Method"},{"refs":[{"id":"ref-for-dom-mediacapabilities-encodinginfo\u2460"},{"id":"ref-for-dom-mediacapabilities-encodinginfo\u2461"}],"title":"4.2. Query recording capabilities with encodingInfo()"}],"url":"#dom-mediacapabilities-encodinginfo"},
 "dom-mediacapabilities-encodinginfo-configuration-configuration": {"dfnID":"dom-mediacapabilities-encodinginfo-configuration-configuration","dfnText":"configuration","external":false,"refSections":[],"url":"#dom-mediacapabilities-encodinginfo-configuration-configuration"},
