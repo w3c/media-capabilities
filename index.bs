@@ -377,7 +377,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         using frames of a resolution different than the current resolution as
         dependencies. If absent, {{VideoConfiguration/spatialScalability}} defaults to
         <code>false</code>. If {{VideoConfiguration/spatialScalability}} is set to <code>true</code>,
-        the decoder can decode any {{VideoConfiguration/scalabilityMode}} 
+        the decoder can decode any {{VideoConfiguration/scalabilityMode}}
         that the encoder can encode for the configured codec. If {{VideoConfiguration/spatialScalability}}
         is set to <code>false</code>, the decoder cannot decode spatial scalability
         modes, but can decode all other {{VideoConfiguration/scalabilityMode}} values
@@ -1004,7 +1004,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             If |encodingOrDecodingType| is {{MediaEncodingType/webrtc}} ({{MediaEncodingType}})
             or {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) and |mimeType| is not one
             that is used with RTP (as defined in the specifications of the corresponding RTP
-            payload formats [[IANA-MEDIA-TYPES]] [[RFC6838]]), return <code>unsupported</code>.
+            payload formats [[IANA-MEDIA-TYPES]] [[RFC4855]] [[RFC6838]]), return <code>unsupported</code>.
             <p class="note">
               The codec name is typically specified as subtype and zero or more
               parameters may be present depending on the codec.
@@ -1336,7 +1336,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         scalability, applications make use of external servers, such as
         selective forwarding units or conferencing bridges. These servers
         negotiate media parameters with participants, ensuring consistency
-        across senders and receivers. This is more scalable than negotiation 
+        across senders and receivers. This is more scalable than negotiation
         between user agents, which would require N * (N -1) negotiations.
         Typically senders encode with a single codec, and conferencing
         servers do not support transcoding, so a user agent cannot simply
@@ -1530,23 +1530,23 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       videoRobustness: 'SW_SECURE_DECODE' // Widevine L3
     }
   };
-  
+
   navigator.mediaCapabilities.decodingInfo(encryptedMediaConfig).then(result => {
     if (!result.supported) {
       console.log('Argh! This encrypted media configuration is not supported.');
       return;
     }
-  
+
     if (!result.keySystemAccess) {
       console.log('Argh! Encrypted media support is not available.')
       return;
     }
-  
+
     console.log('This encrypted media configuration is supported.\n' +
                 'Playback should be' +
                 (result.smooth ? '' : ' NOT') + ' smooth and' +
                 (result.powerEfficient ? '' : ' NOT') + ' power efficient.');
-  });          
+  });
   &lt;/script>
         </pre>
       </div>
