@@ -257,7 +257,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
 
       <p>
-        To check if a {{VideoConfiguration}} <var>configuration</var> is a
+        To check if a {{VideoConfiguration}} |configuration| is a
         <dfn>valid video configuration</dfn>, the following steps MUST be run:
       </p>
       <ol>
@@ -362,7 +362,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         {{VideoConfiguration/contentType}} is assumed (i.e., the mode you get if
         you don't specify one via {{RTCRtpSender/setParameters()}}).
         scalabilityMode is only applicable to {{MediaEncodingConfiguration}} for
-        type {{MediaEncodingType/webrtc}}.
+        type {{MediaEncodingType/"webrtc"}}.
       </p>
 
       <p>
@@ -383,7 +383,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         modes, but can decode all other {{VideoConfiguration/scalabilityMode}} values
         that the encoder can encode for the configured codec. {{VideoConfiguration/spatialScalability}} is only
         applicable to {{MediaDecodingConfiguration}} for types {{media-source}},
-        {{file}}, and {{MediaDecodingType/webrtc}}.
+        {{file}}, and {{MediaDecodingType/"webrtc"}}.
       </p>
     </section>
 
@@ -528,8 +528,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         The <dfn for='AudioConfiguration' dict-member>channels</dfn> member
         represents the audio channels used by the audio track. channels is only
         applicable to the decoding types {{media-source}}, {{file}}, and
-        {{MediaDecodingType/webrtc}} and the encoding type
-        {{MediaEncodingType/webrtc}}.
+        {{MediaDecodingType/"webrtc"}} and the encoding type
+        {{MediaEncodingType/"webrtc"}}.
       </p>
 
       <p class='issue'>
@@ -550,8 +550,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         member represents the sample rate of the audio track. The sample rate
         is the number of samples of audio carried per second. samplerate is only
         applicable to the decoding types {{media-source}}, {{file}}, and
-        {{MediaDecodingType/webrtc}} and the encoding type
-        {{MediaEncodingType/webrtc}}.
+        {{MediaDecodingType/"webrtc"}} and the encoding type
+        {{MediaEncodingType/"webrtc"}}.
       </p>
 
       <p class='note'>
@@ -717,8 +717,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     </p>
 
     <p class='note'>
-      Authors can use {{MediaCapabilitiesInfo/webrtc}} to set up their
-      preferred WebRTC codecs using the {{RTCRtpTransceiver/setCodecPreferences}} API.
+      Authors can use {{MediaCapabilitiesInfo/"webrtc"}} to set up their
+      preferred WebRTC codecs {{RTCRtpTransceiver}}'s
+      {{RTCRtpTransceiver/setCodecPreferences()}} method.
     </p>
 
     <p>
@@ -757,7 +758,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <h4 id='create-media-capabilities-encoding-info'><dfn abstract-op noexport lt="Create a MediaCapabilitiesEncodingInfo|create a MediaCapabilitiesEncodingInfo">Create a MediaCapabilitiesEncodingInfo</dfn></h4>
         <p>
           To [$create a MediaCapabilitiesEncodingInfo$], given a
-          {{MediaEncodingConfiguration}} <var>configuration</var>, run the
+          {{MediaEncodingConfiguration}} |configuration|, run the
           following steps. They return a {{MediaCapabilitiesEncodingInfo}}:
         </p>
         <ol>
@@ -822,33 +823,32 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           </li>
           <li>
             If the user agent can encode the media represented by
-            <var>configuration</var> at the indicated framerate, set
+            |configuration| at the indicated framerate, set
             {{MediaCapabilitiesInfo/smooth}} to <code>true</code>. Otherwise
             set it to <code>false</code>.
           </li>
           <li>
             If the user agent can encode the media represented by
-            <var>configuration</var> in a [=power efficient=] manner, set
+            |configuration| in a [=power efficient=] manner, set
             {{MediaCapabilitiesInfo/powerEfficient}} to <code>true</code>.
             Otherwise set it to <code>false</code>.
           </li>
           <li>
-            If the user agent can encode the media represented by
-            <var>configuration</var> and <var>configuration</var> has a
-            {{MediaEncodingConfiguration/type}} of {{MediaEncodingType/webrtc}}:
+            If |configuration| has a {{MediaEncodingConfiguration/type}} of
+            {{MediaEncodingType/"webrtc"}}:
             <ol>
-              <li>Let |webrtc| be a
+              <li>Let |capabilities| be a
               {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
               <li>If {{MediaConfiguration/audio}} is represented by
-              <var>configuration</var>, set <var>webrtc</var>'s
+              |configuration|, set <var>webrtc</var>'s
               {{WebRTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}} dictionary
               representing the supported audio configuration.</li>
               <li>If {{MediaConfiguration/video}} is represented by
-              <var>configuration</var>, set <var>webrtc</var>'s
+              |configuration|, set <var>webrtc</var>'s
               {{WebRTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}} dictionary
               representing the supported video configuration.</li>
               <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
-              to <var>webrtc</var>.</li>
+              to |capabilities|.</li>
             </ol>
           </li>
           <li>
@@ -877,7 +877,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             value in {{MediaCapabilitiesDecodingInfo/configuration}}.
           </li>
           <li>
-            If <code>configuration.keySystemConfiguration</code> [=map/exists=]:
+            If |configuration|'s {{MediaDecodingConfiguration/keySystemConfiguration}}
+              [=map/exists=]::
             <ol>
               <li>
                 Set {{MediaCapabilitiesDecodingInfo/keySystemAccess}}
@@ -969,22 +970,21 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <code>true</code>. Otherwise set it to <code>false</code>.
           </li>
           <li>
-            If the user agent can decode the media represented by
-            <var>configuration</var> and <var>configuration</var> has a
-            {{MediaDecodingConfiguration/type}} of {{MediaDecodingType/webrtc}}:
+            If |configuration| has a {{MediaDecodingConfiguration/type}} of
+            {{MediaDecodingType/"webrtc"}}:
             <ol>
-              <li>Let <var>webrtc</var> be a
+              <li>Let |capabilities| be a
               {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
               <li>If {{MediaConfiguration/audio}} is represented by
-              <var>configuration</var>, set <var>webrtc</var>'s
+              |configuration|, set <var>webrtc</var>'s
               {{WebRTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}}
               dictionary representing the supported audio configuration.</li>
               <li>If {{MediaConfiguration/video}} is represented by
-              <var>configuration</var>, set <var>webrtc</var>'s
+              |configuration|, set <var>webrtc</var>'s
               {{WebRTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}}
               dictionary representing the supported video configuration.</li>
               <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
-              to <var>webrtc</var>.</li>
+              to |capabilities|.</li>
             </ol>
           </li>
           <li>
@@ -1052,8 +1052,8 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </p>
         <ol>
           <li>
-            If |encodingOrDecodingType| is {{MediaEncodingType/webrtc}} ({{MediaEncodingType}})
-            or {{MediaDecodingType/webrtc}} ({{MediaDecodingType}}) and |mimeType| is not one
+            If |encodingOrDecodingType| is {{MediaEncodingType/"webrtc"}} ({{MediaEncodingType}})
+            or {{MediaDecodingType/"webrtc"}} ({{MediaDecodingType}}) and |mimeType| is not one
             that is used with RTP (as defined in the specifications of the corresponding RTP
             payload formats [[IANA-MEDIA-TYPES]] [[RFC6838]]), return <code>unsupported</code>.
             <p class="note">
@@ -1269,12 +1269,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     </p>
     <ol>
       <li>
-        If <var>configuration</var> is not a <a>valid
+        If |configuration| is not a <a>valid
         MediaDecodingConfiguration</a>, return a Promise rejected with a
         newly created {{TypeError}}.
       </li>
       <li>
-        If <code>configuration.keySystemConfiguration</code> [=map/exists=]:
+        If |configuration|'s {{MediaDecodingConfiguration/keySystemConfiguration}}
+          [=map/exists=]:
         <ol>
           <li>
             If the [=/global object=] is of type {{WorkerGlobalScope}},
@@ -1296,7 +1297,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         <ol>
           <li>
             Run the [$Create a MediaCapabilitiesDecodingInfo$] algorithm
-            with <var>configuration</var>.
+            with |configuration|.
           </li>
           <li>
             <a>Queue a Media Capabilities task</a> to resolve <var>p</var>
@@ -1324,7 +1325,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     </p>
     <ol>
       <li>
-        If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
+        If |configuration| is not a <a>valid MediaConfiguration</a>,
         return a Promise rejected with a newly created {{TypeError}}.
       </li>
       <li>
@@ -1335,7 +1336,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           <ol>
             <li>
               Run the [$Create a MediaCapabilitiesEncodingInfo$]
-              algorithm with <var>configuration</var>.
+              algorithm with |configuration|.
             </li>
             <li>
              <a>Queue a Media Capabilities task</a> to resolve <var>p</var> with
@@ -1368,9 +1369,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </h3>
       <p>
         This specification supports {{MediaDecodingType}} values of {{file}},
-        {{media-source}} or {{MediaDecodingType/webrtc}} as well as
+        {{media-source}} or {{MediaDecodingType/"webrtc"}} as well as
         {{MediaEncodingType}} values of {{record}} and
-        {{MediaDecodingType/webrtc}}.
+        {{MediaDecodingType/"webrtc"}}.
       </p>
       <p>
         In realtime communications supported by [[webrtc]], media is
