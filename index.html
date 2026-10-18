@@ -5,9 +5,9 @@
   <title>Media Capabilities</title>
   <meta content="ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
-  <meta content="Bikeshed version e74aa0952, updated Fri Jun 5 23:16:28 2026 +0000" name="generator">
+  <meta content="Bikeshed version 49e9fdd4f, updated Tue Oct 13 14:27:53 2026 -0700" name="generator">
   <link href="https://www.w3.org/TR/media-capabilities/" rel="canonical">
-  <meta content="dbc6ff76890a4bce34c6ea5b215fe409a1ef48ee" name="revision">
+  <meta content="f70a078df5eec5721b32273326d48f0b4901e514" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -773,7 +773,7 @@ var[data-var-color="6"] { --var-vg: #FFBCF2; }
 </p>
    <h1 class="no-ref p-name" id="title">Media Capabilities</h1>
    <p id="w3c-state"><a href="https://www.w3.org/standards/types/#ED">Editor’s Draft</a>,
-    <time class="dt-updated" datetime="2026-06-09">9 June 2026</time></p>
+    <time class="dt-updated" datetime="2026-10-18">18 October 2026</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -1196,7 +1196,7 @@ based on the device’s display.</p>
         using frames of a resolution different than the current resolution as
         dependencies. If absent, <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability①">spatialScalability</a></code> defaults to
         <code>false</code>. If <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability②">spatialScalability</a></code> is set to <code>true</code>,
-        the decoder can decode any <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code> 
+        the decoder can decode any <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode②">scalabilityMode</a></code>
         that the encoder can encode for the configured codec. If <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-spatialscalability" id="ref-for-dom-videoconfiguration-spatialscalability③">spatialScalability</a></code>
         is set to <code>false</code>, the decoder cannot decode spatial scalability
         modes, but can decode all other <code class="idl"><a data-link-type="idl" href="#dom-videoconfiguration-scalabilitymode" id="ref-for-dom-videoconfiguration-scalabilitymode③">scalabilityMode</a></code> values
@@ -1772,7 +1772,7 @@ based on the device’s display.</p>
             If <var>encodingOrDecodingType</var> is <code class="idl"><a data-link-type="idl" href="#dom-mediaencodingtype-webrtc" id="ref-for-dom-mediaencodingtype-webrtc④">webrtc</a></code> (<code class="idl"><a data-link-type="idl" href="#enumdef-mediaencodingtype" id="ref-for-enumdef-mediaencodingtype③">MediaEncodingType</a></code>)
             or <code class="idl"><a data-link-type="idl" href="#dom-mediadecodingtype-webrtc" id="ref-for-dom-mediadecodingtype-webrtc④">webrtc</a></code> (<code class="idl"><a data-link-type="idl" href="#enumdef-mediadecodingtype" id="ref-for-enumdef-mediadecodingtype③">MediaDecodingType</a></code>) and <var>mimeType</var> is not one
             that is used with RTP (as defined in the specifications of the corresponding RTP
-            payload formats <a data-link-type="biblio" href="#biblio-iana-media-types" title="Media Types">[IANA-MEDIA-TYPES]</a> <a data-link-type="biblio" href="#biblio-rfc6838" title="Media Type Specifications and Registration Procedures">[RFC6838]</a>), return <code>unsupported</code>.
+            payload formats <a data-link-type="biblio" href="#biblio-iana-media-types" title="Media Types">[IANA-MEDIA-TYPES]</a> <a data-link-type="biblio" href="#biblio-rfc4855" title="Media Type Registration of RTP Payload Formats">[RFC4855]</a>), return <code>unsupported</code>.
             
         <p class="note" role="note">
               The codec name is typically specified as subtype and zero or more
@@ -2095,7 +2095,7 @@ based on the device’s display.</p>
         scalability, applications make use of external servers, such as
         selective forwarding units or conferencing bridges. These servers
         negotiate media parameters with participants, ensuring consistency
-        across senders and receivers. This is more scalable than negotiation 
+        across senders and receivers. This is more scalable than negotiation
         between user agents, which would require N * (N -1) negotiations.
         Typically senders encode with a single codec, and conferencing
         servers do not support transcoding, so a user agent cannot simply
@@ -2300,7 +2300,7 @@ based on the device’s display.</p>
                 <c- t>'Playback should be'</c-> <c- o>+</c->
                 <c- p>(</c->result<c- p>.</c->smooth <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' smooth and'</c-> <c- o>+</c->
                 <c- p>(</c->result<c- p>.</c->powerEfficient <c- o>?</c-> <c- t>''</c-> <c- o>:</c-> <c- t>' NOT'</c-><c- p>)</c-> <c- o>+</c-> <c- t>' power efficient.'</c-><c- p>);</c->
-  <c- p>});</c->          
+  <c- p>});</c->
   <c- o>&lt;</c->/script>
 </pre>
      </div>
@@ -2691,7 +2691,7 @@ based on the device’s display.</p>
    <dt id="biblio-ecmascript">[ECMASCRIPT]
    <dd><a href="https://tc39.es/ecma262/multipage/"><cite>ECMAScript Language Specification</cite></a>. URL: <a href="https://tc39.es/ecma262/multipage/">https://tc39.es/ecma262/multipage/</a>
    <dt id="biblio-encrypted-media">[ENCRYPTED-MEDIA]
-   <dd>Joey Parrish; Greg Freedman. <a href="https://w3c.github.io/encrypted-media/"><cite>Encrypted Media Extensions</cite></a>. URL: <a href="https://w3c.github.io/encrypted-media/">https://w3c.github.io/encrypted-media/</a>
+   <dd>Xiaohan Wang; Greg Freedman. <a href="https://w3c.github.io/encrypted-media/"><cite>Encrypted Media Extensions</cite></a>. URL: <a href="https://w3c.github.io/encrypted-media/">https://w3c.github.io/encrypted-media/</a>
    <dt id="biblio-encrypted-media-draft">[ENCRYPTED-MEDIA-DRAFT]
    <dd><a href="https://w3c.github.io/encrypted-media"><cite>Encrypted Media Extensions</cite></a>. 13 December 2019. URL: <a href="https://w3c.github.io/encrypted-media">https://w3c.github.io/encrypted-media</a>
    <dt id="biblio-html">[HTML]
@@ -2723,12 +2723,12 @@ based on the device’s display.</p>
    <dd><a href="https://www.iana.org/assignments/media-types/"><cite>Media Types</cite></a>. URL: <a href="https://www.iana.org/assignments/media-types/">https://www.iana.org/assignments/media-types/</a>
    <dt id="biblio-mediastream-recording">[MEDIASTREAM-RECORDING]
    <dd>Miguel Casas-sanchez. <a href="https://w3c.github.io/mediacapture-record/"><cite>MediaStream Recording</cite></a>. URL: <a href="https://w3c.github.io/mediacapture-record/">https://w3c.github.io/mediacapture-record/</a>
-   <dt id="biblio-rfc6838">[RFC6838]
-   <dd>N. Freed; J. Klensin; T. Hansen. <a href="https://www.rfc-editor.org/rfc/rfc6838"><cite>Media Type Specifications and Registration Procedures</cite></a>. January 2013. Best Current Practice. URL: <a href="https://www.rfc-editor.org/rfc/rfc6838">https://www.rfc-editor.org/rfc/rfc6838</a>
+   <dt id="biblio-rfc4855">[RFC4855]
+   <dd>S. Casner. <a href="https://www.rfc-editor.org/info/rfc4855/"><cite>Media Type Registration of RTP Payload Formats</cite></a>. February 2007. Proposed Standard. URL: <a href="https://www.rfc-editor.org/info/rfc4855/">https://www.rfc-editor.org/info/rfc4855/</a>
    <dt id="biblio-rfc9110">[RFC9110]
    <dd>R. Fielding, Ed.; M. Nottingham, Ed.; J. Reschke, Ed.. <a href="https://httpwg.org/specs/rfc9110.html"><cite>HTTP Semantics</cite></a>. June 2022. Internet Standard. URL: <a href="https://httpwg.org/specs/rfc9110.html">https://httpwg.org/specs/rfc9110.html</a>
    <dt id="biblio-webrtc-svc">[WEBRTC-SVC]
-   <dd>Bernard Aboba. <a href="https://w3c.github.io/webrtc-svc/"><cite>Scalable Video Coding (SVC) Extension for WebRTC</cite></a>. URL: <a href="https://w3c.github.io/webrtc-svc/">https://w3c.github.io/webrtc-svc/</a>
+   <dd>Henrik Boström. <a href="https://w3c.github.io/webrtc-svc/"><cite>Scalable Video Coding (SVC) Extension for WebRTC</cite></a>. URL: <a href="https://w3c.github.io/webrtc-svc/">https://w3c.github.io/webrtc-svc/</a>
   </dl>
   <h2 class="heading no-num no-ref settled" id="idl-index"><span class="content">IDL Index</span><a class="self-link" href="#idl-index"></a></h2>
 <pre class="def highlight idl"><c- b>dictionary</c-> <a href="#dictdef-mediaconfiguration"><code><c- g>MediaConfiguration</c-></code></a> {
