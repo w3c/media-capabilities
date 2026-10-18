@@ -1514,7 +1514,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 console.log('Decoding of ' + contentType + ' is'
                   + (result.supported ? '' : ' NOT') + ' supported,'
                   + (result.smooth ? '' : ' NOT') + ' smooth and'
-                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient'
+                  + ', and the RTCMediaCapabilitiesInfo is '
+                  + (result.webrtc ? result.webrtc : 'unknown');
               })
               .catch((err) => {
                 console.error(err, ' caused decodingInfo to reject');
@@ -1545,7 +1547,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 console.log('Decoding of ' + contentType + ' is'
                   + (result.supported ? '' : ' NOT') + ' supported,'
                   + (result.smooth ? '' : ' NOT') + ' smooth and'
-                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient'
+                  + ', and the RTCMediaCapabilitiesInfo is '
+                  + (result.webrtc ? result.webrtc : 'unknown');
               })
               .catch((err) => {
                 console.error(err, ' caused decodingInfo to reject');
@@ -1634,7 +1638,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 console.log(contentType + ' is:'
                   + (result.supported ? '' : ' NOT') + ' supported,'
                   + (result.smooth ? '' : ' NOT') + ' smooth and'
-                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient');
+                  + (result.powerEfficient ? '' : ' NOT') + ' power efficient'
+                  + ', and the RTCMediaCapabilitiesInfo is '
+                  + (result.webrtc ? result.webrtc : 'unknown');
               })
               .catch((err) => {
                 console.error(err, ' caused encodingInfo to reject');
