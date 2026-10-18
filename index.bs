@@ -671,10 +671,10 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         required boolean supported;
         required boolean smooth;
         required boolean powerEfficient;
-        WebRTCMediaCapabilitiesInfo webrtc;
+        RTCMediaCapabilitiesInfo webrtc;
       };
 
-      dictionary WebRTCMediaCapabilitiesInfo {
+      dictionary RTCMediaCapabilitiesInfo {
         RTCRtpCodec audio;
         RTCRtpCodec video;
       };
@@ -700,7 +700,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       for='MediaCapabilitiesInfo'>powerEfficient</dfn> fields which are
       booleans, and an associated optional <dfn dict-member
       for='MediaCapabilitiesInfo'>webrtc</dfn> of type
-      {{WebRTCMediaCapabilitiesInfo}}.
+      {{RTCMediaCapabilitiesInfo}}.
     </p>
 
     <p>
@@ -838,14 +838,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             {{MediaEncodingType/"webrtc"}}:
             <ol>
               <li>Let |capabilities| be a
-              {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
+              {{RTCMediaCapabilitiesInfo}} dictionary.</li>
               <li>If {{MediaConfiguration/audio}} is represented by
               |configuration|, set <var>webrtc</var>'s
-              {{WebRTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}} dictionary
+              {{RTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}} dictionary
               representing the supported audio configuration.</li>
               <li>If {{MediaConfiguration/video}} is represented by
               |configuration|, set <var>webrtc</var>'s
-              {{WebRTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}} dictionary
+              {{RTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}} dictionary
               representing the supported video configuration.</li>
               <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
               to |capabilities|.</li>
@@ -974,14 +974,14 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             {{MediaDecodingType/"webrtc"}}:
             <ol>
               <li>Let |capabilities| be a
-              {{WebRTCMediaCapabilitiesInfo}} dictionary.</li>
+              {{RTCMediaCapabilitiesInfo}} dictionary.</li>
               <li>If {{MediaConfiguration/audio}} is represented by
               |configuration|, set <var>webrtc</var>'s
-              {{WebRTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}}
+              {{RTCMediaCapabilitiesInfo/audio}} to a {{RTCRtpCodec}}
               dictionary representing the supported audio configuration.</li>
               <li>If {{MediaConfiguration/video}} is represented by
               |configuration|, set <var>webrtc</var>'s
-              {{WebRTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}}
+              {{RTCMediaCapabilitiesInfo/video}} to a {{RTCRtpCodec}}
               dictionary representing the supported video configuration.</li>
               <li>Set <var>info</var>'s {{MediaCapabilitiesInfo/webrtc}}
               to |capabilities|.</li>
