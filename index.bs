@@ -133,29 +133,32 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       </p>
       <p>
         For a {{MediaConfiguration}} to be a <dfn>valid
-        MediaConfiguration</dfn>, all of the following conditions MUST be true:
+        MediaConfiguration</dfn> for a {{MediaDecodingType}} or
+        {{MediaEncodingType}} <var>encodingOrDecodingType</var>, all of the
+        following conditions MUST be true:
       </p>
       <ol>
         <li>
           <code>audio</code> and/or <code>video</code> MUST [=map/exist=].
         </li>
         <li>
-          <code>audio</code> MUST be a <a>valid audio configuration</a> if
-          it [=map/exists=].
+          <code>audio</code> MUST be a <a>valid audio configuration</a> for
+          <var>encodingOrDecodingType</var> if it [=map/exists=].
         </li>
         <li>
-          <code>video</code> MUST be a <a>valid video configuration</a> if
-          it [=map/exists=].
+          <code>video</code> MUST be a <a>valid video configuration</a> for
+          <var>encodingOrDecodingType</var> if it [=map/exists=].
         </li>
       </ol>
       <p>
-        For a {{MediaDecodingConfiguration}} to be a <dfn>valid
-        MediaDecodingConfiguration</dfn>, all of the following conditions MUST
-        be true:
+        For a {{MediaDecodingConfiguration}} <var>configuration</var> to be a
+        <dfn>valid MediaDecodingConfiguration</dfn>, all of the following
+        conditions MUST be true:
       </p>
       <ol>
         <li>
-          It MUST be a <a>valid MediaConfiguration</a>.
+          It MUST be a <a>valid MediaConfiguration</a> for
+          <code>configuration.type</code>.
         </li>
         <li>
           If <code>keySystemConfiguration</code> [=map/exists=]:
@@ -258,7 +261,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         To check if a {{VideoConfiguration}} <var>configuration</var> is a
-        <dfn>valid video configuration</dfn>, the following steps MUST be run:
+        <dfn>valid video configuration</dfn> for a {{MediaDecodingType}} or
+        {{MediaEncodingType}} <var>encodingOrDecodingType</var>, the following
+        steps MUST be run:
       </p>
       <ol>
         <li>
@@ -280,7 +285,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </li>
         <li>
           Return the result of running [$check MIME type validity$] with
-          |mimeType| and <code>video</code>.
+          |mimeType|, <code>video</code>, and <var>encodingOrDecodingType</var>.
         </li>
       </ol>
 
@@ -508,7 +513,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
 
       <p>
         To check if a {{AudioConfiguration}} |configuration| is a
-        <dfn>valid audio configuration</dfn>, the following steps MUST be run:
+        <dfn>valid audio configuration</dfn> for a {{MediaDecodingType}} or
+        {{MediaEncodingType}} <var>encodingOrDecodingType</var>, the following
+        steps MUST be run:
       </p>
       <ol>
         <li>
@@ -520,7 +527,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
         </li>
         <li>
           Return the result of running [$check MIME type validity$] with
-          |mimeType| and <code>audio</code>.
+          |mimeType|, <code>audio</code>, and <var>encodingOrDecodingType</var>.
         </li>
       </ol>
 
@@ -945,13 +952,35 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
       <section algorithm>
         <h4 id='check-mime-type-validity'><dfn abstract-op noexport lt="Check MIME Type Validity|check MIME type validity">Check MIME Type Validity</dfn></h4>
         <p>
-          To [$check MIME type validity$] given a [=MIME type record=] |mimeType| and
-          a string |media|, run the following steps:
+          To [$check MIME type validity$] given a [=MIME type record=] |mimeType|,
+          a string |media|, and a {{MediaDecodingType}} or {{MediaEncodingType}}
+          |encodingOrDecodingType|, run the following steps:
         </p>
         <ol>
           <li>
              If the type of |mimeType| per [[RFC9110]] is neither |media| nor
              <code>application</code>, return <code>false</code>.
+          </li>
+          <li>
+            If |encodingOrDecodingType| is {{MediaEncodingType/webrtc}}
+            ({{MediaEncodingType}}) or {{MediaDecodingType/webrtc}}
+            ({{MediaDecodingType}}):
+            <ol>
+              <li>
+                If the <code>parameters</code> member of |mimeType| contains a
+                key named "codecs", return <code>false</code>.
+              </li>
+              <li>
+                Return <code>true</code>.
+              </li>
+            </ol>
+            <p class="note">
+              RTP payload formats [[RFC4855]] identify a single codec by
+              subtype, so the "codecs" parameter is not used. Any other
+              parameters present represent fmtp-style configuration for that
+              codec; the user agent decides which it honors when
+              [$check MIME type support|checking MIME type support$].
+            </p>
           </li>
           <li>
             If the combined <code>type</code> and <code>subtype</code> members
@@ -982,9 +1011,6 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             Return <code>true</code>.
           </li>
         </ol>
-
-        Issue(238): Does this logic apply to <code>webrtc</code>?
-
       </section>
 
       <section algorithm>
@@ -1274,8 +1300,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
     </p>
     <ol>
       <li>
-        If <var>configuration</var> is not a <a>valid MediaConfiguration</a>,
-        return a Promise rejected with a newly created {{TypeError}}.
+        If <var>configuration</var> is not a <a>valid MediaConfiguration</a>
+        for <code>configuration.type</code>, return a Promise rejected with a
+        newly created {{TypeError}}.
       </li>
       <li>
         Let <var>p</var> be a new Promise.
