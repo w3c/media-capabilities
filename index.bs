@@ -767,13 +767,13 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <ol>
               <li>
                 Let |videoMimeType| be the result of running
-                [=parse a MIME type=] with |configuration|'s
+                [=parse a MIME type=] with |configuration|'s {{MediaConfiguration/video}}'s
                 {{VideoConfiguration/contentType}}.
               </li>
               <li>
                 Set |videoSupported| to the result of running
                 [$check MIME type support$] with
-                |videoMimeType| |configuration|'s
+                |videoMimeType| and |configuration|'s
                 {{MediaEncodingConfiguration/type}}.
               </li>
             </ol>
@@ -787,12 +787,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <ol>
               <li>
                 Let |audioMimeType| be the result of running
-                [=parse a MIME type=] with |configuration|'s
+                [=parse a MIME type=] with |configuration|'s {{MediaConfiguration/audio}}'s
                 {{AudioConfiguration/contentType}}.
               </li>
               <li>
                 Set |audioSupported| to the result of running
-                [$check MIME type support$] with |audioMimeType|
+                [$check MIME type support$] with |audioMimeType| and
                 |configuration|'s {{MediaEncodingConfiguration/type}}.
               </li>
             </ol>
@@ -881,15 +881,17 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <ol>
                   <li>
                     Let |videoMimeType| be the result of running
-                    [=parse a MIME type=] with |configuration|'s
+                    [=parse a MIME type=] with |configuration|'s {{MediaConfiguration/video}}'s
                     {{VideoConfiguration/contentType}}.
                   </li>
                   <li>
-                    Set |videoSupported| be the result of running
+                    Set |videoSupported| to the result of running
                     [$check MIME type support$] with |videoMimeType|,
                     |configuration|'s {{MediaDecodingConfiguration/type}},
-                    |configuration|'s {{VideoConfiguration/colorGamut}},
-                    and |configuration|'s {{VideoConfiguration/transferFunction}}.
+                    with the optional <var ignore>colorGamut</var> argument set to
+                    |configuration|'s {{MediaConfiguration/video}}'s {{VideoConfiguration/colorGamut}} if present,
+                    and the optional <var ignore>transferFunction</var> argument set to
+                    |configuration|'s {{MediaConfiguration/video}}'s {{VideoConfiguration/transferFunction}} if present.
                   </li>
                 </ol>
               </li>
@@ -902,12 +904,12 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
                 <ol>
                   <li>
                     Let |audioMimeType| be the result of running
-                    [=parse a MIME type=] with |configuration|'s
+                    [=parse a MIME type=] with |configuration|'s {{MediaConfiguration/audio}}'s
                     {{AudioConfiguration/contentType}}.
                   </li>
                   <li>
                     Set |audioSupported| to the result of running
-                    [$check MIME type support$] with |audioMimeType|
+                    [$check MIME type support$] with |audioMimeType| and
                     |configuration|'s {{MediaDecodingConfiguration/type}}.
                   </li>
                 </ol>
