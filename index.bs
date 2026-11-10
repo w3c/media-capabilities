@@ -1064,7 +1064,9 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
           </li>
           <ol>
             <li>
-              Set the {{MediaKeySystemConfiguration/initDataTypes}} attribute to a sequence containing
+              If <code>config.keySystemConfiguration.initDataType</code> is the empty string,
+              set the {{MediaKeySystemConfiguration/initDataTypes}} member to an empty sequence.
+              Otherwise, set it to a sequence containing
               <code>config.keySystemConfiguration.initDataType</code>.
             </li>
             <li>
@@ -1073,7 +1075,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             </li>
             <li>
               Set the {{MediaKeySystemConfiguration/persistentState}} attribute to
-              <code>config.keySystemConfiguration.peristentState</code>.
+              <code>config.keySystemConfiguration.persistentState</code>.
             </li>
             <li>
               Set the {{MediaKeySystemConfiguration/sessionTypes}} attribute to
@@ -1149,7 +1151,7 @@ spec: mimesniff; urlPrefix: https://mimesniff.spec.whatwg.org/#
             <ol>
               <li>
                 Set the {{MediaKeySystemAccess/keySystem}} attribute to
-                <code>emeConfiguration.keySystem</code>.
+                <code>config.keySystemConfiguration.keySystem</code>.
               </li>
               <li>
                 Let the <var ignore=''>configuration</var> value be
